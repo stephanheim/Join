@@ -1,3 +1,3 @@
-git add.
-git comit -m "%*"
+git add .
+git commit -m "%*"
 git push
