@@ -8,9 +8,40 @@
   <link rel="shortcut icon" href="./assets/img/join.svg" type="image/x-icon" />
   <link rel="stylesheet" href="./style.css" />
   <link rel="stylesheet" href="./style/login.css">
+  <link rel="stylesheet" href="./style/variables.css">
 </head>
 
 <body>
+  <header class="bg-white">
+    <div class="content-wrapper">
+      <div class="login-logo-left"><img src="./assets/img/join_login.svg" alt=""></div>
+      <div class="login-signup-right">
+        <p>Not a Join user?</p>
+        <a href="../join/pages/signup.html" class="bt-signup">Sign Up</a>
+      </div>
+    </div>
+  </header>
+  <main class="bg-white">
+    <div class="content-wrapper">
+      <div class="login-content">
+        <div class="form-content">
+
+          <form onsubmit="submitLogin();return false;" class="email-submit" action="">
+            <div>
+              <input required id="loginEmail" minlength="5" type="text" placeholder="Accountname">
+            </div>
+            <div>
+              <input required id="LoginPasswort" type="password" placeholder="Passwort"></input>
+            </div>
+            <div>
+              <button>Log in</button><button>Guest Log in</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </main>
   <script src="./script.js"></script>
 </body>
 
