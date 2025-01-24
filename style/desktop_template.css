@@ -2,7 +2,10 @@
   position: fixed;
   background-color: rgba(42, 54, 71, 1);
   width: 232px;
-  height: 100vh;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 header {
@@ -21,14 +24,25 @@ header {
 
 .header-right-box {
   display: flex;
+  align-items: center;
   gap: 16px;
+}
+
+.header-profil-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(41, 171, 226);
+  border: 3px solid rgba(42, 54, 71, 1);
+  border-radius: 50%;
+  height: 48px;
+  width: 48px;
 }
 
 .join-logo-section {
   display: flex;
   justify-content: center;
   padding-top: 64px;
-  padding-bottom: 64px;
 }
 
 p {
@@ -38,24 +52,46 @@ p {
 }
 
 .navbar_section {
-  gap: 15px;
-  padding-top: 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .nav {
   display: flex;
   align-items: center;
-  padding: 8px 8px;
+  justify-content: start;
+  padding: 8px 53px;
   gap: 8px;
 }
 
-.img_menu {
-  padding-left: 56px;
+.nav:hover {
+  background-color: rgb(48, 73, 90);
+}
+
+.side-menu-below-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 64px;
+  gap: 16px;
 }
 
 a {
   text-decoration: none;
-  color: white;
+  color: rgba(205, 205, 205, 1);
   font-weight: 400;
   font-size: 16px;
+}
+
+.a-policy {
+  text-decoration: none;
+  color: rgba(205, 205, 205, 1);
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.a-policy:hover {
+  color: rgb(41, 171, 226);
+  font-weight: 700;
 }
