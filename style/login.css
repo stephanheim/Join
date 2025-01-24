@@ -1,0 +1,61 @@
+.content-wrapper {
+    position: relative;
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.login-logo-left{
+    position: absolute;
+    top: 67px;
+    left: 77px;
+}
+
+.login-logo-left img {
+    max-width: 100%;
+}
+
+.login-signup-right {
+    position: absolute;
+    top: 67px;
+    right: 77px;
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.bt-signup {
+    border: none;
+    background-color: #2A3647;
+    color: #FFFFFF;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.1s ease;
+}
+
+.bt-signup:hover {
+    background-color: #29aae1;
+    transform: scale(1.01);
+}
+
+
+
+
+
+.login-content{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-content{
+    padding: 48px 88px;
+    border-radius: 30px;
+    background-color: #FFFFFF;
+    height: auto;
+}

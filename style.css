@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./assets/fonts/inter/Inter-VariableFont_opsz,wght.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 900;
+  font-optical-sizing: auto;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  font-weight: 400;
+  font-size: 16px;
+}
