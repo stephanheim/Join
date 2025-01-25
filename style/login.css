@@ -5,7 +5,7 @@
     margin: 0 auto;
 }
 
-.login-logo-left{
+.login-logo-left {
     position: absolute;
     top: 67px;
     left: 77px;
@@ -24,12 +24,13 @@
     gap: 35px;
 }
 
+.login-signup-right p {}
+
 .bt-signup {
     border: none;
     background-color: #2A3647;
-    color: #FFFFFF;
     text-align: center;
-    text-decoration: none;
+    font-weight: 700;
     padding: 10px 20px;
     border-radius: 8px;
     cursor: pointer;
@@ -41,11 +42,7 @@
     transform: scale(1.01);
 }
 
-
-
-
-
-.login-content{
+.login-content {
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -53,9 +50,29 @@
     align-items: center;
 }
 
-.form-content{
+.form-content {
     padding: 48px 88px;
     border-radius: 30px;
     background-color: #FFFFFF;
     height: auto;
+}
+
+.headline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.headline h1 {
+    font-size: 61px;
+}
+
+.input-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
 }
