@@ -136,3 +136,8 @@ body {
   overflow-y: auto;
 }
 /*---Header and side-Menu End----*/
+
+
+button {
+  cursor: pointer;
+}
