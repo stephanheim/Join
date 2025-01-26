@@ -51,7 +51,7 @@
     <!--end header & side-menu-->
     <main class="bg-white index-main">
       <form>
-        <h1>Add Task</h1>
+        <h1 class="h1-add-task">Add Task</h1>
         <section class="input-section">
           <div class="section-left">
             <div class="title">
@@ -79,16 +79,20 @@
               <div class="title">
                 <h2>Prio</h2>
               </div>
-              <div>
-                <button class="button-prio">Urgent</button>
-                <button class="button-prio">Medium</button>
-                <button class="button-prio">Low</button>
+              <div class="prio-section">
+                <button class="button-prio">Urgent <img src="../assets/icons/urgent.svg" /></button>
+                <button style="background-color: orange" class="button-prio">Medium <img src="../assets/icons/medium.svg" /></button>
+                <button class="button-prio">Low <img src="../assets/icons/low.svg" /></button>
               </div>
               <div class="title">
                 <h2>Category</h2>
                 <span>*</span>
               </div>
-              <input type="search" placeholder="Select contacts to assign" />
+              <input type="search" placeholder="Select task category" />
+              <div class="title">
+                <h2>Subtasks</h2>
+              </div>
+              <input type="search" placeholder="Add new subtask" />
             </div>
           </div>
         </section>
