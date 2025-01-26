@@ -12,7 +12,7 @@
 
   <body>
     <!--start header & side-menu-->
-    <header>
+    <header class="index-header">
       <p>Kanban Project Management Tool</p>
       <div class="header-right-box">
         <a href=""><img class="help-icon" src="../assets/icons/help.svg" alt="help.icon" /></a>
@@ -49,6 +49,50 @@
       </div>
     </section>
     <!--end header & side-menu-->
-    <main></main>
+    <main class="bg-white index-main">
+      <form>
+        <h1>Add Task</h1>
+        <section class="input-section">
+          <div class="section-left">
+            <div class="title">
+              <h2>Title</h2>
+              <span>*</span>
+            </div>
+            <input type="text" placeholder="Enter a title" required />
+            <div class="title">
+              <h2>Description</h2>
+            </div>
+            <textarea name="" id="" placeholder="Enter a Description"></textarea>
+            <div class="title">
+              <h2>Assigned to</h2>
+            </div>
+            <input type="search" placeholder="Select contacts to assign" />
+          </div>
+          <div class="devider-ver"></div>
+          <div>
+            <div class="section-left">
+              <div class="title">
+                <h2>Due date</h2>
+                <span>*</span>
+              </div>
+              <input type="date" required />
+              <div class="title">
+                <h2>Prio</h2>
+              </div>
+              <div>
+                <button class="button-prio">Urgent</button>
+                <button class="button-prio">Medium</button>
+                <button class="button-prio">Low</button>
+              </div>
+              <div class="title">
+                <h2>Category</h2>
+                <span>*</span>
+              </div>
+              <input type="search" placeholder="Select contacts to assign" />
+            </div>
+          </div>
+        </section>
+      </form>
+    </main>
   </body>
 </html>
