@@ -16,3 +16,7 @@ body {
   font-weight: 100 900;
   font-optical-sizing: auto;
 }
+
+button {
+  cursor: pointer;
+}

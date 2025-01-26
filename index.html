@@ -24,8 +24,8 @@
   <main class="bg-white">
     <div class="content-wrapper">
       <div class="login-content">
-        <div class="form-content">
-          <form onsubmit="submitLogin();return false;" class="email-submit" action="">
+        <div class="outside-form-content">
+          <form class="form-content" onsubmit="submitLogin();return false;" class="email-submit" action="">
 
 
             <div class="headline">
@@ -35,20 +35,21 @@
 
 
             <div class="input-content">
-              <div>
-                <input required id="loginEmail" minlength="5" type="email" placeholder="Email" aria-label="Email">
+              <div class="outside-input">
+                <input required class="inside-input" id="loginEmail" minlength="5" type="email" placeholder="Email"
+                  aria-label="Email">
                 <img src="./assets/icons/login_mail_letter.svg" alt="Brief">
               </div>
-              <div>
-                <input required id="loginPassword" minlength="5" type="password" placeholder="Password"
-                  aria-label="Password">
+              <div class="outside-input inside-input-pw">
+                <input required class="inside-input" id="loginPassword" minlength="5" type="password"
+                  placeholder="Password" aria-label="Password">
                 <img src="./assets/icons/login_pw_lock.svg" alt="Schloss">
               </div>
             </div>
 
 
-            <div>
-              <button>Log in</button><button>Guest Log in</button>
+            <div class="bt-login-content">
+              <button class="bt-login">Log in</button><button class="bt-guest-login">Guest Log in</button>
             </div>
 
 
