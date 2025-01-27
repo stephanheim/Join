@@ -71,3 +71,7 @@ textarea {
   display: flex;
   justify-content: space-between;
 }
+
+span {
+  color: red;
+}

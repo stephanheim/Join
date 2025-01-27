@@ -2,16 +2,84 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join - Sign Up</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join - Sign up</title>
     <link rel="shortcut icon" href="../assets/img/join.svg" type="image/x-icon" />
     <link rel="stylesheet" href="../style.css" />
     <link rel="stylesheet" href="../style/signup.css">
+    <link rel="stylesheet" href="../style/variables.css">
 </head>
 
 <body>
+    <header class="bg-white">
+        <div class="content-wrapper">
+            <div class="login-logo-left"><img src="../assets/img/join_login.svg" alt=""></div>
+        </div>
+    </header>
+    <main class="bg-white">
+        <div class="content-wrapper">
+            <div class="login-content">
+                <div class="outside-form-content">
+                    <form class="form-content" onsubmit="submitLogin();return false;" class="email-submit" action="">
+                        <div class="headline-content">
+                            <div><a href=""><img src="../assets/icons/arrow-left-line.svg" alt=""></a></div>
+                            <div class="headline">
+                                <h1>Sign up</h1>
+                                <hr class="devider-hr">
+                            </div>
+                        </div>
 
+
+                        <div class="input-content">
+                            <div class="outside-input">
+                                <input required class="inside-input" id="loginEmail" minlength="5" type="email"
+                                    placeholder="Name" aria-label="Email">
+                                <img src="../assets/icons/signup_name_person.svg" alt="Person">
+                            </div>
+                            <div class="outside-input">
+                                <input required class="inside-input" id="loginEmail" minlength="5" type="email"
+                                    placeholder="Email" aria-label="Email">
+                                <img src="../assets/icons/login_mail_letter.svg" alt="Brief">
+                            </div>
+                            <div class="outside-input">
+                                <input required class="inside-input" id="loginPassword" minlength="5" type="password"
+                                    placeholder="Password" aria-label="Password">
+                                <img src="../assets/icons/login_pw_lock.svg" alt="Schloss">
+                            </div>
+                            <div class="outside-input">
+                                <input required class="inside-input" id="loginPassword" minlength="5" type="password"
+                                    placeholder="Confirm Password" aria-label="Password">
+                                <img src="../assets/icons/login_pw_lock.svg" alt="Schloss">
+                            </div>
+
+                            <div class="checkbox-content">
+                                <input type="checkbox">
+                                <label for="privacyPolicy"></label>
+                                <span>I accept the</span>
+                                <a href="">Privacy Policy</a>
+
+                            </div>
+
+                        </div>
+                        <div class="bt-signup-content">
+                            <button class="bt-signup">Sign Up</button>
+                        </div>
+
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-white">
+        <div class="legal-information-content">
+            <a href="">Privacy Policy</a>
+            <a href="">Legal notice</a>
+        </div>
+    </footer>
+    <script src="../script.js"></script>
 </body>
 
 </html>
