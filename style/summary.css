@@ -33,6 +33,7 @@
 }
 
 .main-div {
+    margin-top: 48px;
     display: flex;
     flex-direction: row;
 }
@@ -40,6 +41,7 @@
 .metrics-div {
     display: flex;
     flex-direction: column;
+    margin-top: 33;
     width: 560px;
     height: 562px;
     margin-right: 96px;
@@ -61,7 +63,19 @@
     background-color: #ffffff;
     border-radius: 30px;
     margin-bottom: 24px;
+    transition: all 0.2s ease;
 }
+
+.row-middle .todone-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    z-index: 1; 
+}
+
+
 
 .row-bottom {
     display: flex;
@@ -163,4 +177,22 @@
     width: 2px;
     height: 102.2px;
     background-color: #D1D1D1
+}
+
+.hoverable {
+    transition: all 0.2s ease;
+}
+
+.hoverable:hover {
+    background-color: #293647;
+    transform: scale(1.03);
+    color: #ffffff;
+}
+
+.hoverable:hover img {
+    filter: invert(1) brightness(2.5);
+}
+
+.hoverable:hover img.no-invert {
+    filter: none;
 }
