@@ -38,12 +38,14 @@ body {
 }
 
 .index-header {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 500;
-  width: calc(100% - 232px);
   margin-left: 232px;
   padding-left: 100px;
   padding-right: 40px;
@@ -129,14 +131,11 @@ body {
 }
 
 .index-main {
-  position: relative;
-  width: calc(100% - 232px);
-  height: 100vh;
   margin-left: 232px;
-  overflow-y: auto;
+  padding-top: 96px;
+  height: 100vh;
 }
 /*---Header and side-Menu End----*/
-
 
 button {
   cursor: pointer;
