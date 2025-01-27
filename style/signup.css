@@ -15,10 +15,6 @@
     max-width: 100%;
 }
 
-
-
-
-
 .login-content {
     height: 100vh;
     display: flex;
@@ -37,6 +33,19 @@
     background-color: #FFFFFF;
 }
 
+.arrow-login-back {
+    position: absolute;
+    right: 320px;
+    width: 32px;
+    height: 32px;
+}
+
+.arrow-login-back:hover img {
+    background-color: #d1d1d1;
+    box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2);
+    transform: translateX(-1px);
+}
+
 .form-content {
     display: flex;
     flex-direction: column;
@@ -45,6 +54,7 @@
 }
 
 .headline-content {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -98,6 +108,8 @@
 .checkbox-content {
     width: 231px;
     height: 24px;
+    margin-top: 14px;
+    transition: all 0.1s ease;
 }
 
 .checkbox-content span {
@@ -111,6 +123,9 @@
 }
 
 .checkbox-content input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
     width: 16px;
     height: 16px;
     border: solid 2px #2A3647;
@@ -118,8 +133,14 @@
     cursor: pointer;
 }
 
-.checkbox-content:hover a,
-.checkbox-content:hover input {
+.checkbox-content input[type="checkbox"]:hover {
+    background-color: #d1d1d1;
+    transform: scale(1.02);
+    box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2);
+    transform: translateY(1px);
+}
+
+.checkbox-content a:hover {
     color: #29abe2;
     transform: scale(1.02);
     transform-origin: center center;
@@ -127,6 +148,29 @@
     font-weight: 500;
 }
 
+/* design fertig machen !  */
+
+input[type="checkbox"]:checked {
+    background-color: white;
+    /* Hintergrundfarbe beim Aktivieren */
+    border: 2px solid black;
+}
+
+input[type="checkbox"]:checked::after {
+    content: "";
+    /* Der Haken */
+    display: block;
+    width: 6px;
+    height: 18px;
+    border: solid black;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    position: relative;
+    top: -6px;
+    left: 8px;
+}
+
+/* ---------------- */
 
 .bt-signup-content {
     width: 126px;
@@ -135,7 +179,6 @@
     justify-content: center;
     align-items: center;
 }
-
 
 .bt-signup {
     width: 110px;
