@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-left: 80px;
+    padding-left: 80px;
 }
 
 .title-div {
