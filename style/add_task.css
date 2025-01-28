@@ -1,7 +1,6 @@
 .input-section {
   display: flex;
   justify-content: space-between;
-  width: 80%;
   padding: 0 60px;
 }
 
