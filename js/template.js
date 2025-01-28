@@ -1,16 +1,30 @@
-function init() {
-    loadHeaderAndSidebar();
+const pageTitles = {
+    add_task: 'Add Task',
+    summary: 'Summary User',
+    board: 'Board',
+    contacts: 'Contacts'
+};
+
+
+async function loadPageContentPath(page) {
+    let contentPages = document.getElementById('content');
+    const content = await fetchContent(`${page}.html`);
+    contentPages.innerHTML = content;
+    changePageTitles(page);
 }
 
-async function loadHeaderAndSidebar() {
-    let header = document.getElementById('header');
-    let sidebar = document.getElementById('sideBar');
-    if (header && sidebar) {
-        let responseHeader = await fetch('../templates/header.html');
-        let responseSideBar = await fetch('../templates/side_menu.html');
-        header.innerHTML = await responseHeader.text();
-        sidebar.innerHTML = await responseSideBar.text();
-    } else {
-        console.error('not found');
+
+async function fetchContent(page) {
+    try {
+        const response = await fetch(`../pages/${page}`);
+        return await response.text();
+    } catch (error) {
+        console.error('Fehler beim Abrufen');
     }
+}
+
+
+function changePageTitles(page){
+    let changeTitles = pageTitles[page];
+    return document.title = changeTitles;
 }
