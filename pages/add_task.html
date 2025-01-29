@@ -1,76 +1,73 @@
 <!DOCTYPE html>
 <html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add-Task</title>
+    <link rel="shortcut icon" href="../assets/img/join.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../style/add_task.css" />
+    <link rel="stylesheet" href="../style/variables.css" />
+    <script src="../js/template.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Add-Task</title>
-  <link rel="shortcut icon" href="../assets/img/join.svg" type="image/x-icon" />
-  <link rel="stylesheet" href="../style.css" />
-  <link rel="stylesheet" href="../style/add_task.css" />
-  <link rel="stylesheet" href="../style/variables.css" />
-  <script src="../js/template.js"></script>
-</head>
-
-<body>
-
-  <main class="bg-white">
-    <form>
-      <h1 class="h1-add-task">Add Task</h1>
-      <section class="input-section">
-        <div class="section-left">
-          <div class="title">
-            <h2>Title</h2>
-            <span>*</span>
-          </div>
-          <input type="text" placeholder="Enter a title" required />
-          <div class="title">
-            <h2>Description</h2>
-          </div>
-          <textarea name="" id="" placeholder="Enter a Description"></textarea>
-          <div class="title">
-            <h2>Assigned to</h2>
-          </div>
-          <input type="search" placeholder="Select contacts to assign" />
-        </div>
-        <div class="devider-ver"></div>
-        <div>
+  <body>
+    <main class="bg-white">
+      <form>
+        <h1 class="h1-add-task">Add Task</h1>
+        <section class="input-section">
           <div class="section-left">
             <div class="title">
-              <h2>Due date</h2>
-              <span>*</span>
-            </div>
-            <input class="input-date" type="date" required />
-            <div class="title">
-              <h2>Prio</h2>
-            </div>
-            <div class="prio-section">
-              <button class="button-prio">Urgent <img src="../assets/icons/urgent.svg" /></button>
-              <button class="button-prio">Medium <img src="../assets/icons/medium.svg" /></button>
-              <button class="button-prio">Low <img src="../assets/icons/low.svg" /></button>
-            </div>
-            <div class="title">
-              <h2>Category</h2>
+              <h2>Title</h2>
               <span class="span-star">*</span>
             </div>
-            <input type="search" placeholder="Select task category" />
+            <input type="text" placeholder="Enter a title" required />
             <div class="title">
-              <h2>Subtasks</h2>
+              <h2>Description</h2>
             </div>
-            <input type="search" placeholder="Add new subtask" />
+            <textarea name="" id="" placeholder="Enter a Description"></textarea>
+            <div class="title">
+              <h2>Assigned to</h2>
+            </div>
+            <input type="search" placeholder="Select contacts to assign" />
           </div>
+          <div class="devider-ver"></div>
+          <div>
+            <div class="section-left">
+              <div class="title">
+                <h2>Due date</h2>
+                <span class="span-star">*</span>
+              </div>
+              <input class="input-date" type="date" required />
+              <div class="title">
+                <h2>Prio</h2>
+              </div>
+              <div class="prio-section">
+                <button class="button-prio">Urgent <img src="../assets/icons/urgent.svg" /></button>
+                <button class="button-prio">Medium <img src="../assets/icons/medium.svg" /></button>
+                <button class="button-prio">Low <img src="../assets/icons/low.svg" /></button>
+              </div>
+              <div class="title">
+                <h2>Category</h2>
+                <span class="span-star">*</span>
+              </div>
+              <input type="search" placeholder="Select task category" />
+              <div class="title">
+                <h2>Subtasks</h2>
+              </div>
+              <input type="search" placeholder="Add new subtask" />
+            </div>
+          </div>
+        </section>
+      </form>
+
+      <div class="required-section">
+        <p><span class="span-star">*</span>This field is required</p>
+        <div class="bt-section">
+          <button class="bt-clear">Clear <img class="button-img" src="../assets/icons/iconoir_cancel.svg" /></button>
+          <button class="bt-add-task">Create Task<img src="../assets/icons/check.svg" /></button>
         </div>
-      </section>
-    </form>
-
-    <div class="required-section">
-      <p><span>*</span>This field is required</p>
-      <div class="bt-section">
-        <button class="bt-clear">Clear <img class="button-img" src="../assets/icons/iconoir_cancel.svg" /></button>
-        <button class="bt-add-task">Create Task<img src="../assets/icons/check.svg" /></button>
       </div>
-    </div>
-  </main>
-</body>
-
+    </main>
+  </body>
 </html>
