@@ -5,6 +5,7 @@ const pageTitles = {
   contacts: 'Contacts',
   privacy_policy: 'Privacy Policy',
   legal_notice: 'Legal notice',
+  help: 'Help',
 };
 
 async function loadPageContentPath(page) {
