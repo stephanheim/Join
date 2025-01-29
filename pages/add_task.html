@@ -12,16 +12,16 @@
   </head>
 
   <body>
-    <main class="bg-white">
+    <main class="bg-white main-add-task">
       <form>
         <h1 class="h1-add-task">Add Task</h1>
         <section class="input-section">
           <div class="section-left">
-            <div class="title">
+            <div class="title-add-task">
               <h2>Title</h2>
               <span class="span-star">*</span>
             </div>
-            <input type="text" placeholder="Enter a title" required />
+            <input type="text" placeholder="Enter a title" />
             <div class="title">
               <h2>Description</h2>
             </div>
@@ -34,20 +34,20 @@
           <div class="devider-ver"></div>
           <div>
             <div class="section-left">
-              <div class="title">
+              <div class="title-add-task">
                 <h2>Due date</h2>
                 <span class="span-star">*</span>
               </div>
-              <input class="input-date" type="date" required />
+              <input class="input-date" type="date" />
               <div class="title">
                 <h2>Prio</h2>
               </div>
               <div class="prio-section">
                 <button class="button-prio">Urgent <img src="../assets/icons/urgent.svg" /></button>
-                <button class="button-prio">Medium <img src="../assets/icons/medium.svg" /></button>
+                <button class="button-prio medium">Medium <img src="../assets/icons/medium.svg" /></button>
                 <button class="button-prio">Low <img src="../assets/icons/low.svg" /></button>
               </div>
-              <div class="title">
+              <div class="title-add-task">
                 <h2>Category</h2>
                 <span class="span-star">*</span>
               </div>
@@ -64,7 +64,7 @@
       <div class="required-section">
         <p><span class="span-star">*</span>This field is required</p>
         <div class="bt-section">
-          <button class="bt-clear">Clear <img class="button-img" src="../assets/icons/iconoir_cancel.svg" /></button>
+          <button class="bt-clear">Clear x</button>
           <button class="bt-add-task">Create Task<img src="../assets/icons/check.svg" /></button>
         </div>
       </div>
