@@ -1,10 +1,11 @@
 .wrapper {
     background-color: #f6f7f8;
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    box-sizing: border-box;
     padding-left: 80px;
+    padding-top: 110px;
 }
 
 .title-div {
@@ -75,8 +76,6 @@
     z-index: 1; 
 }
 
-
-
 .row-bottom {
     display: flex;
     flex-direction: row;
@@ -120,7 +119,6 @@
     padding: 25px;
     width: 168px;
     height: 168px;
-    ;
 }
 
 .welcome-div {
@@ -196,3 +194,4 @@
 .hoverable:hover img.no-invert {
     filter: none;
 }
+
