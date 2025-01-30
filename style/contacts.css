@@ -6,6 +6,13 @@
     align-items: center;
 }
 
+.main {
+    height: 928px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
 .title h1 {
     font-size: 61px;
     font-weight: 700;
@@ -18,6 +25,7 @@
     width: 456px;
     height: 928px;
     background-color: #ffffff;
+    overflow-y: auto;
 }
 
 .title {
@@ -25,6 +33,8 @@
     flex-direction: row;
     align-items: center;
     gap: 30px;
+    margin-left: 48px;
+    padding-top: 110px;
 }
 
 .subline {
@@ -39,6 +49,16 @@
     background-color: #28abe2
 }
 
+.btn-div {
+    position: sticky;
+    top: 22.5px;
+    width: 456px;
+    height: 101px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .btn-add-new {
     width: 352px;
@@ -79,6 +99,7 @@
 }
 
 .list-seperator {
+    min-height: 1px;
     height: 1px;
     width: 352px;
     border-radius: 10px;
@@ -124,4 +145,8 @@
     font-weight: 400px;
     line-height: 19.2px;
     color: #007CEE;
+}
+
+.glance {
+    margin-left: 48px;
 }
