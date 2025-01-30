@@ -33,7 +33,7 @@
     background-color: #FFFFFF;
 }
 
-.arrow-login-back {
+.arrow-login-back a {
     position: absolute;
     right: 320px;
     width: 32px;
@@ -131,13 +131,41 @@
     border: solid 2px #2A3647;
     border-radius: 3px;
     cursor: pointer;
+    position: relative;
 }
 
-.checkbox-content input[type="checkbox"]:hover {
-    background-color: #d1d1d1;
-    transform: scale(1.02);
-    box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2);
-    transform: translateY(1px);
+.checkbox-content input[type="checkbox"]:checked:hover::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 6px;
+    height: 6px;
+    background-color: white;
+    transition: all 300ms ease-out;
+}
+
+.checkbox-content input[type="checkbox"]:checked:hover::after {
+    content: "";
+    display: block;
+    width: 5px;
+    height: 12px;
+    border: solid #2A3647;
+    border-width: 0px 2px 2px 0px;
+    transform: rotate(35deg);
+    position: absolute;
+    top: -4px;
+    left: 4px;
+    animation: fadeIn 300ms ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0.5;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .checkbox-content a:hover {
@@ -147,30 +175,6 @@
     text-decoration: underline;
     font-weight: 500;
 }
-
-/* design fertig machen !  */
-
-input[type="checkbox"]:checked {
-    background-color: white;
-    /* Hintergrundfarbe beim Aktivieren */
-    border: 2px solid black;
-}
-
-input[type="checkbox"]:checked::after {
-    content: "";
-    /* Der Haken */
-    display: block;
-    width: 6px;
-    height: 18px;
-    border: solid black;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-    position: relative;
-    top: -6px;
-    left: 8px;
-}
-
-/* ---------------- */
 
 .bt-signup-content {
     width: 126px;
