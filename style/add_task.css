@@ -52,7 +52,9 @@ textarea {
   border: 1px solid rgba(209, 209, 209, 1);
 }
 
-.button-prio {
+.button-prio-urgent,
+.button-prio-medium,
+.button-prio-low {
   width: 140px;
   display: flex;
   align-items: center;
@@ -67,11 +69,9 @@ textarea {
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
 }
 
-.medium {
-  background-color: orange;
-}
-
-.button-prio:hover {
+.button-prio-urgent:hover,
+.button-prio-medium:hover,
+.button-prio-low:hover {
   box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2);
 }
 
