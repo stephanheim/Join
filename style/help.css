@@ -9,6 +9,13 @@
   max-width: 1920px;
 }
 
+.headline-help {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 h1 {
   font-size: 61px;
   font-weight: 700;
@@ -47,4 +54,12 @@ p {
 
 .span-help {
   color: rgba(41, 171, 226, 1);
+}
+
+.arrow-help-back:hover {
+  background-color: #d1d1d1;
+  box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2);
+  transform: translateX(-1px);
+  border-radius: 50%;
+  cursor: pointer;
 }
