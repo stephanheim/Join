@@ -1,12 +1,18 @@
-.help-wrap {
+.notice-wrap {
   display: flex;
   justify-content: left;
   flex-direction: column;
   align-items: flex-start;
-  gap: 16px;
+  gap: 30px;
   background-color: #f6f7f8;
   padding: 110px 80px 80px 80px;
   max-width: 1920px;
+}
+
+.explor-board {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 h1 {
@@ -16,7 +22,7 @@ h1 {
 }
 
 h2 {
-  font-size: 27px;
+  font-size: 21px;
   font-weight: 700;
   line-height: 32.4 px;
 }
@@ -27,24 +33,12 @@ p {
   line-height: 19.2px;
 }
 
-.headline-use {
-  display: flex;
-  flex-direction: column;
-}
-
-.step-by-step {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-}
-
-.deleting-cards {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding-bottom: 20px;
-}
-
-.span-help {
+.span-notice {
   color: rgba(41, 171, 226, 1);
+}
+
+.indemnity {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
