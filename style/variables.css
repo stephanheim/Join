@@ -16,6 +16,14 @@ h2 {
   font-weight: 400;
 }
 
+.d-none {
+  display: none;
+}
+
+.d-block {
+  display: block;
+}
+
 .bg-white {
   background-color: #F6F7F8;
 }
@@ -36,3 +44,4 @@ h2 {
   margin-bottom: 20px;
   border-radius: 3px;
 }
+
