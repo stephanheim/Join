@@ -1,0 +1,79 @@
+.board-header {
+    max-width: 1208px;
+    width: 100%;
+    height: 232px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.board-header-content {
+    max-width: 1056px;
+    width: 100%;
+    height: 73px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.board-headine {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.board-headine span {
+    font-size: 61px;
+    font-weight: 700;
+}
+
+.find-add-task-content {
+    max-width: 504px;
+    width: 100%;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+}
+
+.outside-find-task {
+    max-width: 312px;
+    width: 100%;
+    height: 48px;
+    border: solid 1px #A8A8A8;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    padding: 8px 16px 8px 16px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.ft-inside-input {
+    max-width: 280px;
+    width: 100%;
+    height: 32px;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.bt-add-task {
+    width: 160px;
+    height: 48px;
+    background-color: #2A3647;
+    color: #ffffff;
+    border: solid 1px #2A3647;
+    border-radius: 10px;
+    font-size: 21px;
+    font-weight: 700;
+    transition: all 100ms ease-in-out;
+}
+
+.bt-add-task:hover {
+    background-color: #29aae1;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
