@@ -134,19 +134,23 @@
     position: relative;
 }
 
-.checkbox-content input[type="checkbox"]:checked:hover::before {
+.checkbox-content input[type="checkbox"]:hover {
+    background-color: #EEEEEE;
+    transform: translateY(1px);
+}
+
+.checkbox-content input[type="checkbox"]:checked::before {
     content: "";
     position: absolute;
     top: -2px;
     right: -2px;
     width: 6px;
     height: 6px;
-    background-color: white;
     transition: all 300ms ease-out;
     background-color: #EDF2FA;
 }
 
-.checkbox-content input[type="checkbox"]:checked:hover::after {
+.checkbox-content input[type="checkbox"]:checked::after {
     content: "";
     display: block;
     width: 5px;
