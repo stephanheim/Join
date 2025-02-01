@@ -1,184 +1,182 @@
 .contact-wrapper {
-    background-color: #f6f7f8;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  background-color: #f6f7f8;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .main {
-    height: 928px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  height: 928px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .title h1 {
-    font-size: 61px;
-    font-weight: 700;
+  font-size: 61px;
+  font-weight: 700;
 }
 
 .list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 456px;
-    height: 928px;
-    background-color: #ffffff;
-    overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 456px;
+  height: 928px;
+  background-color: #ffffff;
+  overflow-y: auto;
 }
 
 .title {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 30px;
-    margin-left: 48px;
-    padding-top: 110px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+  margin-left: 48px;
 }
 
 .subline {
-    font-size: 27px;
-    font-weight: 400;
-    line-height: 32.4px;
+  font-size: 27px;
+  font-weight: 400;
+  line-height: 32.4px;
 }
 
 .seperator {
-    width: 3px;
-    height: 59px;
-    background-color: #28abe2
+  width: 3px;
+  height: 59px;
+  background-color: #28abe2;
 }
 
 .btn-div {
-    position: sticky;
-    top: 22.5px;
-    width: 456px;
-    height: 101px;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  position: sticky;
+  top: 22.5px;
+  width: 456px;
+  height: 101px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .btn-add-new {
-    width: 352px;
-    height: 56px;
-    background-color: #2A3647;
-    border: 1px;
-    border-radius: 10px;
-    color: #ffffff;
-    font-size: 21px;
-    font-weight: 700;
-    line-height: 25.2px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    padding: 12px 0 12px 0;
-    margin: 22px 0 23px 0;
-    transition: all 0.1s ease;
+  width: 352px;
+  height: 56px;
+  background-color: #2a3647;
+  border: 1px;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 25.2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 12px 0 12px 0;
+  margin: 22px 0 23px 0;
+  transition: all 0.1s ease;
 }
 
 .btn-add-new:hover {
-    background-color: #29aae1;
-    box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2);
-    transform: translateX(-1px);
+  background-color: #29aae1;
+  box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2);
+  transform: translateX(-1px);
 }
 
 .letter-div {
-    width: 352px;
-    height: 58px;
-    padding: 17px 36px 17px 36px;
-    gap: 8px;
+  width: 352px;
+  height: 58px;
+  padding: 17px 36px 17px 36px;
+  gap: 8px;
 }
 
 .letter {
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 24px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
 }
 
 .list-seperator {
-    min-height: 1px;
-    height: 1px;
-    width: 352px;
-    border-radius: 10px;
-    background-color: #D1D1D1;
-    gap: 10px;
-    margin: 7px 0 8px 0;
+  min-height: 1px;
+  height: 1px;
+  width: 352px;
+  border-radius: 10px;
+  background-color: #d1d1d1;
+  gap: 10px;
+  margin: 7px 0 8px 0;
 }
 
 .name {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 352px;
-    height: 78px;
-    padding: 15px 24px 15px 24px;
-    gap: 35px;
-    border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 352px;
+  height: 78px;
+  padding: 15px 24px 15px 24px;
+  gap: 35px;
+  border-radius: 10px;
 }
 
 .initials {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 12px;
-    font-weight: 400;
-    background-color: #FF7A00;
-    color: white;
-    border: 2px solid white;
-    border-radius: 45px;
-    gap: 10px;
-    width: 42px;
-    height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 400;
+  background-color: #ff7a00;
+  color: white;
+  border: 2px solid white;
+  border-radius: 45px;
+  gap: 10px;
+  width: 42px;
+  height: 42px;
 }
 
 .name-details {
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 24px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
 }
 
 .mail {
-    font-size: 16px;
-    font-weight: 400px;
-    line-height: 19.2px;
-    color: #007CEE;
+  font-size: 16px;
+  font-weight: 400px;
+  line-height: 19.2px;
+  color: #007cee;
 }
 
 .glance {
-    display: flex;
-    flex-direction: column;
-    margin-left: 48px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 48px;
 }
 
-.glance-details{
-display: flex;
-flex-direction: row;
-align-items: center;
-font-size: 47px;
-font-weight: 500;
-line-height: 56.4px;
-gap: 54px;
+.glance-details {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 47px;
+  font-weight: 500;
+  line-height: 56.4px;
+  gap: 54px;
 }
 
 .glance-initials {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #FF7A00;
-    color: white;
-    border: 3px solid white;
-    border-radius: 70px;
-    gap: 10px;
-    width: 120px;
-    height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ff7a00;
+  color: white;
+  border: 3px solid white;
+  border-radius: 70px;
+  gap: 10px;
+  width: 120px;
+  height: 120px;
 }
 
 .glance-icons {
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 19.2px;
-    gap: 13px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.2px;
+  gap: 13px;
 }

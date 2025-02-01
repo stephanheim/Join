@@ -7,7 +7,8 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  height: 100vh;
+  /* height: 100vh; */
+  background-color: #f6f7f8;
 }
 
 @font-face {
@@ -17,11 +18,18 @@ body {
   font-weight: 100 900;
   font-optical-sizing: auto;
 }
+
+.content-wrapper {
+  position: relative;
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+}
+
 /* Header and Side-Menu */
 .side-menu {
   position: fixed;
   top: 0;
-  left: 0;
   background-color: rgba(42, 54, 71, 1);
   width: 232px;
   height: 100vh;
