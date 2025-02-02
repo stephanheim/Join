@@ -26,6 +26,10 @@ body {
   margin: 0 auto;
 }
 
+button {
+  cursor: pointer;
+}
+
 /* Header and Side-Menu */
 .side-menu {
   position: fixed;
@@ -142,11 +146,7 @@ body {
 .index-main {
   margin-left: 232px;
   padding-top: 96px;
-  height: 100vh;
   background-color: #f6f7f8;
 }
-/*---Header and side-Menu End----*/
 
-button {
-  cursor: pointer;
-}
+/*---Header and side-Menu End----*/

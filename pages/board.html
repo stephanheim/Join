@@ -12,21 +12,46 @@
 </head>
 
 <body>
+    <div id="floatingAddTask"></div>
     <header class="board-header">
         <div class="board-header-content">
             <div class="board-headine"><span>Board</span></div>
             <div class="find-add-task-content">
-                <div class="outside-find-task">
-                    <input required class="ft-inside-input" id="loginEmail" minlength="5" type="email"
-                        placeholder="Find Task" aria-label="Email">
+                <label class="outside-find-task">
+                    <input required class="ft-inside-input" id="taskSearch" minlength="3" type="search"
+                        placeholder="Find Task" aria-label="Search Tasks">
                     <img src="../assets/icons/seperaor_horicentral.svg" alt="Strich">
-                    <img src="../assets/icons/search_magnifier.svg" alt="Person">
-                </div>
+                    <img src="../assets/icons/search_magnifier.svg" alt="Such Icon">
+                </label>
                 <button class="bt-add-task">Add Task <img src="../assets/icons/cross_add.svg" alt=""></button>
             </div>
         </div>
     </header>
-    <main></main>
+    <main class="board-main">
+        <div class="board-task">
+            <div class="nav-add-task"><span>To do</span><img src="../assets/icons/plus_button.svg" alt="plus Button">
+            </div>
+            <div class="no-task"><span>No Tasks To do</span></div>
+            <div id="TaskToDo"></div>
+        </div>
+        <div class="board-task">
+            <div class="nav-add-task"><span>In progress</span><img src="../assets/icons/plus_button.svg"
+                    alt="plus Button"></div>
+            <div class="no-task"><span>No Tasks In progress</span></div>
+            <div id="TaskInProgress"></div>
+        </div>
+        <div class="board-task">
+            <div class="nav-add-task"><span>Await feedback</span><img src="../assets/icons/plus_button.svg"
+                    alt="plus Button"></div>
+            <div class="no-task"><span>No Tasks Await feedback</span></div>
+            <div id="TaskAwaitFeedback"></div>
+        </div>
+        <div class="board-task">
+            <div class="nav-add-task"><span>Done</span></div>
+            <div class="no-task"><span>No Tasks Done</span></div>
+            <div id="TaskDone"></div>
+        </div>
+    </main>
     <script src="../script.js"></script>
 </body>
 
