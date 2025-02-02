@@ -1,15 +1,13 @@
 /* login animation */
 
 .overlay-join-logo {
-  width: 100%;
-  height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: 999;
-  animation: fadeOutOverlay 500ms ease-in-out 600ms forwards;
+  animation: fadeOutLogo 500ms ease-in-out 600ms forwards;
 }
 
 .start-join-logo {
@@ -28,7 +26,7 @@
   height: 100%;
 }
 
-@keyframes fadeOutOverlay {
+@keyframes fadeOutLogo {
   0% {
     opacity: 1;
   }
