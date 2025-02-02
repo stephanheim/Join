@@ -1,0 +1,9 @@
+
+D:\soft_dev\current_project\join>git add . 
+
+D:\soft_dev\current_project\join>git commit -m "onload-" 
+[developer 6743928] onload-
+ 3 files changed, 2 insertions(+), 1 deletion(-)
+ create mode 100644 summary
+
+D:\soft_dev\current_project\join>git push 
