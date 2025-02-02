@@ -1,248 +1,248 @@
 .contact-wrapper {
-    background-color: #f6f7f8;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  background-color: #f6f7f8;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .cnt-main {
-    height: 928px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding-top: 114px;
+  height: 928px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 114px;
 }
 
 .cnt-title h1 {
-    font-size: 61px;
-    font-weight: 700;
+  font-size: 61px;
+  font-weight: 700;
 }
 
 .cnt-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 456px;
-    height: 928px;
-    background-color: #ffffff;
-    overflow-y: auto;
-    cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 456px;
+  height: 928px;
+  background-color: #ffffff;
+  overflow-y: auto;
+  cursor: pointer;
 }
 
 .cnt-title {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 30px;
-    margin-left: 48px;
-    margin-bottom: 32px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+  margin-left: 48px;
+  margin-bottom: 32px;
 }
 
 .cnt-subline {
-    font-size: 27px;
-    font-weight: 400;
-    line-height: 32.4px;
+  font-size: 27px;
+  font-weight: 400;
+  line-height: 32.4px;
 }
 
 .cnt-seperator {
-    width: 3px;
-    height: 59px;
-    background-color: #28abe2;
+  width: 3px;
+  height: 59px;
+  background-color: #28abe2;
 }
 
 .cnt-btn-div {
-    position: sticky;
-    top: 0;
-    width: 456px;
-    height: 101px;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  position: sticky;
+  top: 0;
+  width: 456px;
+  height: 101px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .cnt-btn-add-new {
-    width: 352px;
-    height: 56px;
-    background-color: #2a3647;
-    border: 1px;
-    border-radius: 10px;
-    color: #ffffff;
-    font-size: 21px;
-    font-weight: 700;
-    line-height: 25.2px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    padding: 12px 0 12px 0;
-    margin: 22px 0 23px 0;
-    transition: all 0.1s ease;
-    cursor: pointer;
+  width: 352px;
+  height: 56px;
+  background-color: #2a3647;
+  border: 1px;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 25.2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 12px 0 12px 0;
+  margin: 22px 0 23px 0;
+  transition: all 0.1s ease;
+  cursor: pointer;
 }
 
 .cnt-btn-add-new:hover {
-    background-color: #29aae1;
-    box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2);
-    transform: translateX(-1px);
+  background-color: #29aae1;
+  box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2);
+  transform: translateX(-1px);
 }
 
 .cnt-letter-div {
-    width: 352px;
-    height: 58px;
-    padding: 17px 36px 17px 36px;
-    gap: 8px;
+  width: 352px;
+  height: 58px;
+  padding: 17px 36px 17px 36px;
+  gap: 8px;
 }
 
 .cnt-letter {
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 24px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
 }
 
 .cnt-list-seperator {
-    min-height: 1px;
-    height: 1px;
-    width: 352px;
-    border-radius: 10px;
-    background-color: #d1d1d1;
-    gap: 10px;
-    margin: 7px 0 8px 0;
+  min-height: 1px;
+  height: 1px;
+  width: 352px;
+  border-radius: 10px;
+  background-color: #d1d1d1;
+  gap: 10px;
+  margin: 7px 0 8px 0;
 }
 
 .cnt-name {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 352px;
-    height: 78px;
-    padding: 15px 24px 15px 24px;
-    gap: 35px;
-    border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 352px;
+  height: 78px;
+  padding: 15px 24px 15px 24px;
+  gap: 35px;
+  border-radius: 10px;
 }
 
 .cnt-name:hover {
-    background-color:rgb(239, 237, 237);
+  background-color: rgb(239, 237, 237);
 }
 
 .cnt-initials {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 12px;
-    font-weight: 400;
-    background-color: #ff7a00;
-    color: white;
-    border: 2px solid white;
-    border-radius: 45px;
-    gap: 10px;
-    width: 42px;
-    height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 400;
+  background-color: #ff7a00;
+  color: white;
+  border: 2px solid white;
+  border-radius: 45px;
+  gap: 10px;
+  width: 42px;
+  height: 42px;
 }
 
 .cnt-name-details {
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 24px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
 }
 
 .cnt-mail {
-    font-size: 16px;
-    font-weight: 400px;
-    line-height: 19.2px;
-    color: #007cee;
+  font-size: 16px;
+  font-weight: 400px;
+  line-height: 19.2px;
+  color: #007cee;
 }
 
 .cnt-glance {
-    display: flex;
-    flex-direction: column;
-    margin-left: 48px;
-    width: 569px;
-    animation: slideIn 0.4s ease-in-out forwards;
+  display: flex;
+  flex-direction: column;
+  margin-left: 48px;
+  width: 569px;
+  animation: slideIn 0.4s ease-in-out forwards;
 }
 
 .cnt-glance-details {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    font-size: 47px;
-    font-weight: 500;
-    line-height: 56.4px;
-    margin-bottom: 42px;
-    gap: 54px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 47px;
+  font-weight: 500;
+  line-height: 56.4px;
+  margin-bottom: 42px;
+  gap: 54px;
 }
 
 .cnt-glance-initials {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #ff7a00;
-    color: white;
-    border: 3px solid white;
-    border-radius: 70px;
-    gap: 10px;
-    width: 120px;
-    height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ff7a00;
+  color: white;
+  border: 3px solid white;
+  border-radius: 70px;
+  gap: 10px;
+  width: 120px;
+  height: 120px;
 }
 
 .cnt-glance-icon-div {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 19.2px;
-    height: 24px;
-    width: 159px;
-    gap: 13px;
-    cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.2px;
+  height: 24px;
+  width: 159px;
+  gap: 13px;
+  cursor: pointer;
 }
 
 .cnt-spacer {
-    width: 26px;
+  width: 26px;
 }
 
 .cnt-glance-contact {
-    display: flex;
-    flex-direction: column;
-    gap: 15px
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .cnt-contact-info {
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 24px;
-    width: 207px;
-    height: 74px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  width: 207px;
+  height: 74px;
 }
 
 .cnt-info-title {
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 19.2px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19.2px;
 }
 
 .cnt-info-mail {
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 19.2px;
-    color: #007cee;
-    padding-bottom: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.2px;
+  color: #007cee;
+  padding-bottom: 8px;
 }
 
 .cnt-info-phone {
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 19.2px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.2px;
 }
 
 @keyframes slideIn {
-    from {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }

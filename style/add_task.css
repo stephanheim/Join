@@ -1,6 +1,24 @@
-.input-section {
-  justify-content: space-evenly;
+.content {
   display: flex;
+  flex-direction: column;
+  padding-left: 96px;
+  padding-right: 135px;
+}
+
+.headline-add-task {
+  display: flex;
+  align-items: center;
+  height: 200px;
+}
+
+.h1-add-task {
+  font-size: 61px;
+  font-weight: 700;
+}
+
+.input-section {
+  display: flex;
+  gap: 48px;
 }
 
 .section-left {
@@ -25,12 +43,6 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-}
-
-.h1-add-task {
-  font-size: 61px;
-  font-weight: 700;
-  padding: 60px 60px 40px 82px;
 }
 
 .title-and-star {
@@ -131,8 +143,7 @@
 .required-section {
   display: flex;
   justify-content: space-between;
-  padding: 0 60px;
-  padding-top: 140px;
+  padding-top: 100px;
 }
 
 .required-field {
@@ -192,8 +203,4 @@
 
 .button-img:hover {
   color: #29abe2;
-}
-
-.main-add-task {
-  height: 100%;
 }
