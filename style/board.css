@@ -94,10 +94,10 @@
     width: 100%;
     height: auto;
     display: flex;
-    /* justify-content: center; */
     align-items: center;
     gap: 26px;
     padding: 0px 64px;
+    flex-wrap: wrap;
 }
 
 .board-task {
@@ -105,12 +105,11 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    flex: 1;
     gap: 16px;
 }
 
 .nav-add-task {
-    width: 244px;
+    width: 250px;
     height: 24px;
     display: flex;
     justify-content: space-between;
@@ -134,7 +133,7 @@
 }
 
 .no-task {
-    width: 252px;
+    width: 250px;
     height: 48px;
     border-radius: 10px;
     border: dotted 1px #A8A8A8;
