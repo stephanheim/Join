@@ -1,86 +1,135 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Board</title>
-    <link rel="shortcut icon" href="../assets/img/join.svg" type="image/x-icon" />
-    <link rel="stylesheet" href="../style.css" />
-    <link rel="stylesheet" href="../style/variables.css" />
-    <link rel="stylesheet" href="../style/board.css" />
-    <link rel="stylesheet" href="../style/add_task.css" />
-    <link rel="stylesheet" href="../style/floating_add_task.css" />
-  </head>
 
-  <body>
-    <main id="floatingAddTask" class="floating-main d-none"></main>    
-    <header class="board-header">
-      <div class="board-header-content">
-        <div class="board-headine"><span>Board</span></div>
-        <div class="find-add-task-content">
-          <label class="outside-find-task">
-            <input required class="ft-inside-input" id="taskSearch" minlength="3" type="search" placeholder="Find Task" aria-label="Search Tasks" />
-            <img src="../assets/icons/seperaor_horicentral.svg" alt="Strich" />
-            <img src="../assets/icons/search_magnifier.svg" alt="Such Icon" />
-          </label>
-          <button class="bt-add-task" onclick="openAddTask()">Add Task <img src="../assets/icons/cross_add.svg" alt="" /></button>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Board</title>
+  <link rel="shortcut icon" href="../assets/img/join.svg" type="image/x-icon" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../style/variables.css" />
+  <link rel="stylesheet" href="../style/board.css" />
+  <link rel="stylesheet" href="../style/add_task.css" />
+  <link rel="stylesheet" href="../style/floating_add_task.css" />
+</head>
+
+<body>
+  <main id="floatingAddTask" class="floating-main d-none"></main>
+  <header class="board-header">
+    <div class="board-header-content">
+      <div class="board-headline"><h1>Board</h1></div>
+      <div class="find-add-task-content">
+        <label class="outside-find-task">
+          <input required class="ft-inside-input" id="taskSearch" minlength="3" type="search" placeholder="Find Task"
+            aria-label="Search Tasks" />
+          <img src="../assets/icons/seperaor_horicentral.svg" alt="Strich" />
+          <img src="../assets/icons/search_magnifier.svg" alt="Such Icon" />
+        </label>
+        <button class="bt-add-task" onclick="openAddTask()">Add Task <img src="../assets/icons/cross_add.svg"
+            alt="" /></button>
       </div>
-    </header>
-    <main class="board-main">
+    </div>
+  </header>
+  <main class="board-main">
+
+
+    <div class="board-task">
       <div class="board-task">
         <div class="nav-add-task">
-          <span>To do</span
-          ><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <span>To do</span><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
             <rect x="1" y="1" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2" />
             <path d="M12 8V16" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
             <path d="M16 12.0754L8 12.0754" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
           </svg>
         </div>
-        <div class="no-task"><span>No Tasks To do</span></div>
-        <div id="TaskToDo"></div>
-
-        <div id="taskCard">
-          <div class="task-card-content">
-            <div>User Story</div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
+        <div class="no-task d-none">
+          <span>No Tasks To do</span>
         </div>
-
       </div>
+
+      <div id="taskCard" class="task-card-outside">
+        <div class="card-headline"><span>User Story</span></div>
+        <div class="card-description">
+          <span>Title</span>
+          <p>Content...</p>
+        </div>
+        <div class="card-progress">
+          <div id="progressBar" class="card-progress-bar" role="progressbar" style="width: 100%;"></div>
+          <span>0/2 Subtasks</span>
+        </div>
+        <div class="card-contacts-prio">
+          <div class="user-badge"><span></span></div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="board-task">
       <div class="board-task">
         <div class="nav-add-task">
-          <span>In progress</span
-          ><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <span>In progress</span><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
             <rect x="1" y="1" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2" />
             <path d="M12 8V16" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
             <path d="M16 12.0754L8 12.0754" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
           </svg>
         </div>
-        <div class="no-task"><span>No Tasks In progress</span></div>
-        <div id="TaskInProgress"></div>
+        <div class="no-task d-none"><span>No Tasks In progress</span></div>
       </div>
+
+      <div id="taskCard" class="task-card-outside">
+        <div>User Story</div>
+        <div>Title</div>
+        <div>Subtasks</div>
+        <div>IMG</div>
+      </div>
+
+    </div>
+
+
+    <div class="board-task">
       <div class="board-task">
         <div class="nav-add-task">
-          <span>Await feedback</span
-          ><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <span>Await feedback</span><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
             <rect x="1" y="1" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2" />
             <path d="M12 8V16" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
             <path d="M16 12.0754L8 12.0754" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
           </svg>
+          <div class="no-task d-none"><span>No Tasks Await feedback</span></div>
         </div>
-        <div class="no-task"><span>No Tasks Await feedback</span></div>
-        <div id="TaskAwaitFeedback"></div>
       </div>
+
+      <div id="taskCard" class="task-card-outside">
+        <div>User Story</div>
+        <div>Title</div>
+        <div>Subtasks</div>
+        <div>IMG</div>
+      </div>
+
+    </div>
+
+
+    <div class="board-task">
       <div class="board-task">
         <div class="nav-add-task"><span>Done</span></div>
-        <div class="no-task"><span>No Tasks Done</span></div>
-        <div id="TaskDone"></div>
+        <div class="no-task d-none"><span>No Tasks Done</span></div>
       </div>
-    </main>
-    <script src="../js/template.js"></script>
-    <script src="../script.js"></script>
-  </body>
+
+      <div id="taskCard" class="task-card-outside">
+        <div>User Story</div>
+        <div>Title</div>
+        <div>Subtasks</div>
+        <div>IMG</div>
+      </div>
+
+    </div>
+
+  </main>
+  <script src="../js/template.js"></script>
+  <script src="../script.js"></script>
+</body>
+
 </html>

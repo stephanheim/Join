@@ -14,13 +14,13 @@
     align-items: center;
 }
 
-.board-headine {
+.board-headline {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.board-headine span {
+.board-headline h1 {
     font-size: 61px;
     font-weight: 700;
 }
@@ -150,4 +150,76 @@
 .no-task span {
     font-weight: 400;
     font-size: 16px;
+}
+
+/* task card */
+
+.task-card-outside {
+    width: 250px;
+    max-height: 225px;
+    height: 100%;
+    background-color: #FFFFFF;
+    border-radius: 24px;
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.card-headline {
+    width: 113px;
+    height: 27px;
+    border-radius: 8px;
+    background-color: #0038FF;
+    padding: 4px 16px 4px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.card-description {
+    width: 100%;
+    max-height: 46px;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.card-description span {
+    color: #2A3647;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.card-description p {
+    color: #A8A8A8;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.card-progress{
+    width: 100%;
+    height: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-progress-bar{
+    max-width: 128px;
+    height: 8px;
+    border-radius: 8px;
+    background-color: #4589FF;
+}
+
+.card-progress span {
+    font-weight: 400;
+    font-size: 12px;
 }
