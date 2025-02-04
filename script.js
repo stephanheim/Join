@@ -32,7 +32,6 @@ function changePageTitles(page) {
 function openAddTask() {
   let addTask = document.getElementById('floatingAddTask');
   addTask.style.display = 'flex';
-  addTask.className = 'floating-main';
   addTask.innerHTML = addTaskTemplate();
 }
 
@@ -42,5 +41,5 @@ function closeAddTask() {
   setTimeout(() => {
     floatingTask.style.display = 'none';
     floatingTask.className = '';
-  }, 200);
+  }, 100);
 }
