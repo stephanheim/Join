@@ -38,11 +38,9 @@ function openAddTask() {
 
 function closeAddTask() {
   let floatingTask = document.getElementById('floatingAddTask');
-  if (floatingTask) {
-    floatingTask.className = 'slide-out';
-    setTimeout(() => {
-      floatingTask.style.display = 'none';
-      floatingTask.className = '';
-    }, 200);
-  }
+  floatingTask.className = 'floating-main-out';
+  setTimeout(() => {
+    floatingTask.style.display = 'none';
+    floatingTask.className = '';
+  }, 200);
 }

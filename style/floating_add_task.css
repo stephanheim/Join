@@ -9,7 +9,21 @@
   top: 0;
   left: 0;
   width: 100%;
-  animation: slideIn 0.2s ease-in-out forwards;
+  animation: slideIn 0.3s ease-in-out forwards;
+}
+
+.floating-main-out {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  background-color: rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  animation: slideOut 0.3s ease-in-out backwards;
 }
 
 .floating-content {
@@ -45,8 +59,4 @@
     transform: translateX(100%);
     opacity: 1;
   }
-}
-
-.slide-out {
-  animation: slideOut 0.2s ease-in-out backwards;
 }
