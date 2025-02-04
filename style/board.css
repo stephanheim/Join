@@ -204,7 +204,7 @@
     font-size: 16px;
 }
 
-.card-progress{
+.card-progress {
     width: 100%;
     height: 16px;
     display: flex;
@@ -212,7 +212,7 @@
     align-items: center;
 }
 
-.card-progress-bar{
+.card-progress-bar {
     max-width: 128px;
     height: 8px;
     border-radius: 8px;
@@ -222,4 +222,45 @@
 .card-progress span {
     font-weight: 400;
     font-size: 12px;
+}
+
+.card-badge-prio {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-badge {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+}
+
+.user-badge {
+    width: 32px;
+    height: 32px;
+    background-color: #ff7a00;
+    border-radius: 50%;
+    border: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 400;
+    color: white;
+}
+
+.-m-user-badge {
+    margin-left: -10px;
+}
+
+.user-prio {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -17,7 +17,9 @@
   <main id="floatingAddTask" class="floating-main d-none"></main>
   <header class="board-header">
     <div class="board-header-content">
-      <div class="board-headline"><h1>Board</h1></div>
+      <div class="board-headline">
+        <h1>Board</h1>
+      </div>
       <div class="find-add-task-content">
         <label class="outside-find-task">
           <input required class="ft-inside-input" id="taskSearch" minlength="3" type="search" placeholder="Find Task"
@@ -31,8 +33,6 @@
     </div>
   </header>
   <main class="board-main">
-
-
     <div class="board-task">
       <div class="board-task">
         <div class="nav-add-task">
@@ -47,7 +47,6 @@
           <span>No Tasks To do</span>
         </div>
       </div>
-
       <div id="taskCard" class="task-card-outside">
         <div class="card-headline"><span>User Story</span></div>
         <div class="card-description">
@@ -58,14 +57,22 @@
           <div id="progressBar" class="card-progress-bar" role="progressbar" style="width: 100%;"></div>
           <span>0/2 Subtasks</span>
         </div>
-        <div class="card-contacts-prio">
-          <div class="user-badge"><span></span></div>
+        <div class="card-badge-prio">
+          <div class="card-badge">
+            <div class="user-badge">
+              <span>M</span>
+            </div>
+            <div class="user-badge -m-user-badge">
+              <span>P</span>
+            </div>
+            <div class="user-badge -m-user-badge">
+              <span>S</span>
+            </div>
+          </div>
+          <div class="user-prio"><img src="../assets/icons/urgent.svg" alt=""></div>
         </div>
       </div>
-
     </div>
-
-
     <div class="board-task">
       <div class="board-task">
         <div class="nav-add-task">
@@ -78,17 +85,33 @@
         </div>
         <div class="no-task d-none"><span>No Tasks In progress</span></div>
       </div>
-
       <div id="taskCard" class="task-card-outside">
-        <div>User Story</div>
-        <div>Title</div>
-        <div>Subtasks</div>
-        <div>IMG</div>
+        <div class="card-headline"><span>User Story</span></div>
+        <div class="card-description">
+          <span>Title</span>
+          <p>Content...</p>
+        </div>
+        <div class="card-progress">
+          <div id="progressBar" class="card-progress-bar" role="progressbar" style="width: 100%;"></div>
+          <span>0/2 Subtasks</span>
+        </div>
+        <div class="card-badge-prio">
+          <div class="card-badge">
+            <div class="user-badge">
+              <span>M</span>
+            </div>
+            <div class="user-badge -m-user-badge">
+              <span>P</span>
+            </div>
+            <div class="user-badge -m-user-badge">
+              <span>S</span>
+            </div>
+          </div>
+          <div class="user-prio"><img src="../assets/icons/urgent.svg" alt=""></div>
+        </div>
       </div>
-
     </div>
-
-
+    </div>
     <div class="board-task">
       <div class="board-task">
         <div class="nav-add-task">
@@ -101,32 +124,65 @@
           <div class="no-task d-none"><span>No Tasks Await feedback</span></div>
         </div>
       </div>
-
       <div id="taskCard" class="task-card-outside">
-        <div>User Story</div>
-        <div>Title</div>
-        <div>Subtasks</div>
-        <div>IMG</div>
+        <div class="card-headline"><span>User Story</span></div>
+        <div class="card-description">
+          <span>Title</span>
+          <p>Content...</p>
+        </div>
+        <div class="card-progress">
+          <div id="progressBar" class="card-progress-bar" role="progressbar" style="width: 100%;"></div>
+          <span>0/2 Subtasks</span>
+        </div>
+        <div class="card-badge-prio">
+          <div class="card-badge">
+            <div class="user-badge">
+              <span>M</span>
+            </div>
+            <div class="user-badge -m-user-badge">
+              <span>P</span>
+            </div>
+            <div class="user-badge -m-user-badge">
+              <span>S</span>
+            </div>
+          </div>
+          <div class="user-prio"><img src="../assets/icons/urgent.svg" alt=""></div>
+        </div>
       </div>
-
     </div>
-
-
+    </div>
     <div class="board-task">
       <div class="board-task">
         <div class="nav-add-task"><span>Done</span></div>
         <div class="no-task d-none"><span>No Tasks Done</span></div>
       </div>
-
       <div id="taskCard" class="task-card-outside">
-        <div>User Story</div>
-        <div>Title</div>
-        <div>Subtasks</div>
-        <div>IMG</div>
+        <div class="card-headline"><span>User Story</span></div>
+        <div class="card-description">
+          <span>Title</span>
+          <p>Content...</p>
+        </div>
+        <div class="card-progress">
+          <div id="progressBar" class="card-progress-bar" role="progressbar" style="width: 100%;"></div>
+          <span>0/2 Subtasks</span>
+        </div>
+        <div class="card-badge-prio">
+          <div class="card-badge">
+            <div class="user-badge">
+              <span>M</span>
+            </div>
+            <div class="user-badge -m-user-badge">
+              <span>P</span>
+            </div>
+            <div class="user-badge -m-user-badge">
+              <span>S</span>
+            </div>
+          </div>
+          <div class="user-prio"><img src="../assets/icons/urgent.svg" alt=""></div>
+        </div>
       </div>
-
     </div>
-
+    </div>
   </main>
   <script src="../js/template.js"></script>
   <script src="../script.js"></script>
