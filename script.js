@@ -31,16 +31,16 @@ function changePageTitles(page) {
 
 function openAddTask() {
   let addTask = document.getElementById('floatingAddTask');
-  addTask.style.display = 'flex';
-  addTask.className = 'floating-main';
   addTask.innerHTML = addTaskTemplate();
+  addTask.classList.remove('d-none');
+  document.body.style.overflow = 'hidden';
 }
 
 function closeAddTask() {
   let floatingTask = document.getElementById('floatingAddTask');
-  floatingTask.className = 'floating-main-out';
+  floatingTask.classList.add('d-none');
   setTimeout(() => {
-    floatingTask.style.display = 'none';
-    floatingTask.className = '';
+    floatingTask.innerHTML = '';
+    document.body.style.overflow = '';
   }, 200);
 }
