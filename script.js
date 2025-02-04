@@ -33,11 +33,13 @@ function openAddTask() {
   let addTask = document.getElementById('floatingAddTask');
   addTask.style.display = 'flex';
   addTask.innerHTML = addTaskTemplate();
+  addTask.classList.remove('d-none');
+  document.body.style.overflow = 'hidden';
 }
 
 function closeAddTask() {
   let floatingTask = document.getElementById('floatingAddTask');
-  floatingTask.className = 'floating-main-out';
+  floatingTask.classList.add('d-none');
   setTimeout(() => {
     floatingTask.style.display = 'none';
     floatingTask.className = '';

@@ -1,5 +1,5 @@
 function addTaskTemplate() {
-  return ` <main class="floating-main">
+  return ` 
       <div class="floating-content">
         <div class="headline-add-task">
           <h1 class="h1-add-task">Add Task</h1>
@@ -95,6 +95,5 @@ function addTaskTemplate() {
             <button class="bt-add-task">Create Task<img src="../assets/icons/check.svg" /></button>
           </div>
         </div>
-      </div>
-    </main>`;
+      </div>`;
 }

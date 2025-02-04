@@ -13,7 +13,7 @@
   animation: slideIn 0.2s ease-in-out forwards;
 }
 
-.floating-main-out {
+/* .floating-main-out {
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -24,8 +24,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  box-sizing: border-box;
-  animation: slideOut 0.2s ease-in-out backwards;
+  animation: slideOut 0.3s ease-in-out backwards;
 }
 
 .floating-content {
@@ -49,7 +48,7 @@
   }
 }
 
-@keyframes slideOut {
+/* @keyframes slideOut {
   from {
     transform: translateX(0);
   }
@@ -57,4 +56,4 @@
   to {
     transform: translateX(100%);
   }
-}
+} */
