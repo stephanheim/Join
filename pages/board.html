@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../style.css" />
     <link rel="stylesheet" href="../style/variables.css" />
     <link rel="stylesheet" href="../style/board.css" />
+    <link rel="stylesheet" href="../style/add_task.css" />
+    <link rel="stylesheet" href="../style/floating_add_task.css" />
   </head>
 
   <body>
@@ -21,7 +23,7 @@
             <img src="../assets/icons/seperaor_horicentral.svg" alt="Strich" />
             <img src="../assets/icons/search_magnifier.svg" alt="Such Icon" />
           </label>
-          <button class="bt-add-task">Add Task <img src="../assets/icons/cross_add.svg" alt="" /></button>
+          <button class="bt-add-task" onclick="openAddTask()">Add Task <img src="../assets/icons/cross_add.svg" alt="" /></button>
         </div>
       </div>
     </header>
@@ -68,6 +70,7 @@
         <div id="TaskDone"></div>
       </div>
     </main>
+    <script src="../js/template.js"></script>
     <script src="../script.js"></script>
   </body>
 </html>
