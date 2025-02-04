@@ -1,84 +1,94 @@
 <!DOCTYPE html>
 <html lang="de">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join - Sign up</title>
     <link rel="shortcut icon" href="../assets/img/join.svg" type="image/x-icon" />
     <link rel="stylesheet" href="../style.css" />
-    <link rel="stylesheet" href="../style/signup.css">
-    <link rel="stylesheet" href="../style/variables.css">
-    <link rel="stylesheet" href="../style/message_succsessful.css">
-</head>
+    <link rel="stylesheet" href="../style/signup.css" />
+    <link rel="stylesheet" href="../style/variables.css" />
+    <link rel="stylesheet" href="../style/message_succsessful.css" />
+  </head>
 
-<body>
+  <body>
     <div id="overlaySuccsessful">
-        <div class="overlay-succsessful d-none">
-            <div class="message-succsessful">
-                <span>You Signed up successful</span>
-            </div>
+      <div class="overlay-succsessful">
+        <div class="message-succsessful">
+          <span>You Signed up successful</span>
         </div>
+      </div>
     </div>
     <header class="bg-white">
-        <div class="content-wrapper">
-            <div class="login-logo-left"><img src="../assets/img/join_login.svg" alt=""></div>
-        </div>
+      <div class="content-wrapper">
+        <div class="login-logo-left"><img src="../assets/img/join_login.svg" alt="" /></div>
+      </div>
     </header>
     <main class="bg-white">
-        <div class="content-wrapper">
-            <div class="login-content">
-                <div class="outside-form-content">
-                    <form class="form-content" onsubmit="submitLogin();return false;" class="email-submit" action="">
-                        <div class="headline-content">
-                            <div class="arrow-login-back">
-                                <a href="../index.html"><img src="../assets/icons/arrow-left-line.svg" alt=""></a>
-                            </div>
-                            <div class="headline">
-                                <h1>Sign up</h1>
-                                <hr class="devider-hr">
-                            </div>
-                        </div>
-                        <div class="input-content">
-                            <div class="outside-input">
-                                <input required class="inside-input" id="loginEmail" minlength="5" type="email"
-                                    placeholder="Name" aria-label="Email">
-                                <img src="../assets/icons/signup_name_person.svg" alt="Person">
-                            </div>
-                            <div class="outside-input">
-                                <input required class="inside-input" id="loginEmail" minlength="5" type="email"
-                                    placeholder="Email" aria-label="Email">
-                                <img src="../assets/icons/login_mail_letter.svg" alt="Brief">
-                            </div>
-                            <div class="outside-input">
-                                <input required class="inside-input" id="loginPassword" minlength="5" type="password"
-                                    placeholder="Password" aria-label="Password">
-                                <img src="../assets/icons/login_pw_lock.svg" alt="Schloss">
-                            </div>
-                            <div class="outside-input">
-                                <input required class="inside-input" id="loginPassword" minlength="5" type="password"
-                                    placeholder="Confirm Password" aria-label="Password">
-                                <img src="../assets/icons/login_pw_lock.svg" alt="Schloss">
-                            </div>
-                            <div class="checkbox-content">
-                                <input type="checkbox">
-                                <label for="privacyPolicy"></label>
-                                <span>I accept the <a href="">Privacy Policy</a></span>
-                            </div>
-                        </div>
-                        <button class="bt-signup">Sign Up</button>
-                    </form>
+      <div class="content-wrapper">
+        <div class="login-content">
+          <div class="outside-form-content">
+            <form class="form-content" onsubmit="submitLogin();return false;" class="email-submit" action="">
+              <div class="headline-content">
+                <div class="arrow-login-back">
+                  <a href="../index.html"><img src="../assets/icons/arrow-left-line.svg" alt="" /></a>
                 </div>
-            </div>
+                <div class="headline">
+                  <h1>Sign up</h1>
+                  <hr class="devider-hr" />
+                </div>
+              </div>
+              <div class="input-content">
+                <div class="outside-input">
+                  <input required class="inside-input" id="loginEmail" minlength="5" type="email" placeholder="Name" aria-label="Email" />
+                  <img src="../assets/icons/signup_name_person.svg" alt="Person" />
+                </div>
+                <div class="outside-input">
+                  <input required class="inside-input" id="loginEmail" minlength="5" type="email" placeholder="Email" aria-label="Email" />
+                  <img src="../assets/icons/login_mail_letter.svg" alt="Brief" />
+                </div>
+                <div class="outside-input">
+                  <input
+                    required
+                    class="inside-input"
+                    id="loginPassword"
+                    minlength="5"
+                    type="password"
+                    placeholder="Password"
+                    aria-label="Password"
+                  />
+                  <img src="../assets/icons/login_pw_lock.svg" alt="Schloss" />
+                </div>
+                <div class="outside-input">
+                  <input
+                    required
+                    class="inside-input"
+                    id="loginPassword"
+                    minlength="5"
+                    type="password"
+                    placeholder="Confirm Password"
+                    aria-label="Password"
+                  />
+                  <img src="../assets/icons/login_pw_lock.svg" alt="Schloss" />
+                </div>
+                <div class="checkbox-content">
+                  <input type="checkbox" />
+                  <label for="privacyPolicy"></label>
+                  <span>I accept the <a href="">Privacy Policy</a></span>
+                </div>
+              </div>
+              <button class="bt-signup">Sign Up</button>
+            </form>
+          </div>
         </div>
+      </div>
     </main>
     <footer class="bg-white">
-        <div class="legal-information-content">
-            <a href="">Privacy Policy</a>
-            <a href="">Legal notice</a>
-        </div>
+      <div class="legal-information-content">
+        <a href="">Privacy Policy</a>
+        <a href="">Legal notice</a>
+      </div>
     </footer>
     <script src="../script.js"></script>
-</body>
-
+  </body>
 </html>

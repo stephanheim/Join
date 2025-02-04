@@ -31,17 +31,25 @@ function changePageTitles(page) {
 
 function openAddTask() {
   let addTask = document.getElementById('floatingAddTask');
-  addTask.style.display = 'flex';
   addTask.innerHTML = addTaskTemplate();
   addTask.classList.remove('d-none');
   document.body.style.overflow = 'hidden';
+  addTask.classList.remove('slideOut');
+  addTask.classList.add('slideIn');
+  addTask.style.opacity = 0.5;
+  setTimeout(() => {
+    addTask.style.opacity = 1;
+  }, 200);
 }
 
 function closeAddTask() {
   let floatingTask = document.getElementById('floatingAddTask');
-  floatingTask.classList.add('d-none');
+  floatingTask.classList.add('slideOut');
+
   setTimeout(() => {
-    floatingTask.style.display = 'none';
-    floatingTask.className = '';
+    floatingTask.classList.add('d-none');
+
+    floatingTask.innerHTML = '';
+    document.body.style.overflow = '';
   }, 100);
 }
