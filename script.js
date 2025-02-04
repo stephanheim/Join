@@ -28,3 +28,19 @@ function changePageTitles(page) {
   let changeTitles = pageTitles[page];
   document.title = changeTitles;
 }
+
+function openAddTask() {
+  let addTask = document.getElementById('floatingAddTask');
+  addTask.style.display = 'flex';
+  addTask.className = 'floating-main';
+  addTask.innerHTML = addTaskTemplate();
+}
+
+function closeAddTask() {
+  let floatingTask = document.getElementById('floatingAddTask');
+  floatingTask.className = 'floating-main-out';
+  setTimeout(() => {
+    floatingTask.style.display = 'none';
+    floatingTask.className = '';
+  }, 200);
+}
