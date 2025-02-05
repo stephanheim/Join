@@ -143,4 +143,25 @@ button {
   background-color: #f6f7f8;
 }
 
-/*---Header and side-Menu End----*/
+/*---Landscape warning----*/
+
+/* .landscape-warning {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(42, 54, 71, 1);
+  color: #f6f7f8;
+  font-size: 24px;
+  text-align: center;
+  line-height: 100vh;
+  z-index: 9999;
+}
+
+@media (orientation: landscape) {
+  .landscape-warning {
+    display: block;
+  }
+} */
