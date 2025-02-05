@@ -19,13 +19,6 @@ body {
   font-optical-sizing: auto;
 }
 
-.content-wrapper {
-  position: relative;
-  max-width: 1440px;
-  width: 100%;
-  margin: 0 auto;
-}
-
 button {
   cursor: pointer;
 }
@@ -144,6 +137,7 @@ button {
 }
 
 .index-main {
+  max-width: 1440px;
   margin-left: 232px;
   padding-top: 96px;
   background-color: #f6f7f8;
