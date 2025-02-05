@@ -44,14 +44,79 @@ gap: 16px;
 }
 
 .add-icon {
+    width: 64px;
+    height: 64px;
+    position: absolute;
+    top: 38.67px;
+}
+
+.add-icon-pers {
     width: 55.6px;
     height: 66.48px;
-    position: absolute;
     top: 154px;
+}
+
+.add-form-circle {
+    width: 120px;
+    height: 120px;
+    margin-left: 83px;
+    margin-top: 204px;
+    background-color: #d1d1d1;
+    border-radius: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.right-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
 }
 
 .add-fields {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.add-input {
+    width: 422px;
+    height: 50px;
+    border: 1px solid #d1d1d1;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    padding: 13px 21px 13px 21px;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.add-input:focus {
+    border-color: #29ABE2;
+    outline: none;
+}
+
+.add-close-div {
+display: flex;
+justify-content: flex-end;
+
+}
+
+.add-close-btn {
+
+
+}
+
+.add-button {
+
+    
+}
+
+.add-seperator {
+    width: 90px;
+    height: 3px;
+    background-color: #29ABE2;
 }
