@@ -91,7 +91,7 @@ function addTaskTemplate() {
             <p>This field is required</p>
           </div>
           <div class="bt-section">
-            <button class="bt-clear" onclick="closeAddTask()">Clear x</button>
+            <button class="bt-clear" onclick="closeAddFloatingTask()">Clear x</button>
             <button class="bt-add-task">Create Task<img src="../assets/icons/check.svg" /></button>
           </div>
         </div>
