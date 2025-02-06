@@ -144,7 +144,7 @@ button {
 
 /*---Landscape warning----*/
 
-/* .landscape-warning {
+.landscape-warning {
   display: none;
   position: fixed;
   top: 0;
@@ -159,8 +159,8 @@ button {
   z-index: 9999;
 }
 
-@media (orientation: landscape) {
+@media (orientation: landscape) and (pointer: coarse) {
   .landscape-warning {
     display: block;
   }
-} */
+}
