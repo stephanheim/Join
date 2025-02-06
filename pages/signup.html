@@ -15,11 +15,9 @@
 </head>
 
 <body onload="">
-  <div id="overlaySuccsessful">
-    <div class="overlay-succsessful d-none">
-      <div class="message-succsessful">
-        <span>You Signed up successful</span>
-      </div>
+  <div id="overlaySuccsessful" class="overlay-succsessful d-none">
+    <div class="message-succsessful">
+      <span>You Signed up successful</span>
     </div>
   </div>
   <header class="bg-white">
@@ -31,7 +29,7 @@
     <div class="content-wrapper">
       <div class="login-content">
         <div class="outside-form-content">
-          <form class="form-content" onsubmit="registerNewUser();return false;" class="email-submit" action="">
+          <form id="formRegister" class="form-content" onsubmit="registerNewUser();return false;">
             <div class="headline-content">
               <div class="arrow-login-back">
                 <a href="../index.html"><img src="../assets/icons/arrow-left-line.svg" alt="" /></a>
@@ -44,7 +42,7 @@
             <div class="input-content">
               <div class="outside-input">
                 <input required class="inside-input" id="registNewName" minlength="5" type="text" placeholder="Name"
-                  aria-label="Email" autocomplete="name">
+                  aria-label="text" autocomplete="name">
                 <img src="../assets/icons/signup_name_person.svg" alt="Person" />
               </div>
               <div class="outside-input">
