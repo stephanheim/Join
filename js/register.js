@@ -8,6 +8,8 @@ async function fetchData(url, options) {
     return await response.json();
   } catch (error) {
     console.error("Fetch Error:", error);
+  } finally {
+    activateButton()
   }
 }
 
@@ -17,10 +19,12 @@ function registerNewUser() {
   let email = document.getElementById('registNewEmail');
   let password = document.getElementById('registNewPassword');
   let newUser = ({
-    name: name.value,
-    email: email.value,
-    password: password.value
+    name: name.value.trim(),
+    email: email.value.trim(),
+    password: password.value.trim()
   })
+  isFormValid()
+  deactivateButton();
   postUser(newUser);
 }
 
@@ -40,6 +44,20 @@ async function postUser(newUser) {
   return response;
 }
 
+function deactivateButton() {
+  const button = document.getElementById('buttonSignup');
+  button.disabled = true;
+  return button;
+}
+
+
+function activateButton() {
+  const button = document.getElementById('buttonSignup');
+  button.disabled = false;
+  return button;
+}
+
+
 function clearInputFields() {
   const form = document.getElementById('formRegister');
   const inputFields = form.getElementsByTagName('input');
@@ -49,10 +67,42 @@ function clearInputFields() {
   }
 }
 
+
 function registrationComplete() {
   const message = document.getElementById('overlaySuccsessful');
-  message.style.display = 'block';
+  message.classList.remove('d-none');
   setTimeout(() => {
+    message.classList.add('d-none');
     window.location.href = '../index.html';
   }, 1500);
+}
+
+
+function confirmPassword() {
+  let password = document.getElementById('registNewPassword').value.trim();
+  let confirmPassword = document.getElementById('registConfirmPassword').value.trim();
+  if (password !== confirmPassword) {
+    console.error(`falsch`);
+    return false;
+  }
+  return true;
+}
+
+
+function isCheckboxChecked() {
+  const checkbox = document.getElementById('checkboxSignup');
+  if (!checkbox.checked) {
+    setError(checkbox, "You must accept the Privacy Policy.")
+    return false;
+  } else {
+    setSuccess(checkbox);
+    return true;
+  }
+}
+
+function isFormValid() {
+  return (
+    confirmPassword() &&
+    isCheckboxChecked()
+  );
 }
