@@ -12,11 +12,11 @@
 }
 
 .slideIn {
-  animation: slideIn 0.2s ease-in forwards;
+  animation: slideIn 0.2s ease-in-out forwards;
 }
 
 .slideOut {
-  animation: slideOut 0.2s ease-out backwards;
+  animation: slideOut 0.2s ease-in-out backwards;
 }
 
 .floating-content {
@@ -51,8 +51,4 @@
     transform: translateX(100%);
     opacity: 0;
   }
-}
-
-.overlay.show-background {
-  background-color: rgba(0, 0, 0, 0.2);
 }
