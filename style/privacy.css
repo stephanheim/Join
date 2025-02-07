@@ -33,6 +33,7 @@ ul {
   line-height: 19.2px;
 }
 
-a {
+privacy-a {
   color: #29abe2;
+  text-decoration: none;
 }
