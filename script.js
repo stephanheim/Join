@@ -32,10 +32,14 @@ function changePageTitles(page) {
 function openAddFloatingTask() {
   let addTask = document.getElementById('floatingAddTask');
   addTask.innerHTML = addTaskTemplate();
-  addTask.classList.remove('d-none');
+
   document.body.style.overflow = 'hidden';
   addTask.classList.remove('slideOut');
   addTask.classList.add('slideIn');
+  addTask.classList.remove('d-none');
+  setTimeout(() => {
+    addTask.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
+  }, 200);
 }
 
 function closeAddFloatingTask() {
@@ -45,6 +49,7 @@ function closeAddFloatingTask() {
 
   setTimeout(() => {
     floatingTask.classList.add('d-none');
+    floatingTask.style.backgroundColor = 'rgba(0, 0, 0, 0)';
     floatingTask.innerHTML = '';
     document.body.style.overflow = '';
   }, 100);

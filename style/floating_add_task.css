@@ -1,23 +1,22 @@
 .floating-main {
-  height: 100vh;
+  height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 2000;
-  background-color: rgba(0, 0, 0, 0.2);
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
   box-sizing: border-box;
 }
 
 .slideIn {
-  animation: slideIn 0.2s ease-in-out forwards;
+  animation: slideIn 0.2s ease-in forwards;
 }
 
 .slideOut {
-  animation: slideOut 0.2s ease-in-out backwards;
+  animation: slideOut 0.2s ease-out backwards;
 }
 
 .floating-content {
@@ -34,17 +33,26 @@
 @keyframes slideIn {
   from {
     transform: translateX(100%);
+    opacity: 0;
   }
+
   to {
     transform: translateX(0);
+    opacity: 1;
   }
 }
 
 @keyframes slideOut {
   from {
     transform: translateX(0);
+    opacity: 1;
   }
   to {
     transform: translateX(100%);
+    opacity: 0;
   }
+}
+
+.overlay.show-background {
+  background-color: rgba(0, 0, 0, 0.2);
 }
