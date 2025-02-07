@@ -149,6 +149,18 @@
     cursor: pointer;
 }
 
+.add-btn-cancel:hover {
+    border-width: 2px;
+    border-color: #29ABE2;
+    color: #29ABE2;
+    box-shadow: 0 4px 6px #D1D1D1;
+}
+
+.add-btn-cancel:hover .img-btn-close {
+    content: url("../assets/icons/close-blue.svg");
+}
+
+
 .add-btn-create {
     background-color: #2A3647;
     border: 1px solid;
