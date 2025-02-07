@@ -35,7 +35,6 @@
     font-weight: 700;
     line-height: 73.2px;
     gap: 16px;
-
 }
 
 .add-subtitle {
@@ -120,7 +119,6 @@
 .add-close-btn {
     width: 13.5px;
     height: 13.5px;
-
 }
 
 .add-btn-div {
@@ -160,7 +158,6 @@
     content: url("../assets/icons/close-blue.svg");
 }
 
-
 .add-btn-create {
     background-color: #2A3647;
     border: 1px solid;
@@ -177,6 +174,12 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+}
+
+.add-btn-create:hover {
+    border-color: #29ABE2;
+    background-color: #29ABE2;
+    box-shadow: 0 4px 6px #D1D1D1;
 }
 
 .img-btn-close {
