@@ -18,8 +18,7 @@ h2 {
 }
 
 .d-none {
-  display: none;
-  /* display: none!important; */
+  display: none !important;
 }
 
 .d-block {
