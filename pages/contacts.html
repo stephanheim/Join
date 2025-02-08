@@ -6,15 +6,18 @@
     <title>Join - Contacts</title>
     <link rel="stylesheet" href="../style.css" />
     <link rel="stylesheet" href="../style/contacts.css" />
+    <link rel="stylesheet" href="../style/contact-floaters.css" />
     <link rel="stylesheet" href="../style/variables.css" />
-    <!-- <script src="./script.js"></script> -->
+    <script src="../js/add-contact-temp.js"></script>
+    <script src="./script.js"></script>
   </head>
 
   <body>
     <div class="contact-wrapper">
+      <div id="floater" class="overlay"></div>
       <div class="cnt-list">
         <div class="cnt-btn-div">
-          <button class="cnt-btn-add-new">Add new contact<img src="../assets/icons/person_add.svg" /></button>
+          <button onclick="addNewContact()" class="cnt-btn-add-new">Add new contact<img src="../assets/icons/person_add.svg" /></button>
         </div>
         <!-- ab hier laden wir dynamisch mit JS rein, hier mal die template vorlage   -->
         <!-- sortierung nach anfangsbuchstaben-->

@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: row;
     background-color: white;
+
 }
 
 .add-contact {
@@ -231,3 +232,36 @@
     width: 24px;
     height: 24px;
 }
+
+.slideIn {
+    animation: slideIn 0.2s ease-in-out forwards;
+  }
+  
+  .slideOut {
+    animation: slideOut 0.2s ease-in-out backwards;
+  }
+  
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideOut {
+    from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+  

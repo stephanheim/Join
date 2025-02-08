@@ -52,3 +52,16 @@ function closeAddFloatingTask() {
     document.body.style.overflow = '';
   }, 100);
 }
+
+function addNewContact() {
+  let addContact = document.getElementById('floater');
+  addContact.innerHTML = generateFloaterHTML();
+  document.body.style.overflow = 'hidden';
+  addContact.classList.remove('slideOut');
+  addContact.classList.add('slideIn');
+  addContact.classList.remove('d-none');
+  setTimeout(() => {
+    addContact.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
+  }, 200);
+}
+
