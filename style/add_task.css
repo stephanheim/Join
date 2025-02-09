@@ -108,27 +108,48 @@
   border: 1px solid rgba(209, 209, 209, 1);
 }
 
-.button-prio-urgent,
-.button-prio-medium,
-.button-prio-low {
+.button-prio {
   width: 140px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 16px 10px;
   gap: 8px;
-  border: none;
+  border: solid 1px rgba(0, 0, 0, 0.05);
   border-radius: 10px;
   font-size: 20px;
   font-weight: 400;
   background-color: white;
-  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
-.button-prio-urgent:hover,
-.button-prio-medium:hover,
-.button-prio-low:hover {
+.button-prio:hover {
   box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2);
+}
+.isSelected[color='rgba(255, 61, 0, 1);'] {
+  background-color: rgba(255, 61, 0, 1);
+  border: none;
+  cursor: pointer;
+  box-shadow: none;
+  color: white;
+}
+.isSelected[color='rgba(255, 168, 0, 1)'] {
+  background-color: rgba(255, 168, 0, 1);
+  border: none;
+  cursor: pointer;
+  box-shadow: none;
+  color: white;
+}
+.isSelected[color='rgba(122, 226, 41, 1)'] {
+  background-color: rgba(122, 226, 41, 1);
+  border: none;
+  cursor: pointer;
+  box-shadow: none;
+  color: white;
+}
+
+.isSelected > img {
+  filter: brightness(0) invert(1);
 }
 
 .prio-section {
