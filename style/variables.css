@@ -44,3 +44,20 @@ h2 {
   margin-bottom: 20px;
   border-radius: 3px;
 }
+
+.flex-column{
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-center{
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+.flex-space-between{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

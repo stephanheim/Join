@@ -15,7 +15,7 @@
 </head>
 
 <body onload="">
-  <div id="overlaySuccsessful" class="overlay-succsessful d-none">
+  <div id="overlaySuccsessful" class="overlay-succsessful">
     <div class="message-succsessful">
       <span>You Signed up successful</span>
     </div>
@@ -42,31 +42,36 @@
             <div class="input-content">
               <div class="outside-input">
                 <input required class="inside-input" id="registNewName" minlength="3" type="text" placeholder="Name"
-                  aria-label="text" autocomplete="name">
+                  aria-label="text" autocomplete="name" oninput="toggleSubmitButton()">
                 <img src="../assets/icons/signup_name_person.svg" alt="Person" />
               </div>
               <div class="outside-input">
                 <input required class="inside-input" id="registNewEmail" minlength="3" type="email" placeholder="Email"
-                  aria-label="Email" autocomplete="email">
+                  aria-label="Email" autocomplete="email" oninput="toggleSubmitButton()">
                 <img src="../assets/icons/login_mail_letter.svg" alt="Brief" />
               </div>
               <div class="outside-input">
                 <input required class="inside-input" id="registNewPassword" minlength="3" type="password"
-                  placeholder="Password" aria-label="password" autocomplete="off">
+                  placeholder="Password" aria-label="password" autocomplete="off" oninput="toggleSubmitButton()">
                 <img src="../assets/icons/login_pw_lock.svg" alt="Schloss" />
               </div>
-              <div class="outside-input">
-                <input required class="inside-input" id="registConfirmPassword" minlength="3" type="password"
-                  placeholder="Confirm Password" aria-label="Password" autocomplete="off">
-                <img src="../assets/icons/login_pw_lock.svg" alt="Schloss" />
+              <div class="outside-input-confirm flex-column">
+                <div class="flex-space-between">
+                  <input required class="inside-input" id="registConfirmPassword" minlength="3" type="password"
+                    placeholder="Confirm Password" aria-label="Password" autocomplete="off"
+                    oninput="comparePassword(); toggleSubmitButton()">
+                  <img src="../assets/icons/login_pw_lock.svg" alt="Schloss" />
+                </div>
+                <span id="compareMessage" class="compare-message">adad</span>
               </div>
               <div class="checkbox-content">
-                <input id="checkboxSignup" type="checkbox" />
-                <label for="privacyPolicy"></label>
-                <span>I accept the <a href="">Privacy Policy</a></span>
+                <input id="checkboxSignup" type="checkbox" oninput="isCheckboxChecked()" onclick="toggleSubmitButton()" />
+                <label for="checkboxSignup"></label>
+                <span class="checkbox-content-span">I accept the <a href="">Privacy Policy</a></span>
+                <span id="checkboxMessage" class="checkbox-message"></span>
               </div>
             </div>
-            <button id="buttonSignup" class="bt-signup" type="submit">Sign Up</button>
+            <button id="buttonSignup" class="bt-signup" type="submit" disabled>Sign Up</button>
           </form>
         </div>
       </div>

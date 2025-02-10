@@ -14,17 +14,32 @@ async function fetchData(url, options) {
 }
 
 
-function registerNewUser() {
+function checkForm() {
+  let isValid = comparePassword() && isCheckboxChecked();
+  toggleSubmitButton();
+  return isValid;
+}
+
+
+function getUserInput() {
   let name = document.getElementById('registNewName');
   let email = document.getElementById('registNewEmail');
   let password = document.getElementById('registNewPassword');
+  let confirmPassword = document.getElementById('registConfirmPassword');
   let newUser = ({
     name: name.value.trim(),
     email: email.value.trim(),
     password: password.value.trim()
   })
-  isFormValid()
-  deactivateButton();
+  return { newUser, confirmPassword: confirmPassword.value.trim() };
+}
+
+
+function registerNewUser() {
+  if (!checkForm()) {
+    return false;
+  }
+  let newUser = getUserInput();
   postUser(newUser);
 }
 
@@ -38,11 +53,36 @@ async function postUser(newUser) {
   };
   const response = await fetchData(url, options);
   if (response) {
-    clearInputFields();
+    resetFormRegister();
     registrationComplete();
   }
   return response;
 }
+
+
+function allRequiredFieldsAreFilledIn() {
+  let { newUser, confirmPassword } = getUserInput();
+  return (
+    newUser.name !== "" &&
+    newUser.email !== "" &&
+    newUser.password !== "" &&
+    confirmPassword !== ""
+  );
+}
+
+
+function toggleSubmitButton() {
+  let filledIn =
+    allRequiredFieldsAreFilledIn() &&
+    comparePassword() &&
+    isCheckboxChecked();
+  if (filledIn) {
+    activateButton()
+  } else {
+    deactivateButton()
+  }
+}
+
 
 function deactivateButton() {
   const button = document.getElementById('buttonSignup');
@@ -58,51 +98,46 @@ function activateButton() {
 }
 
 
-function clearInputFields() {
+function resetFormRegister() {
   const form = document.getElementById('formRegister');
-  const inputFields = form.getElementsByTagName('input');
-  for (let i = 0; i < inputFields.length; i++) {
-    const Fields = inputFields[i];
-    Fields.value = "";
-  }
+  return form.reset();
 }
 
 
 function registrationComplete() {
   const message = document.getElementById('overlaySuccsessful');
-  message.classList.remove('d-none');
+  message.style.display = "block";
   setTimeout(() => {
-    message.classList.add('d-none');
+    message.style.display = "none";
     window.location.href = '../index.html';
   }, 1500);
 }
 
 
-function confirmPassword() {
+function comparePassword() {
   let password = document.getElementById('registNewPassword').value.trim();
   let confirmPassword = document.getElementById('registConfirmPassword').value.trim();
+  const message = document.getElementById('compareMessage');
   if (password !== confirmPassword) {
-    console.error(`falsch`);
+    message.innerText = "Your passwords don't match. Please try again.";
+    message.style.display = "block";
     return false;
   }
+  message.innerText = "";
+  message.style.display = "none";
   return true;
 }
 
 
 function isCheckboxChecked() {
   const checkbox = document.getElementById('checkboxSignup');
+  const message = document.getElementById('checkboxMessage');
   if (!checkbox.checked) {
-    setError(checkbox, "You must accept the Privacy Policy.")
+    message.innerText = "Please, check the privacy policy";
+    message.style.display = "block";
     return false;
-  } else {
-    setSuccess(checkbox);
-    return true;
   }
-}
-
-function isFormValid() {
-  return (
-    confirmPassword() &&
-    isCheckboxChecked()
-  );
+  message.innerText = "";
+  message.style.display = "none";
+  return true;
 }
