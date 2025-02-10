@@ -44,7 +44,7 @@ return `
     </div>
   </div>
 </div>
-<div class="add-close-div">
+<div class="add-close-div" id="addCloseBtn">
   <img src="../assets/icons/close.svg" class="add-close-btn" />
 </div>
 </div>

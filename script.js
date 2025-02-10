@@ -54,14 +54,21 @@ function closeAddFloatingTask() {
 }
 
 function addNewContact() {
-  let addContact = document.getElementById('floater');
-  addContact.innerHTML = generateFloaterHTML();
-  document.body.style.overflow = 'hidden';
-  addContact.classList.remove('slideOut');
-  addContact.classList.add('slideIn');
-  addContact.classList.remove('d-none');
-  setTimeout(() => {
-    addContact.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
-  }, 200);
+  let addContactOverlay = document.getElementById('addContactOverlay');
+  addContactOverlay.classList.remove = ('d-none');
+  addContactOverlay.classList.add = ('overlay');
+
+  addContactOverlay.innerHTML = generateFloaterHTML();
+  
+  document.getElementById('addCloseBtn').onclick = closeNewContact;
 }
 
+function closeNewContact(event) {
+  let addContactOverlay = document.getElementById('addContactOverlay');
+
+  addContactOverlay.classList.remove = ('overlay');
+  addContactOverlay.classList.add = ('d-none');
+
+  addContactOverlay.innerHTML = '';
+
+}

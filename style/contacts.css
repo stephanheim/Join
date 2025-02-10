@@ -236,27 +236,3 @@
   line-height: 19.2px;
 }
 
-@keyframes slideIn {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-/* 
-.overlay {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-    position: fixed;
-    top: 0;
-    left: 0;
-    box-sizing: border-box;
-  }
-   */

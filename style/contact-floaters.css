@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: row;
     background-color: white;
-
+    
 }
 
 .add-contact {
@@ -233,11 +233,11 @@
     height: 24px;
 }
 
-.slideIn {
+.contact-slideIn {
     animation: slideIn 0.2s ease-in-out forwards;
   }
   
-  .slideOut {
+  .contact-slideOut {
     animation: slideOut 0.2s ease-in-out backwards;
   }
   
@@ -265,3 +265,17 @@
     }
   }
   
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease-in-out;
+  }
+
