@@ -41,21 +41,11 @@ function openAddFloatingTask() {
   }, 200);
 }
 
-function closeAddFloatingTask() {
-  let floatingTask = document.getElementById('floatingAddTask');
-  floatingTask.classList.remove('slideIn');
-  floatingTask.classList.add('slideOut');
-  floatingTask.style.backgroundColor = 'rgba(0, 0, 0, 0)';
-  setTimeout(() => {
-    floatingTask.classList.add('d-none');
-    floatingTask.innerHTML = '';
-    document.body.style.overflow = '';
-  }, 100);
-}
+
 
 function addNewContact() {
-  let addContact = document.getElementById('floater');
-  addContact.innerHTML = generateFloaterHTML();
+  let addContact = document.getElementById('addContactOverlay');
+  addContact.innerHTML = generateFloaterHTML();  
   document.body.style.overflow = 'hidden';
   addContact.classList.remove('slideOut');
   addContact.classList.add('slideIn');
@@ -65,3 +55,14 @@ function addNewContact() {
   }, 200);
 }
 
+function closeNewContact() {
+  let closeFloater = document.getElementById('addContactOverlay');
+  closeFloater.classList.remove('slideIn');
+  closeFloater.classList.add('slideOut');
+  closeFloater.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+  setTimeout(() => {
+    closeFloater.classList.add('d-none');
+    closeFloater.innerHTML = '';
+    document.body.style.overflow = '';
+  }, 100);
+}
