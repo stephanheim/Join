@@ -8,6 +8,7 @@
 body {
   font-family: 'Inter', sans-serif;
   background-color: #f6f7f8;
+  height: 100vh;
 }
 
 @font-face {
@@ -39,7 +40,7 @@ button {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 70vh;
+  height: 100vh;
 }
 
 .index-header {
@@ -163,4 +164,47 @@ button {
   .landscape-warning {
     display: block;
   }
+}
+
+/*---Submenu---*/
+
+.a-sublink {
+  color: rgba(205, 205, 205, 1);
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 16px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.submenu {
+  width: 150px;
+  height: 158px;
+  background-color: rgba(42, 54, 71, 1);
+  position: fixed;
+  right: 20px;
+  top: 98px;
+  padding: 10px;
+  border-radius: 20px 0 20px 20px;
+}
+
+.submenu-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+  width: 100%;
+  text-align: left;
+}
+
+.submenu-link {
+  display: flex;
+  align-items: center;
+  width: 130px;
+  height: 46px;
+  padding: 8px 0;
+}
+
+.submenu-link:hover {
+  background-color: rgb(48, 73, 90);
 }
