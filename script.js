@@ -41,17 +41,7 @@ function openAddFloatingTask() {
   }, 200);
 }
 
-function closeAddFloatingTask() {
-  let floatingTask = document.getElementById('floatingAddTask');
-  floatingTask.classList.remove('slideIn');
-  floatingTask.classList.add('slideOut');
-  floatingTask.style.backgroundColor = 'rgba(0, 0, 0, 0)';
-  setTimeout(() => {
-    floatingTask.classList.add('d-none');
-    floatingTask.innerHTML = '';
-    document.body.style.overflow = '';
-  }, 100);
-}
+
 
 function addNewContact() {
   let addContactOverlay = document.getElementById('addContactOverlay');

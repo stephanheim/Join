@@ -1,5 +1,5 @@
 function generateFloaterHTML() {
-return `
+  return `
 <div id="contactFloater" class="main-floater">
 <div class="add-contact">
   <img src="../assets/img/join.svg" class="add-icon" />
@@ -14,6 +14,9 @@ return `
     <img src="../assets/icons/person-cnt.svg" class="add-icon-pers" />
   </div>
   <div class="right-wrap">
+     <div class="add-close-div">
+       <img onclick="closeNewContact()" src="../assets/icons/close.svg" class="add-close-btn" />
+    </div>
     <div class="add-fields">
       <div class="input-div">
         <input type="text" placeholder="Name" class="add-input" />
@@ -44,14 +47,6 @@ return `
     </div>
   </div>
 </div>
-<div class="add-close-div" id="addCloseBtn">
-  <img src="../assets/icons/close.svg" class="add-close-btn" />
-</div>
-</div>
-`
 
-
-
-
-
+`;
 }
