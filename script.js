@@ -9,14 +9,11 @@ const pageTitles = {
 };
 
 async function loadPageContentPath(page) {
-  let submenu = document.getElementById('submenu');
-  if (submenu) {
-    submenu.classList.add('d-none');
-  }
   let contentPages = document.getElementById('content');
   const content = await fetchContent(`${page}.html`);
   contentPages.innerHTML = content;
   changePageTitles(page);
+  hideSubMenu();
 }
 
 async function fetchContent(page) {
@@ -57,10 +54,20 @@ function closeAddFloatingTask() {
   }, 100);
 }
 
+
 function toggleSubMenu() {
   const submenu = document.getElementById('submenu');
   submenu.classList.toggle('d-none');
 }
+
+
+function hideSubMenu(){
+  let submenu = document.getElementById('submenu');
+  if (submenu) {
+    submenu.classList.add('d-none');
+  }
+}
+
 
 function addNewContact() {
   let addContactOverlay = document.getElementById('addContactOverlay');

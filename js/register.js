@@ -1,6 +1,12 @@
 const BASE_URL = "https://join-418-default-rtdb.europe-west1.firebasedatabase.app/";
-
-
+//#region Fetch-API
+/**
+ * Ruft Daten von der angegebenen URL ab
+ *
+ * @param {string} url - die URL, von der die Daten abgerufen werden 
+ * @param {object} options - Optionen für den Fetch-Aufruf (Methode, Header, Body)
+ * @return {promis<object|undefined} - Einm Promise. das im Erfolgsfall ein JSON-Object zurückgibt oder im Fehlerfall `undefined` 
+ */
 async function fetchData(url, options) {
   try {
     const response = await fetch(url, options);
@@ -12,11 +18,13 @@ async function fetchData(url, options) {
     activateButton()
   }
 }
-
-
+//#endregion
+//#region Foprmular Funktion
 function checkForm() {
-  let isValid = comparePassword() && isCheckboxChecked();
-  toggleSubmitButton();
+  let isValid =
+    comparePassword() &&
+    isCheckboxChecked() &&
+    toggleSubmitButton();
   return isValid;
 }
 
@@ -57,17 +65,6 @@ async function postUser(newUser) {
     registrationComplete();
   }
   return response;
-}
-
-
-function allRequiredFieldsAreFilledIn() {
-  let { newUser, confirmPassword } = getUserInput();
-  return (
-    newUser.name !== "" &&
-    newUser.email !== "" &&
-    newUser.password !== "" &&
-    confirmPassword !== ""
-  );
 }
 
 
@@ -112,8 +109,8 @@ function registrationComplete() {
     window.location.href = '../index.html';
   }, 1500);
 }
-
-
+//#endregion -------------------------
+//region Validierung
 function comparePassword() {
   let password = document.getElementById('registNewPassword').value.trim();
   let confirmPassword = document.getElementById('registConfirmPassword').value.trim();
@@ -128,6 +125,27 @@ function comparePassword() {
   return true;
 }
 
+function isNameValid() {
+  let name = document.getElementById('registNewName').value.trim();
+  if (name === "") return false;
+  const parts = name.split(/\s+/);
+  return parts.length >= 2;
+}
+
+function isEmailValid() {
+let email = document.getElementById('registNewEmail').value.trim();
+if (email === "") return false;
+const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+return regex.test(email);
+}
+
+function isPasswordFieldValid() {
+let password = document.getElementById('registNewPassword').value.trim();
+}
+
+function confirmPasswords() {
+
+}
 
 function isCheckboxChecked() {
   const checkbox = document.getElementById('checkboxSignup');
@@ -140,4 +158,15 @@ function isCheckboxChecked() {
   message.innerText = "";
   message.style.display = "none";
   return true;
+}
+
+
+function allRequiredFieldsAreFilledIn() {
+  let { newUser, confirmPassword } = getUserInput();
+  return (
+    newUser.name !== "" &&
+    newUser.email !== "" &&
+    newUser.password !== "" &&
+    confirmPassword !== ""
+  );
 }

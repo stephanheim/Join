@@ -40,21 +40,25 @@
               </div>
             </div>
             <div class="input-content">
+              <!-- Name-Feld -->
               <div class="outside-input">
                 <input required class="inside-input" id="registNewName" minlength="3" type="text" placeholder="Name"
                   aria-label="text" autocomplete="name" oninput="toggleSubmitButton()">
                 <img src="../assets/icons/signup_name_person.svg" alt="Person" />
               </div>
+              <!-- Email-Feld -->
               <div class="outside-input">
                 <input required class="inside-input" id="registNewEmail" minlength="3" type="email" placeholder="Email"
                   aria-label="Email" autocomplete="email" oninput="toggleSubmitButton()">
                 <img src="../assets/icons/login_mail_letter.svg" alt="Brief" />
               </div>
+              <!-- Password-Feld -->
               <div class="outside-input">
                 <input required class="inside-input" id="registNewPassword" minlength="3" type="password"
                   placeholder="Password" aria-label="password" autocomplete="off" oninput="toggleSubmitButton()">
                 <img src="../assets/icons/login_pw_lock.svg" alt="Schloss" />
               </div>
+              <!-- confirm Password-Feld -->
               <div class="outside-input-confirm flex-column">
                 <div class="flex-space-between">
                   <input required class="inside-input" id="registConfirmPassword" minlength="3" type="password"
@@ -64,6 +68,7 @@
                 </div>
                 <span id="compareMessage" class="compare-message">adad</span>
               </div>
+              <!-- Datenschutzerklärung checkbox -->
               <div class="checkbox-content">
                 <input id="checkboxSignup" type="checkbox" oninput="isCheckboxChecked()" onclick="toggleSubmitButton()" />
                 <label for="checkboxSignup"></label>
