@@ -43,34 +43,39 @@
               <!-- Name-Feld -->
               <div class="outside-input">
                 <input required class="inside-input" id="registNewName" minlength="3" type="text" placeholder="Name"
-                  aria-label="text" autocomplete="name" oninput="toggleSubmitButton()">
+                  aria-label="text" autocomplete="name" oninput="renderNameMessage(); toggleSubmitButton()">
                 <img src="../assets/icons/signup_name_person.svg" alt="Person" />
+                <span id="nameMessage" class="compare-message"></span>
               </div>
               <!-- Email-Feld -->
               <div class="outside-input">
                 <input required class="inside-input" id="registNewEmail" minlength="3" type="email" placeholder="Email"
-                  aria-label="Email" autocomplete="email" oninput="toggleSubmitButton()">
+                  aria-label="Email" autocomplete="email" oninput="renderEmailMessage(); toggleSubmitButton()">
                 <img src="../assets/icons/login_mail_letter.svg" alt="Brief" />
+                <span id="emailMessage" class="compare-message"></span>
               </div>
               <!-- Password-Feld -->
               <div class="outside-input">
                 <input required class="inside-input" id="registNewPassword" minlength="3" type="password"
-                  placeholder="Password" aria-label="password" autocomplete="off" oninput="toggleSubmitButton()">
+                  placeholder="Password" aria-label="password" autocomplete="off"
+                  oninput="renderPasswordMessage(); toggleSubmitButton()">
                 <img src="../assets/icons/login_pw_lock.svg" alt="Schloss" />
+                <span id="passwordMessage" class="compare-message"></span>
               </div>
               <!-- confirm Password-Feld -->
               <div class="outside-input-confirm flex-column">
                 <div class="flex-space-between">
                   <input required class="inside-input" id="registConfirmPassword" minlength="3" type="password"
                     placeholder="Confirm Password" aria-label="Password" autocomplete="off"
-                    oninput="comparePassword(); toggleSubmitButton()">
+                    oninput="renderComparePasswordMessage(); toggleSubmitButton()">
                   <img src="../assets/icons/login_pw_lock.svg" alt="Schloss" />
                 </div>
-                <span id="compareMessage" class="compare-message">adad</span>
+                <span id="comparePasswordMessage" class="compare-message"></span>
               </div>
               <!-- Datenschutzerklärung checkbox -->
               <div class="checkbox-content">
-                <input id="checkboxSignup" type="checkbox" oninput="isCheckboxChecked()" onclick="toggleSubmitButton()" />
+                <input id="checkboxSignup" type="checkbox" oninput="isCheckboxChecked()"
+                  onclick="renderCheckboxMessage(); toggleSubmitButton()" />
                 <label for="checkboxSignup"></label>
                 <span class="checkbox-content-span">I accept the <a href="">Privacy Policy</a></span>
                 <span id="checkboxMessage" class="checkbox-message"></span>
