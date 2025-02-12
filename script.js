@@ -9,6 +9,10 @@ const pageTitles = {
 };
 
 async function loadPageContentPath(page) {
+  let submenu = document.getElementById('submenu');
+  if (submenu) {
+    submenu.classList.add('d-none');
+  }
   let contentPages = document.getElementById('content');
   const content = await fetchContent(`${page}.html`);
   contentPages.innerHTML = content;
@@ -51,6 +55,11 @@ function closeAddFloatingTask() {
     floatingTask.innerHTML = '';
     document.body.style.overflow = '';
   }, 100);
+}
+
+function toggleSubMenu() {
+  const submenu = document.getElementById('submenu');
+  submenu.classList.toggle('d-none');
 }
 
 function addNewContact() {

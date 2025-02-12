@@ -27,11 +27,11 @@
       <p>Kanban Project Management Tool</p>
       <div class="header-right-box">
         <a onclick="loadPageContentPath('help')" href="#"><img class="help-icon" src="../assets/icons/help.svg" alt="help.icon" /></a>
-        <a class="header-profil-name" href="#">MB</a>
+        <a onclick="toggleSubMenu()" class="header-profil-name" href="#">MB</a>
       </div>
     </header>
     <!--Submenu(burger-menu) top-right active d-none-->
-    <div class="submenu d-none">
+    <div id="submenu" class="submenu d-none">
       <div class="submenu-content">
         <div class="submenu-link"><a onclick="loadPageContentPath('legal_notice')" class="a-sublink" href="#">Legal Notice</a></div>
         <div class="submenu-link"><a onclick="loadPageContentPath('privacy_policy')" class="a-sublink" href="#">Privacy Policy</a></div>
