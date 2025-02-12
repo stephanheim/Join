@@ -22,9 +22,12 @@ async function fetchData(url, options) {
 //#region Foprmular Funktion
 function checkForm() {
   let isValid =
-    comparePassword() &&
-    isCheckboxChecked() &&
-    toggleSubmitButton();
+    isNameValid() &&
+    isEmailValid() &&
+    isPasswordFieldValid() &&
+    confirmPasswords() &&
+    isCheckboxChecked();
+  toggleSubmitButton();
   return isValid;
 }
 
@@ -69,11 +72,7 @@ async function postUser(newUser) {
 
 
 function toggleSubmitButton() {
-  let filledIn =
-    allRequiredFieldsAreFilledIn() &&
-    comparePassword() &&
-    isCheckboxChecked();
-  if (filledIn) {
+  if (allFieldsValid()) {
     activateButton()
   } else {
     deactivateButton()
@@ -111,20 +110,6 @@ function registrationComplete() {
 }
 //#endregion -------------------------
 //region Validierung
-function comparePassword() {
-  let password = document.getElementById('registNewPassword').value.trim();
-  let confirmPassword = document.getElementById('registConfirmPassword').value.trim();
-  const message = document.getElementById('compareMessage');
-  if (password !== confirmPassword) {
-    message.innerText = "Your passwords don't match. Please try again.";
-    message.style.display = "block";
-    return false;
-  }
-  message.innerText = "";
-  message.style.display = "none";
-  return true;
-}
-
 function isNameValid() {
   let name = document.getElementById('registNewName').value.trim();
   if (name === "") return false;
@@ -132,32 +117,30 @@ function isNameValid() {
   return parts.length >= 2;
 }
 
+
 function isEmailValid() {
-let email = document.getElementById('registNewEmail').value.trim();
-if (email === "") return false;
-const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-return regex.test(email);
+  let email = document.getElementById('registNewEmail').value.trim();
+  if (email === "") return false;
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(email);
 }
+
 
 function isPasswordFieldValid() {
-let password = document.getElementById('registNewPassword').value.trim();
+  let password = document.getElementById('registNewPassword').value.trim();
+  return password !== "";
 }
+
 
 function confirmPasswords() {
-
+  let password = document.getElementById('registNewPassword').value.trim();
+  let confirmPassword = document.getElementById('registConfirmPassword').value.trim();
+  return password === confirmPassword;
 }
 
+
 function isCheckboxChecked() {
-  const checkbox = document.getElementById('checkboxSignup');
-  const message = document.getElementById('checkboxMessage');
-  if (!checkbox.checked) {
-    message.innerText = "Please, check the privacy policy";
-    message.style.display = "block";
-    return false;
-  }
-  message.innerText = "";
-  message.style.display = "none";
-  return true;
+  return document.getElementById('checkboxSignup').checked;
 }
 
 
@@ -170,3 +153,78 @@ function allRequiredFieldsAreFilledIn() {
     confirmPassword !== ""
   );
 }
+
+
+function allFieldsValid() {
+  return (
+    allRequiredFieldsAreFilledIn() &&
+    isNameValid() &&
+    isEmailValid() &&
+    isPasswordFieldValid() &&
+    confirmPasswords() &&
+    isCheckboxChecked()
+  );
+}
+//#endregion
+//#region Message (Anzeige von Fehlermeldungen im Formular)
+function renderNameMessage() {
+  const message = document.getElementById('nameMessage');
+  if (!isNameValid()) {
+    message.innerText = "Name ist erforderlich → Vor- und Nachname sind erforderlich";
+    message.style.display = "block";
+  } else {
+    message.innerText = "";
+    message.style.display = "none";
+  }
+}
+
+
+function renderEmailMessage() {
+  const message = document.getElementById('emailMessage');
+  if (!isEmailValid()) {
+    message.innerText = "Email ist erforderlich";
+    message.style.display = "block";
+  } else {
+    message.innerText = "";
+    message.style.display = "none";
+  }
+}
+
+
+function renderPasswordMessage() {
+  const message = document.getElementById('passwordMessage');
+  if (!isPasswordFieldValid()) {
+    message.innerText = "Password ist erforderlich";
+    message.style.display = "block";
+  } else {
+    message.innerText = "";
+    message.style.display = "none";
+  }
+}
+
+
+function renderComparePasswordMessage() {
+  const message = document.getElementById('comparePasswordMessage');
+  if (!isPasswordFieldValid()) {
+    message.innerText = "Your passwords don't match. Please try again.";
+    message.style.display = "block";
+  } else {
+    message.innerText = "";
+    message.style.display = "none";
+  }
+}
+
+
+function renderCheckboxMessage() {
+  const message = document.getElementById('checkboxMessage');
+  if (!isCheckboxChecked()) {
+    message.innerText = "Please, check the privacy policy";
+    message.style.display = "block";
+  } else {
+    message.innerText = "";
+    message.style.display = "none";
+  }
+}
+
+
+
