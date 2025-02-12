@@ -1,15 +1,15 @@
 const pageTitles = {
-  add_task: 'Add Task',
-  summary: 'Summary User',
-  board: 'Board',
-  contacts: 'Contacts',
-  privacy_policy: 'Privacy Policy',
-  legal_notice: 'Legal notice',
-  help: 'Help',
+  add_task: "Add Task",
+  summary: "Summary User",
+  board: "Board",
+  contacts: "Contacts",
+  privacy_policy: "Privacy Policy",
+  legal_notice: "Legal notice",
+  help: "Help",
 };
 
 async function loadPageContentPath(page) {
-  let contentPages = document.getElementById('content');
+  let contentPages = document.getElementById("content");
   const content = await fetchContent(`${page}.html`);
   contentPages.innerHTML = content;
   changePageTitles(page);
@@ -21,7 +21,7 @@ async function fetchContent(page) {
     const response = await fetch(`../pages/${page}`);
     return await response.text();
   } catch (error) {
-    console.error('Fehler beim Abrufen');
+    console.error("Fehler beim Abrufen");
   }
 }
 
@@ -31,53 +31,49 @@ function changePageTitles(page) {
 }
 
 function openAddFloatingTask() {
-  let addTask = document.getElementById('floatingAddTask');
+  let addTask = document.getElementById("floatingAddTask");
   addTask.innerHTML = addTaskTemplate();
-  document.body.style.overflow = 'hidden';
-  addTask.classList.remove('slideOut');
-  addTask.classList.add('slideIn');
-  addTask.classList.remove('d-none');
+  document.body.style.overflow = "hidden";
+  addTask.classList.remove("slideOut");
+  addTask.classList.add("slideIn");
+  addTask.classList.remove("d-none");
   setTimeout(() => {
-    addTask.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
+    addTask.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
   }, 200);
 }
 
-
-
-
 function toggleSubMenu() {
-  const submenu = document.getElementById('submenu');
-  submenu.classList.toggle('d-none');
+  const submenu = document.getElementById("submenu");
+  submenu.classList.toggle("d-none");
 }
 
-
-function hideSubMenu(){
-  let submenu = document.getElementById('submenu');
+function hideSubMenu() {
+  let submenu = document.getElementById("submenu");
   if (submenu) {
-    submenu.classList.add('d-none');
+    submenu.classList.add("d-none");
   }
 }
 
 function addNewContact() {
-  let addContact = document.getElementById('addContactOverlay');
-  addContact.innerHTML = generateFloaterHTML();  
-  document.body.style.overflow = 'hidden';
-  addContact.classList.remove('slideOut');
-  addContact.classList.add('slideIn');
-  addContact.classList.remove('d-none');
+  let addContact = document.getElementById("addContactOverlay");
+  addContact.innerHTML = generateFloaterHTML();
+  document.body.style.overflow = "hidden";
+  addContact.classList.remove("slideOut");
+  addContact.classList.add("slideIn");
+  addContact.classList.remove("d-none");
   setTimeout(() => {
-    addContact.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
+    addContact.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
   }, 200);
 }
 
 function closeNewContact() {
-  let closeFloater = document.getElementById('addContactOverlay');
-  closeFloater.classList.remove('slideIn');
-  closeFloater.classList.add('slideOut');
-  closeFloater.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+  let closeFloater = document.getElementById("addContactOverlay");
+  closeFloater.classList.remove("slideIn");
+  closeFloater.classList.add("slideOut");
+  closeFloater.style.backgroundColor = "rgba(0, 0, 0, 0)";
   setTimeout(() => {
-    closeFloater.classList.add('d-none');
-    closeFloater.innerHTML = '';
-    document.body.style.overflow = '';
+    closeFloater.classList.add("d-none");
+    closeFloater.innerHTML = "";
+    document.body.style.overflow = "";
   }, 100);
 }
