@@ -42,18 +42,9 @@ function openAddFloatingTask() {
   }, 200);
 }
 
-function closeAddFloatingTask() {
-  let floatingTask = document.getElementById('floatingAddTask');
-  floatingTask.classList.remove('slideIn');
-  floatingTask.classList.add('slideOut');
-  floatingTask.style.backgroundColor = 'rgba(0, 0, 0, 0)';
-  setTimeout(() => {
-    floatingTask.classList.add('d-none');
-    floatingTask.innerHTML = '';
-    document.body.style.overflow = '';
-  }, 100);
-}
 
+
+<<<<<<< HEAD
 
 function toggleSubMenu() {
   const submenu = document.getElementById('submenu');
@@ -68,22 +59,28 @@ function hideSubMenu(){
   }
 }
 
-
+=======
 function addNewContact() {
-  let addContactOverlay = document.getElementById('addContactOverlay');
-  addContactOverlay.classList.remove = 'd-none';
-  addContactOverlay.classList.add = 'overlay';
-
-  addContactOverlay.innerHTML = generateFloaterHTML();
-
-  document.getElementById('addCloseBtn').onclick = closeNewContact;
+  let addContact = document.getElementById('addContactOverlay');
+  addContact.innerHTML = generateFloaterHTML();  
+  document.body.style.overflow = 'hidden';
+  addContact.classList.remove('slideOut');
+  addContact.classList.add('slideIn');
+  addContact.classList.remove('d-none');
+  setTimeout(() => {
+    addContact.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
+  }, 200);
 }
 
-function closeNewContact(event) {
-  let addContactOverlay = document.getElementById('addContactOverlay');
-
-  addContactOverlay.classList.remove = 'overlay';
-  addContactOverlay.classList.add = 'd-none';
-
-  addContactOverlay.innerHTML = '';
+function closeNewContact() {
+  let closeFloater = document.getElementById('addContactOverlay');
+  closeFloater.classList.remove('slideIn');
+  closeFloater.classList.add('slideOut');
+  closeFloater.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+  setTimeout(() => {
+    closeFloater.classList.add('d-none');
+    closeFloater.innerHTML = '';
+    document.body.style.overflow = '';
+  }, 100);
+>>>>>>> backup-branch
 }

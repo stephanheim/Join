@@ -47,6 +47,10 @@ function generateFloaterHTML() {
     </div>
   </div>
 </div>
+<<<<<<< HEAD
 
+=======
+</div>
+>>>>>>> backup-branch
 `;
 }
