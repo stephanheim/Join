@@ -261,8 +261,6 @@ slideIn {
     animation: slideIn 0.2s ease-in-out forwards;
 }
 
-<<<<<<< HEAD
-=======
 .slideOut {
     animation: slideOut 0.2s ease-in-out backwards;
 }
@@ -285,7 +283,6 @@ slideIn {
     animation: slideIn 0.2s ease-in-out forwards;
 }
 
->>>>>>> backup-branch
 slideOut {
     animation: slideOut 0.2s ease-in-out forwards;
 }
@@ -312,8 +309,5 @@ slideOut {
         transform: translateX(100%);
         opacity: 0;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> backup-branch
+

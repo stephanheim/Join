@@ -44,7 +44,6 @@ function openAddFloatingTask() {
 
 
 
-<<<<<<< HEAD
 
 function toggleSubMenu() {
   const submenu = document.getElementById('submenu');
@@ -59,7 +58,6 @@ function hideSubMenu(){
   }
 }
 
-=======
 function addNewContact() {
   let addContact = document.getElementById('addContactOverlay');
   addContact.innerHTML = generateFloaterHTML();  
@@ -82,5 +80,4 @@ function closeNewContact() {
     closeFloater.innerHTML = '';
     document.body.style.overflow = '';
   }, 100);
->>>>>>> backup-branch
 }
