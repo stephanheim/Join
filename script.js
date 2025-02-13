@@ -47,13 +47,15 @@ function openAddFloatingTask() {
 }
 
 
+
+
 function toggleSubMenu() {
   const submenu = document.getElementById('submenu');
   submenu.classList.toggle('d-none');
 }
 
 
-function hideSubMenu() {
+function hideSubMenu(){
   let submenu = document.getElementById('submenu');
   if (submenu) {
     submenu.classList.add('d-none');
