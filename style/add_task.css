@@ -8,7 +8,31 @@
 .headline-add-task {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   height: 200px;
+}
+
+.close-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 56px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.close-btn {
+  width: 13.5px;
+  height: 13.5px;
+}
+
+.close-div:hover {
+  background-color: #ebebeb;
+}
+
+.close-btn:hover {
+  color: #2a3647;
 }
 
 .h1-add-task {

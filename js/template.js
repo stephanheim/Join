@@ -3,6 +3,9 @@ function addTaskTemplate() {
       <div class="floating-content">
         <div class="headline-add-task">
           <h1 class="h1-add-task">Add Task</h1>
+          <div class="close-div">
+            <img onclick="closeAddFloatingTask()" src="../assets/icons/close.svg" class="add-close-btn" />
+          </div>
         </div>
         <section class="input-section">
           <div class="section-left">
@@ -97,7 +100,7 @@ function addTaskTemplate() {
             <p>This field is required</p>
           </div>
           <div class="bt-section">
-            <button class="bt-clear" onclick="closeAddFloatingTask()">Clear x</button>
+            <button class="bt-clear">Clear x</button>
             <button class="bt-add-task">Create Task<img src="../assets/icons/check.svg" /></button>
           </div>
         </div>
