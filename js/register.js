@@ -170,7 +170,7 @@ function allFieldsValid() {
 function renderNameMessage() {
   const message = document.getElementById('nameMessage');
   if (!isNameValid()) {
-    message.innerText = "Name ist erforderlich → Vor- und Nachname sind erforderlich";
+    message.innerText = "First and last name are required";
     message.style.display = "block";
   } else {
     message.innerText = "";
@@ -182,7 +182,7 @@ function renderNameMessage() {
 function renderEmailMessage() {
   const message = document.getElementById('emailMessage');
   if (!isEmailValid()) {
-    message.innerText = "Email ist erforderlich";
+    message.innerText = "Email is required";
     message.style.display = "block";
   } else {
     message.innerText = "";
@@ -194,7 +194,7 @@ function renderEmailMessage() {
 function renderPasswordMessage() {
   const message = document.getElementById('passwordMessage');
   if (!isPasswordFieldValid()) {
-    message.innerText = "Password ist erforderlich";
+    message.innerText = "Password is required";
     message.style.display = "block";
   } else {
     message.innerText = "";
@@ -205,8 +205,8 @@ function renderPasswordMessage() {
 
 function renderComparePasswordMessage() {
   const message = document.getElementById('comparePasswordMessage');
-  if (!isPasswordFieldValid()) {
-    message.innerText = "Your passwords don't match. Please try again.";
+  if (!confirmPasswords()) {
+    message.innerText = "Your passwords don't match";
     message.style.display = "block";
   } else {
     message.innerText = "";
@@ -226,5 +226,3 @@ function renderCheckboxMessage() {
   }
 }
 //#endregion
-
-
