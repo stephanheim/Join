@@ -56,6 +56,15 @@
   padding: 12px 16px 12px 16px;
   border: 1px solid rgba(209, 209, 209, 1);
   cursor: pointer;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.input_at:focus,
+.textarea-add-task:focus,
+.input-date:focus {
+  outline: none;
+  border-color: rgba(41, 171, 226, 1);
 }
 
 .drop-down-menu {
@@ -72,16 +81,6 @@
 
 .drop-down-menu:hover {
   border-color: rgb(172, 172, 172);
-}
-
-.assigned-arrow {
-  color: rgba(42, 54, 71, 1);
-}
-
-.assigned-arrow:hover {
-  border-radius: 50%;
-  background-color: rgba(217, 217, 217, 1);
-  transform: scale(1.1);
 }
 
 .input-date {
@@ -220,8 +219,4 @@
   color: #29abe2;
   border: 2px solid #29abe2;
   box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2);
-}
-
-.button-img:hover {
-  color: #29abe2;
 }
