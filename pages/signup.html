@@ -53,8 +53,8 @@
               <div class="outside-input-confirm flex-column">
                 <div class="flex-space-between">
                   <input required class="inside-input" id="registNewEmail" minlength="3" type="email"
-                    placeholder="Email" aria-label="Email" autocomplete="email"
-                    oninput="renderEmailMessage(); toggleSubmitButton()">
+                    placeholder="Email" aria-label="Email" autocomplete="email" onblur="renderEmailMessage()"
+                    oninput="toggleSubmitButton()">
                   <img src="../assets/icons/login_mail_letter.svg" alt="Brief" />
                 </div>
                 <span id="emailMessage" class="compare-message"></span>
