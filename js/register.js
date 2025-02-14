@@ -1,11 +1,10 @@
 const BASE_URL = "https://join-418-default-rtdb.europe-west1.firebasedatabase.app/";
-//#region Fetch-API
 /**
- * Ruft Daten von der angegebenen URL ab
+ * Fetches data from the specified URL
  *
- * @param {string} url - die URL, von der die Daten abgerufen werden 
- * @param {object} options - Optionen für den Fetch-Aufruf (Methode, Header, Body)
- * @return {Promise<object|undefined>} - Ein Promise, das im Erfolgsfall ein JSON-Objekt zurückgibt oder im Fehlerfall `undefined`
+ * @param {string} url - The URL from which to fetch the data
+ * @param {object} options - Options for the fetch request (method, headers, body)
+ * @return {Promise<object|undefined>} - A promise that resolves to a JSON object on success or `undefined` on failure
  */
 async function fetchData(url, options) {
   try {
@@ -14,12 +13,13 @@ async function fetchData(url, options) {
     return await response.json();
   } catch (error) {
     console.error("Fetch Error:", error);
+    return undefined;
   } finally {
     activateButton()
   }
 }
-//#endregion
-//#region Foprmular Funktion
+
+
 function checkForm() {
   toggleSubmitButton();
   return allFieldsValid();
@@ -33,19 +33,33 @@ function getUserInput() {
   let confirmPassword = document.getElementById('registConfirmPassword');
   let newUser = ({
     name: name.value.trim(),
-    email: email.value.trim(),
+    email: email.value.trim().toLowerCase(),
     password: password.value.trim()
   })
   return { newUser, confirmPassword: confirmPassword.value.trim() };
 }
 
 
-function registerNewUser() {
-  if (!checkForm()) {
-    return false;
+async function registerNewUser() {
+  if (!checkForm()) return;
+  let { newUser } = getUserInput();
+  try {
+    let isAvailable = await isThisEmailAvailable(newUser.email);
+    if (!isAvailable) {
+      emailAlreadyRegistered();
+      return;
+    }
+    await postUser(newUser);
+  } catch (error) {
+    console.error("Registration failed:", error);
   }
-  let newUser = getUserInput();
-  postUser(newUser);
+}
+
+
+function emailAlreadyRegistered() {
+  const message = document.getElementById('emailMessage');
+  message.innerText = "This e-mail address is already registered";
+  message.style.display = "block";
 }
 
 
@@ -100,8 +114,8 @@ function registrationComplete() {
     window.location.href = '../index.html';
   }, 1500);
 }
-//#endregion -------------------------
-//region Validierung
+
+
 function isNameValid() {
   let name = document.getElementById('registNewName').value.trim();
   if (name === "") return false;
@@ -118,13 +132,18 @@ function isEmailValid() {
 }
 
 
-function isThisEmailAvailable(){
+async function isThisEmailAvailable(email) {
   const url = BASE_URL + "/register/users.json";
-  const options = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(newUser)
-  };
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`Server Error: ${response.status}`);
+    const users = await response.json();
+    if (!users) return true;
+    return !Object.values(users).some(user => user.email === email.toLowerCase());
+  } catch (error) {
+    console.error("Error:", error);
+    return false;
+  }
 }
 
 
@@ -167,8 +186,8 @@ function allFieldsValid() {
     isCheckboxChecked()
   );
 }
-//#endregion
-//#region Message (Anzeige von Fehlermeldungen im Formular)
+
+
 function renderNameMessage() {
   const message = document.getElementById('nameMessage');
   if (!isNameValid()) {
@@ -227,4 +246,3 @@ function renderCheckboxMessage() {
     message.style.display = "none";
   }
 }
-//#endregion
