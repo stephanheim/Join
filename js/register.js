@@ -5,7 +5,7 @@ const BASE_URL = "https://join-418-default-rtdb.europe-west1.firebasedatabase.ap
  *
  * @param {string} url - die URL, von der die Daten abgerufen werden 
  * @param {object} options - Optionen für den Fetch-Aufruf (Methode, Header, Body)
- * @return {promis<object|undefined} - Einm Promise. das im Erfolgsfall ein JSON-Object zurückgibt oder im Fehlerfall `undefined` 
+ * @return {Promise<object|undefined>} - Ein Promise, das im Erfolgsfall ein JSON-Objekt zurückgibt oder im Fehlerfall `undefined`
  */
 async function fetchData(url, options) {
   try {
@@ -21,14 +21,8 @@ async function fetchData(url, options) {
 //#endregion
 //#region Foprmular Funktion
 function checkForm() {
-  let isValid =
-    isNameValid() &&
-    isEmailValid() &&
-    isPasswordFieldValid() &&
-    confirmPasswords() &&
-    isCheckboxChecked();
   toggleSubmitButton();
-  return isValid;
+  return allFieldsValid();
 }
 
 
@@ -63,11 +57,9 @@ async function postUser(newUser) {
     body: JSON.stringify(newUser)
   };
   const response = await fetchData(url, options);
-  if (response) {
-    resetFormRegister();
-    registrationComplete();
-  }
-  return response;
+  if (!response) return;
+  resetFormRegister();
+  registrationComplete();
 }
 
 
@@ -123,6 +115,16 @@ function isEmailValid() {
   if (email === "") return false;
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return regex.test(email);
+}
+
+
+function isThisEmailAvailable(){
+  const url = BASE_URL + "/register/users.json";
+  const options = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(newUser)
+  };
 }
 
 
