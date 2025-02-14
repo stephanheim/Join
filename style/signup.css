@@ -103,11 +103,11 @@
   color: red;
   font-weight: 400;
   font-size: 12px;
-  margin-top: 8px;
+  margin-top: 4px;
 }
 
 .checkbox-message {
-  display: none;
+  /* display: none; */
   color: red;
   font-weight: 400;
   font-size: 12px;
@@ -126,7 +126,8 @@
 
 .checkbox-content {
   width: 231px;
-  height: 24px;
+  height: 100%;
+  text-align: center;
   margin-top: 14px;
   transition: all 0.1s ease;
 }
