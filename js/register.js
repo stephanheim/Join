@@ -31,16 +31,16 @@ function getUserInput() {
   let email = document.getElementById('registNewEmail');
   let password = document.getElementById('registNewPassword');
   let confirmPassword = document.getElementById('registConfirmPassword');
-  let newUser = ({
+  let newUser = {
     name: name.value.trim(),
     email: email.value.trim().toLowerCase(),
     password: password.value.trim()
-  })
+  };
   return { newUser, confirmPassword: confirmPassword.value.trim() };
 }
 
 
-async function registerNewUser() {
+async function submitNewUser() {
   if (!checkForm()) return;
   let { newUser } = getUserInput();
   try {
