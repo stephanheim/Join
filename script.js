@@ -15,7 +15,7 @@ async function loadPageContentPath(page) {
   const content = await fetchContent(`${page}.html`);
   contentPages.innerHTML = content;
   changePageTitles(page);
-  hideSubMenu();
+  closeSubMenu();
 }
 
 async function fetchContent(page) {
@@ -56,12 +56,12 @@ function closeAddFloatingTask() {
   }, 100);
 }
 
-function toggleSubMenu() {
+function openSubMenu() {
   const submenu = document.getElementById('submenu');
-  submenu.classList.toggle('d-none');
+  submenu.classList.remove('d-none');
 }
 
-function hideSubMenu() {
+function closeSubMenu() {
   let submenu = document.getElementById('submenu');
   if (submenu) {
     submenu.classList.add('d-none');
