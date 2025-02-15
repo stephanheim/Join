@@ -1,5 +1,6 @@
 function generateFloaterHTML() {
   return `
+  <form>
 <div id="contactFloater" class="main-floater">
 <div class="add-contact">
   <img src="../assets/img/join.svg" class="add-icon" />
@@ -19,15 +20,15 @@ function generateFloaterHTML() {
     </div>
     <div class="add-fields">
       <div class="input-div">
-        <input type="text" placeholder="Name" class="add-input" />
+        <input type="text" placeholder="Name" class="add-input" id="addContName" minlength="2" maxlength="50" required />
         <img src="../assets/icons/person_input.svg" class="input-img-person" />
       </div>
       <div class="input-div">
-        <input type="email" placeholder="Email" class="add-input" />
+        <input type="email" placeholder="Email" class="add-input" id="addContMail" required/>
         <img src="../assets/icons/mail.svg" class="input-img-mail" />
       </div>
       <div class="input-div">
-        <input type="tel" placeholder="Phone" class="add-input" />
+        <input type="tel" placeholder="Phone" class="add-input" id="addContPhone" required />
         <img src="../assets/icons/call.svg" class="input-img-call" />
       </div>
     </div>
@@ -38,7 +39,7 @@ function generateFloaterHTML() {
           <img src="../assets/icons/close.svg" class="img-btn-close" />
         </div>
       </button>
-      <button class="add-btn-create">
+      <button type="submit" class="add-btn-create" onclick="createNewContact()">
         Create contact
         <div class="btn-icons">
           <img src="../assets/icons/check.svg" class="img-btn-check" />
@@ -48,5 +49,6 @@ function generateFloaterHTML() {
   </div>
 </div>
 </div>
+</form>
 `;
 }
