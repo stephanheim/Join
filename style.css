@@ -30,7 +30,6 @@ button {
   background-color: rgba(42, 54, 71, 1);
   width: 232px;
   height: 100vh;
-  z-index: 1000;
   display: flex;
   flex-direction: column;
 }
@@ -51,7 +50,6 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 500;
   margin-left: 232px;
   padding-left: 100px;
   padding-right: 40px;
@@ -167,6 +165,14 @@ button {
 }
 
 /*---Submenu---*/
+
+.submenu-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
 
 .a-sublink {
   color: rgba(205, 205, 205, 1);
