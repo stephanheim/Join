@@ -180,7 +180,7 @@ button {
   font-weight: 400;
   font-size: 16px;
   margin-left: 20px;
-  cursor: pointer;
+  transition: all 100ms ease-in-out;
 }
 
 .submenu {
@@ -209,8 +209,10 @@ button {
   width: 130px;
   height: 46px;
   padding: 8px 0;
+  cursor: pointer;
 }
 
 .submenu-link:hover {
   background-color: rgb(48, 73, 90);
+  transform: translateX(-1px);
 }
