@@ -6,8 +6,10 @@
     <title>Add-Task</title>
     <link rel="shortcut icon" href="../assets/img/join.svg" type="image/x-icon" />
     <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../style/add_task.css" />
     <link rel="stylesheet" href="../style/variables.css" />
     <script src="../js/template.js"></script>
+    <script src="../js/add_task.js"></script>
   </head>
 
   <body>
@@ -38,8 +40,13 @@
             <div class="title-and-star">
               <h2>Assigned to</h2>
             </div>
-            <div>
-              <input class="input_at" type="text" placeholder="Select contacts to assign" />
+            <div class="drop-down-menu">
+              <div>
+                <h2>Select contacts to assign</h2>
+              </div>
+              <div>
+                <img class="assigned-arrow" src="../assets/icons/drop-down-arrow.svg" />
+              </div>
             </div>
           </div>
         </div>
@@ -59,14 +66,19 @@
               <div>
                 <h2>Prio</h2>
               </div>
-              <div class="prio-section">
-                <button id="btn1" onclick="standardButtons('btn1')" class="button-prio" color="rgba(255, 61, 0, 1);">
+              <div class="button-section selected">
+                <button id="btn1" color="rgba(255, 61, 0, 1);" class="button-prio" onclick="standardButtons('btn1')">
                   Urgent <img src="../assets/icons/urgent-red.svg" />
                 </button>
-                <button id="btn2" onclick="standardButtons('btn2')" class="button-prio isSelected" color="rgba(255, 168, 0, 1)">
+                <button
+                  id="btn2"
+                  color="rgba(255, 168, 0, 1)"
+                  class="button-prio isSelected"
+                  onclick="standardButtons('btn2')"
+                >
                   Medium <img src="../assets/icons/medium-orange.svg" />
                 </button>
-                <button id="btn3" onclick="standardButtons('btn3')" class="button-prio" color="rgba(122, 226, 41, 1)">
+                <button id="btn3" color="rgba(122, 226, 41, 1)" class="button-prio" onclick="standardButtons('btn3')">
                   Low <img src="../assets/icons/low-green.svg" />
                 </button>
               </div>
@@ -108,7 +120,6 @@
         </div>
       </div>
     </main>
-    <script src="../js/add_task.js"></script>
     <script src="../script.js"></script>
   </body>
 </html>

@@ -129,6 +129,11 @@
   border: 1px solid rgba(209, 209, 209, 1);
 }
 
+.button-section {
+  display: flex;
+  justify-content: space-between;
+}
+
 .button-prio {
   width: 140px;
   display: flex;
