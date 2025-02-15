@@ -149,7 +149,7 @@ async function isThisEmailAvailable(email) {
 
 function isPasswordFieldValid() {
   let password = document.getElementById('registNewPassword').value.trim();
-  return password !== "";
+  return password.length >= 8;
 }
 
 
@@ -215,7 +215,7 @@ function renderEmailMessage() {
 function renderPasswordMessage() {
   const message = document.getElementById('passwordMessage');
   if (!isPasswordFieldValid()) {
-    message.innerText = "Password is required";
+    message.innerText = "A password with at least 8 characters is required";
     message.style.display = "block";
   } else {
     message.innerText = "";

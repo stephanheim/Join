@@ -12,7 +12,7 @@ async function submitLogin() {
     let isValid = await isLoginValid(email, password)
     if (!isValid) return;
     let user = await findUserFromDB(email);
-    localStorage.setItem("LoggedInUser", JSON.stringify(user));
+    localStorage.setItem("loggedInUser", JSON.stringify(user));
     window.location.href = "./pages/header_sidebar.html";
   } catch (error) {
     console.error("Login failed:", error);
@@ -50,6 +50,7 @@ async function findUserFromDB(email) {
   }
 }
 
+
 function guestLogin() {
   let guestUser = { name: "Guest" }
   localStorage.setItem("loggedInUser", JSON.stringify(guestUser));
@@ -57,7 +58,11 @@ function guestLogin() {
 }
 
 
-
+function logout() {
+  localStorage.removeItem("loggedInUser");
+  localStorage.removeItem("loggedInGuest")
+  window.location.href = "../index.html";
+}
 
 
 
