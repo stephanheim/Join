@@ -55,7 +55,7 @@ h2 {
   height: 376px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 24px;
 }
 
 .section-right {
