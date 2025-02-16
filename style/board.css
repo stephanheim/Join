@@ -79,9 +79,19 @@
     background-color: #2A3647;
     color: #ffffff;
     border-radius: 10px;
+    border: none;
     font-size: 21px;
     font-weight: 700;
     transition: all 100ms ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.bt-add-task img {
+    height: 32px;
+    width: 32px;
 }
 
 .bt-add-task:hover {

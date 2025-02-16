@@ -100,7 +100,7 @@ function addTaskTemplate() {
         </div>
         <div class="bt-section">
           <button class="bt-clear">Clear x</button>
-          <button class="bt-add-task">Create Task<img src="../assets/icons/check.svg" /></button>
+          <button class="bt-add-float-task">Create Task<img src="../assets/icons/check.svg" /></button>
         </div>
       </div>
     </div>`;

@@ -151,6 +151,7 @@ h2 {
 .button-prio:hover {
   box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2);
 }
+
 .isSelected[color='rgba(255, 61, 0, 1);'] {
   background-color: rgba(255, 61, 0, 1);
   border: none;
@@ -158,6 +159,7 @@ h2 {
   box-shadow: none;
   color: white;
 }
+
 .isSelected[color='rgba(255, 168, 0, 1)'] {
   background-color: rgba(255, 168, 0, 1);
   border: none;
@@ -165,6 +167,7 @@ h2 {
   box-shadow: none;
   color: white;
 }
+
 .isSelected[color='rgba(122, 226, 41, 1)'] {
   background-color: rgba(122, 226, 41, 1);
   border: none;
@@ -173,7 +176,7 @@ h2 {
   color: white;
 }
 
-.isSelected > img {
+.isSelected>img {
   filter: brightness(0) invert(1);
 }
 
@@ -200,6 +203,7 @@ h2 {
 
 .bt-section {
   display: flex;
+  align-items: center;
   gap: 16px;
 }
 
@@ -224,21 +228,47 @@ h2 {
   box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2);
 }
 
-.bt-clear {
+.bt-add-float-task {
+  width: 183px;
+  height: 56px;
+  background-color: #2A3647;
+  color: #ffffff;
+  border-radius: 10px;
+  border: none;
+  font-size: 21px;
+  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 110px;
+  gap: 4px;
+  transition: all 100ms ease-in-out;
+}
+
+.bt-add-float-task img {
+  height: 24px;
+  width: 24px;
+}
+
+.bt-add-float-task:hover {
+  background-color: #29aae1;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.bt-clear {
+  width: 126px;
   height: 56px;
   border: solid 1px #2a3647;
   background-color: #ffffff;
   color: #2a3647;
-  text-align: center;
-  border-radius: 8px;
+  border-radius: 10px;
+  padding: 16px;
   font-size: 20px;
   font-weight: 400;
-  transition: all 0.1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 5px;
+  transition: all 0.1s ease;
 }
 
 .bt-clear:hover {
