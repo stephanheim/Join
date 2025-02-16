@@ -8,6 +8,7 @@ async function createNewContact() {
     let response = await postToFirebase(newContact);
     if (response) {
         console.log("contact successfully added:", newContact);
+        document.getElementById("contactForm").reset();
     } else {
         console.error("Error when adding contact");
     }
@@ -15,7 +16,7 @@ async function createNewContact() {
 
 async function postToFirebase(contact) {
 try {
-    let response = await fetch(BASE_URL, {
+    let response = await fetch(BASE_URL + "/contacts.json", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(contact)

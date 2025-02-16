@@ -1,6 +1,6 @@
 function generateFloaterHTML() {
   return `
-  <form>
+  <form id="contactForm">
 <div id="contactFloater" class="main-floater">
 <div class="add-contact">
   <img src="../assets/img/join.svg" class="add-icon" />
@@ -24,11 +24,11 @@ function generateFloaterHTML() {
         <img src="../assets/icons/person_input.svg" class="input-img-person" />
       </div>
       <div class="input-div">
-        <input type="email" placeholder="Email" class="add-input" id="addContMail" required/>
+        <input type="email" placeholder="Email" class="add-input" id="addContMail" required />
         <img src="../assets/icons/mail.svg" class="input-img-mail" />
       </div>
       <div class="input-div">
-        <input type="tel" placeholder="Phone" class="add-input" id="addContPhone" required />
+        <input type="tel" placeholder="Phone" class="add-input" id="addContPhone" required  />
         <img src="../assets/icons/call.svg" class="input-img-call" />
       </div>
     </div>
