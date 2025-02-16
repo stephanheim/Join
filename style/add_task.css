@@ -59,14 +59,24 @@ h2 {
 }
 
 .section-right {
+  position: relative;
   width: 440px;
   height: 416px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 28px;
 }
 
 .add-task-single {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.add-task-single-fixed {
+  position: absolute;
+  width: 100%;
+  top: 333px;
   display: flex;
   flex-direction: column;
   gap: 8px;

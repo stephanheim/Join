@@ -38,12 +38,12 @@
             <div class="title-and-star">
               <h2>Assigned to</h2>
             </div>
-            <div id="dropDownMenu" class="dropdown-menu d-none"></div>
-            <div id="inputField" class="dropdown-container">
+            <div id="dropDownMenuAssigned" class="dropdown-menu-assigned d-none"></div>
+            <div id="inputFieldAssigned" class="dropdown-container" onclick="openDropdownMenuAssigned()">
               <div class="textarea">
                 <h2>Select contacts to assign</h2>
               </div>
-              <div onclick="openDropdownMenu()" class="imagefield">
+              <div class="imagefield">
                 <img src="../assets/icons/drop-down-arrow.svg" />
               </div>
             </div>
@@ -87,7 +87,8 @@
                 <h2>Category</h2>
                 <span class="span-star">*</span>
               </div>
-              <div class="dropdown-container">
+              <div id="dropDownMenuCategory" class="dropdown-menu-category d-none"></div>
+              <div id="inputfieldCategory" class="dropdown-container" onclick="openDropdownMenuCategory()">
                 <div class="textarea">
                   <h2>Select task category</h2>
                 </div>
@@ -96,7 +97,7 @@
                 </div>
               </div>
             </div>
-            <div class="add-task-single">
+            <div class="add-task-single-fixed">
               <div>
                 <h2>Subtasks</h2>
               </div>

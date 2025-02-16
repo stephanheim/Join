@@ -1,62 +1,62 @@
 function addTaskTemplate() {
   return ` 
-      <div class="floating-content">
-        <div class="headline-add-task">
-          <h1 class="h1-add-task">Add Task</h1>
-          <div class="close-div" onclick="closeAddFloatingTask()">
-            <img src="../assets/icons/close.svg" class="add-close-btn" />
+    <div class="floating-content">
+      <div class="headline-add-task">
+        <h1 class="h1-add-task">Add Task</h1>
+        <div class="close-div" onclick="closeAddFloatingTask()">
+          <img src="../assets/icons/close.svg" class="add-close-btn" />
+        </div>
+      </div>
+      <section class="input-section">
+        <div class="section-left">
+          <div class="add-task-single">
+            <div class="title-and-star">
+              <h2>Title</h2>
+              <span class="span-star">*</span>
+            </div>
+            <div>
+              <input class="input_at" type="text" placeholder="Enter a title" />
+            </div>
+          </div>
+          <div class="add-task-single">
+            <div>
+              <h2>Description</h2>
+            </div>
+            <div>
+              <textarea class="textarea-add-task" name="" id="" placeholder="Enter a Description"></textarea>
+            </div>
+          </div>
+          <div class="add-task-single">
+            <div class="title-and-star">
+              <h2>Assigned to</h2>
+            </div>
+            <div class="drop-down-menu">
+              <div>
+                <h2>Select contacts to assign</h2>
+              </div>
+              <div>
+                <img class="assigned-arrow" src="../assets/icons/drop-down-arrow.svg" />
+              </div>
+            </div>
           </div>
         </div>
-        <section class="input-section">
-          <div class="section-left">
+        <div class="devider-ver"></div>
+        <div>
+          <div class="section-right">
             <div class="add-task-single">
               <div class="title-and-star">
-                <h2>Title</h2>
+                <h2>Due date</h2>
                 <span class="span-star">*</span>
               </div>
               <div>
-                <input class="input_at" type="text" placeholder="Enter a title" />
+                <input class="input-date" type="date" />
               </div>
             </div>
             <div class="add-task-single">
               <div>
-                <h2>Description</h2>
+                <h2>Prio</h2>
               </div>
-              <div>
-                <textarea class="textarea-add-task" name="" id="" placeholder="Enter a Description"></textarea>
-              </div>
-            </div>
-            <div class="add-task-single">
-              <div class="title-and-star">
-                <h2>Assigned to</h2>
-              </div>
-              <div class="drop-down-menu">
-                <div>
-                  <h2>Select contacts to assign</h2>
-                </div>
-                <div>
-                  <img class="assigned-arrow" src="../assets/icons/drop-down-arrow.svg" />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="devider-ver"></div>
-          <div>
-            <div class="section-right">
-              <div class="add-task-single">
-                <div class="title-and-star">
-                  <h2>Due date</h2>
-                  <span class="span-star">*</span>
-                </div>
-                <div>
-                  <input class="input-date" type="date" />
-                </div>
-              </div>
-              <div class="add-task-single">
-                <div>
-                  <h2>Prio</h2>
-                </div>
-               <div class="prio-section">
+              <div class="prio-section">
                 <button id="btn1" onclick="standardButtons('btn1')" class="button-prio" color="rgba(255, 61, 0, 1);">
                   Urgent <img src="../assets/icons/urgent-red.svg" />
                 </button>
@@ -67,117 +67,139 @@ function addTaskTemplate() {
                   Low <img src="../assets/icons/low-green.svg" />
                 </button>
               </div>
+            </div>
+            <div class="add-task-single">
+              <div class="title-and-star">
+                <h2>Category</h2>
+                <span class="span-star">*</span>
               </div>
-              <div class="add-task-single">
-                <div class="title-and-star">
-                  <h2>Category</h2>
-                  <span class="span-star">*</span>
-                </div>
-                <div class="drop-down-menu">
-                  <div>
-                    <h2>Select task category</h2>
-                  </div>
-                  <div>
-                    <img class="assigned-arrow" src="../assets/icons/drop-down-arrow.svg" />
-                  </div>
-                </div>
-              </div>
-              <div class="add-task-single">
+              <div class="drop-down-menu">
                 <div>
-                  <h2>Subtasks</h2>
+                  <h2>Select task category</h2>
                 </div>
                 <div>
-                  <input class="input_at" type="search" placeholder="Add new subtask" />
+                  <img class="assigned-arrow" src="../assets/icons/drop-down-arrow.svg" />
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-
-        <div class="required-section">
-          <div class="required-field">
-            <span class="span-star">*</span>
-            <p>This field is required</p>
-          </div>
-          <div class="bt-section">
-            <button class="bt-clear">Clear x</button>
-            <button class="bt-add-task">Create Task<img src="../assets/icons/check.svg" /></button>
+            <div class="add-task-single">
+              <div>
+                <h2>Subtasks</h2>
+              </div>
+              <div>
+                <input class="input_at" type="search" placeholder="Add new subtask" />
+              </div>
+            </div>
           </div>
         </div>
-      </div>`;
+      </section>
+      <div class="required-section">
+        <div class="required-field">
+          <span class="span-star">*</span>
+          <p>This field is required</p>
+        </div>
+        <div class="bt-section">
+          <button class="bt-clear">Clear x</button>
+          <button class="bt-add-task">Create Task<img src="../assets/icons/check.svg" /></button>
+        </div>
+      </div>
+    </div>`;
 }
 
 function assignedToTemplate() {
   return `    
-      <div class="inputfield-dropdown">
-        <input type="text" />
-        <div onclick="closeDropdownMenu()" class="input-arrow">
-          <img src="../assets/icons/drop-down-arrow.svg" />
+    <div class="inputfield-dropdown">
+      <input type="text" />
+      <div class="input-arrow" onclick="closeDropdownMenuAssigned()">
+        <img src="../assets/icons/drop-down-arrow.svg" />
+      </div>
+    </div>
+    <div class="inner-dropmenu">
+      <div class="contacts-line">
+        <div style="background-color: rgba(0, 190, 232, 1)" class="circle-color">
+          <span>SM</span>
+        </div>
+        <div class="contact">
+          <span>Sofia Müller (You)</span>
         </div>
       </div>
-      <div class="inner-dropmenu">
-        <div class="contacts-line">
-          <div style="background-color: rgba(0, 190, 232, 1)" class="circle-color">
-            <span>SM</span>
-          </div>
-          <div class="contact">
-            <span>Sofia Müller (You)</span>
-          </div>
+      <div class="checkbox">
+        <input type="checkbox" />
+      </div>
+    </div>
+    <div class="inner-dropmenu">
+      <div class="contacts-line">
+        <div style="background-color: rgba(255, 122, 0, 1)" class="circle-color">
+          <span>AM</span>
         </div>
-        <div class="checkbox">
-          <input type="checkbox" />
+        <div class="contact">
+          <span>Anton Mayer</span>
         </div>
       </div>
-      <div class="inner-dropmenu">
-        <div class="contacts-line">
-          <div style="background-color: rgba(255, 122, 0, 1)" class="circle-color">
-            <span>AM</span>
-          </div>
-          <div class="contact">
-            <span>Anton Mayer</span>
-          </div>
+      <div class="checkbox">
+        <input type="checkbox" />
+      </div>
+    </div>
+    <div class="inner-dropmenu">
+      <div class="contacts-line">
+        <div style="background-color: rgba(147, 39, 255, 1)" class="circle-color">
+          <span>AS</span>
         </div>
-        <div class="checkbox">
-          <input type="checkbox" />
+        <div class="contact">
+          <span>Anja Schulz</span>
         </div>
       </div>
-      <div class="inner-dropmenu">
-        <div class="contacts-line">
-          <div style="background-color: rgba(147, 39, 255, 1)" class="circle-color">
-            <span>AS</span>
-          </div>
-          <div class="contact">
-            <span>Anja Schulz</span>
-          </div>
+      <div class="checkbox">
+        <input type="checkbox" />
+      </div>
+    </div>
+    <div class="inner-dropmenu">
+      <div class="contacts-line">
+        <div style="background-color: rgba(110, 82, 255, 1)" class="circle-color">
+          <span>BZ</span>
         </div>
-        <div class="checkbox">
-          <input type="checkbox" />
+        <div class="contact">
+          <span>Benedikt Ziegler</span>
         </div>
       </div>
-      <div class="inner-dropmenu">
-        <div class="contacts-line">
-          <div style="background-color: rgba(110, 82, 255, 1)" class="circle-color">
-            <span>BZ</span>
-          </div>
-          <div class="contact">
-            <span>Benedikt Ziegler</span>
-          </div>
+      <div class="checkbox">
+        <input type="checkbox" />
+      </div>
+    </div>
+    <div class="inner-dropmenu">
+      <div class="contacts-line">
+        <div style="background-color: rgba(252, 113, 255, 1)" class="circle-color">
+          <span>DE</span>
         </div>
-        <div class="checkbox">
-          <input type="checkbox" />
+        <div class="contact">
+          <span>David Eisenberg</span>
         </div>
       </div>
-      <div class="inner-dropmenu">
-        <div class="contacts-line">
-          <div style="background-color: rgba(252, 113, 255, 1)" class="circle-color">
-            <span>DE</span>
-          </div>
-          <div class="contact">
-            <span>David Eisenberg</span>
-          </div>
-        </div>
-        <div class="checkbox">
-          <input type="checkbox" />
-        </div>
-      </div>`;
+      <div class="checkbox">
+        <input type="checkbox" />
+      </div>
+    </div>`;
+}
+
+function categoryTemplate() {
+  return `
+    <div class="dropdown-container-category">
+      <div class="textarea">
+        <h2>Select task category</h2>
+      </div>
+      <div class="imagefield" onclick="closeDropdownMenuCategory()">
+        <img class="arrow" src="../assets/icons/drop-down-arrow.svg" />
+      </div>
+    </div>
+    <div class="inner-dropmenu">
+      <div class="contact">
+        <h2>Technical Task</h2>
+      </div>
+    </div>
+    <div class="inner-dropmenu">
+      <div class="contact">
+        <h2>User Story</h2>
+      </div>
+    </div>
+  `;
 }

@@ -11,19 +11,35 @@ function standardButtons(btnId) {
   }
 }
 
-function openDropdownMenu() {
-  const inputArrow = document.getElementById('inputField');
-  const dropDownMenu = document.getElementById('dropDownMenu');
+function openDropdownMenuAssigned() {
+  const inputArrow = document.getElementById('inputFieldAssigned');
+  const dropDownMenu = document.getElementById('dropDownMenuAssigned');
   inputArrow.classList.add('d-none');
   dropDownMenu.innerHTML = assignedToTemplate();
   dropDownMenu.classList.remove('d-none');
 }
 
-function closeDropdownMenu() {
-  const inputArrow = document.getElementById('inputField');
-  const dropDownMenu = document.getElementById('dropDownMenu');
+function closeDropdownMenuAssigned() {
+  const inputArrow = document.getElementById('inputFieldAssigned');
+  const dropDownMenu = document.getElementById('dropDownMenuAssigned');
   inputArrow.classList.remove('d-none');
   dropDownMenu.classList.add('d-none');
   inputArrow.style.display = '';
+  dropDownMenu.style.display = '';
+}
+
+function openDropdownMenuCategory() {
+  const inputArrow = document.getElementById('inputfieldCategory');
+  const dropDownMenu = document.getElementById('dropDownMenuCategory');
+  inputArrow.classList.add('d-none');
+  dropDownMenu.innerHTML = categoryTemplate();
+  dropDownMenu.classList.remove('d-none');
+}
+
+function closeDropdownMenuCategory() {
+  const inputArrow = document.getElementById('inputfieldCategory');
+  const dropDownMenu = document.getElementById('dropDownMenuCategory');
+  dropDownMenu.classList.add('d-none');
+  inputArrow.classList.remove('d-none');
   dropDownMenu.style.display = '';
 }
