@@ -1,4 +1,4 @@
-function standardButtons(btnId) {
+function buttonsColorSwitch(btnId) {
   let buttons = document.getElementsByClassName('input-section')[0].getElementsByTagName('button');
   let activeButton = document.getElementById(btnId);
   if (activeButton.classList.contains('isSelected')) {
@@ -24,8 +24,6 @@ function closeDropdownMenuAssigned() {
   const dropDownMenu = document.getElementById('dropDownMenuAssigned');
   inputArrow.classList.remove('d-none');
   dropDownMenu.classList.add('d-none');
-  inputArrow.style.display = '';
-  dropDownMenu.style.display = '';
 }
 
 function openDropdownMenuCategory() {
@@ -41,5 +39,4 @@ function closeDropdownMenuCategory() {
   const dropDownMenu = document.getElementById('dropDownMenuCategory');
   dropDownMenu.classList.add('d-none');
   inputArrow.classList.remove('d-none');
-  dropDownMenu.style.display = '';
 }

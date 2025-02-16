@@ -32,22 +32,20 @@ function changePageTitles(page) {
   document.title = changeTitles;
 }
 
-
 function setActiveNav(clickedNav) {
   let navLinks = document.getElementsByClassName('nav');
   let policyLinks = document.getElementsByClassName('policy-content');
   for (let i = 0; i < navLinks.length; i++) {
     navLinks[i].classList.remove('active');
-    navLinks[i].style.pointerEvents = "auto";
+    navLinks[i].style.pointerEvents = 'auto';
   }
   for (let i = 0; i < policyLinks.length; i++) {
     policyLinks[i].classList.remove('active');
-    policyLinks[i].style.pointerEvents = "auto";
+    policyLinks[i].style.pointerEvents = 'auto';
   }
   clickedNav.classList.add('active');
-  clickedNav.style.pointerEvents = "none";
+  clickedNav.style.pointerEvents = 'none';
 }
-
 
 function openAddFloatingTask() {
   let addTask = document.getElementById('floatingAddTask');
