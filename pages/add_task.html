@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="../style.css" />
     <link rel="stylesheet" href="../style/add_task.css" />
     <link rel="stylesheet" href="../style/variables.css" />
-    <script src="../js/template.js"></script>
-    <script src="../js/add_task.js"></script>
+    <link rel="stylesheet" href="../style/asigned_to.css" />
   </head>
 
   <body>
@@ -40,12 +39,13 @@
             <div class="title-and-star">
               <h2>Assigned to</h2>
             </div>
-            <div class="drop-down-menu">
-              <div>
+            <div id="dropDownMenu" class="dropdown-menu d-none"></div>
+            <div id="inputField" class="dropdown-container">
+              <div class="textarea">
                 <h2>Select contacts to assign</h2>
               </div>
-              <div>
-                <img class="assigned-arrow" src="../assets/icons/drop-down-arrow.svg" />
+              <div onclick="openDropdownMenu()" class="imagefield">
+                <img src="../assets/icons/drop-down-arrow.svg" />
               </div>
             </div>
           </div>
@@ -88,12 +88,12 @@
                 <h2>Category</h2>
                 <span class="span-star">*</span>
               </div>
-              <div class="drop-down-menu">
-                <div>
+              <div class="dropdown-container">
+                <div class="textarea">
                   <h2>Select task category</h2>
                 </div>
-                <div>
-                  <img class="assigned-arrow" src="../assets/icons/drop-down-arrow.svg" />
+                <div class="imagefield">
+                  <img class="arrow" src="../assets/icons/drop-down-arrow.svg" />
                 </div>
               </div>
             </div>
@@ -121,5 +121,7 @@
       </div>
     </main>
     <script src="../script.js"></script>
+    <script src="../js/template.js"></script>
+    <script src="../js/add_task.js"></script>
   </body>
 </html>

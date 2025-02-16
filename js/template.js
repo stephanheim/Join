@@ -106,3 +106,78 @@ function addTaskTemplate() {
         </div>
       </div>`;
 }
+
+function assignedToTemplate() {
+  return `    
+      <div class="inputfield-dropdown">
+        <input type="text" />
+        <div onclick="closeDropdownMenu()" class="input-arrow">
+          <img src="../assets/icons/drop-down-arrow.svg" />
+        </div>
+      </div>
+      <div class="inner-dropmenu">
+        <div class="contacts-line">
+          <div style="background-color: rgba(0, 190, 232, 1)" class="circle-color">
+            <span>SM</span>
+          </div>
+          <div class="contact">
+            <span>Sofia Müller (You)</span>
+          </div>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" />
+        </div>
+      </div>
+      <div class="inner-dropmenu">
+        <div class="contacts-line">
+          <div style="background-color: rgba(255, 122, 0, 1)" class="circle-color">
+            <span>AM</span>
+          </div>
+          <div class="contact">
+            <span>Anton Mayer</span>
+          </div>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" />
+        </div>
+      </div>
+      <div class="inner-dropmenu">
+        <div class="contacts-line">
+          <div style="background-color: rgba(147, 39, 255, 1)" class="circle-color">
+            <span>AS</span>
+          </div>
+          <div class="contact">
+            <span>Anja Schulz</span>
+          </div>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" />
+        </div>
+      </div>
+      <div class="inner-dropmenu">
+        <div class="contacts-line">
+          <div style="background-color: rgba(110, 82, 255, 1)" class="circle-color">
+            <span>BZ</span>
+          </div>
+          <div class="contact">
+            <span>Benedikt Ziegler</span>
+          </div>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" />
+        </div>
+      </div>
+      <div class="inner-dropmenu">
+        <div class="contacts-line">
+          <div style="background-color: rgba(252, 113, 255, 1)" class="circle-color">
+            <span>DE</span>
+          </div>
+          <div class="contact">
+            <span>David Eisenberg</span>
+          </div>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" />
+        </div>
+      </div>`;
+}

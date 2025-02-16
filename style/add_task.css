@@ -12,6 +12,11 @@
   height: 200px;
 }
 
+h2 {
+  font-size: 20px;
+  font-weight: 400;
+}
+
 .close-div {
   display: flex;
   justify-content: center;
@@ -87,22 +92,6 @@
 .input-date:focus {
   outline: none;
   border-color: rgba(41, 171, 226, 1);
-}
-
-.drop-down-menu {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 48px;
-  border-radius: 10px;
-  padding: 12px 16px 12px 16px;
-  border: 1px solid rgba(209, 209, 209, 1);
-  background-color: rgba(255, 255, 255, 1);
-  cursor: pointer;
-}
-
-.drop-down-menu:hover {
-  border-color: rgb(172, 172, 172);
 }
 
 .input-date {
