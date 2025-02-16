@@ -47,9 +47,10 @@
                     aria-label="Email" autocomplete="email">
                   <img src="./assets/icons/login_mail_letter.svg" alt="Brief">
                 </div>
-                <div class="outside-input inside-input-pw">
-                  <input required class="inside-input" id="loginPassword" type="password"
-                    placeholder="Password" aria-label="Password" autocomplete="current-password">
+                <div id="requiredInput" class="outside-input inside-input-pw">
+                  <input onfocus="toggleRequiredInput(true)" onblur="toggleRequiredInput(false)" required
+                    class="inside-input" id="loginPassword" type="password" placeholder="Password" aria-label="Password"
+                    autocomplete="current-password">
                   <img src="./assets/icons/login_pw_lock.svg" alt="Schloss">
                 </div>
               </div>

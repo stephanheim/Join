@@ -45,19 +45,23 @@ h2 {
   border-radius: 3px;
 }
 
-.flex-column{
+.flex-column {
   display: flex;
   flex-direction: column;
 }
 
-.flex-center{
- display: flex;
- justify-content: center;
- align-items: center;
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.flex-space-between{
+.flex-space-between {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.input-focus {
+  border-color: #29ABE2;
 }
