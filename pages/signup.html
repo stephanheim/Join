@@ -46,7 +46,7 @@
                     aria-label="text" autocomplete="name" oninput="renderNameMessage(); toggleSubmitButton()">
                   <img src="../assets/icons/signup_name_person.svg" alt="Person" />
                 </div>
-                <span id="nameMessage" class="compare-message"></span>
+                <span id="nameMessage" class="error-message"></span>
               </div>
               <div class="outside-input-confirm flex-column">
                 <div class="flex-space-between">
@@ -55,7 +55,7 @@
                     oninput="toggleSubmitButton()">
                   <img src="../assets/icons/login_mail_letter.svg" alt="Brief" />
                 </div>
-                <span id="emailMessage" class="compare-message"></span>
+                <span id="emailMessage" class="error-message"></span>
               </div>
               <div class="outside-input-confirm flex-column">
                 <div class="flex-space-between">
@@ -64,7 +64,7 @@
                     oninput="renderPasswordMessage(); toggleSubmitButton()">
                   <img src="../assets/icons/login_pw_lock.svg" alt="Schloss" />
                 </div>
-                <span id="passwordMessage" class="compare-message"></span>
+                <span id="passwordMessage" class="error-message"></span>
               </div>
               <div class="outside-input-confirm flex-column">
                 <div class="flex-space-between">
@@ -73,14 +73,14 @@
                     oninput="renderComparePasswordMessage(); toggleSubmitButton()">
                   <img src="../assets/icons/login_pw_lock.svg" alt="Schloss" />
                 </div>
-                <span id="comparePasswordMessage" class="compare-message"></span>
+                <span id="comparePasswordMessage" class="error-message"></span>
               </div>
               <div class="checkbox-content">
                 <input id="checkboxSignup" type="checkbox" oninput="isCheckboxChecked()"
                   onclick="renderCheckboxMessage(); toggleSubmitButton()" />
                 <label for="checkboxSignup"></label>
                 <span class="checkbox-content-span">I accept the <a href="">Privacy Policy</a></span>
-                <span id="checkboxMessage" class="checkbox-message"></span>
+                <span id="checkboxMessage" class="error-message"></span>
               </div>
             </div>
             <button id="buttonSignup" class="bt-signup" type="submit" disabled>Sign Up</button>

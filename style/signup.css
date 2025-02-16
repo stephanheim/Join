@@ -98,22 +98,6 @@
   gap: 10px;
 }
 
-.compare-message {
-  display: none;
-  color: red;
-  font-weight: 400;
-  font-size: 12px;
-  margin-top: 4px;
-}
-
-.checkbox-message {
-  display: none;
-  color: red;
-  font-weight: 400;
-  font-size: 12px;
-  margin-top: 4px;
-}
-
 .inside-input {
   max-width: 380px;
   width: 100%;

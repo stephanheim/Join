@@ -10,7 +10,10 @@ async function submitLogin() {
   let { email, password } = getLoginInput();
   try {
     let isValid = await isLoginValid(email, password)
-    if (!isValid) return;
+    if (!isValid) {
+      renderLoginMessage();
+      return;
+    }
     let user = await findUserFromDB(email);
     localStorage.setItem("loggedInUser", JSON.stringify(user));
     window.location.href = "./pages/header_sidebar.html";
@@ -21,18 +24,8 @@ async function submitLogin() {
 
 
 async function isLoginValid(email, password) {
-  const url = `${BASE_URL}/register/users.json`;
-  try {
-    const response = await fetch(url);
-    if (!response) throw new Error(`Server Error: ${response.status}`);
-    const users = await response.json();
-    if (!users) return false;
-    let user = Object.values(users).find(user => user.email.toLowerCase() === email.toLowerCase());
-    return user && user.password === password;
-  } catch (error) {
-    console.error("Error during login verification", error);
-    return false;
-  }
+  let user = await findUserFromDB(email);
+  return user ? user.password === password : false;
 }
 
 
@@ -47,6 +40,17 @@ async function findUserFromDB(email) {
   } catch (error) {
     console.error("Error when retrieving the user data", error);
     return null;
+  }
+}
+
+
+function renderLoginMessage() {
+  const message = document.getElementById('loginMessage');
+  const borders = document.getElementsByClassName('outside-input');
+  message.innerText = "Check your email and password. Please try again!";
+  message.style.display = "block";
+  for (const border of borders) {
+    border.style.borderColor = "#FF001F";
   }
 }
 

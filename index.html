@@ -41,16 +41,19 @@
               <hr class="devider-hr">
             </div>
             <div class="input-content">
-              <div class="outside-input">
-                <input required class="inside-input" id="loginEmail" type="email" placeholder="Email"
-                  aria-label="Email" autocomplete="email">
-                <img src="./assets/icons/login_mail_letter.svg" alt="Brief">
+              <div class="login-content">
+                <div class="outside-input">
+                  <input required class="inside-input" id="loginEmail" type="email" placeholder="Email"
+                    aria-label="Email" autocomplete="email">
+                  <img src="./assets/icons/login_mail_letter.svg" alt="Brief">
+                </div>
+                <div class="outside-input inside-input-pw">
+                  <input required class="inside-input" id="loginPassword" type="password"
+                    placeholder="Password" aria-label="Password" autocomplete="current-password">
+                  <img src="./assets/icons/login_pw_lock.svg" alt="Schloss">
+                </div>
               </div>
-              <div class="outside-input inside-input-pw">
-                <input required class="inside-input" id="loginPassword" type="password"
-                  placeholder="Password" aria-label="Password" autocomplete="current-password">
-                <img src="./assets/icons/login_pw_lock.svg" alt="Schloss">
-              </div>
+              <span id="loginMessage" class="error-message"></span>
             </div>
             <div class="bt-login-content">
               <button class="bt-login" type="submit">Log in</button>

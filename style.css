@@ -158,6 +158,14 @@ button {
   background-color: #f6f7f8;
 }
 
+.error-message {
+  display: none;
+  color: #FF8190;
+  font-weight: 400;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
 /*---Landscape warning----*/
 
 .landscape-warning {
