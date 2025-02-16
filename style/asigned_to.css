@@ -77,6 +77,11 @@
   cursor: pointer;
 }
 
+.dropdown-container-category img {
+  position: absolute;
+  transform: rotate(180deg);
+}
+
 .imagefield {
   display: flex;
   justify-content: center;
