@@ -1,6 +1,6 @@
 function generateFloaterHTML() {
   return `
-  <form id="contactForm">
+<form id="contactForm" onsubmit="return validateNewContact()">
 <div id="contactFloater" class="main-floater">
 <div class="add-contact">
   <img src="../assets/img/join.svg" class="add-icon" />
@@ -24,7 +24,7 @@ function generateFloaterHTML() {
         <img src="../assets/icons/person_input.svg" class="input-img-person" />
       </div>
       <div class="input-div">
-        <input type="email" placeholder="Email" class="add-input" id="addContMail" required />
+        <input type="email" placeholder="Email" class="add-input" id="addContMail" required pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$"/>
         <img src="../assets/icons/mail.svg" class="input-img-mail" />
       </div>
       <div class="input-div">
@@ -39,7 +39,7 @@ function generateFloaterHTML() {
           <img src="../assets/icons/close.svg" class="img-btn-close" />
         </div>
       </button>
-      <button type="submit" class="add-btn-create" onclick="createNewContact()">
+      <button type="submit" class="add-btn-create" onclick="validateForm()">
         Create contact
         <div class="btn-icons">
           <img src="../assets/icons/check.svg" class="img-btn-check" />

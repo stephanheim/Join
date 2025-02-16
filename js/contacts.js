@@ -14,6 +14,14 @@ async function createNewContact() {
     }
 }
 
+function validateForm() {
+    let form = document.getElementById("contactForm");
+    if (!form.checkValidity()) {
+        return false; 
+    }
+    createNewContact();
+}
+
 async function postToFirebase(contact) {
 try {
     let response = await fetch(BASE_URL + "/contacts.json", {
