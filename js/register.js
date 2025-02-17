@@ -188,6 +188,14 @@ function allFieldsValid() {
 }
 
 
+function toggleRequiredInput(isFocused) {
+  let border = document.getElementById('requiredInput');
+  if (border) {
+    border.classList.toggle('input-focus', isFocused)
+  }
+}
+
+
 function renderNameMessage() {
   const message = document.getElementById('nameMessage');
   if (!isNameValid()) {

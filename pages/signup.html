@@ -50,18 +50,19 @@
               </div>
               <div class="outside-input-confirm flex-column">
                 <div class="flex-space-between">
-                  <input required class="inside-input" id="registNewEmail" type="email"
-                    placeholder="Email" aria-label="Email" autocomplete="email" onblur="renderEmailMessage()"
+                  <input required class="inside-input" id="registNewEmail" type="email" placeholder="Email"
+                    aria-label="Email" autocomplete="email" onblur="renderEmailMessage()"
                     oninput="toggleSubmitButton()">
                   <img src="../assets/icons/login_mail_letter.svg" alt="Brief" />
                 </div>
                 <span id="emailMessage" class="error-message"></span>
               </div>
-              <div class="outside-input-confirm flex-column">
+              <div id="requiredInput" class="outside-input-confirm flex-column">
                 <div class="flex-space-between">
-                  <input required class="inside-input" id="registNewPassword" type="password"
-                    placeholder="Password" aria-label="password" autocomplete="off"
-                    oninput="renderPasswordMessage(); toggleSubmitButton()">
+                  <input onfocus="toggleRequiredInput(true)" onblur="toggleRequiredInput(false)"
+                    oninput="renderPasswordMessage(); toggleSubmitButton()" required class="inside-input"
+                    id="registNewPassword" type="password" placeholder="Password" aria-label="password"
+                    autocomplete="current-password">
                   <img src="../assets/icons/login_pw_lock.svg" alt="Schloss" />
                 </div>
                 <span id="passwordMessage" class="error-message"></span>

@@ -110,13 +110,14 @@
   padding: 48px 115px 48px 115px;
   border-radius: 30px;
   background-color: #ffffff;
+  box-shadow: 0px 0px 14px 3px #0000000A;
 }
 
 .form-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 32px;
+  gap: 28px;
 }
 
 .headline {
@@ -139,13 +140,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
 }
 
-.login-content{
+.login {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 32px;
+  gap: 24px;
 }
 
 .outside-input {
