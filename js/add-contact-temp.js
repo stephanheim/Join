@@ -1,6 +1,6 @@
 function generateFloaterHTML() {
   return `
-<form id="contactForm" onsubmit="return validateNewContact()">
+<form id="contactForm" onsubmit="validateForm()">
 <div id="contactFloater" class="main-floater">
 <div class="add-contact">
   <img src="../assets/img/join.svg" class="add-icon" />
@@ -33,13 +33,13 @@ function generateFloaterHTML() {
       </div>
     </div>
     <div class="add-btn-div">
-      <button class="add-btn-cancel">
+      <button onclick="closeNewContact() "class="add-btn-cancel">
         Cancel
         <div class="btn-icons">
           <img src="../assets/icons/close.svg" class="img-btn-close" />
         </div>
       </button>
-      <button type="submit" class="add-btn-create" onclick="validateForm()">
+      <button type="button" class="add-btn-create" onclick="validateForm()">
         Create contact
         <div class="btn-icons">
           <img src="../assets/icons/check.svg" class="img-btn-check" />
