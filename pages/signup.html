@@ -51,15 +51,14 @@
               <div class="outside-input-confirm flex-column">
                 <div class="flex-space-between">
                   <input required class="inside-input" id="registNewEmail" type="email" placeholder="Email"
-                    aria-label="Email" autocomplete="email" onblur="renderEmailMessage()"
-                    oninput="toggleSubmitButton()">
+                    aria-label="Email" autocomplete="email" oninput="renderEmailMessage(); toggleSubmitButton()">
                   <img src="../assets/icons/login_mail_letter.svg" alt="Brief" />
                 </div>
                 <span id="emailMessage" class="error-message"></span>
               </div>
-              <div id="requiredInput" class="outside-input-confirm flex-column">
+              <div id="borderPassword" class="outside-input-confirm flex-column">
                 <div class="flex-space-between">
-                  <input onfocus="toggleRequiredInput(true)" onblur="toggleRequiredInput(false)"
+                  <input onfocus="toggleRequiredInput(this, true)" onblur="toggleRequiredInput(this, false)"
                     oninput="renderPasswordMessage(); toggleSubmitButton()" required class="inside-input"
                     id="registNewPassword" type="password" placeholder="Password" aria-label="password"
                     autocomplete="current-password">
@@ -67,11 +66,12 @@
                 </div>
                 <span id="passwordMessage" class="error-message"></span>
               </div>
-              <div class="outside-input-confirm flex-column">
+              <div id="borderConfirm" class="outside-input-confirm flex-column">
                 <div class="flex-space-between">
-                  <input required class="inside-input" id="registConfirmPassword" type="password"
-                    placeholder="Confirm Password" aria-label="Password" autocomplete="off"
-                    oninput="renderComparePasswordMessage(); toggleSubmitButton()">
+                  <input onfocus="toggleRequiredInput(this, true)" onblur="toggleRequiredInput(this, false)"
+                    oninput="renderComparePasswordMessage(); toggleSubmitButton()" required class="inside-input"
+                    id="registConfirmPassword" type="password" placeholder="Confirm Password" aria-label="Password"
+                    autocomplete="off">
                   <img src="../assets/icons/login_pw_lock.svg" alt="Schloss" />
                 </div>
                 <span id="comparePasswordMessage" class="error-message"></span>
@@ -92,8 +92,8 @@
   </main>
   <footer class="bg-white">
     <div class="legal-information-content">
-      <a href="">Privacy Policy</a>
-      <a href="">Legal notice</a>
+      <a href="./privacy_policy.html">Privacy Policy</a>
+      <a href="./legal_notice.html">Legal notice</a>
     </div>
   </footer>
 </body>

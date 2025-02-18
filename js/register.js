@@ -188,8 +188,8 @@ function allFieldsValid() {
 }
 
 
-function toggleRequiredInput(isFocused) {
-  let border = document.getElementById('requiredInput');
+function toggleRequiredInput(inputElement, isFocused) {
+  let border = inputElement.parentElement.parentElement;
   if (border) {
     border.classList.toggle('input-focus', isFocused)
   }
@@ -234,12 +234,15 @@ function renderPasswordMessage() {
 
 function renderComparePasswordMessage() {
   const message = document.getElementById('comparePasswordMessage');
+  const border = document.getElementById('borderConfirm');
   if (!confirmPasswords()) {
     message.innerText = "Your passwords don't match";
     message.style.display = "block";
+    border.style.borderColor = "#FF001F";
   } else {
     message.innerText = "";
     message.style.display = "none";
+    border.style.borderColor = "";
   }
 }
 
