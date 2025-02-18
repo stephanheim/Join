@@ -12,7 +12,7 @@ function buttonsColorSwitch(btnId) {
 }
 
 function openDropdownMenuAssigned() {
-  const inputArrow = document.getElementById('inputFieldAssigned');
+  const inputArrow = document.getElementById('standardInput');
   const dropDownMenu = document.getElementById('dropDownMenuAssigned');
   inputArrow.classList.add('d-none');
   dropDownMenu.innerHTML = assignedToTemplate();
@@ -20,7 +20,7 @@ function openDropdownMenuAssigned() {
 }
 
 function closeDropdownMenuAssigned() {
-  const inputArrow = document.getElementById('inputFieldAssigned');
+  const inputArrow = document.getElementById('standardInput');
   const dropDownMenu = document.getElementById('dropDownMenuAssigned');
   inputArrow.classList.remove('d-none');
   dropDownMenu.classList.add('d-none');

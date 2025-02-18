@@ -38,15 +38,16 @@
             <div class="title-and-star">
               <h2>Assigned to</h2>
             </div>
-            <div id="dropDownMenuAssigned" class="dropdown-menu-assigned d-none"></div>
-            <div id="inputFieldAssigned" class="dropdown-container" onclick="openDropdownMenuAssigned()">
-              <div class="textarea">
-                <h2>Select contacts to assign</h2>
-              </div>
-              <div class="imagefield">
+            <!----------Drop-Down Inputfeld---------->
+            <div id="dropDownMenuAssigned" class="main-drop-down d-none"></div>
+            <!--Standard Inputfeld Assigned to-->
+            <div id="standardInput" class="input-container-assigned" onclick="openDropdownMenuAssigned()">
+              <input type="text" placeholder="Select contacts to assign" />
+              <div class="container-arrow-img">
                 <img src="../assets/icons/drop-down-arrow.svg" />
               </div>
             </div>
+            <!---------------------------------->
           </div>
         </div>
         <div class="devider-ver"></div>

@@ -108,87 +108,140 @@ function addTaskTemplate() {
 
 function assignedToTemplate() {
   return `    
-    <div class="inputfield-dropdown">
-      <input type="text" />
-      <div class="input-arrow" onclick="closeDropdownMenuAssigned()">
-        <img src="../assets/icons/drop-down-arrow.svg" />
-      </div>
-    </div>
-    <div class="inner-dropmenu">
-      <div class="contacts-line">
-        <div style="background-color: rgba(0, 190, 232, 1)" class="circle-color">
-          <span>SM</span>
-        </div>
-        <div class="contact">
-          <span>Sofia Müller (You)</span>
+      <div class="input-container-assigned-dropdown" onclick="closeDropdownMenuAssigned()">
+        <input type="text" placeholder="Select contacts to assign" />
+        <div class="container-arrow-img-dropdown">
+          <img src="../assets/icons/arrow_drop_up.svg" />
         </div>
       </div>
-      <div class="checkbox">
-        <input type="checkbox" />
-      </div>
-    </div>
-    <div class="inner-dropmenu">
-      <div class="contacts-line">
-        <div style="background-color: rgba(255, 122, 0, 1)" class="circle-color">
-          <span>AM</span>
+
+      <div class="drop-down-container">
+        <div class="inner-dropmenu">
+          <div class="contacts-line">
+            <div style="background-color: rgba(0, 190, 232, 1)" class="circle-color">
+              <span>SM</span>
+            </div>
+            <div class="contact">
+              <span>Sofia Müller (You)</span>
+            </div>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" />
+          </div>
         </div>
-        <div class="contact">
-          <span>Anton Mayer</span>
+        <div class="inner-dropmenu">
+          <div class="contacts-line">
+            <div style="background-color: rgba(255, 122, 0, 1)" class="circle-color">
+              <span>AM</span>
+            </div>
+            <div class="contact">
+              <span>Anton Mayer</span>
+            </div>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" />
+          </div>
         </div>
-      </div>
-      <div class="checkbox">
-        <input type="checkbox" />
-      </div>
-    </div>
-    <div class="inner-dropmenu">
-      <div class="contacts-line">
-        <div style="background-color: rgba(147, 39, 255, 1)" class="circle-color">
-          <span>AS</span>
+        <div class="inner-dropmenu">
+          <div class="contacts-line">
+            <div style="background-color: rgba(147, 39, 255, 1)" class="circle-color">
+              <span>AS</span>
+            </div>
+            <div class="contact">
+              <span>Anja Schulz</span>
+            </div>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" />
+          </div>
         </div>
-        <div class="contact">
-          <span>Anja Schulz</span>
+        <div class="inner-dropmenu">
+          <div class="contacts-line">
+            <div style="background-color: rgba(110, 82, 255, 1)" class="circle-color">
+              <span>BZ</span>
+            </div>
+            <div class="contact">
+              <span>Benedikt Ziegler</span>
+            </div>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" />
+          </div>
         </div>
-      </div>
-      <div class="checkbox">
-        <input type="checkbox" />
-      </div>
-    </div>
-    <div class="inner-dropmenu">
-      <div class="contacts-line">
-        <div style="background-color: rgba(110, 82, 255, 1)" class="circle-color">
-          <span>BZ</span>
+        <div class="inner-dropmenu">
+          <div class="contacts-line">
+            <div style="background-color: rgba(252, 113, 255, 1)" class="circle-color">
+              <span>DE</span>
+            </div>
+            <div class="contact">
+              <span>David Eisenberg</span>
+            </div>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" />
+          </div>
         </div>
-        <div class="contact">
-          <span>Benedikt Ziegler</span>
+        <div class="inner-dropmenu">
+          <div class="contacts-line">
+            <div style="background-color: rgb(0, 255, 242)" class="circle-color">
+              <span>EF</span>
+            </div>
+            <div class="contact">
+              <span>Eva Fischer</span>
+            </div>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" />
+          </div>
         </div>
-      </div>
-      <div class="checkbox">
-        <input type="checkbox" />
-      </div>
-    </div>
-    <div class="inner-dropmenu">
-      <div class="contacts-line">
-        <div style="background-color: rgba(252, 113, 255, 1)" class="circle-color">
-          <span>DE</span>
+        <div class="inner-dropmenu">
+          <div class="contacts-line">
+            <div style="background-color: rgb(229, 255, 0)" class="circle-color">
+              <span>EM</span>
+            </div>
+            <div class="contact">
+              <span>Emmanuel Mauer</span>
+            </div>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" />
+          </div>
         </div>
-        <div class="contact">
-          <span>David Eisenberg</span>
+        <div class="inner-dropmenu">
+          <div class="contacts-line">
+            <div style="background-color: rgb(248, 70, 70)" class="circle-color">
+              <span>MB</span>
+            </div>
+            <div class="contact">
+              <span>Marcel Bauer</span>
+            </div>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" />
+          </div>
         </div>
-      </div>
-      <div class="checkbox">
-        <input type="checkbox" />
-      </div>
-    </div>`;
+        <div class="inner-dropmenu">
+          <div class="contacts-line">
+            <div style="background-color: rgb(51, 245, 93)" class="circle-color">
+              <span>TW</span>
+            </div>
+            <div class="contact">
+              <span>Tatjana Wolf</span>
+            </div>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" />
+          </div>
+        </div>
+      </div>`;
 }
 
 function categoryTemplate() {
   return `
-    <div class="dropdown-container-category">
-      <div class="textarea">
-        <h2>Select task category</h2>
-      </div>
-      <div class="imagefield" onclick="closeDropdownMenuCategory()">
-        <img class="arrow" src="../assets/icons/drop-down-arrow.svg" />
+    <div class="input-container-assigned">
+      <input type="text" placeholder="Select contacts to assign" />
+      <div class="container-arrow-img">
+        <img src="./arrow_drop_down.svg" />
       </div>
     </div>
     <div class="inner-dropmenu">
