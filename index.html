@@ -43,15 +43,21 @@
             <div class="input-content">
               <div class="login">
                 <div class="outside-input">
-                  <input required class="inside-input" id="loginEmail" type="email" placeholder="Email"
-                    aria-label="Email" autocomplete="email">
-                  <img src="./assets/icons/login_mail_letter.svg" alt="Brief">
+                  <div class="inside-input">
+                    <input required id="loginEmail" type="email" placeholder="Email" aria-label="Email"
+                      autocomplete="email">
+                    <img src="./assets/icons/login_mail_letter.svg" alt="Brief">
+                  </div>
                 </div>
-                <div id="requiredInput" class="outside-input inside-input-pw">
-                  <input onfocus="toggleRequiredInput(true)" onblur="toggleRequiredInput(false)" required
-                    class="inside-input" id="loginPassword" type="password" placeholder="Password" aria-label="Password"
-                    autocomplete="current-password">
-                  <img src="./assets/icons/login_pw_lock.svg" alt="Schloss">
+                <div id="requiredInput" class="outside-input">
+                  <div class="inside-input">
+                    <input onfocus="toggleRequiredInput(true)" onblur="toggleRequiredInput(false)"
+                      oninput="checkPasswordIcon()" required id="loginPassword" type="password" placeholder="Password"
+                      aria-label="Password" autocomplete="current-password">
+                    <img id="visibilityLogin" class="pointer" onclick="togglePasswordVisibility()"
+                      src="./assets/icons/login_pw_lock.svg" alt="Schloss">
+                  </div>
+
                 </div>
               </div>
               <span id="loginMessage" class="error-message"></span>

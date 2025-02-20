@@ -1,3 +1,5 @@
+let isPasswordEntered = false;
+
 function getLoginInput() {
   let email = document.getElementById('loginEmail').value.trim();
   let password = document.getElementById('loginPassword').value.trim();
@@ -47,8 +49,33 @@ async function findUserFromDB(email) {
 function toggleRequiredInput(isFocused) {
   let border = document.getElementById('requiredInput');
   if (border) {
-    border.classList.toggle('input-focus', isFocused)
+    border.classList.toggle('input-focus', isFocused);
   }
+}
+
+
+function checkPasswordIcon() {
+  let passwordInput = document.getElementById('loginPassword');
+  let visibilityIcon = document.getElementById('visibilityLogin');
+  isPasswordEntered = passwordInput.value.length > 0;
+  if (isPasswordEntered) {
+    visibilityIcon.src = '../assets/icons/visibility_off.svg';
+    visibilityIcon.style.pointerEvents = 'auto';
+  } else {
+    visibilityIcon.src = '../assets/icons/login_pw_lock.svg';
+    visibilityIcon.style.pointerEvents = 'none';
+  }
+}
+
+
+function togglePasswordVisibility() {
+  let passwordInput = document.getElementById('loginPassword');
+  let visibilityIcon = document.getElementById('visibilityLogin');
+  let isPasswordVisible = passwordInput.type === 'text';
+  passwordInput.type = isPasswordVisible ? 'password' : 'text';
+  visibilityIcon.src = isPasswordVisible
+    ? '../assets/icons/visibility_off.svg'
+    : '../assets/icons/visibility.svg'
 }
 
 
