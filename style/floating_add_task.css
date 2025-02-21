@@ -9,14 +9,15 @@
   top: 0;
   left: 0;
   box-sizing: border-box;
+  transition: background-color 0.2s ease-in-out;
 }
 
 .slideIn {
-  animation: slideIn 0.2s ease-in-out forwards;
+  animation: slideIn 0.5s ease-in-out forwards;
 }
 
 .slideOut {
-  animation: slideOut 0.2s ease-in-out backwards;
+  animation: slideOut 0.5s ease-in-out forwards;
 }
 
 .floating-content {
