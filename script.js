@@ -1,5 +1,6 @@
 let contactOpen = false;
 
+
 const pageTitles = {
   add_task: 'Add Task',
   summary: 'Summary User',
@@ -10,6 +11,7 @@ const pageTitles = {
   help: 'Help',
 };
 
+
 async function loadPageContentPath(page) {
   let contentPages = document.getElementById('content');
   const content = await fetchContent(`${page}.html`);
@@ -17,6 +19,7 @@ async function loadPageContentPath(page) {
   changePageTitles(page);
   closeSubMenu();
 }
+
 
 async function fetchContent(page) {
   try {
@@ -27,10 +30,12 @@ async function fetchContent(page) {
   }
 }
 
+
 function changePageTitles(page) {
   let changeTitles = pageTitles[page];
   document.title = changeTitles;
 }
+
 
 function setActiveNav(clickedNav) {
   let navLinks = document.getElementsByClassName('nav');
@@ -47,6 +52,7 @@ function setActiveNav(clickedNav) {
   clickedNav.style.pointerEvents = 'none';
 }
 
+
 function openAddFloatingTask() {
   let addTask = document.getElementById('floatingAddTask');
   addTask.innerHTML = addTaskTemplate();
@@ -58,6 +64,7 @@ function openAddFloatingTask() {
     addTask.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
   }, 300);
 }
+
 
 function closeAddFloatingTask() {
   let floatingTask = document.getElementById('floatingAddTask');
@@ -71,10 +78,12 @@ function closeAddFloatingTask() {
   }, 100);
 }
 
+
 function openSubMenu() {
   const submenu = document.getElementById('submenu');
   submenu.classList.remove('d-none');
 }
+
 
 function closeSubMenu() {
   let submenu = document.getElementById('submenu');
@@ -83,12 +92,14 @@ function closeSubMenu() {
   }
 }
 
+
 function overlayClick(event) {
   let overlayContent = document.getElementById('contactFloater');
   if (!overlayContent.contains(event.target)) {
     closeNewContact();
   }
 }
+
 
 function addNewContact() {
   let addContact = document.getElementById('addContactOverlay');
@@ -101,6 +112,7 @@ function addNewContact() {
     addContact.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
   }, 200);
 }
+
 
 function closeNewContact() {
   let closeFloater = document.getElementById('addContactOverlay');

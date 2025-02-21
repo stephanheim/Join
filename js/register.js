@@ -257,3 +257,42 @@ function renderCheckboxMessage() {
     message.style.display = "none";
   }
 }
+
+
+function checkPasswordIcon() {
+  let passwordInput = document.getElementById('registNewPassword');
+  let visibilityIcon = document.getElementById('visibilityPwSignup');
+  isPasswordEntered = passwordInput.value.length > 0;
+  if (isPasswordEntered) {
+    visibilityIcon.src = '../assets/icons/visibility_off.svg';
+    visibilityIcon.style.pointerEvents = 'auto';
+  } else {
+    visibilityIcon.src = '../assets/icons/login_pw_lock.svg';
+    visibilityIcon.style.pointerEvents = 'none';
+  }
+}
+
+
+function checkConfirmIcon() {
+  let passwordInput = document.getElementById('registConfirmPassword');
+  let visibilityIcon = document.getElementById('visibilityConfirmSignup');
+  isPasswordEntered = passwordInput.value.length > 0;
+  if (isPasswordEntered) {
+    visibilityIcon.src = '../assets/icons/visibility_off.svg';
+    visibilityIcon.style.pointerEvents = 'auto';
+  } else {
+    visibilityIcon.src = '../assets/icons/login_pw_lock.svg';
+    visibilityIcon.style.pointerEvents = 'none';
+  }
+}
+
+
+function toggleConfirmVisibility() {
+  let passwordInput = document.getElementById('registConfirmPassword');
+  let visibilityIcon = document.getElementById('visibilityConfirmSignup');
+  let isPasswordVisible = passwordInput.type === 'text';
+  passwordInput.type = isPasswordVisible ? 'password' : 'text';
+  visibilityIcon.src = isPasswordVisible
+    ? '../assets/icons/visibility_off.svg'
+    : '../assets/icons/visibility.svg'
+}

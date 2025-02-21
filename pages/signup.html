@@ -59,20 +59,21 @@
               <div id="borderPassword" class="outside-input-confirm flex-column">
                 <div class="flex-space-between">
                   <input onfocus="toggleRequiredInput(this, true)" onblur="toggleRequiredInput(this, false)"
-                    oninput="renderPasswordMessage(); toggleSubmitButton()" required class="inside-input"
-                    id="registNewPassword" type="password" placeholder="Password" aria-label="password"
-                    autocomplete="current-password">
-                  <img src="../assets/icons/login_pw_lock.svg" alt="Schloss" />
+                    oninput="renderPasswordMessage(); checkPasswordIcon() ; toggleSubmitButton()" required
+                    class="inside-input" id="registNewPassword" type="password" placeholder="Password"
+                    aria-label="password" autocomplete="current-password">
+                  <img id="visibilityPwSignup" src="../assets/icons/login_pw_lock.svg" alt="Schloss" />
                 </div>
                 <span id="passwordMessage" class="error-message"></span>
               </div>
               <div id="borderConfirm" class="outside-input-confirm flex-column">
                 <div class="flex-space-between">
                   <input onfocus="toggleRequiredInput(this, true)" onblur="toggleRequiredInput(this, false)"
-                    oninput="renderComparePasswordMessage(); toggleSubmitButton()" required class="inside-input"
-                    id="registConfirmPassword" type="password" placeholder="Confirm Password" aria-label="Password"
-                    autocomplete="off">
-                  <img src="../assets/icons/login_pw_lock.svg" alt="Schloss" />
+                    oninput="renderComparePasswordMessage();checkConfirmIcon(); toggleSubmitButton()" required
+                    class="inside-input" id="registConfirmPassword" type="password" placeholder="Confirm Password"
+                    aria-label="Password" autocomplete="off">
+                  <img id="visibilityConfirmSignup" class="pointer" onclick="toggleConfirmVisibility()"
+                    src="../assets/icons/login_pw_lock.svg" alt="Schloss" />
                 </div>
                 <span id="comparePasswordMessage" class="error-message"></span>
               </div>

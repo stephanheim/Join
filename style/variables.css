@@ -65,6 +65,7 @@ h2 {
 .input-focus {
   border-color: #29ABE2;
 }
+
 .pointer{
   pointer-events:none;
   cursor: pointer;

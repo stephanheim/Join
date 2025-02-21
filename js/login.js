@@ -1,5 +1,6 @@
 let isPasswordEntered = false;
 
+
 function getLoginInput() {
   let email = document.getElementById('loginEmail').value.trim();
   let password = document.getElementById('loginPassword').value.trim();
