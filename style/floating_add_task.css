@@ -4,20 +4,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2000;
+  z-index: 9999;
   position: fixed;
   top: 0;
   left: 0;
-  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0);
   transition: background-color 0.2s ease-in-out;
 }
 
 .slideIn {
-  animation: slideIn 0.5s ease-in-out forwards;
+  animation: slideIn 0.2s ease-in-out forwards;
 }
 
 .slideOut {
-  animation: slideOut 0.5s ease-in-out forwards;
+  animation: slideOut 0.2s ease-in-out forwards;
 }
 
 .floating-content {

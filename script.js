@@ -56,7 +56,7 @@ function openAddFloatingTask() {
   addTask.classList.remove('d-none');
   setTimeout(() => {
     addTask.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
-  }, 200);
+  }, 300);
 }
 
 function closeAddFloatingTask() {
