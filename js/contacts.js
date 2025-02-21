@@ -2,6 +2,8 @@ const BASE_URL = "https://join-418-default-rtdb.europe-west1.firebasedatabase.ap
 
 let contactsArray = [];
 
+const contactColors = ["#ff7a01", "#9327ff", "#6e52ff", "#fc71ff", "#ffbb2c", "#20d7c2", "#462f8a", "#ff4646"]
+
 // Kontakte ab Firebase holen, rendern, sortieren, Farben zuordnen
 
 async function loadContactsFromFirebase() {
@@ -12,8 +14,10 @@ async function loadContactsFromFirebase() {
             let contacts = contactsResponse.contacts;
             await getDetailInfo(contacts);
         }
-        console.log(contactsArray);  
-        // renderContacts(contactsArray);
+        let groupedContacts = sortContacts();
+        console.log(groupedContacts);
+        assignColorsToContacts(groupedContacts);
+        renderContacts(groupedContacts);  
     } catch (error) {
         console.error("Fehler beim Laden der Kontakte", error);
     }
@@ -60,6 +64,34 @@ function sortContacts() {
 return groupedByLetter;
 }
 
+function assignColorsToContacts(groupedContacts) {
+    let colorizeIndex = 0;
+
+    for (let i = 0; i < groupedContacts.length; i++) {
+        let group = groupedContacts[i];
+    
+    for (let j = 0; j < group.contacts.length; j++) {
+        group.contacts[j].color = contactColors[colorizeIndex % contactColors.length];
+        colorizeIndex++;
+    }
+}
+}
+
+function renderContacts(groupedContacts) {
+    let contactList = document.getElementById('contacts-div');
+    contactList.innerHTML = "";
+    
+    for (let i = 0; i < groupedContacts.length; i++) {
+        let group = groupedContacts[i];
+        let groupName = group.group
+
+        // Zweite Schleife für die Kontakte unter den Lettern
+        for (let j = 0; j < group.contacts.length; j++) {
+            let contact = group.contacts[j];
+        contactList.innerHTML += generateContactsHTML(groupName, contact);
+    }
+}
+}
 
 // Neuen Kontakt erstellen, auf Firebase schreiben 
 

@@ -52,3 +52,25 @@ function generateFloaterHTML() {
 </form>
 `;
 }
+
+function generateContactsHTML(group, contact) {
+  return `
+        <div class="cnt-letter-div">
+          <span class="cnt-letter">${group}</span>
+        </div>
+        <div class="cnt-list-seperator"></div>
+        <div class="cnt-name">
+          <div class="cnt-initials style="background-color: ${contact.color}">
+            <span>${contact.name.slice(0, 2).toUpperCase()}</span>
+          </div>
+          <div class="cnt-details">
+            <div class="cnt-name-details">
+              <span>${contact.name}</span>
+            </div>
+            <div class="cnt-mail">
+              <span>${contact.email}</span>
+            </div>
+          </div>
+        </div>
+        `;
+}
