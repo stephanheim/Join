@@ -36,6 +36,22 @@ function changePageTitles(page) {
   document.title = changeTitles;
 }
 
+//-----------------wo laden ?---------------------
+async function loadSummary() {
+  let response = await fetch('./summary.html')
+  let html = await response.text();
+  document.getElementById('content').innerHTML = html;
+  getUserWelcome();
+}
+
+
+function getUserWelcome() {
+  let userData = JSON.parse(localStorage.getItem('loggedInUser'));
+  console.log(userData);
+  let welcomeElement = document.getElementById('welcomeUser');
+  welcomeElement.innerText = `${userData.name}`;
+}
+//------------------------------------------------
 
 function setActiveNav(clickedNav) {
   let navLinks = document.getElementsByClassName('nav');

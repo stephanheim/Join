@@ -20,7 +20,7 @@
     <script src="../js/login.js"></script>
   </head>
 
-  <body onload="loadPageContentPath('summary')">
+  <body onload="loadPageContentPath('summary'); getUserInitials()">
     <div class="landscape-warning">
       <span>Bitte drehen Sie ihr Gerät ins Hochformat</span>
     </div>
@@ -28,7 +28,7 @@
       <p>Kanban Project Management Tool</p>
       <div class="header-right-box">
         <a onclick="loadPageContentPath('help')" href="#"><img class="help-icon" src="../assets/icons/help.svg" alt="help.icon" /></a>
-        <a class="header-profil-name" onclick="openSubMenu()" href="#">MB</a>
+        <a id="userInitial" class="header-profil-name" onclick="openSubMenu()" href="#"></a>
       </div>
     </header>
     <!--Submenu(burger-menu) top-right active d-none-->
