@@ -18,6 +18,9 @@ async function loadPageContentPath(page) {
   contentPages.innerHTML = content;
   changePageTitles(page);
   closeSubMenu();
+  if (page === 'summary') {
+    getUserWelcome();
+  }
 }
 
 
@@ -36,14 +39,6 @@ function changePageTitles(page) {
   document.title = changeTitles;
 }
 
-//-----------------wo laden ?---------------------
-async function loadSummary() {
-  let response = await fetch('./summary.html')
-  let html = await response.text();
-  document.getElementById('content').innerHTML = html;
-  getUserWelcome();
-}
-
 
 function getUserWelcome() {
   let userData = JSON.parse(localStorage.getItem('loggedInUser'));
@@ -51,7 +46,7 @@ function getUserWelcome() {
   let welcomeElement = document.getElementById('welcomeUser');
   welcomeElement.innerText = `${userData.name}`;
 }
-//------------------------------------------------
+
 
 function setActiveNav(clickedNav) {
   let navLinks = document.getElementsByClassName('nav');
