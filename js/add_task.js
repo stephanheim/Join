@@ -30,7 +30,7 @@ function closeDropdownMenuAssigned() {
 
 
 function openDropdownMenuCategory() {
-  const inputArrow = document.getElementById('inputFieldCategory');
+  const inputArrow = document.getElementById('standardFieldCategory');
   const dropDownMenu = document.getElementById('dropDownMenuCategory');
   inputArrow.classList.add('d-none');
   dropDownMenu.innerHTML = categoryTemplate();
@@ -39,7 +39,7 @@ function openDropdownMenuCategory() {
 
 
 function closeDropdownMenuCategory() {
-  const inputArrow = document.getElementById('inputFieldCategory');
+  const inputArrow = document.getElementById('standardFieldCategory');
   const dropDownMenu = document.getElementById('dropDownMenuCategory');
   dropDownMenu.classList.add('d-none');
   inputArrow.classList.remove('d-none');

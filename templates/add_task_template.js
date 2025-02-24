@@ -241,20 +241,18 @@ function assignedToTemplate() {
 function categoryTemplate() {
   return `
     <div class="input-container-assigned">
-      <input type="text" placeholder="Select contacts to assign" />
+      <div class="textfield">
+        <h2>Select task category</h2>
+      </div>
       <div class="container-arrow-img">
-        <img src="../assets/icons/arrow_drop_up.svg" />
+        <img src="../assets/icons/arrow_drop_up.svg">
       </div>
     </div>
-    <div class="inner-dropmenu">
-      <div class="contact">
-        <h2>Technical Task</h2>
-      </div>
+    <div class="inner-task">
+      <h2>Technical Task</h2>
     </div>
-    <div class="inner-dropmenu">
-      <div class="contact">
-        <h2>User Story</h2>
-      </div>
+    <div class="inner-task">
+      <h2>User Story</h2>
     </div>
   `;
 }
