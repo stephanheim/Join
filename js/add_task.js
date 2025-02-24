@@ -11,6 +11,7 @@ function buttonsColorSwitch(btnId) {
   }
 }
 
+
 function openDropdownMenuAssigned() {
   const inputArrow = document.getElementById('standardInput');
   const dropDownMenu = document.getElementById('dropDownMenuAssigned');
@@ -19,6 +20,7 @@ function openDropdownMenuAssigned() {
   dropDownMenu.classList.remove('d-none');
 }
 
+
 function closeDropdownMenuAssigned() {
   const inputArrow = document.getElementById('standardInput');
   const dropDownMenu = document.getElementById('dropDownMenuAssigned');
@@ -26,16 +28,18 @@ function closeDropdownMenuAssigned() {
   dropDownMenu.classList.add('d-none');
 }
 
+
 function openDropdownMenuCategory() {
-  const inputArrow = document.getElementById('inputfieldCategory');
+  const inputArrow = document.getElementById('inputFieldCategory');
   const dropDownMenu = document.getElementById('dropDownMenuCategory');
   inputArrow.classList.add('d-none');
   dropDownMenu.innerHTML = categoryTemplate();
   dropDownMenu.classList.remove('d-none');
 }
 
+
 function closeDropdownMenuCategory() {
-  const inputArrow = document.getElementById('inputfieldCategory');
+  const inputArrow = document.getElementById('inputFieldCategory');
   const dropDownMenu = document.getElementById('dropDownMenuCategory');
   dropDownMenu.classList.add('d-none');
   inputArrow.classList.remove('d-none');

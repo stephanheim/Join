@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join - Contacts</title>
-    <link rel="stylesheet" href="../style.css" />
+    <!-- <link rel="stylesheet" href="../style.css" />
     <link rel="stylesheet" href="../style/contacts.css" />
-    <link rel="stylesheet" href="../style/contact-floaters.css" />
-    <link rel="stylesheet" href="../style/variables.css" />
+    <link rel="stylesheet" href="../style/contact_floaters.css" />
+    <link rel="stylesheet" href="../style/variables.css" /> -->
     <script src="../js/contacts.js"></script>
     <script src="./script.js"></script>
   </head>
@@ -20,29 +20,28 @@
           <button onclick="addNewContact()" class="cnt-btn-add-new">Add new contact<img src="../assets/icons/person_add.svg" /></button>
         </div>
         <div id="contacts-div">
-        <!-- ab hier laden wir dynamisch mit JS rein, hier mal die template vorlage   -->
-        <!-- sortierung nach anfangsbuchstaben-->
-        <div class="cnt-letter-div">
-          <span class="cnt-letter">A</span>
-        </div>
-        <div class="cnt-list-seperator"></div>
-        <!-- fin -->
-        <!-- eintrag namen und email -->
-        <div class="cnt-name">
-          <div class="cnt-initials">
-            <span>AM</span>
+          <!-- ab hier laden wir dynamisch mit JS rein, hier mal die template vorlage   -->
+          <!-- sortierung nach anfangsbuchstaben-->
+          <div class="cnt-letter-div">
+            <span class="cnt-letter">A</span>
           </div>
-          <div class="cnt-details">
-            <div class="cnt-name-details">
-              <span>Anton Mayer</span>
+          <div class="cnt-list-seperator"></div>
+          <!-- fin -->
+          <!-- eintrag namen und email -->
+          <div class="cnt-name">
+            <div class="cnt-initials">
+              <span>AM</span>
             </div>
-            <div class="cnt-mail">
-              <span>antom@gmail.com</span>
+            <div class="cnt-details">
+              <div class="cnt-name-details">
+                <span>Anton Mayer</span>
+              </div>
+              <div class="cnt-mail">
+                <span>antom@gmail.com</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-       
       </div>
 
       <div class="cnt-main">
@@ -54,12 +53,12 @@
         <div class="cnt-glance">
           <div class="cnt-glance-details">
             <div class="cnt-glance-initials">AM</div>
-            <div>Anton Mayer
+            <div>
+              Anton Mayer
               <div class="cnt-glance-icon-div">
-                
-                <img src="../assets/icons/edit.svg"><span>Edit</span>
+                <img src="../assets/icons/edit.svg" /><span>Edit</span>
                 <div class="cnt-spacer"></div>
-                <img src="../assets/icons/delete.svg"><span>Delete</span>
+                <img src="../assets/icons/delete.svg" /><span>Delete</span>
               </div>
             </div>
           </div>

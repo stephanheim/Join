@@ -23,10 +23,12 @@ async function loadContactsFromFirebase() {
     }
 }
 
+
 async function getAllContacts() {
     let response = await fetch(`${BASE_URL}.json`);
     return await response.json();
 }
+
 
 async function getDetailInfo(contacts) {
     let userIds = Object.keys(contacts);  
@@ -42,6 +44,7 @@ async function getDetailInfo(contacts) {
         });
     }
 }
+
 
 function sortContacts() {
     contactsArray.sort(function(a, b) {
@@ -64,6 +67,7 @@ function sortContacts() {
 return groupedByLetter;
 }
 
+
 function assignColorsToContacts(groupedContacts) {
     let colorizeIndex = 0;
 
@@ -76,6 +80,7 @@ function assignColorsToContacts(groupedContacts) {
     }
 }
 }
+
 
 function renderContacts(groupedContacts) {
     let contactList = document.getElementById('contacts-div');
@@ -93,6 +98,7 @@ function renderContacts(groupedContacts) {
 }
 }
 
+
 // Neuen Kontakt erstellen, auf Firebase schreiben 
 
 async function createNewContact() {
@@ -107,6 +113,7 @@ async function createNewContact() {
     }
 }
 
+
 function validateForm() {
     let form = document.getElementById("contactForm");
     if (!form.checkValidity()) {
@@ -115,6 +122,7 @@ function validateForm() {
     createNewContact();
         return false;
 }
+
 
 async function postToFirebase(contact) {
     try {
@@ -132,6 +140,7 @@ async function postToFirebase(contact) {
         return null;
     }
 }
+
 
 function addContactInput() {
     let name = document.getElementById('addContName').value;

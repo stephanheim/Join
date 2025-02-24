@@ -206,3 +206,11 @@
     opacity: 1;
   }
 }
+
+.textarea {
+  margin-left: 16px;
+}
+
+.imagefield {
+  margin-right: 16px;
+}
