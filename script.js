@@ -19,7 +19,7 @@ async function loadPageContentPath(page) {
   changePageTitles(page);
   closeSubMenu();
   if (page === 'summary') {
-    getUserWelcome();
+    showUserWelcome();
   }
 }
 
@@ -40,11 +40,24 @@ function changePageTitles(page) {
 }
 
 
-function getUserWelcome() {
+function showUserWelcome() {
   let userData = JSON.parse(localStorage.getItem('loggedInUser'));
-  console.log(userData);
-  let welcomeElement = document.getElementById('welcomeUser');
-  welcomeElement.innerText = `${userData.name}`;
+  let nameUser = document.getElementById('welcomeUser');
+  let welcomeUser = document.getElementById('welcomeMessage');
+  nameUser.innerText = `${userData.name}`;
+  welcomeUser.innerText = showDaytimeGreeting();
+}
+
+
+function showDaytimeGreeting() {
+  let hour = new Date().getHours();
+  if (hour >= 5 && hour < 12) {
+    return "Good Morning";
+  } else if (hour >= 12 && hour < 18) {
+    return "Good afternoon";
+  } else {
+    return "Good evening";
+  }
 }
 
 

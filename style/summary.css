@@ -128,10 +128,11 @@
 .welcome-div {
     display: flex;
     flex-direction: column;
-    align-items: left;
     justify-content: center;
     width: auto;
     height: auto;
+    font-size: 47px;
+    font-weight: 500;
 }
 
 .imgs-todo {
@@ -142,11 +143,6 @@
 .img-urgent {
     width: 60px;
     height: 60px;
-}
-
-.welcome {
-    font-size: 47px;
-    font-weight: 500;
 }
 
 .name {
