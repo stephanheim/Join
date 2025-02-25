@@ -242,7 +242,7 @@ function categoryTemplate() {
       <div class="textfield">
         <h2>Select task category</h2>
       </div>
-      <div class="container-arrow-img">
+      <div class="container-arrow-img-dropdown">
         <img src="../assets/icons/arrow_drop_up.svg">
       </div>
     </div>

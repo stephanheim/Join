@@ -23,6 +23,14 @@
   cursor: pointer;
 }
 
+.input-container-category input {
+  border: none;
+  outline: none;
+  font-size: 20px;
+  font-weight: 400;
+  margin-left: 16px;
+}
+
 .input-container-category:hover {
   border: 1.8px solid rgb(146, 146, 146);
 }
@@ -48,20 +56,6 @@
 
 .input-container-assigned input::placeholder {
   color: black;
-}
-
-.container-arrow-img {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 24px;
-  height: 24px;
-  margin: 12px 16px 12px 16px;
-}
-
-.container-arrow-img:hover {
-  background-color: rgba(217, 217, 217, 1);
-  border-radius: 50%;
 }
 
 /*-------------------------------------------------------------------*/
@@ -138,7 +132,7 @@
 }
 
 .container-arrow-img-dropdown:hover {
-  background-color: rgba(217, 217, 217, 1);
+  background-color: rgb(239, 237, 237);
   border-radius: 50%;
 }
 
