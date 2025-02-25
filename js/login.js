@@ -105,7 +105,7 @@ function logout() {
 }
 
 
-function getUserInitials(){
+function getUserInitials() {
   let userData = JSON.parse(localStorage.getItem('loggedInUser'));
   let nameParts = userData.name.split(" ");
   let firstInitial = nameParts[0][0].toUpperCase();
