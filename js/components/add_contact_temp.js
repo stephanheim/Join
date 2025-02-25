@@ -15,8 +15,8 @@ function generateFloaterHTML() {
     <img src="../assets/icons/person-cnt.svg" class="add-icon-pers" />
   </div>
   <div class="right-wrap">
-     <div class="add-close-div">
-       <img onclick="closeNewContact()" src="../assets/icons/close.svg" class="add-close-btn" />
+     <div onclick="closeNewContact()" class="add-close-div">
+       <img src="../assets/icons/close.svg" class="add-close-btn" />
     </div>
     <div class="add-fields">
       <div class="input-div">
