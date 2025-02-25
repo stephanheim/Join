@@ -1,5 +1,17 @@
 <!DOCTYPE html>
 <html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join - Login</title>
+    <link rel="shortcut icon" href="./assets/img/join.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./style/login.css" />
+    <link rel="stylesheet" href="./style/variables.css" />
+    <script src="./script.js"></script>
+    <script src="./js/register.js"></script>
+    <script src="./js/login.js"></script>
+  </head>
 
 <head>
   <meta charset="UTF-8" />
@@ -29,53 +41,68 @@
         <a href="./pages/signup.html" class="bt-signup">Sign Up</a>
       </div>
     </div>
-  </header>
-  <main class="bg-white">
-    <div class="content-wrapper">
-      <div class="login-content">
-        <div class="outside-form-content">
-          <form id="formLogin" class="form-content" onsubmit="submitLogin();return false;">
-            <div class="headline">
-              <h1>Log in</h1>
-              <hr class="devider-hr" />
-            </div>
-            <div class="input-content">
-              <div class="login">
-                <div class="outside-input">
-                  <div class="inside-input">
-                    <input required id="loginEmail" type="email" placeholder="Email" aria-label="Email"
-                      autocomplete="email" />
-                    <img src="./assets/icons/login_mail_letter.svg" alt="Brief" />
-                  </div>
-                </div>
-                <div id="requiredInput" class="outside-input">
-                  <div class="inside-input">
-                    <input onfocus="toggleRequiredInput(true)" onblur="toggleRequiredInput(false)"
-                      oninput="checkPasswordIcon()" required id="loginPassword" type="password" placeholder="Password"
-                      aria-label="Password" autocomplete="current-password" />
-                    <img id="visibilityLogin" class="pointer" onclick="togglePasswordVisibility()"
-                      src="./assets/icons/login_pw_lock.svg" alt="Schloss" />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <span id="loginMessage" class="error-message"></span>
-            <div class="bt-login-content">
-              <button class="bt-login" type="submit">Log in</button>
-              <button class="bt-guest-login" type="submit" onclick="guestLogin()">Guest Log in</button>
-            </div>
+    <div class="overlay-join-logo bg-white"></div>
+    <div class="start-join-logo">
+      <img src="./assets/img/join_login.svg" alt="" />
+    </div>
+    <header class="bg-white">
+      <div class="content-wrapper">
+        <div class="login-signup-right">
+          <p>Not a Join user?</p>
+          <a href="./pages/signup.html" class="bt-signup">Sign Up</a>
         </div>
-        </form>
       </div>
-    </div>
-    </div>
-  </main>
-  <footer class="bg-white">
-    <div class="legal-information-content">
-      <a href="./pages/privacy_policy.html">Privacy Policy</a>
-      <a href="./pages/legal_notice.html">Legal notice</a>
-    </div>
-  </footer>
-</body>
-
+    </header>
+    <main class="bg-white">
+      <div class="content-wrapper">
+        <div class="login-content">
+          <div class="outside-form-content">
+            <form id="formLogin" class="form-content" onsubmit="submitLogin();return false;">
+              <div class="headline">
+                <h1>Log in</h1>
+                <hr class="devider-hr" />
+              </div>
+              <div class="input-content">
+                <div class="login">
+                  <div class="outside-input">
+                    <div class="inside-input">
+                      <input required id="loginEmail" type="email" placeholder="Email" aria-label="Email" autocomplete="email" />
+                      <img src="./assets/icons/login_mail_letter.svg" alt="Brief" />
+                    </div>
+                  </div>
+                  <div id="requiredInput" class="outside-input">
+                    <div class="inside-input">
+                      <input
+                        onfocus="toggleRequiredInput(true)"
+                        onblur="toggleRequiredInput(false)"
+                        oninput="checkPasswordIcon()"
+                        required
+                        id="loginPassword"
+                        type="password"
+                        placeholder="Password"
+                        aria-label="Password"
+                        autocomplete="current-password"
+                      />
+                      <img id="visibilityLogin" class="pointer" onclick="togglePasswordVisibility()" src="./assets/icons/login_pw_lock.svg" alt="Schloss" />
+                    </div>
+                  </div>
+                </div>
+                <span id="loginMessage" class="error-message"></span>
+              </div>
+              <div class="bt-login-content">
+                <button class="bt-login" type="submit">Log in</button>
+                <button class="bt-guest-login" type="submit" onclick="guestLogin()">Guest Log in</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="bg-white">
+      <div class="legal-information-content">
+        <a href="./pages/privacy_policy_login.html">Privacy Policy</a>
+        <a href="./pages/legal_notice_login.html">Legal notice</a>
+      </div>
+    </footer>
+  </body>
 </html>
