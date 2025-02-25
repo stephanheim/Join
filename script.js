@@ -77,32 +77,6 @@ function setActiveNav(clickedNav) {
 }
 
 
-function openAddFloatingTask() {
-  let addTask = document.getElementById('floatingAddTask');
-  addTask.innerHTML = addTaskTemplate();
-  document.body.style.overflow = 'hidden';
-  addTask.classList.remove('slideOut');
-  addTask.classList.add('slideIn');
-  addTask.classList.remove('d-none');
-  setTimeout(() => {
-    addTask.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
-  }, 300);
-}
-
-
-function closeAddFloatingTask() {
-  let floatingTask = document.getElementById('floatingAddTask');
-  floatingTask.classList.remove('slideIn');
-  floatingTask.classList.add('slideOut');
-  floatingTask.style.backgroundColor = 'rgba(0, 0, 0, 0)';
-  setTimeout(() => {
-    floatingTask.classList.add('d-none');
-    floatingTask.innerHTML = '';
-    document.body.style.overflow = '';
-  }, 100);
-}
-
-
 function openSubMenu() {
   const submenu = document.getElementById('submenu');
   submenu.classList.remove('d-none');
@@ -148,4 +122,21 @@ function closeNewContact() {
     closeFloater.innerHTML = '';
     document.body.style.overflow = '';
   }, 100);
+}
+
+
+function logout() {
+  localStorage.removeItem("loggedInUser");
+  localStorage.removeItem("loggedInGuest")
+  window.location.href = "../index.html";
+}
+
+
+function getUserInitials(){
+  let userData = JSON.parse(localStorage.getItem('loggedInUser'));
+  let nameParts = userData.name.split(" ");
+  let firstInitial = nameParts[0][0].toUpperCase();
+  let lastInitial = nameParts.length > 1 ? nameParts[1][0].toUpperCase() : "";
+  let initial = firstInitial + lastInitial;
+  document.getElementById('userInitial').innerText = initial;
 }

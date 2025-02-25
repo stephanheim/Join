@@ -98,22 +98,6 @@ function guestLogin() {
 }
 
 
-function logout() {
-  localStorage.removeItem("loggedInUser");
-  localStorage.removeItem("loggedInGuest")
-  window.location.href = "../index.html";
-}
-
-
-function getUserInitials(){
-  let userData = JSON.parse(localStorage.getItem('loggedInUser'));
-  let nameParts = userData.name.split(" ");
-  let firstInitial = nameParts[0][0].toUpperCase();
-  let lastInitial = nameParts.length > 1 ? nameParts[1][0].toUpperCase() : "";
-  let initial = firstInitial + lastInitial;
-  document.getElementById('userInitial').innerText = initial;
-}
-
 
 
 
