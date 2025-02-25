@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Join - Login</title>
-    <link rel="shortcut icon" href="./assets/img/join.svg" type="image/x-icon" />
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="./style/login.css" />
-    <link rel="stylesheet" href="./style/variables.css" />
-    <script src="./script.js"></script>
-    <script src="./js/register.js"></script>
-    <script src="./js/login.js"></script>
-  </head>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join - Login</title>
+  <link rel="shortcut icon" href="./assets/img/join.svg" type="image/x-icon" />
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./style/login.css" />
+  <link rel="stylesheet" href="./style/variables.css" />
+</head>
+
 <body>
   <div class="landscape-warning">
     <span>Please turn your device into portrait format!</span>
@@ -52,24 +51,18 @@
                 <div class="login">
                   <div class="outside-input">
                     <div class="inside-input">
-                      <input required id="loginEmail" type="email" placeholder="Email" aria-label="Email" autocomplete="email" />
+                      <input required id="loginEmail" type="email" placeholder="Email" aria-label="Email"
+                        autocomplete="email" />
                       <img src="./assets/icons/login_mail_letter.svg" alt="Brief" />
                     </div>
                   </div>
                   <div id="requiredInput" class="outside-input">
                     <div class="inside-input">
-                      <input
-                        onfocus="toggleRequiredInput(true)"
-                        onblur="toggleRequiredInput(false)"
-                        oninput="checkPasswordIcon()"
-                        required
-                        id="loginPassword"
-                        type="password"
-                        placeholder="Password"
-                        aria-label="Password"
-                        autocomplete="current-password"
-                      />
-                      <img id="visibilityLogin" class="pointer" onclick="togglePasswordVisibility()" src="./assets/icons/login_pw_lock.svg" alt="Schloss" />
+                      <input onfocus="toggleRequiredInput(true)" onblur="toggleRequiredInput(false)"
+                        oninput="checkPasswordIcon()" required id="loginPassword" type="password" placeholder="Password"
+                        aria-label="Password" autocomplete="current-password" />
+                      <img id="visibilityLogin" class="pointer" onclick="togglePasswordVisibility()"
+                        src="./assets/icons/login_pw_lock.svg" alt="Schloss" />
                     </div>
                   </div>
                 </div>
@@ -90,5 +83,9 @@
         <a href="./pages/legal_notice_login.html">Legal notice</a>
       </div>
     </footer>
-  </body>
+    <script src="./script.js"></script>
+    <script src="./js/pages/register.js"></script>
+    <script src="./js/pages/login.js"></script>
+</body>
+
 </html>
