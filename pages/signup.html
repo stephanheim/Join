@@ -9,7 +9,9 @@
   <link rel="stylesheet" href="../style/global.css" />
   <link rel="stylesheet" href="../style/typography.css" />
   <link rel="stylesheet" href="../style/components/alerts.css" />
+  <link rel="stylesheet" href="../style/animation.css" />
   <link rel="stylesheet" href="../style/pages/signup.css" />
+  <link rel="stylesheet" href="../style/components/forms.css" />
   <link rel="stylesheet" href="../style/variables.css" />
 </head>
 
@@ -76,11 +78,13 @@
                 </div>
                 <span id="comparePasswordMessage" class="error-message"></span>
               </div>
-              <div class="checkbox-content">
-                <input id="checkboxSignup" type="checkbox" oninput="isCheckboxChecked()"
-                  onclick="renderCheckboxMessage(); toggleSubmitButton()" />
-                <label for="checkboxSignup"></label>
-                <span class="checkbox-content-span">I accept the <a href="">Privacy Policy</a></span>
+              <div class="checkbox-signup">
+                <div class="checkbox-content">
+                  <input id="checkboxSignup" type="checkbox" oninput="isCheckboxChecked()"
+                    onclick="renderCheckboxMessage(); toggleSubmitButton()" />
+                  <label for="checkboxSignup"></label>
+                  <span class="checkbox-signup-span">I accept the <a href="">Privacy Policy</a></span>
+                </div>
                 <span id="checkboxMessage" class="error-message"></span>
               </div>
             </div>

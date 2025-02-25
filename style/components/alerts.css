@@ -7,7 +7,7 @@
   right: 0;
   bottom: 0;
   z-index: 999;
-  animation: shrinkOverlay 800ms ease-in-out forwards;
+  animation: fadeIn 800ms ease-in-out forwards;
 }
 
 .message-succsessful {
@@ -27,25 +27,7 @@
   font-size: 20px;
   font-weight: 400;
   z-index: 999;
-  animation: shrinkLogo 400ms ease-in-out forwards;
-}
-
-@keyframes shrinkLogo {
-  0% {
-    transform: translate(-50%, 100vh);
-  }
-  100%{
-    transform: translate(-50%, -50%);
-  }
-}
-
-@keyframes shrinkOverlay {
-  0% {
-    opacity: 0.5;
-  }
-  100%{
-    opacity: 1;
-  }
+  animation: slideInMessage 400ms ease-in-out forwards;
 }
 
 .error-message {

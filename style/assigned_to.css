@@ -217,16 +217,6 @@
   animation: fadeIn 300ms ease-out forwards;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0.5;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
 .textfield {
   margin-left: 16px;
 }
