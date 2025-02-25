@@ -19,7 +19,7 @@ async function submitLogin() {
     }
     let user = await findUserFromDB(email);
     localStorage.setItem("loggedInUser", JSON.stringify(user));
-    window.location.href = "./pages/header_sidebar.html";
+    window.location.href = "./pages/dashboard.html";
   } catch (error) {
     console.error("Login failed:", error);
   }
@@ -94,7 +94,7 @@ function renderLoginMessage() {
 function guestLogin() {
   let guestUser = { name: "Guest" }
   localStorage.setItem("loggedInUser", JSON.stringify(guestUser));
-  window.location.href = "./pages/header_sidebar.html";
+  window.location.href = "./pages/dashboard.html";
 }
 
 

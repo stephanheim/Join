@@ -1,0 +1,11 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('../assets/fonts/inter/Inter-VariableFont_opsz\,wght.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 100 900;
+  font-optical-sizing: auto;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
