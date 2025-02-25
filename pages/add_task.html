@@ -42,9 +42,9 @@
             <!----------Drop-Down Inputfeld---------->
             <div id="dropDownMenuAssigned" class="main-drop-down d-none"></div>
             <!--Standard Inputfeld Assigned to-->
-            <div id="standardInput" class="input-container-assigned" onclick="openDropdownMenuAssigned()">
+            <div id="standardInput" class="input-container-assigned">
               <input type="text" placeholder="Select contacts to assign" />
-              <div class="container-arrow-img">
+              <div class="container-arrow-img" onclick="openDropdownMenuAssigned()">
                 <img src="../assets/icons/drop-down-arrow.svg" />
               </div>
             </div>
@@ -86,7 +86,7 @@
               </div>
 
               <div id="dropDownMenuCategory" onclick="closeDropdownMenuCategory()" class="drop-down-field-category d-none"></div>
-              <div id="standardFieldCategory" onclick="openDropdownMenuCategory()" class="input-container-assigned">
+              <div id="standardFieldCategory" onclick="openDropdownMenuCategory()" class="input-container-category">
                 <div class="textfield">
                   <h2>Select task category</h2>
                 </div>
@@ -94,8 +94,6 @@
                   <img src="../assets/icons/drop-down-arrow.svg">
                 </div>
               </div>
-
-
             <div class="add-task-single-fixed">
               <div>
                 <h2>Subtasks</h2>
