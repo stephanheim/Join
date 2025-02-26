@@ -21,11 +21,6 @@ h1 {
   font-weight: 700;
 }
 
-p {
-  font-size: 16px;
-  font-weight: 400;
-}
-
 .headline-use {
   display: flex;
   flex-direction: column;
