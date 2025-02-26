@@ -44,13 +44,22 @@
 }
 
 .input-focus {
-  border-color: #29ABE2;
+  border-color: #29abe2;
 }
 
-.pointer{
-  pointer-events:none;
+.pointer {
+  pointer-events: none;
   cursor: pointer;
 }
 
 /* ---------------------------- */
 
+.h2-fontsize-27 {
+  font-size: 27px;
+  font-weight: 700;
+}
+
+.h2-fontsize-20 {
+  font-size: 20px;
+  font-weight: 700;
+}
