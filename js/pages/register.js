@@ -160,11 +160,6 @@ function confirmPasswords() {
 }
 
 
-function isCheckboxChecked() {
-  return document.getElementById('checkboxSignup').checked;
-}
-
-
 function allRequiredFieldsAreFilledIn() {
   let { newUser, confirmPassword } = getUserInput();
   return (
@@ -185,14 +180,6 @@ function allFieldsValid() {
     confirmPasswords() &&
     isCheckboxChecked()
   );
-}
-
-
-function toggleRequiredInput(inputElement, isFocused) {
-  let border = inputElement.parentElement.parentElement;
-  if (border) {
-    border.classList.toggle('input-focus', isFocused)
-  }
 }
 
 

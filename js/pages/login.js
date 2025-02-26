@@ -47,14 +47,6 @@ async function findUserFromDB(email) {
 }
 
 
-function toggleRequiredInput(isFocused) {
-  let border = document.getElementById('requiredInput');
-  if (border) {
-    border.classList.toggle('input-focus', isFocused);
-  }
-}
-
-
 function checkPasswordIcon() {
   let passwordInput = document.getElementById('loginPassword');
   let visibilityIcon = document.getElementById('visibilityLogin');
