@@ -17,3 +17,53 @@ function toggleRequiredInput(inputElement, isFocused) {
     border.classList.toggle('input-focus', isFocused)
   }
 }
+
+
+function toggleSubmitButton() {
+  if (allFieldsValid()) {
+    activateButton()
+  } else {
+    deactivateButton()
+  }
+}
+
+
+function deactivateButton() {
+  const button = document.getElementById('buttonSignup');
+  button.disabled = true;
+  return button;
+}
+
+
+function activateButton() {
+  const button = document.getElementById('buttonSignup');
+  button.disabled = false;
+  return button;
+}
+
+
+function resetFormRegister() {
+  const form = document.getElementById('formRegister');
+  return form.reset();
+}
+
+
+function openSubMenu() {
+  const submenu = document.getElementById('submenu');
+  submenu.classList.remove('d-none');
+}
+
+
+function closeSubMenu() {
+  let submenu = document.getElementById('submenu');
+  if (submenu) {
+    submenu.classList.add('d-none');
+  }
+}
+
+
+function logout() {
+  localStorage.removeItem("loggedInUser");
+  localStorage.removeItem("loggedInGuest")
+  window.location.href = "../index.html";
+}

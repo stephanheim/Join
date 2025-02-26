@@ -77,35 +77,6 @@ async function postUser(newUser) {
 }
 
 
-function toggleSubmitButton() {
-  if (allFieldsValid()) {
-    activateButton()
-  } else {
-    deactivateButton()
-  }
-}
-
-
-function deactivateButton() {
-  const button = document.getElementById('buttonSignup');
-  button.disabled = true;
-  return button;
-}
-
-
-function activateButton() {
-  const button = document.getElementById('buttonSignup');
-  button.disabled = false;
-  return button;
-}
-
-
-function resetFormRegister() {
-  const form = document.getElementById('formRegister');
-  return form.reset();
-}
-
-
 function registrationComplete() {
   const message = document.getElementById('overlaySuccsessful');
   message.style.display = "block";

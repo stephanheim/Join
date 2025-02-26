@@ -77,20 +77,6 @@ function setActiveNav(clickedNav) {
 }
 
 
-function openSubMenu() {
-  const submenu = document.getElementById('submenu');
-  submenu.classList.remove('d-none');
-}
-
-
-function closeSubMenu() {
-  let submenu = document.getElementById('submenu');
-  if (submenu) {
-    submenu.classList.add('d-none');
-  }
-}
-
-
 function overlayClick(event) {
   let overlayContent = document.getElementById('contactFloater');
   if (!overlayContent.contains(event.target)) {
@@ -122,13 +108,6 @@ function closeNewContact() {
     closeFloater.innerHTML = '';
     document.body.style.overflow = '';
   }, 100);
-}
-
-
-function logout() {
-  localStorage.removeItem("loggedInUser");
-  localStorage.removeItem("loggedInGuest")
-  window.location.href = "../index.html";
 }
 
 
