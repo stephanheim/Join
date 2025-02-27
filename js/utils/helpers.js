@@ -3,6 +3,11 @@ function isCheckboxChecked() {
 }
 
 
+function isCheckboxChecked() {
+  return document.getElementById('rememberMe').checked;
+}
+
+
 function toggleRequiredInput(isFocused) {
   let border = document.getElementById('requiredInput');
   if (border) {

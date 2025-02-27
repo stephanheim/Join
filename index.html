@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="./style/variables.css" />
 </head>
 
-<body>
+<body onload="rememberMe(); loadRememberMe();">
   <div class="landscape-warning">
     <span>Please turn your device into portrait format!</span>
   </div>
@@ -73,8 +73,8 @@
                 <span id="loginMessage" class="error-message"></span>
 
                 <div class="checkbox-content">
-                  <input id="remeberMe" type="checkbox" oninput="isCheckboxChecked()"/>
-                  <label for="remeberMe"></label>
+                  <input id="rememberMe" type="checkbox" oninput="isCheckboxChecked()" />
+                  <label for="rememberMe"></label>
                   <span class="checkbox-login-span">Remember me</span>
                 </div>
               </div>

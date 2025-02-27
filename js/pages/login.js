@@ -19,6 +19,7 @@ async function submitLogin() {
     }
     let user = await findUserFromDB(email);
     localStorage.setItem("loggedInUser", JSON.stringify(user));
+    setRememberMe();
     window.location.href = "./pages/dashboard.html";
   } catch (error) {
     console.error("Login failed:", error);
@@ -90,6 +91,23 @@ function guestLogin() {
 }
 
 
+function setRememberMe() {
+  let rememberMeCheckbox = isCheckboxChecked();
+  localStorage.setItem("rememberMe", rememberMeCheckbox)
+}
 
 
+function loadRememberMe() {
+  let rememberMe = localStorage.getItem("rememberMe") === "true";
+  document.getElementById("rememberMe").checked = rememberMe;
+}
+
+
+function rememberMe() {
+  let user = localStorage.getItem("loggedInUser");
+  let rememberMe = localStorage.getItem("rememberMe") === "true";
+  if (user && rememberMe) {
+    window.location.href = "./pages/dashboard.html";
+  }
+}
 
