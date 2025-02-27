@@ -11,19 +11,6 @@ h1 {
   line-height: 73.2px;
 }
 
-h2 {
-  font-size: 27px;
-  font-weight: 700;
-  line-height: 32.4px;
-}
-
-p {
-  margin: 10px 0;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 19.2px;
-}
-
 ul {
   margin: 10px 0;
   padding-left: 20px;
@@ -32,7 +19,7 @@ ul {
   line-height: 19.2px;
 }
 
-privacy-a {
+.privacy-a {
   color: #29abe2;
   text-decoration: none;
 }
