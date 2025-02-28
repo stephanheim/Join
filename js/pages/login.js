@@ -53,10 +53,10 @@ function checkPasswordIcon() {
   let visibilityIcon = document.getElementById('visibilityLogin');
   isPasswordEntered = passwordInput.value.length > 0;
   if (isPasswordEntered) {
-    visibilityIcon.src = '../assets/icons/visibility_off.svg';
+    visibilityIcon.src = './assets/icons/visibility_off.svg';
     visibilityIcon.style.pointerEvents = 'auto';
   } else {
-    visibilityIcon.src = '../assets/icons/login_pw_lock.svg';
+    visibilityIcon.src = './assets/icons/login_pw_lock.svg';
     visibilityIcon.style.pointerEvents = 'none';
   }
 }
@@ -68,8 +68,8 @@ function togglePasswordVisibility() {
   let isPasswordVisible = passwordInput.type === 'text';
   passwordInput.type = isPasswordVisible ? 'password' : 'text';
   visibilityIcon.src = isPasswordVisible
-    ? '../assets/icons/visibility_off.svg'
-    : '../assets/icons/visibility.svg'
+    ? './assets/icons/visibility_off.svg'
+    : './assets/icons/visibility.svg'
 }
 
 
@@ -93,13 +93,26 @@ function guestLogin() {
 
 function setRememberMe() {
   let rememberMeCheckbox = isCheckboxChecked();
-  localStorage.setItem("rememberMe", rememberMeCheckbox)
+  let { email, password } = getLoginInput();
+  if (rememberMeCheckbox) {
+    localStorage.setItem("rememberMe", "true");
+    localStorage.setItem("rememberedEmail", email);
+    localStorage.setItem("rememberedPassword", password);
+  } else {
+    localStorage.removeItem("rememberMe");
+    localStorage.removeItem("rememberedEmail", email);
+    localStorage.removeItem("rememberedPassword", password);
+  }
 }
 
 
 function loadRememberMe() {
   let rememberMe = localStorage.getItem("rememberMe") === "true";
+  let email = localStorage.getItem("rememberedEmail") || "";
+  let password = localStorage.getItem("rememberedPassword") || "";
   document.getElementById("rememberMe").checked = rememberMe;
+  document.getElementById("loginEmail").value = email;
+  document.getElementById("loginPassword").value = password;
 }
 
 
