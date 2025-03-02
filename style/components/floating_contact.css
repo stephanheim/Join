@@ -166,7 +166,7 @@
 }
 
 .add-btn-cancel:hover .img-btn-close {
-  content: url("../assets/icons/close-blue.svg");
+  content: url("../../assets/icons/close-blue.svg");
 }
 
 .add-btn-create {

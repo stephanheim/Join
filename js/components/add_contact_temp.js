@@ -1,6 +1,6 @@
 function generateFloaterHTML() {
   return `
-<form id="contactForm" onsubmit="validateForm()">
+<form id="contactForm" onsubmit="return validateForm();">
 <div id="contactFloater" class="main-floater">
 <div class="add-contact">
   <img src="../assets/img/join.svg" class="add-icon" />
@@ -39,7 +39,7 @@ function generateFloaterHTML() {
           <img src="../assets/icons/close.svg" class="img-btn-close" />
         </div>
       </button>
-      <button type="button" class="add-btn-create" onclick="validateForm()">
+      <button type="submit" class="add-btn-create">
         Create contact
         <div class="btn-icons">
           <img src="../assets/icons/check.svg" class="img-btn-check" />
@@ -53,15 +53,20 @@ function generateFloaterHTML() {
 `;
 }
 
-function generateContactsHTML(group, contact) {
+function generateGroupHTML (group) {
   return `
-        <div class="cnt-letter-div">
+    <div class="cnt-letter-div">
           <span class="cnt-letter">${group}</span>
         </div>
         <div class="cnt-list-seperator"></div>
-        <div class="cnt-name">
-          <div class="cnt-initials style="background-color: ${contact.color}">
-            <span>${contact.name.slice(0, 2).toUpperCase()}</span>
+  `;
+}
+
+function generateContactsHTML(contact, initials) {
+  return `
+        <div id="contact-${contact.id}" class="cnt-name" onclick="showContactInfo('${contact.id}')">
+          <div class="cnt-initials" style="background-color: ${contact.color}">
+            <span>${initials}</span>
           </div>
           <div class="cnt-details">
             <div class="cnt-name-details">
@@ -73,4 +78,31 @@ function generateContactsHTML(group, contact) {
           </div>
         </div>
         `;
+}
+
+function generateContactsInfoHTML(contact) {
+  return `
+    <div class="cnt-glance">
+      <div class="cnt-glance-details">
+        <div class="cnt-glance-initials" style="background-color: ${contact.color}">
+          ${getInitials(contact.name)}
+        </div>
+        <div>
+          ${contact.name}
+          <div class="cnt-glance-icon-div">
+            <img src="../assets/icons/edit.svg" onclick="editContact(${contact.id})"/><span>Edit</span>
+            <div class="cnt-spacer"></div>
+            <img src="../assets/icons/delete.svg" onclick="deleteContact(${contact.id})"/><span>Delete</span>
+          </div>
+        </div>
+      </div>
+      <div class="cnt-glance-contact">
+        <span class="cnt-contact-info">Contact Information</span>
+        <span class="cnt-info-title">Email</span>
+        <span class="cnt-info-mail">${contact.email}</span>
+        <span class="cnt-info-title">Phone</span>
+        <span class="cnt-info-phone">${contact.phone}</span>
+      </div>
+    </div>
+  `;
 }
