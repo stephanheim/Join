@@ -159,3 +159,17 @@ function showContactInfo(contactId) {
         glanceWindow.style.display = "block";
     }
 }
+
+async function deleteContact(contactId) {
+    console.log("deleteContact - contact ID to delete:", contactId);
+    try {
+        await fetch (`${BASE_URL}/contacts/${contactId}.json`,
+        { method: "DELETE" });
+        contactsArray = contactsArray.filter(contact => contact.id !== contactId);
+        document.getElementById("cnt-glance-contact").style.display = "none";
+        loadContactsFromFirebase();
+    } catch (error) {
+        console.error ("Fehler beim Löschen des Kontakts:", error);
+    }
+    }
+

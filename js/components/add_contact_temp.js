@@ -92,7 +92,7 @@ function generateContactsInfoHTML(contact) {
           <div class="cnt-glance-icon-div">
             <img src="../assets/icons/edit.svg" onclick="editContact(${contact.id})"/><span>Edit</span>
             <div class="cnt-spacer"></div>
-            <img src="../assets/icons/delete.svg" onclick="deleteContact(${contact.id})"/><span>Delete</span>
+            <img src="../assets/icons/delete.svg" onclick="deleteContact('${contact.id}')"/><span>Delete</span>
           </div>
         </div>
       </div>
