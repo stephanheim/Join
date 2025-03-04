@@ -237,3 +237,9 @@
   font-weight: 400;
   line-height: 19.2px;
 }
+
+.cnt-name-highlight {
+  background-color: #2a3647;
+  color: white;
+  pointer-events: none;
+}

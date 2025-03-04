@@ -150,14 +150,28 @@ function addContactInput() {
 
 function showContactInfo(contactId) {
     let contact = contactsArray.find(c => c.id === contactId);
+    if (!contact) return;
+    clearHighlightContact();
+    highlightContact(contactId);
 
-    if (contact) {
         let glanceWindow = document.getElementById("cnt-glance-contact");
         glanceWindow.style.display = "none";
 
         glanceWindow.innerHTML = generateContactsInfoHTML(contact);
         glanceWindow.style.display = "block";
     }
+
+
+function clearHighlightContact() {
+for (let contact of contactsArray) {
+  let contactElement = document.getElementById(`contact-${contact.id}`);
+  if (contactElement) contactElement.classList.remove("cnt-name-highlight");
+}
+}
+
+function highlightContact(contactId) {
+  let contactElement = document.getElementById(`contact-${contactId}`);
+  contactElement.classList.toggle("cnt-name-highlight");
 }
 
 async function deleteContact(contactId) {
