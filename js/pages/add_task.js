@@ -9,7 +9,7 @@ function buttonsColorSwitch(btnId) {
     }
     activeButton.classList.add('isSelected');
   }
-}
+} 
 
 function openDropdownMenuAssigned() {
   const inputArrow = document.getElementById('standardInput');
