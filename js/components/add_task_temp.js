@@ -7,7 +7,7 @@ function addTaskTemplate() {
           <img src="../assets/icons/close.svg" class="add-close-btn" />
         </div>
       </div>
-      <section class="input-section">
+      <div class="input-section">
         <div class="section-left">
           <div class="add-task-single">
             <div class="title-and-star">
@@ -30,12 +30,11 @@ function addTaskTemplate() {
             <div class="title-and-star">
               <h2>Assigned to</h2>
             </div>
-            <div class="drop-down-menu">
-              <div>
-                <h2>Select contacts to assign</h2>
-              </div>
-              <div>
-                <img class="assigned-arrow" src="../assets/icons/drop-down-arrow.svg" />
+            <div id="dropDownMenuAssigned" class="main-drop-down d-none"></div>
+               <div id="standardInput" class="input-container-assigned">
+              <input type="text" placeholder="Select contacts to assign" />
+              <div class="container-arrow-img-dropdown" onclick="openDropdownMenuAssigned()">
+                <img src="../assets/icons/drop-down-arrow.svg" />
               </div>
             </div>
           </div>
@@ -73,12 +72,13 @@ function addTaskTemplate() {
                 <h2>Category</h2>
                 <span class="span-star">*</span>
               </div>
-              <div class="drop-down-menu">
-                <div>
+              <div id="dropDownMenuCategory" onclick="closeDropdownMenuCategory()" class="drop-down-field-category d-none"></div>
+              <div id="standardFieldCategory" onclick="openDropdownMenuCategory()" class="input-container-category">
+                <div class="textfield">
                   <h2>Select task category</h2>
                 </div>
-                <div>
-                  <img class="assigned-arrow" src="../assets/icons/drop-down-arrow.svg" />
+                <div class="container-arrow-img-dropdown">
+                  <img src="../assets/icons/drop-down-arrow.svg" />
                 </div>
               </div>
             </div>
@@ -92,7 +92,7 @@ function addTaskTemplate() {
             </div>
           </div>
         </div>
-      </section>
+      </div>
       <div class="required-section">
         <div class="required-field">
           <span class="span-star">*</span>
