@@ -192,7 +192,7 @@
 
 .required-field {
   display: flex;
-  text-align: end;
+  align-items: center;
   padding-top: 30px;
 }
 
