@@ -187,3 +187,65 @@ async function deleteContact(contactId) {
     }
     }
 
+function editContact(contactId) {
+     let contact = contactsArray.find((c) => c.id === contactId);
+     if (!contact) return; 
+
+    let editFloater = document.getElementById("contactFloater");
+      editFloater.innerHTML = generateContactsEditFloaterHTML(contact);
+      editFloater.style.display = "block";
+
+    document.getElementById("addContName").value = contact.name;
+    document.getElementById("addContMail").value = contact.email;
+    document.getElementById("addContPhone").value = contact.phone;
+}
+
+async function updateContact(contactId) {
+  let updatedContact = {
+    name: document.getElementById("addContName").value,
+    email: document.getElementById("addContMail").value,
+    phone: document.getElementById("addContPhone").value,
+  };
+
+  try {
+    await fetch(`${BASE_URL}/contacts/${contactId}.json`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updatedContact),
+    });
+
+    contactsArray = contactsArray.map((contact) =>
+      contact.id === contactId ? { id: contactId, ...updatedContact } : contact
+    );
+
+    loadContactsFromFirebase();
+    document.getElementById("contactFloater").style.display = "none";
+  } catch (error) {
+    console.error("Fehler beim Aktualisieren des Kontakts:", error);
+  }
+}
+
+function addEditContact(contact) {
+  let editContact = document.getElementById("addContactOverlay");
+  editContact.innerHTML = generateContactsEditFloaterHTML(contact);
+  document.body.style.overflow = "hidden";
+  editContact.classList.remove("slideOut");
+  editContact.classList.add("slideIn");
+  editContact.classList.remove("d-none");
+  setTimeout(() => {
+    editContact.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
+  }, 200);
+}
+
+function closeEditFloater() {
+  let closeEditFloater = document.getElementById("addContactOverlay");
+  closeEditFloater.classList.remove("slideIn");
+  closeEditFloater.classList.add("slideOut");
+  closeEditFloater.style.backgroundColor = "rgba(0, 0, 0, 0)";
+  setTimeout(() => {
+    closeEditFloater.classList.add("d-none");
+    closeEditFloater.innerHTML = "";
+    document.body.style.overflow = "";
+  }, 100);
+}
+
