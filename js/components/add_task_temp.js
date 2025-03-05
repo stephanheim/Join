@@ -57,13 +57,13 @@ function addTaskTemplate() {
                 <h2>Prio</h2>
               </div>
               <div class="prio-section">
-                <button id="btn1" onclick="standardButtons('btn1')" class="button-prio" color="rgba(255, 61, 0, 1);">
+                <button id="btn1" onclick="buttonsColorSwitch('btn1')" class="button-prio" color="rgba(255, 61, 0, 1);">
                   Urgent <img src="../assets/icons/urgent-red.svg" />
                 </button>
-                <button id="btn2" onclick="standardButtons('btn2')" class="button-prio isSelected" color="rgba(255, 168, 0, 1)">
+                <button id="btn2" onclick="buttonsColorSwitch('btn2')" class="button-prio isSelected" color="rgba(255, 168, 0, 1)">
                   Medium <img src="../assets/icons/medium-orange.svg" />
                 </button>
-                <button id="btn3" onclick="standardButtons('btn3')" class="button-prio" color="rgba(122, 226, 41, 1)">
+                <button id="btn3" onclick="buttonsColorSwitch('btn3')" class="button-prio" color="rgba(122, 226, 41, 1)">
                   Low <img src="../assets/icons/low-green.svg" />
                 </button>
               </div>
