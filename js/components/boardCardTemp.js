@@ -18,7 +18,7 @@ function boardCardTemplate() {
             </div>
             <div class="priority-content">
               <div>
-                <p>Due date:</p>
+                <p class="headline-boardcard">Due date:</p>
               </div>
               <div>
                 <span>06/03/2025</span>
@@ -26,7 +26,7 @@ function boardCardTemplate() {
             </div>
             <div>
               <div class="priority-content">
-                <p>Priority:</p>
+                <p class="headline-boardcard">Priority:</p>
                 <div class="img-content">
                   <span>Medium </span>
                   <img src="../assets/icons/medium-orange.svg" />
@@ -60,18 +60,18 @@ function boardCardTemplate() {
               <p class="headline-boardcard">Subtask</p>
             </div>
             <div>
-            <div class="priority-content">
-              <div class="checkbox">
-                <input type="checkbox" />
+              <div class="subtask">
+                <div class="checkbox">
+                  <input type="checkbox" />
+                </div>
+                <p>Implement Recipe Recommendation</p>
               </div>
-              <p>Implement Recipe Recommendation</p>
-            </div>
-            <div class="priority-content">
-              <div class="checkbox">
-                <input type="checkbox" />
+              <div class="subtask">
+                <div class="checkbox">
+                  <input type="checkbox" />
+                </div>
+                  <p>Start Page Layout</p>
               </div>
-              <p>Start Page Layout</p>
-            </div>
             </div>
 
             <div class="delete-edit-section">
