@@ -1,3 +1,8 @@
+function initBoard(){
+  renderTaskCard()
+}
+
+
 function openAddFloatingTask() {
   let addTask = document.getElementById('floatingAddTask');
   addTask.innerHTML = addTaskTemplate();
@@ -22,3 +27,12 @@ function closeAddFloatingTask() {
     document.body.style.overflow = '';
   }, 100);
 }
+
+
+function renderTaskCard() {
+  let taskCard = document.getElementById('inProgress');
+  let hideNoTask = document.getElementById('noTaskInProgress');
+  taskCard.innerHTML = createTaskCard();
+  hideNoTask.classList.add('d-none');
+}
+

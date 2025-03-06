@@ -1,3 +1,8 @@
+function initAddTask() {
+
+}
+
+
 function buttonsColorSwitch(btnId) {
   let buttons = document.getElementsByClassName('input-section')[0].getElementsByTagName('button');
   let activeButton = document.getElementById(btnId);
@@ -40,3 +45,4 @@ function closeDropdownMenuCategory() {
   dropDownMenu.classList.add('d-none');
   inputArrow.classList.remove('d-none');
 }
+

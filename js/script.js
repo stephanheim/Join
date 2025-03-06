@@ -14,8 +14,9 @@ const pageTitles = {
 
 async function loadPageContentPath(page) {
   let contentPages = document.getElementById('content');
-  const content = await fetchContent(`${page}.html`);
+  let content = await fetchContent(`${page}.html`);
   contentPages.innerHTML = content;
+  initPages(page);
   changePageTitles(page);
   closeSubMenu();
   if (page === 'summary') {
@@ -111,7 +112,7 @@ function closeNewContact() {
 }
 
 
-function getUserInitials(){
+function getUserInitials() {
   let userData = JSON.parse(localStorage.getItem('loggedInUser'));
   let nameParts = userData.name.split(" ");
   let firstInitial = nameParts[0][0].toUpperCase();

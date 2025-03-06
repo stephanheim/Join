@@ -6,16 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Board</title>
   <link rel="shortcut icon" href="../assets/img/join.svg" type="image/x-icon" />
-  <!-- <link rel="stylesheet" href="../style/global.css" />
+  <link rel="stylesheet" href="../style/global.css" />
   <link rel="stylesheet" href="../style/typography.css" />
   <link rel="stylesheet" href="../style/variables.css" />
   <link rel="stylesheet" href="../style/pages/board.css" />
   <link rel="stylesheet" href="../style/pages/add_task.css" />
   <link rel="stylesheet" href="../style/components/floating_add_task.css" />
-  <link rel="stylesheet" href="../style/animation.css" /> -->
+  <link rel="stylesheet" href="../style/animation.css" />
 </head>
 
-<body>
+<body onload="initBoard()">
   <main id="floatingAddTask" class="floating-main slideIn d-none"></main>
   <header class="board-header">
     <div class="board-header-content">
@@ -45,34 +45,10 @@
             <path d="M16 12.0754L8 12.0754" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
           </svg>
         </div>
-        <div class="no-task d-none">
+        <div class="no-task" id="noTaskToDo">
           <span>No Tasks To do</span>
         </div>
-      </div>
-      <div id="taskCard" class="task-card-outside">
-        <div class="card-headline"><span>User Story</span></div>
-        <div class="card-description">
-          <span>Title</span>
-          <p>Content...</p>
-        </div>
-        <div class="card-progress">
-          <div id="progressBar" class="card-progress-bar" role="progressbar" style="width: 100%;"></div>
-          <span>0/2 Subtasks</span>
-        </div>
-        <div class="card-badge-prio">
-          <div class="card-badge">
-            <div class="user-badge">
-              <span>M</span>
-            </div>
-            <div class="user-badge -m-user-badge">
-              <span>P</span>
-            </div>
-            <div class="user-badge -m-user-badge">
-              <span>S</span>
-            </div>
-          </div>
-          <div class="user-prio"><img src="../assets/icons/urgent-red.svg" alt=""></div>
-        </div>
+        <div id="toDo"></div>
       </div>
     </div>
     <div class="board-task">
@@ -85,103 +61,32 @@
             <path d="M16 12.0754L8 12.0754" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
           </svg>
         </div>
-        <div class="no-task d-none"><span>No Tasks In progress</span></div>
-      </div>
-      <div id="taskCard" class="task-card-outside">
-        <div class="card-headline"><span>User Story</span></div>
-        <div class="card-description">
-          <span>Title</span>
-          <p>Content...</p>
-        </div>
-        <div class="card-progress">
-          <div id="progressBar" class="card-progress-bar" role="progressbar" style="width: 100%;"></div>
-          <span>0/2 Subtasks</span>
-        </div>
-        <div class="card-badge-prio">
-          <div class="card-badge">
-            <div class="user-badge">
-              <span>M</span>
-            </div>
-            <div class="user-badge -m-user-badge">
-              <span>P</span>
-            </div>
-            <div class="user-badge -m-user-badge">
-              <span>S</span>
-            </div>
-          </div>
-          <div class="user-prio"><img src="../assets/icons/urgent-red.svg" alt=""></div>
-        </div>
+        <div class="no-task" id="noTaskInProgress"><span>No Tasks In progress</span></div>
+        <div id="inProgress"></div>
       </div>
     </div>
     </div>
     <div class="board-task">
       <div class="board-task">
-        <div class="nav-add-task">
+        <div class="nav-add-task" id="noTaskAwaitFeedback">
           <span>Await feedback</span><svg onclick="openAddFloatingTask()" width="24" height="24" viewBox="0 0 24 24"
             fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="1" y="1" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2" />
             <path d="M12 8V16" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
             <path d="M16 12.0754L8 12.0754" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
           </svg>
-          <div class="no-task d-none"><span>No Tasks Await feedback</span></div>
         </div>
+        <div class="no-task"><span>No Tasks Await feedback</span></div>
+        <div id="awaitFeedback"></div>
       </div>
-      <div id="taskCard" class="task-card-outside">
-        <div class="card-headline"><span>User Story</span></div>
-        <div class="card-description">
-          <span>Title</span>
-          <p>Content...</p>
-        </div>
-        <div class="card-progress">
-          <div id="progressBar" class="card-progress-bar" role="progressbar" style="width: 100%;"></div>
-          <span>0/2 Subtasks</span>
-        </div>
-        <div class="card-badge-prio">
-          <div class="card-badge">
-            <div class="user-badge">
-              <span>M</span>
-            </div>
-            <div class="user-badge -m-user-badge">
-              <span>P</span>
-            </div>
-            <div class="user-badge -m-user-badge">
-              <span>S</span>
-            </div>
-          </div>
-          <div class="user-prio"><img src="../assets/icons/urgent-red.svg" alt=""></div>
-        </div>
-      </div>
+    </div>
     </div>
     </div>
     <div class="board-task">
       <div class="board-task">
         <div class="nav-add-task"><span>Done</span></div>
-        <div class="no-task d-none"><span>No Tasks Done</span></div>
-      </div>
-      <div id="taskCard" class="task-card-outside">
-        <div class="card-headline"><span>User Story</span></div>
-        <div class="card-description">
-          <span>Title</span>
-          <p>Content...</p>
-        </div>
-        <div class="card-progress">
-          <div id="progressBar" class="card-progress-bar" role="progressbar" style="width: 100%;"></div>
-          <span>0/2 Subtasks</span>
-        </div>
-        <div class="card-badge-prio">
-          <div class="card-badge">
-            <div class="user-badge">
-              <span>M</span>
-            </div>
-            <div class="user-badge -m-user-badge">
-              <span>P</span>
-            </div>
-            <div class="user-badge -m-user-badge">
-              <span>S</span>
-            </div>
-          </div>
-          <div class="user-prio"><img src="../assets/icons/urgent-red.svg" alt=""></div>
-        </div>
+        <div class="no-task" id="noTaskDone"><span>No Tasks Done</span></div>
+        <div id="done"></div>
       </div>
     </div>
     </div>
@@ -189,6 +94,7 @@
   <script src="../js/components/add_task_temp.js"></script>
   <script src="../js/script.js"></script>
   <script src="../js/pages/board.js"></script>
+  <script src="../js/components/taskCardTemplate.js"></script>
 </body>
 
 </html>

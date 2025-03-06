@@ -6,6 +6,11 @@ const contactColors = ["#ff7a01", "#9327ff", "#6e52ff", "#fc71ff", "#ffbb2c", "#
 
 // Kontakte ab Firebase holen, rendern, sortieren, Farben zuordnen
 
+function initContacts() {
+  loadContactsFromFirebase()
+}
+
+
 async function loadContactsFromFirebase() {
   try {
     let contactsResponse = await getAllContacts();
@@ -149,24 +154,24 @@ function addContactInput() {
 }
 
 function showContactInfo(contactId) {
-    let contact = contactsArray.find(c => c.id === contactId);
-    if (!contact) return;
-    clearHighlightContact();
-    highlightContact(contactId);
+  let contact = contactsArray.find(c => c.id === contactId);
+  if (!contact) return;
+  clearHighlightContact();
+  highlightContact(contactId);
 
-        let glanceWindow = document.getElementById("cnt-glance-contact");
-        glanceWindow.style.display = "none";
+  let glanceWindow = document.getElementById("cnt-glance-contact");
+  glanceWindow.style.display = "none";
 
-        glanceWindow.innerHTML = generateContactsInfoHTML(contact);
-        glanceWindow.style.display = "block";
-    }
+  glanceWindow.innerHTML = generateContactsInfoHTML(contact);
+  glanceWindow.style.display = "block";
+}
 
 
 function clearHighlightContact() {
-for (let contact of contactsArray) {
-  let contactElement = document.getElementById(`contact-${contact.id}`);
-  if (contactElement) contactElement.classList.remove("cnt-name-highlight");
-}
+  for (let contact of contactsArray) {
+    let contactElement = document.getElementById(`contact-${contact.id}`);
+    if (contactElement) contactElement.classList.remove("cnt-name-highlight");
+  }
 }
 
 function highlightContact(contactId) {
@@ -175,29 +180,29 @@ function highlightContact(contactId) {
 }
 
 async function deleteContact(contactId) {
-    console.log("deleteContact - contact ID to delete:", contactId);
-    try {
-        await fetch (`${BASE_URL}/contacts/${contactId}.json`,
-        { method: "DELETE" });
-        contactsArray = contactsArray.filter(contact => contact.id !== contactId);
-        document.getElementById("cnt-glance-contact").style.display = "none";
-        loadContactsFromFirebase();
-    } catch (error) {
-        console.error ("Fehler beim Löschen des Kontakts:", error);
-    }
-    }
+  console.log("deleteContact - contact ID to delete:", contactId);
+  try {
+    await fetch(`${BASE_URL}/contacts/${contactId}.json`,
+      { method: "DELETE" });
+    contactsArray = contactsArray.filter(contact => contact.id !== contactId);
+    document.getElementById("cnt-glance-contact").style.display = "none";
+    loadContactsFromFirebase();
+  } catch (error) {
+    console.error("Fehler beim Löschen des Kontakts:", error);
+  }
+}
 
 function editContact(contactId) {
-     let contact = contactsArray.find((c) => c.id === contactId);
-     if (!contact) return; 
+  let contact = contactsArray.find((c) => c.id === contactId);
+  if (!contact) return;
 
-    let editFloater = document.getElementById("contactFloater");
-      editFloater.innerHTML = generateContactsEditFloaterHTML(contact);
-      editFloater.style.display = "block";
+  let editFloater = document.getElementById("contactFloater");
+  editFloater.innerHTML = generateContactsEditFloaterHTML(contact);
+  editFloater.style.display = "block";
 
-    document.getElementById("addContName").value = contact.name;
-    document.getElementById("addContMail").value = contact.email;
-    document.getElementById("addContPhone").value = contact.phone;
+  document.getElementById("addContName").value = contact.name;
+  document.getElementById("addContMail").value = contact.email;
+  document.getElementById("addContPhone").value = contact.phone;
 }
 
 async function updateContact(contactId) {

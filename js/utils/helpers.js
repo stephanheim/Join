@@ -72,3 +72,16 @@ function logout() {
   localStorage.removeItem("loggedInGuest")
   window.location.href = "../index.html";
 }
+
+
+function initPages(page) {
+  if (page === "summary") {
+    initSummary();
+  } else if (page === "add_task") {
+    initAddTask();
+  } else if (page === "board") {
+    initBoard();
+  } else if (page === "contacts") {
+    initContacts();
+  }
+}
