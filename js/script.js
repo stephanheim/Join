@@ -85,33 +85,6 @@ function overlayClick(event) {
   }
 }
 
-
-function addNewContact() {
-  let addContact = document.getElementById('addContactOverlay');
-  addContact.innerHTML = generateFloaterHTML();
-  document.body.style.overflow = 'hidden';
-  addContact.classList.remove('slideOut');
-  addContact.classList.add('slideIn');
-  addContact.classList.remove('d-none');
-  setTimeout(() => {
-    addContact.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
-  }, 200);
-}
-
-
-function closeNewContact() {
-  let closeFloater = document.getElementById('addContactOverlay');
-  closeFloater.classList.remove('slideIn');
-  closeFloater.classList.add('slideOut');
-  closeFloater.style.backgroundColor = 'rgba(0, 0, 0, 0)';
-  setTimeout(() => {
-    closeFloater.classList.add('d-none');
-    closeFloater.innerHTML = '';
-    document.body.style.overflow = '';
-  }, 100);
-}
-
-
 function getUserInitials() {
   let userData = JSON.parse(localStorage.getItem('loggedInUser'));
   let nameParts = userData.name.split(" ");

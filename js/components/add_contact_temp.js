@@ -128,15 +128,15 @@ function generateContactsEditFloaterHTML(contact) {
           </div>
           <div class="add-fields">
             <div class="input-div">
-              <input type="text" placeholder="Name" class="add-input" id="addContName" minlength="2" maxlength="50" required />
+              <input type="text" class="add-input" id="addContName" value ="${contact.name}"/>
               <img src="../assets/icons/person_input.svg" class="input-img-person" />
             </div>
             <div class="input-div">
-              <input type="email" placeholder="Email" class="add-input" id="addContMail" required pattern="^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$"/>
+              <input type="email" class="add-input" id="addContMail" value="${contact.email}"/>
               <img src="../assets/icons/mail.svg" class="input-img-mail" />
             </div>
             <div class="input-div">
-              <input type="tel" placeholder="Phone" class="add-input" id="addContPhone" required  />
+              <input type="tel" class="add-input" id="addContPhone" value="${contact.phone}"  />
               <img src="../assets/icons/call.svg" class="input-img-call" />
             </div>
           </div>

@@ -7,9 +7,8 @@ const contactColors = ["#ff7a01", "#9327ff", "#6e52ff", "#fc71ff", "#ffbb2c", "#
 // Kontakte ab Firebase holen, rendern, sortieren, Farben zuordnen
 
 function initContacts() {
-  loadContactsFromFirebase()
+  loadContactsFromFirebase();
 }
-
 
 async function loadContactsFromFirebase() {
   try {
@@ -107,6 +106,30 @@ function renderContacts(groupedContacts) {
 
 // Neuen Kontakt erstellen, auf Firebase schreiben
 
+function addNewContact() {
+  let addContact = document.getElementById("addContactOverlay");
+  addContact.innerHTML = generateFloaterHTML();
+  document.body.style.overflow = "hidden";
+  addContact.classList.remove("slideOut");
+  addContact.classList.add("slideIn");
+  addContact.classList.remove("d-none");
+  setTimeout(() => {
+    addContact.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
+  }, 200);
+}
+
+function closeNewContact() {
+  let closeFloater = document.getElementById("addContactOverlay");
+  closeFloater.classList.remove("slideIn");
+  closeFloater.classList.add("slideOut");
+  closeFloater.style.backgroundColor = "rgba(0, 0, 0, 0)";
+  setTimeout(() => {
+    closeFloater.classList.add("d-none");
+    closeFloater.innerHTML = "";
+    document.body.style.overflow = "";
+  }, 100);
+}
+
 async function createNewContact() {
   let newContact = addContactInput();
   let response = await postToFirebase(newContact);
@@ -154,7 +177,7 @@ function addContactInput() {
 }
 
 function showContactInfo(contactId) {
-  let contact = contactsArray.find(c => c.id === contactId);
+  let contact = contactsArray.find((c) => c.id === contactId);
   if (!contact) return;
   clearHighlightContact();
   highlightContact(contactId);
@@ -165,7 +188,6 @@ function showContactInfo(contactId) {
   glanceWindow.innerHTML = generateContactsInfoHTML(contact);
   glanceWindow.style.display = "block";
 }
-
 
 function clearHighlightContact() {
   for (let contact of contactsArray) {
@@ -182,9 +204,8 @@ function highlightContact(contactId) {
 async function deleteContact(contactId) {
   console.log("deleteContact - contact ID to delete:", contactId);
   try {
-    await fetch(`${BASE_URL}/contacts/${contactId}.json`,
-      { method: "DELETE" });
-    contactsArray = contactsArray.filter(contact => contact.id !== contactId);
+    await fetch(`${BASE_URL}/contacts/${contactId}.json`, { method: "DELETE" });
+    contactsArray = contactsArray.filter((contact) => contact.id !== contactId);
     document.getElementById("cnt-glance-contact").style.display = "none";
     loadContactsFromFirebase();
   } catch (error) {
@@ -192,45 +213,43 @@ async function deleteContact(contactId) {
   }
 }
 
-function editContact(contactId) {
-  let contact = contactsArray.find((c) => c.id === contactId);
-  if (!contact) return;
-
-  let editFloater = document.getElementById("contactFloater");
-  editFloater.innerHTML = generateContactsEditFloaterHTML(contact);
-  editFloater.style.display = "block";
-
-  document.getElementById("addContName").value = contact.name;
-  document.getElementById("addContMail").value = contact.email;
-  document.getElementById("addContPhone").value = contact.phone;
+async function updateContact(contactId) {
+  try {
+    let updatedContact = getUpdatedContact();
+    await sendUpdateToFirebase(contactId, updatedContact);
+    updateContactInArray(contactId, updatedContact);
+    await loadContactsFromFirebase();
+    closeEditFloater();
+  } catch (error) {
+    console.error("Fehler:", error);
+  }
 }
 
-async function updateContact(contactId) {
-  let updatedContact = {
+function getUpdatedContact() {
+  return {
     name: document.getElementById("addContName").value,
     email: document.getElementById("addContMail").value,
     phone: document.getElementById("addContPhone").value,
   };
-
-  try {
-    await fetch(`${BASE_URL}/contacts/${contactId}.json`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(updatedContact),
-    });
-
-    contactsArray = contactsArray.map((contact) =>
-      contact.id === contactId ? { id: contactId, ...updatedContact } : contact
-    );
-
-    loadContactsFromFirebase();
-    document.getElementById("contactFloater").style.display = "none";
-  } catch (error) {
-    console.error("Fehler beim Aktualisieren des Kontakts:", error);
-  }
 }
 
-function addEditContact(contact) {
+async function sendUpdateToFirebase(contactId, updatedContact) {
+  const response = await fetch(`${BASE_URL}/contacts/${contactId}.json`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(updatedContact),
+  });
+}
+
+function updateContactInArray(contactId, updatedContact) {
+  contactsArray = contactsArray.map((contact) =>
+    contact.id === contactId ? { id: contactId, ...updatedContact } : contact
+  );
+}
+
+function addEditContact(contactId) {
+  let contact = contactsArray.find((c) => c.id === contactId);
+  if (!contact) return;
   let editContact = document.getElementById("addContactOverlay");
   editContact.innerHTML = generateContactsEditFloaterHTML(contact);
   document.body.style.overflow = "hidden";
@@ -253,4 +272,3 @@ function closeEditFloater() {
     document.body.style.overflow = "";
   }, 100);
 }
-

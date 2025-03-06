@@ -5,12 +5,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Join - Contacts</title>
-  <!-- <link rel="stylesheet" href="../style/global.css" />
-  <link rel="stylesheet" href="../style/typography.css" />
-  <link rel="stylesheet" href="../style/pages/contacts.css" />
-  <link rel="stylesheet" href="../style/components/floating_contact.css" />
-  <link rel="stylesheet" href="../style/variables.css" />
-  <link rel="stylesheet" href="../style/animation.css" /> -->
 </head>
 
 <body onload="initContacts()">
@@ -22,27 +16,6 @@
             src="../assets/icons/person_add.svg" /></button>
       </div>
       <div id="contacts-div">
-        <!-- ab hier laden wir dynamisch mit JS rein, hier mal die template vorlage   -->
-        <!-- sortierung nach anfangsbuchstaben-->
-        <div class="cnt-letter-div">
-          <span class="cnt-letter">A</span>
-        </div>
-        <div class="cnt-list-seperator"></div>
-        <!-- fin -->
-        <!-- eintrag namen und email -->
-        <div class="cnt-name">
-          <div class="cnt-initials">
-            <span>AM</span>
-          </div>
-          <div class="cnt-details">
-            <div class="cnt-name-details">
-              <span>Anton Mayer</span>
-            </div>
-            <div class="cnt-mail">
-              <span>antom@gmail.com</span>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
     <div class="cnt-main">
@@ -53,29 +26,10 @@
       </div>
       <!-- Ab hier wieder dynamisch rendern -->
       <div class="cnt-glance" id="cnt-glance-contact">
-        <div class="cnt-glance-details">
-          <div class="cnt-glance-initials">AM</div>
-          <div>
-            Anton Mayer
-            <div class="cnt-glance-icon-div">
-              <img src="../assets/icons/edit.svg" /><span>Edit</span>
-              <div class="cnt-spacer"></div>
-              <img src="../assets/icons/delete.svg" /><span>Delete</span>
-            </div>
-          </div>
-        </div>
-        <div class="cnt-glance-contact" >
-          <span class="cnt-contact-info">Contact Information</span>
-          <span class="cnt-info-title">Email</span>
-          <span class="cnt-info-mail">antonm@gmail.com</span>
-          <span class="cnt-info-title">Phone</span>
-          <span class="cnt-info-phone">+49 1111 111 11 1</span>
-        </div>
       </div>
     </div>
   </div>
   <script src="../js/pages/contacts.js"></script>
   <script src="../js/script.js"></script>
 </body>
-
 </html>
