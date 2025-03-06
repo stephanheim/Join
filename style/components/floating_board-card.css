@@ -180,13 +180,19 @@
 .subtask {
   display: flex;
   gap: 18px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.subtask p {
+  font-size: 16px;
+  font-weight: 400;
 }
 
 .subtask:hover {
-  width: 75%;
+  width: 76%;
   background-color: rgb(239, 237, 237);
   border-radius: 10px;
   cursor: pointer;
+  transform: translateY(1px);
 }
