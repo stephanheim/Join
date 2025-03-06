@@ -116,7 +116,7 @@ function assignedToTemplate() {
       </div>
 
       <div class="drop-down-container">
-        <div class="inner-dropmenu">
+        <label class="inner-dropmenu">
           <div class="contacts-line">
             <div style="background-color: rgba(0, 190, 232, 1)" class="circle-color">
               <span>SM</span>
@@ -128,8 +128,8 @@ function assignedToTemplate() {
           <div class="checkbox">
             <input type="checkbox" />
           </div>
-        </div>
-        <div class="inner-dropmenu">
+        </label>
+        <label class="inner-dropmenu">
           <div class="contacts-line">
             <div style="background-color: rgba(255, 122, 0, 1)" class="circle-color">
               <span>AM</span>
@@ -141,8 +141,8 @@ function assignedToTemplate() {
           <div class="checkbox">
             <input type="checkbox" />
           </div>
-        </div>
-        <div class="inner-dropmenu">
+        </label>
+        <label class="inner-dropmenu">
           <div class="contacts-line">
             <div style="background-color: rgba(147, 39, 255, 1)" class="circle-color">
               <span>AS</span>
@@ -154,8 +154,8 @@ function assignedToTemplate() {
           <div class="checkbox">
             <input type="checkbox" />
           </div>
-        </div>
-        <div class="inner-dropmenu">
+        </label>
+        <label class="inner-dropmenu">
           <div class="contacts-line">
             <div style="background-color: rgba(110, 82, 255, 1)" class="circle-color">
               <span>BZ</span>
@@ -167,8 +167,8 @@ function assignedToTemplate() {
           <div class="checkbox">
             <input type="checkbox" />
           </div>
-        </div>
-        <div class="inner-dropmenu">
+        </label>
+        <label class="inner-dropmenu">
           <div class="contacts-line">
             <div style="background-color: rgba(252, 113, 255, 1)" class="circle-color">
               <span>DE</span>
@@ -180,8 +180,8 @@ function assignedToTemplate() {
           <div class="checkbox">
             <input type="checkbox" />
           </div>
-        </div>
-        <div class="inner-dropmenu">
+        </label>
+        <label class="inner-dropmenu">
           <div class="contacts-line">
             <div style="background-color: rgb(0, 255, 242)" class="circle-color">
               <span>EF</span>
@@ -193,8 +193,8 @@ function assignedToTemplate() {
           <div class="checkbox">
             <input type="checkbox" />
           </div>
-        </div>
-        <div class="inner-dropmenu">
+        </label>
+        <label class="inner-dropmenu">
           <div class="contacts-line">
             <div style="background-color: rgb(229, 255, 0)" class="circle-color">
               <span>EM</span>
@@ -206,8 +206,8 @@ function assignedToTemplate() {
           <div class="checkbox">
             <input type="checkbox" />
           </div>
-        </div>
-        <div class="inner-dropmenu">
+        </label>
+        <label class="inner-dropmenu">
           <div class="contacts-line">
             <div style="background-color: rgb(248, 70, 70)" class="circle-color">
               <span>MB</span>
@@ -219,8 +219,8 @@ function assignedToTemplate() {
           <div class="checkbox">
             <input type="checkbox" />
           </div>
-        </div>
-        <div class="inner-dropmenu">
+        </label>
+        <label class="inner-dropmenu">
           <div class="contacts-line">
             <div style="background-color: rgb(51, 245, 93)" class="circle-color">
               <span>TW</span>
@@ -232,7 +232,7 @@ function assignedToTemplate() {
           <div class="checkbox">
             <input type="checkbox" />
           </div>
-        </div>
+        </label>
       </div>`;
 }
 
@@ -242,7 +242,7 @@ function categoryTemplate() {
       <div class="textfield">
         <h2>Select task category</h2>
       </div>
-      <div class="container-arrow-img-dropdown">
+      <div onclick="closeDropdownMenuCategory()" class="container-arrow-img-dropdown">
         <img src="../assets/icons/arrow_drop_up.svg">
       </div>
     </div>
