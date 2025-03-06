@@ -1,5 +1,5 @@
 function createTaskCard() {
-  return `<div id="taskCard" class="task-card-outside">
+  return `<div id="taskCard" class="task-card-outside" onclick="openBoardCard()">
     <div class="card-headline"><span>User Story</span></div>
     <div class="card-description">
       <span>Title</span>

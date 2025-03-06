@@ -1,7 +1,6 @@
-function initBoard(){
-  renderTaskCard()
+function initBoard() {
+  renderTaskCard();
 }
-
 
 function openAddFloatingTask() {
   let addTask = document.getElementById('floatingAddTask');
@@ -15,7 +14,6 @@ function openAddFloatingTask() {
   }, 300);
 }
 
-
 function closeAddFloatingTask() {
   let floatingTask = document.getElementById('floatingAddTask');
   floatingTask.classList.remove('slideIn');
@@ -28,7 +26,6 @@ function closeAddFloatingTask() {
   }, 100);
 }
 
-
 function renderTaskCard() {
   let taskCard = document.getElementById('inProgress');
   let hideNoTask = document.getElementById('noTaskInProgress');
@@ -36,3 +33,26 @@ function renderTaskCard() {
   hideNoTask.classList.add('d-none');
 }
 
+function openBoardCard() {
+  let boardCard = document.getElementById('boardCardLarge');
+  boardCard.innerHTML = boardCardTemplate();
+  document.body.style.overflow = 'hidden';
+  boardCard.classList.remove('slideOut');
+  boardCard.classList.add('slideIn');
+  boardCard.classList.remove('d-none');
+  setTimeout(() => {
+    boardCard.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
+  }, 300);
+}
+
+function closeBoardCard() {
+  let boardCard = document.getElementById('boardCardLarge');
+  boardCard.classList.remove('slideIn');
+  boardCard.classList.add('slideOut');
+  boardCard.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+  setTimeout(() => {
+    boardCard.classList.add('d-none');
+    boardCard.innerHTML = '';
+    document.body.style.overflow = '';
+  }, 100);
+}
