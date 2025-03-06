@@ -11,7 +11,7 @@ function openAddFloatingTask() {
   addTask.classList.remove('d-none');
   setTimeout(() => {
     addTask.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
-  }, 300);
+  }, 200);
 }
 
 function closeAddFloatingTask() {
@@ -42,7 +42,7 @@ function openBoardCard() {
   boardCard.classList.remove('d-none');
   setTimeout(() => {
     boardCard.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
-  }, 300);
+  }, 200);
 }
 
 function closeBoardCard() {

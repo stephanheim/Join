@@ -60,18 +60,18 @@ function boardCardTemplate() {
               <p class="headline-boardcard">Subtask</p>
             </div>
             <div>
-              <div class="subtask">
+              <label class="subtask">
                 <div class="checkbox">
                   <input type="checkbox" />
                 </div>
                 <p>Implement Recipe Recommendation</p>
-              </div>
-              <div class="subtask">
+              </label>
+              <label class="subtask">
                 <div class="checkbox">
                   <input type="checkbox" />
                 </div>
                   <p>Start Page Layout</p>
-              </div>
+              </label>
             </div>
 
             <div class="delete-edit-section">
