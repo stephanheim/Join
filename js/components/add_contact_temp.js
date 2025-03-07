@@ -24,7 +24,7 @@ function generateFloaterHTML() {
         <img src="../assets/icons/person_input.svg" class="input-img-person" />
       </div>
       <div class="input-div">
-        <input type="email" placeholder="Email" class="add-input" id="addContMail" required pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$"/>
+        <input type="email" placeholder="Email" class="add-input" id="addContMail" required />
         <img src="../assets/icons/mail.svg" class="input-img-mail" />
       </div>
       <div class="input-div">
@@ -120,7 +120,9 @@ function generateContactsEditFloaterHTML(contact) {
       </div>
       <div class="add-form">
         <div class="add-form-circle">
-          <img src="../assets/icons/person-cnt.svg" class="add-icon-pers" />
+        <div class="cnt-glance-initials" style="background-color: ${contact.color}">
+          ${getInitials(contact.name)}
+        </div>
         </div>
         <div class="right-wrap">
            <div onclick="closeNewContact()" class="add-close-div">
@@ -155,5 +157,11 @@ function generateContactsEditFloaterHTML(contact) {
       </div>
     </div>
   </form>
+  `;
+}
+
+function generateSuccessFloaterHTML() {
+  return `
+  <div class="cnt-success-msg">Contact successfully created</div>
   `;
 }
