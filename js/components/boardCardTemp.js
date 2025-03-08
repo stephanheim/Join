@@ -84,7 +84,7 @@ function boardCardTemplate() {
                 <span>Delete</span>
               </div>
               <div class="hyphen"></div>
-              <div class="edit">
+              <div class="edit" onclick="changeBoardCardTemplate()">
                 <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M2.68213 16.3967H4.08213L12.7071 7.77173L11.3071 6.37173L2.68213 14.9967V16.3967ZM16.9821 6.32173L12.7321 2.12173L14.1321 0.721729C14.5155 0.338395 14.9863 0.146729 15.5446 0.146729C16.103 0.146729 16.5738 0.338395 16.9571 0.721729L18.3571 2.12173C18.7405 2.50506 18.9405 2.96756 18.9571 3.50923C18.9738 4.0509 18.7905 4.5134 18.4071 4.89673L16.9821 6.32173ZM15.5321 7.79673L4.93213 18.3967H0.682129V14.1467L11.2821 3.54673L15.5321 7.79673Z"
@@ -94,6 +94,91 @@ function boardCardTemplate() {
               </div>
             </div>
           </div>
+        </div>
+      </div>`;
+}
+
+function editBoardCardTemplate() {
+  return `      <div class="user-story-card">
+        <div class="inner-card">
+          <div class="headline-story-user-edit">
+            <div class="img-close-div" onclick="closeBoardCard()">
+              <img src="../assets/icons/close.svg" alt="" />
+            </div>
+          </div>
+        </div>
+        <div class="inner-card-lower">
+          <div class="add-task-single">
+            <div>
+              <h2>Title</h2>
+            </div>
+            <div>
+              <input class="input_at" type="text" placeholder="Enter a title" />
+            </div>
+          </div>
+          <div class="add-task-single">
+            <div>
+              <h2>Description</h2>
+            </div>
+            <div>
+              <textarea class="textarea-add-task" name="" id="" placeholder="Enter a Description"></textarea>
+            </div>
+          </div>
+          <div class="add-task-single">
+            <div class="title-and-star">
+              <h2>Due date</h2>
+            </div>
+            <div>
+              <input class="input-date" type="date" />
+            </div>
+          </div>
+          <div class="add-task-single">
+            <div>
+              <h2>Prio</h2>
+            </div>
+            <div class="prio-section input-section">
+              <button id="btn1" color="rgba(255, 61, 0, 1);" class="button-prio" onclick="buttonsColorSwitch('btn1')">
+                Urgent <img src="../assets/icons/urgent-red.svg" />
+              </button>
+              <button id="btn2" color="rgba(255, 168, 0, 1)" class="button-prio isSelected" onclick="buttonsColorSwitch('btn2')">
+                Medium <img src="../assets/icons/medium-orange.svg" />
+              </button>
+              <button id="btn3" color="rgba(122, 226, 41, 1)" class="button-prio" onclick="buttonsColorSwitch('btn3')">
+                Low <img src="../assets/icons/low-green.svg" />
+              </button>
+            </div>
+          </div>
+          <div class="add-task-single">
+            <div class="title-and-star">
+              <h2>Assigned to</h2>
+            </div>
+            <!----------Drop-Down Inputfeld---------->
+            <div id="dropDownMenuAssigned" class="main-drop-down d-none"></div>
+            <!--Standard Inputfeld Assigned to-->
+            <div id="standardInput" class="input-container-assigned">
+              <input type="text" placeholder="Select contacts to assign" />
+              <div class="container-arrow-img-dropdown" onclick="openDropdownMenuAssigned()">
+                <img src="../assets/icons/drop-down-arrow.svg" />
+              </div>
+            </div>
+          </div>
+          <div class="add-task-single">
+            <div>
+              <h2>Subtasks</h2>
+            </div>
+            <div class="input-container-category">
+              <input type="text" placeholder="Add new subtask" />
+              <div class="container-arrow-img-dropdown">
+                <img src="../assets/icons/add_plus.svg" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="btn-section">
+          <button class="bt-board-card-edit" onclick="defaultBoardCardTemplate()">
+            Ok
+            <img src="../assets/icons/check.svg" alt="" />
+          </button>
         </div>
       </div>`;
 }

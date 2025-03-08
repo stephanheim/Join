@@ -24,9 +24,8 @@ function openAddFloatingTask() {
   let addTask = document.getElementById('floatingAddTask');
   addTask.innerHTML = addTaskTemplate();
   document.body.style.overflow = 'hidden';
-  addTask.classList.remove('slideOut');
+  addTask.classList.remove('slideOut', 'd-none');
   addTask.classList.add('slideIn');
-  addTask.classList.remove('d-none');
   setTimeout(() => {
     addTask.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
   }, 200);
@@ -50,9 +49,8 @@ function openBoardCard() {
   let boardCard = document.getElementById('boardCardLarge');
   boardCard.innerHTML = boardCardTemplate();
   document.body.style.overflow = 'hidden';
-  boardCard.classList.remove('slideOut');
+  boardCard.classList.remove('slideOut', 'd-none');
   boardCard.classList.add('slideIn');
-  boardCard.classList.remove('d-none');
   setTimeout(() => {
     boardCard.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
   }, 200);
@@ -69,4 +67,14 @@ function closeBoardCard() {
     boardCard.innerHTML = '';
     document.body.style.overflow = '';
   }, 100);
+}
+
+function changeBoardCardTemplate() {
+  let boardCard = document.getElementById('boardCardLarge');
+  boardCard.innerHTML = editBoardCardTemplate();
+}
+
+function defaultBoardCardTemplate() {
+  let boardCard = document.getElementById('boardCardLarge');
+  boardCard.innerHTML = boardCardTemplate();
 }

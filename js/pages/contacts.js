@@ -137,9 +137,11 @@ async function createNewContact() {
     console.log("contact successfully added:", newContact);
     await loadContactsFromFirebase();
     document.getElementById("contactForm").reset();
+    closeNewContact();
   } else {
     console.error("Error when adding contact");
   }
+  showSuccessMessage();
 }
 
 function validateForm() {
@@ -271,4 +273,21 @@ function closeEditFloater() {
     closeEditFloater.innerHTML = "";
     document.body.style.overflow = "";
   }, 100);
+}
+
+// erst in der Testphase
+
+function showSuccessMessage() {
+  let successFloater = document.createElement("div");
+  successFloater.innerHTML = generateSuccessFloaterHTML();
+  successFloater.classList.add("cnt-success-overlay");
+
+  let mainDiv = document.getElementById("cnt-main-div");
+  mainDiv.appendChild(successFloater);
+
+  
+  setTimeout(() => {
+    successFloater.style.animation = "fadeOut 0.5s forwards";
+    setTimeout(() => successFloater.remove(), 500);
+  }, 3000);
 }
