@@ -7,7 +7,7 @@ function initBoard() {
 
 
 async function getPreTaskCardFromDB() {
-  const url = `${BASE_URL}/board/preTask.json`;
+  const url = `${BASE_URL}board/preTask.json`;
   try {
     const response = await fetch(url);
     if (!response.ok) throw new Error(`Server Error: ${response.status}`);
@@ -23,14 +23,22 @@ async function getPreTaskCardFromDB() {
 
 async function loadPreTaskCards() {
   preTaskCards = await getPreTaskCardFromDB();
+  renderPreTaskCard();
 }
 
 
-function renderTaskCard(category, title, description, initials) {
+function renderPreTaskCard() {
   let taskCard = document.getElementById('inProgress');
   let hideNoTask = document.getElementById('noTaskInProgress');
-  taskCard.innerHTML = ccreateTaskCard(category, title, description, initials);
-  hideNoTask.classList.add('d-none');
+  if (preTaskCards.length === 0) {
+    hideNoTask.classList.remove('d-none');
+    return;
+  }
+  taskCard.innerHTML = "";
+  preTaskCards.forEach(task => {
+    let taskHTML = createTaskCard(task.category, task.title, task.description, task.assigned);
+    taskCard.innerHTML += taskHTML;
+  })
 }
 
 

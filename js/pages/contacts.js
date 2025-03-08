@@ -13,7 +13,7 @@ function initContacts() {
 async function loadContactsFromFirebase() {
   try {
     let contactsResponse = await getAllContacts();
-    console.log("Kontake von Firebase:", contactsResponse);
+    // console.log("Kontake von Firebase:", contactsResponse);
     contactsArray = [];
     if (contactsResponse.contacts) {
       let contacts = contactsResponse.contacts;
