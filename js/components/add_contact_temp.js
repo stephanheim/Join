@@ -162,6 +162,8 @@ function generateContactsEditFloaterHTML(contact) {
 
 function generateSuccessFloaterHTML() {
   return `
-  <div class="cnt-success-msg">Contact successfully created</div>
+    <div id="successMessageContainer">
+      <div id="successMessage" class="cnt-success-msg">Contact successfully created</div>
+    </div>
   `;
 }

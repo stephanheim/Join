@@ -246,27 +246,57 @@
   pointer-events: none;
 }
 
-     .cnt-success-overlay {
-       position: absolute;
-       bottom: 20px;
-       left: 50%;
-       transform: translateX(-50%);
-       background-color: #2a3647;
-       color: white;
-       width: 326px;
-       height: 74px;
-       border-radius: 10px;
-       font-size: 16px;
-       z-index: 1000;
-       animation: slideIn 0.4s ease-in-out forwards;
-     }
-  
-     @keyframes fadeOut {
-       from {
-         opacity: 1;
-       }
-  
-       to {
-         opacity: 0;
-       }
-     }
+/* Test Success message */
+
+
+
+.cnt-success-msg {
+  position: absolute;
+  bottom: 20px;
+  left: 93vh;
+  transform: translateX(150%);
+  background-color: #2a3647;
+  color: white;
+  width: 326px;
+  height: 74px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 400;
+  z-index: 1000;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cnt-show {
+  animation: cntSlideIn 0.4s ease-in-out forwards;
+}
+
+.cnt-hide {
+  animation: cntSlideOut 0.4s ease-in-out forwards;
+}
+
+@keyframes cntSlideIn {
+  from {
+    transform: translateX(150%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(-50%);
+    opacity: 1;
+  }
+}
+
+@keyframes cntSlideOut {
+  from {
+    transform: translateX(-50%);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(150%);
+    opacity: 0;
+  }
+}

@@ -303,16 +303,24 @@ function closeEditFloater() {
 // erst in der Testphase
 
 function showSuccessMessage() {
-  let successFloater = document.createElement("div");
-  successFloater.innerHTML = generateSuccessFloaterHTML();
-  successFloater.classList.add("cnt-success-overlay");
+  let successFloaterHTML = generateSuccessFloaterHTML();
+  let successMessageContainer = document.createElement("div");
+  successMessageContainer.id = "successMessageContainer";
+  document.body.appendChild(successMessageContainer);
 
-  let mainDiv = document.getElementById("cnt-main-div");
-  mainDiv.appendChild(successFloater);
+  successMessageContainer.innerHTML = successFloaterHTML;
 
+  let successFloater = document.getElementById("successMessage");
+
+  successFloater.classList.remove("cnt-hide");
+  successFloater.classList.add("cnt-show");
 
   setTimeout(() => {
-    successFloater.style.animation = "fadeOut 0.5s forwards";
-    setTimeout(() => successFloater.remove(), 500);
+    successFloater.classList.remove("cnt-show");
+    successFloater.classList.add("cnt-hide");
+
+    setTimeout(() => {
+      document.body.removeChild(successMessageContainer);
+    }, 500); 
   }, 3000);
 }
