@@ -1,7 +1,4 @@
-function initAddTask() {
-
-}
-
+function initAddTask() {}
 
 function buttonsColorSwitch(btnId) {
   let buttons = document.getElementsByClassName('input-section')[0].getElementsByTagName('button');
@@ -46,3 +43,24 @@ function closeDropdownMenuCategory() {
   inputArrow.classList.remove('d-none');
 }
 
+function toggleIcons() {
+  const inputField = document.getElementById('category');
+  const plusIcon = document.getElementById('plusIcon');
+  const otherIcons = document.getElementById('otherIcons');
+  if (inputField.value.trim() !== '') {
+    plusIcon.classList.add('d-none');
+    otherIcons.classList.remove('d-none');
+  } else {
+    plusIcon.classList.remove('d-none');
+    otherIcons.classList.add('d-none');
+  }
+}
+
+function clearInput() {
+  const inputField = document.getElementById('category');
+  const plusIcon = document.getElementById('plusIcon');
+  const otherIcons = document.getElementById('otherIcons');
+  inputField.value = '';
+  otherIcons.classList.add('d-none');
+  plusIcon.classList.remove('d-none');
+}

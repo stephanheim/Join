@@ -55,9 +55,7 @@
 }
 
 .section-right {
-  position: relative;
   width: 440px;
-  height: 416px;
   display: flex;
   flex-direction: column;
   gap: 28px;
@@ -102,6 +100,10 @@
   color: rgba(209, 209, 209, 1);
 }
 
+.input-date[type='date']::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+
 ::placeholder {
   font-size: 20px;
   color: rgba(209, 209, 209, 1);
@@ -113,6 +115,8 @@
   border-radius: 10px;
   padding: 12px 16px 12px 16px;
   border: 1px solid rgba(209, 209, 209, 1);
+  resize: none;
+  cursor: pointer;
 }
 
 .button-section {
@@ -266,4 +270,24 @@
 
 .bt-clear:hover svg path {
   stroke: #29abe2;
+}
+
+.input-other-icons {
+  display: flex;
+  align-items: center;
+  margin: 12px 16px 12px 16px;
+  gap: 4px;
+}
+
+.container-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.container-icons:hover {
+  background-color: rgb(239, 237, 237);
+  border-radius: 50%;
 }

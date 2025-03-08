@@ -72,9 +72,9 @@
               <!----------Drop-Down Inputfeld---------->
               <div id="dropDownMenuAssigned" class="main-drop-down d-none"></div>
               <!--Standard Inputfeld Assigned to-->
-              <div id="standardInput" class="input-container-assigned">
+              <div id="standardInput" class="input-container-assigned" onclick="openDropdownMenuAssigned()">
                 <input type="text" name="contacts" placeholder="Select contacts to assign" />
-                <div class="container-arrow-img-dropdown" onclick="openDropdownMenuAssigned()">
+                <div class="container-arrow-img-dropdown">
                   <img src="../assets/icons/drop-down-arrow.svg" />
                 </div>
               </div>
@@ -85,11 +85,11 @@
                 <span class="span-star">*</span>
               </div>
               <div id="dropDownMenuCategory" class="drop-down-field-category d-none"></div>
-              <div id="standardFieldCategory" class="input-container-category">
+              <div id="standardFieldCategory" class="input-container-category" onclick="openDropdownMenuCategory()">
                 <div class="textfield">
                   <h2>Select task category</h2>
                 </div>
-                <div onclick="openDropdownMenuCategory()" class="container-arrow-img-dropdown">
+                <div class="container-arrow-img-dropdown">
                   <img src="../assets/icons/drop-down-arrow.svg" />
                 </div>
               </div>
@@ -99,9 +99,18 @@
                 <h2>Subtasks</h2>
               </div>
               <div class="input-container-category">
-                <input type="text" name="category" placeholder="Add new subtask" />
-                <div class="container-arrow-img-dropdown">
+                <input type="text" name="category" id="category" placeholder="Add new subtask" oninput="toggleIcons()" />
+                <div class="container-arrow-img-dropdown" id="plusIcon">
                   <img src="../assets/icons/add_plus.svg" />
+                </div>
+                <div class="input-other-icons d-none" id="otherIcons">
+                  <div class="container-icons" onclick="clearInput()">
+                    <img src="../assets/icons/close.svg" alt="" />
+                  </div>
+                  <div class="hyphen"></div>
+                  <div class="container-icons">
+                    <img src="../assets/icons/check-blue.svg" alt="" />
+                  </div>
                 </div>
               </div>
             </div>
