@@ -1,14 +1,28 @@
-let taskCard = {
-  category: 'User Story',
-  title: 'Kochwelt Page & Recipe Recommender',
-  description: 'Build start page with recipe recommendation...',
-  initials: '',
-  prio: '',
-};
+let preTaskCards = [];
 
 
 function initBoard() {
-  renderTaskCard();
+  loadPreTaskCards();
+}
+
+
+async function getPreTaskCardFromDB() {
+  const url = `${BASE_URL}/board/preTask.json`;
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`Server Error: ${response.status}`);
+    const tasks = await response.json();
+    if (!tasks) return [];
+    return Object.values(tasks);
+  } catch (error) {
+    console.error("Error when retrieving the tasks", error);
+    return [];
+  }
+}
+
+
+async function loadPreTaskCards() {
+  preTaskCards = await getPreTaskCardFromDB();
 }
 
 

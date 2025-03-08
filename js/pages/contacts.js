@@ -1,5 +1,3 @@
-const BASE_URL = "https://join-418-default-rtdb.europe-west1.firebasedatabase.app/";
-
 let contactsArray = [];
 
 const contactColors = ["#ff7a01", "#9327ff", "#6e52ff", "#fc71ff", "#ffbb2c", "#20d7c2", "#462f8a", "#ff4646"];

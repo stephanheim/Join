@@ -92,7 +92,7 @@ function guestLogin() {
 
 
 function setRememberMe() {
-  let rememberMeCheckbox = isCheckboxChecked();
+  let rememberMeCheckbox = isCheckboxChecked('remember');
   let { email, password } = getLoginInput();
   if (rememberMeCheckbox) {
     localStorage.setItem("rememberMe", "true");

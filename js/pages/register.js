@@ -1,4 +1,3 @@
-const BASE_URL = "https://join-418-default-rtdb.europe-west1.firebasedatabase.app/";
 /**
  * Fetches data from the specified URL
  *
@@ -149,7 +148,7 @@ function allFieldsValid() {
     isEmailValid() &&
     isPasswordFieldValid() &&
     confirmPasswords() &&
-    isCheckboxChecked()
+    isCheckboxChecked('signup')
   );
 }
 
@@ -205,9 +204,9 @@ function renderComparePasswordMessage() {
 }
 
 
-function renderCheckboxMessage() {
+function renderCheckboxMessage(type) {
   const message = document.getElementById('checkboxMessage');
-  if (!isCheckboxChecked()) {
+  if (!isCheckboxChecked(type)) {
     message.innerText = "Please, check the privacy policy";
     message.style.display = "block";
   } else {

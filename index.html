@@ -62,7 +62,7 @@
                   </div>
                   <div id="requiredInput" class="outside-input">
                     <div class="inside-input">
-                      <input onfocus="toggleRequiredInput(true)" onblur="toggleRequiredInput(false)"
+                      <input onfocus="toggleRequiredInput(this, true)" onblur="toggleRequiredInput(this, false)"
                         oninput="checkPasswordIcon()" required id="loginPassword" type="password" placeholder="Password"
                         aria-label="Password" autocomplete="current-password" />
                       <img id="visibilityLogin" class="pointer" onclick="togglePasswordVisibility()"

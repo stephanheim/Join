@@ -1,10 +1,10 @@
-function isCheckboxChecked() {
-  return document.getElementById('checkboxSignup').checked;
-}
-
-
-function isCheckboxChecked() {
-  return document.getElementById('rememberMe').checked;
+function isCheckboxChecked(type) {
+  if (type === 'signup') {
+    return document.getElementById('checkboxSignup').checked;
+  }
+  if (type === 'remember') {
+    return document.getElementById('rememberMe').checked;
+  }
 }
 
 
