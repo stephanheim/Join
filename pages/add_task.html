@@ -25,7 +25,7 @@
               <span class="span-star">*</span>
             </div>
             <div>
-              <input class="input_at" type="text" placeholder="Enter a title" />
+              <input class="input_at" type="text" name="title" placeholder="Enter a title" />
             </div>
           </div>
           <div class="add-task-single">
@@ -33,7 +33,7 @@
               <h2>Description</h2>
             </div>
             <div>
-              <textarea class="textarea-add-task" name="" id="" placeholder="Enter a Description"></textarea>
+              <textarea class="textarea-add-task" name="description" id="" placeholder="Enter a Description"></textarea>
             </div>
           </div>
           <div class="add-task-single">
@@ -42,7 +42,7 @@
               <span class="span-star">*</span>
             </div>
             <div>
-              <input class="input-date" type="date" />
+              <input class="input-date" name="date" type="date" />
             </div>
           </div>
         </div>
@@ -73,7 +73,7 @@
               <div id="dropDownMenuAssigned" class="main-drop-down d-none"></div>
               <!--Standard Inputfeld Assigned to-->
               <div id="standardInput" class="input-container-assigned">
-                <input type="text" placeholder="Select contacts to assign" />
+                <input type="text" name="contacts" placeholder="Select contacts to assign" />
                 <div class="container-arrow-img-dropdown" onclick="openDropdownMenuAssigned()">
                   <img src="../assets/icons/drop-down-arrow.svg" />
                 </div>
@@ -99,7 +99,7 @@
                 <h2>Subtasks</h2>
               </div>
               <div class="input-container-category">
-                <input type="text" placeholder="Add new subtask" />
+                <input type="text" name="category" placeholder="Add new subtask" />
                 <div class="container-arrow-img-dropdown">
                   <img src="../assets/icons/add_plus.svg" />
                 </div>
