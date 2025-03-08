@@ -26,23 +26,7 @@ function addTaskTemplate() {
               <textarea class="textarea-add-task" name="" id="" placeholder="Enter a Description"></textarea>
             </div>
           </div>
-          <div class="add-task-single">
-            <div class="title-and-star">
-              <h2>Assigned to</h2>
-            </div>
-            <div id="dropDownMenuAssigned" class="main-drop-down d-none"></div>
-               <div id="standardInput" class="input-container-assigned">
-              <input type="text" placeholder="Select contacts to assign" />
-              <div class="container-arrow-img-dropdown" onclick="openDropdownMenuAssigned()">
-                <img src="../assets/icons/drop-down-arrow.svg" />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="devider-ver"></div>
-        <div>
-          <div class="section-right">
-            <div class="add-task-single">
+                      <div class="add-task-single">
               <div class="title-and-star">
                 <h2>Due date</h2>
                 <span class="span-star">*</span>
@@ -51,6 +35,12 @@ function addTaskTemplate() {
                 <input class="input-date" type="date" />
               </div>
             </div>
+
+        </div>
+        <div class="devider-ver"></div>
+        <div>
+          <div class="section-right">
+
             <div class="add-task-single">
               <div>
                 <h2>Prio</h2>
@@ -67,6 +57,18 @@ function addTaskTemplate() {
                 </button>
               </div>
             </div>
+            <div class="add-task-single">
+              <div class="title-and-star">
+                <h2>Assigned to</h2>
+              </div>
+              <div id="dropDownMenuAssigned" class="main-drop-down d-none"></div>
+                <div id="standardInput" class="input-container-assigned">
+                    <input type="text" placeholder="Select contacts to assign" />
+                  <div class="container-arrow-img-dropdown" onclick="openDropdownMenuAssigned()">
+                    <img src="../assets/icons/drop-down-arrow.svg" />
+              </div>
+            </div>
+          </div>
             <div class="add-task-single">
               <div class="title-and-star">
                 <h2>Category</h2>
