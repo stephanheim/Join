@@ -238,7 +238,7 @@ function assignedToTemplate() {
 
 function categoryTemplate() {
   return `
-    <div class="input-container-assigned">
+    <div class="input-container-category">
       <div class="textfield">
         <h2>Select task category</h2>
       </div>

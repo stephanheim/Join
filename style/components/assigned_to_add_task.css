@@ -8,7 +8,6 @@
   border-radius: 10px;
   border: 1px solid rgba(209, 209, 209, 1);
   cursor: pointer;
-  border-bottom: none;
 }
 
 .input-container-category {
@@ -37,7 +36,6 @@
 
 .input-container-assigned:hover {
   border: 1.8px solid rgb(146, 146, 146);
-  border-bottom: none;
 }
 
 .input-container-assigned input {
@@ -103,7 +101,6 @@
   height: 47px;
   border-radius: 10px;
   border: 1px solid rgba(41, 171, 226, 1);
-  border-bottom: none;
 }
 
 .input-container-assigned-dropdown input {
@@ -226,6 +223,7 @@
   background-color: rgba(255, 255, 255, 1);
   box-shadow: 0 0 14px 3px rgba(0, 0, 0, 0.04);
   border-radius: 10px;
+  border-bottom: none;
   z-index: 1;
 }
 
