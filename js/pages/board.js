@@ -12,10 +12,10 @@ function initBoard() {
 }
 
 
-function renderTaskCard() {
+function renderTaskCard(category, title, description, initials) {
   let taskCard = document.getElementById('inProgress');
   let hideNoTask = document.getElementById('noTaskInProgress');
-  taskCard.innerHTML = createTaskCard();
+  taskCard.innerHTML = ccreateTaskCard(category, title, description, initials);
   hideNoTask.classList.add('d-none');
 }
 

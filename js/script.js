@@ -12,6 +12,19 @@ const pageTitles = {
 };
 
 
+function initPages(page) {
+  if (page === "summary") {
+    initSummary();
+  } else if (page === "add_task") {
+    initAddTask();
+  } else if (page === "board") {
+    initBoard();
+  } else if (page === "contacts") {
+    initContacts();
+  }
+}
+
+
 async function loadPageContentPath(page) {
   let contentPages = document.getElementById('content');
   let content = await fetchContent(`${page}.html`);
