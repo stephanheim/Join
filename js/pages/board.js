@@ -1,6 +1,24 @@
+let taskCard = {
+  category: 'User Story',
+  title: 'Kochwelt Page & Recipe Recommender',
+  description: 'Build start page with recipe recommendation...',
+  initials: '',
+  prio: '',
+};
+
+
 function initBoard() {
   renderTaskCard();
 }
+
+
+function renderTaskCard() {
+  let taskCard = document.getElementById('inProgress');
+  let hideNoTask = document.getElementById('noTaskInProgress');
+  taskCard.innerHTML = createTaskCard();
+  hideNoTask.classList.add('d-none');
+}
+
 
 function openAddFloatingTask() {
   let addTask = document.getElementById('floatingAddTask');
@@ -14,6 +32,7 @@ function openAddFloatingTask() {
   }, 200);
 }
 
+
 function closeAddFloatingTask() {
   let floatingTask = document.getElementById('floatingAddTask');
   floatingTask.classList.remove('slideIn');
@@ -26,12 +45,6 @@ function closeAddFloatingTask() {
   }, 100);
 }
 
-function renderTaskCard() {
-  let taskCard = document.getElementById('inProgress');
-  let hideNoTask = document.getElementById('noTaskInProgress');
-  taskCard.innerHTML = createTaskCard();
-  hideNoTask.classList.add('d-none');
-}
 
 function openBoardCard() {
   let boardCard = document.getElementById('boardCardLarge');
@@ -44,6 +57,7 @@ function openBoardCard() {
     boardCard.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
   }, 200);
 }
+
 
 function closeBoardCard() {
   let boardCard = document.getElementById('boardCardLarge');

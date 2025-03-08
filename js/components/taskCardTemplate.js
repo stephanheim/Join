@@ -1,9 +1,9 @@
-function createTaskCard() {
-  return `<div id="taskCard" class="task-card-outside" onclick="openBoardCard()">
-    <div class="card-headline"><span>User Story</span></div>
+function createTaskCard(category, title, description, initials) {
+  return `<div draggable="true" ondragstart="startDragging()" onclick="openBoardCard()" id="taskCard" class="task-card-outside">
+    <div class="card-headline"><span>${category['category']}</span></div>
     <div class="card-description">
-      <span>Title</span>
-      <p>Content...</p>
+      <span>${title['title']}</span>
+      <p>${description['content']}</p>
     </div>
     <div class="card-progress">
       <div id="progressBar" class="card-progress-bar" role="progressbar" style="width: 100%;"></div>
@@ -12,9 +12,9 @@ function createTaskCard() {
     <div class="card-badge-prio">
       <div class="card-badge">
         <div class="user-badge">
-          <span>M</span>
+          <span>${initials['user']}</span>
         </div>
-        <div class="user-badge -m-user-badge">
+        <div class="user-badge -m-user-badge"
           <span>P</span>
         </div>
         <div class="user-badge -m-user-badge">
