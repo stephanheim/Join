@@ -1,0 +1,270 @@
+/* .user-story-main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0);
+  transition: background-color 0.2s ease-in-out;
+} */
+
+.user-story-main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 100;
+}
+
+.user-story-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 525px;
+  height: 931px;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 30px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
+}
+
+.inner-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 40px 0 40px;
+  gap: 18px;
+}
+
+.inner-card h1 {
+  font-size: 61px;
+  font-weight: 700;
+}
+
+.headline-story-user {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-headline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 164px;
+  height: 36px;
+  border-radius: 8px;
+  background-color: rgba(0, 56, 255, 1);
+}
+
+.span-headline {
+  font-size: 23px;
+  font-weight: 400;
+  color: white;
+}
+
+.img-close-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+}
+
+.img-close-div:hover {
+  background-color: #ebebeb;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.inner-text-build-start {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inner-text-build-start span {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.inner-text-build-start p {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.headline-boardcard {
+  font-size: 20px !important;
+  font-weight: 400;
+  color: rgba(42, 54, 71, 1);
+}
+
+.priority-content {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+.img-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.circle-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: aqua;
+}
+
+.contact-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.contact-section p {
+  color: white;
+}
+
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-left: 16px;
+}
+
+.hyphen {
+  width: 1px;
+  border: 1px solid rgba(209, 209, 209, 1);
+  height: 24px;
+}
+
+.delete-edit-section {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.edit {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.edit span,
+.edit svg {
+  font-size: 16px;
+  font-weight: 400;
+  fill: #2a3647;
+  color: #2a3647;
+}
+
+.edit:hover span,
+.edit:hover svg {
+  color: rgba(41, 171, 226, 1);
+  fill: rgba(41, 171, 226, 1);
+  transform: scale(1.05);
+  font-weight: 500;
+}
+
+.subtask {
+  display: flex;
+  gap: 18px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.subtask p {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.subtask:hover {
+  width: 76%;
+  background-color: rgb(239, 237, 237);
+  border-radius: 10px;
+  cursor: pointer;
+  transform: translateY(1px);
+}
+
+.headline-story-user-edit {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 40px;
+}
+
+.bt-board-card-edit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 89px;
+  height: 57px;
+  background-color: #2a3647;
+  color: #ffffff;
+  border: none;
+  text-align: center;
+  border-radius: 8px;
+  font-size: 21px;
+  transition: all 0.1s ease;
+  gap: 4px;
+}
+
+.bt-board-card-edit:hover {
+  background-color: #29aae1;
+  box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.btn-section {
+  width: 100%;
+  padding-top: 50px;
+  padding-right: 55px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.inner-card-lower {
+  position: relative;
+  width: 100%;
+  height: 660px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 30px 48px 40px;
+  gap: 24px;
+  overflow-y: scroll;
+}
+
+.add-task-single {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

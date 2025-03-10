@@ -1,0 +1,52 @@
+.help-wrap {
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  background-color: #f6f7f8;
+  padding: 110px 80px 80px 80px;
+  max-width: 1920px;
+}
+
+.headline-help {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+h1 {
+  font-size: 61px;
+  font-weight: 700;
+}
+
+.headline-use {
+  display: flex;
+  flex-direction: column;
+}
+
+.step-by-step {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.deleting-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 20px;
+}
+
+.span-help {
+  color: rgba(41, 171, 226, 1);
+}
+
+.arrow-help-back:hover {
+  background-color: #d1d1d1;
+  box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2);
+  transform: translateX(-1px);
+  border-radius: 50%;
+  cursor: pointer;
+}

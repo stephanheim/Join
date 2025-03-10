@@ -6,15 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Join - Sign up</title>
   <link rel="shortcut icon" href="../assets/img/join.svg" type="image/x-icon" />
-  <link rel="stylesheet" href="../style.css" />
-  <link rel="stylesheet" href="../style/signup.css" />
+  <link rel="stylesheet" href="../style/global.css" />
+  <link rel="stylesheet" href="../style/typography.css" />
+  <link rel="stylesheet" href="../style/components/alerts.css" />
+  <link rel="stylesheet" href="../style/animation.css" />
+  <link rel="stylesheet" href="../style/pages/signup.css" />
+  <link rel="stylesheet" href="../style/components/forms.css" />
   <link rel="stylesheet" href="../style/variables.css" />
-  <link rel="stylesheet" href="../style/message_succsessful.css" />
-  <script src="../script.js"></script>
-  <script src="../js/register.js"></script>
 </head>
 
-<body onload="">
+<body>
   <div id="overlaySuccsessful" class="overlay-succsessful">
     <div class="message-succsessful">
       <span>You Signed up successful</span>
@@ -29,7 +30,7 @@
     <div class="content-wrapper">
       <div class="login-content">
         <div class="outside-form-content">
-          <form id="formRegister" class="form-content" onsubmit="registerNewUser();return false;">
+          <form id="formRegister" class="form-content" onsubmit="submitNewUser();return false;">
             <div class="headline-content">
               <div class="arrow-login-back">
                 <a href="../index.html"><img src="../assets/icons/arrow-left-line.svg" alt="" /></a>
@@ -40,35 +41,51 @@
               </div>
             </div>
             <div class="input-content">
-              <div class="outside-input">
-                <input required class="inside-input" id="registNewName" minlength="3" type="text" placeholder="Name"
-                  aria-label="text" autocomplete="name" oninput="toggleSubmitButton()">
-                <img src="../assets/icons/signup_name_person.svg" alt="Person" />
-              </div>
-              <div class="outside-input">
-                <input required class="inside-input" id="registNewEmail" minlength="3" type="email" placeholder="Email"
-                  aria-label="Email" autocomplete="email" oninput="toggleSubmitButton()">
-                <img src="../assets/icons/login_mail_letter.svg" alt="Brief" />
-              </div>
-              <div class="outside-input">
-                <input required class="inside-input" id="registNewPassword" minlength="3" type="password"
-                  placeholder="Password" aria-label="password" autocomplete="off" oninput="toggleSubmitButton()">
-                <img src="../assets/icons/login_pw_lock.svg" alt="Schloss" />
+              <div class="outside-input-confirm flex-column">
+                <div class="flex-space-between">
+                  <input required class="inside-input" id="registNewName" type="text" placeholder="Name"
+                    aria-label="text" autocomplete="name" oninput="renderNameMessage(); toggleSubmitButton()" />
+                  <img src="../assets/icons/signup_name_person.svg" alt="Person" />
+                </div>
+                <span id="nameMessage" class="error-message"></span>
               </div>
               <div class="outside-input-confirm flex-column">
                 <div class="flex-space-between">
-                  <input required class="inside-input" id="registConfirmPassword" minlength="3" type="password"
-                    placeholder="Confirm Password" aria-label="Password" autocomplete="off"
-                    oninput="comparePassword(); toggleSubmitButton()">
-                  <img src="../assets/icons/login_pw_lock.svg" alt="Schloss" />
+                  <input required class="inside-input" id="registNewEmail" type="email" placeholder="Email"
+                    aria-label="Email" autocomplete="email" oninput="renderEmailMessage(); toggleSubmitButton()" />
+                  <img src="../assets/icons/login_mail_letter.svg" alt="Brief" />
                 </div>
-                <span id="compareMessage" class="compare-message">adad</span>
+                <span id="emailMessage" class="error-message"></span>
               </div>
-              <div class="checkbox-content">
-                <input id="checkboxSignup" type="checkbox" oninput="isCheckboxChecked()" onclick="toggleSubmitButton()" />
-                <label for="checkboxSignup"></label>
-                <span class="checkbox-content-span">I accept the <a href="">Privacy Policy</a></span>
-                <span id="checkboxMessage" class="checkbox-message"></span>
+              <div id="borderPassword" class="outside-input-confirm flex-column">
+                <div class="flex-space-between">
+                  <input onfocus="toggleRequiredInput(this, true)" onblur="toggleRequiredInput(this, false)"
+                    oninput="renderPasswordMessage(); checkPasswordIcon() ; toggleSubmitButton()" required
+                    class="inside-input" id="registNewPassword" type="password" placeholder="Password"
+                    aria-label="password" autocomplete="current-password" />
+                  <img id="visibilityPwSignup" src="../assets/icons/login_pw_lock.svg" alt="Schloss" />
+                </div>
+                <span id="passwordMessage" class="error-message"></span>
+              </div>
+              <div id="borderConfirm" class="outside-input-confirm flex-column">
+                <div class="flex-space-between">
+                  <input onfocus="toggleRequiredInput(this, true)" onblur="toggleRequiredInput(this, false)"
+                    oninput="renderComparePasswordMessage();checkConfirmIcon(); toggleSubmitButton()" required
+                    class="inside-input" id="registConfirmPassword" type="password" placeholder="Confirm Password"
+                    aria-label="Password" autocomplete="off" />
+                  <img id="visibilityConfirmSignup" class="pointer" onclick="toggleConfirmVisibility()"
+                    src="../assets/icons/login_pw_lock.svg" alt="Schloss" />
+                </div>
+                <span id="comparePasswordMessage" class="error-message"></span>
+              </div>
+              <div class="checkbox-signup">
+                <div class="checkbox-content">
+                  <input id="checkboxSignup" type="checkbox" oninput="isCheckboxChecked('signup')"
+                    onclick="renderCheckboxMessage('signup'); toggleSubmitButton()" />
+                  <label for="checkboxSignup"></label>
+                  <span class="checkbox-signup-span">I accept the <a href="">Privacy Policy</a></span>
+                </div>
+                <span id="checkboxMessage" class="error-message"></span>
               </div>
             </div>
             <button id="buttonSignup" class="bt-signup" type="submit" disabled>Sign Up</button>
@@ -79,10 +96,13 @@
   </main>
   <footer class="bg-white">
     <div class="legal-information-content">
-      <a href="">Privacy Policy</a>
-      <a href="">Legal notice</a>
+      <a href="../pages/privacy_policy_login.html">Privacy Policy</a>
+      <a href="../pages/legal_notice_login.html">Legal notice</a>
     </div>
   </footer>
+  <script src="../js/script.js"></script>
+  <script src="../js/pages/register.js"></script>
+  <script src="../js/utils/helpers.js"></script>
 </body>
 
 </html>
