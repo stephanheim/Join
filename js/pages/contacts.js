@@ -9,11 +9,9 @@ function initContacts() {
   getGroupedContacts();
 }
 
-
 async function loadContactsFromFirebase() {
   try {
     let contactsResponse = await getAllContacts();
-    // console.log("Kontake von Firebase:", contactsResponse);
     contactsArray = [];
     if (contactsResponse.contacts) {
       let contacts = contactsResponse.contacts;
@@ -24,10 +22,8 @@ async function loadContactsFromFirebase() {
   }
 }
 
-
 function getGroupedContacts() {
   let groupedContacts = sortContacts();
-  console.log("Gruppierte Kontakte:", groupedContacts);
   assignColorsToContacts(groupedContacts);
   renderContacts(groupedContacts);
 }
@@ -54,7 +50,6 @@ async function getDetailInfo(contacts) {
   }
 }
 
-
 function sortContacts() {
   contactsArray.sort(function (a, b) {
     return a.name.localeCompare(b.name);
@@ -76,7 +71,6 @@ function sortContacts() {
   return groupedByLetter;
 }
 
-
 function assignColorsToContacts(groupedContacts) {
   let colorizeIndex = 0;
   for (let i = 0; i < groupedContacts.length; i++) {
@@ -89,23 +83,17 @@ function assignColorsToContacts(groupedContacts) {
   }
 }
 
-
 function getInitials(name) {
   let nameParts = name.split(" ");
   return nameParts[0].charAt(0).toUpperCase() + nameParts[1].charAt(0).toUpperCase();
 }
 
-
 function renderContacts(groupedContacts) {
-  console.log("Rendering contacts:", groupedContacts);
   let contactList = document.getElementById("contacts-div");
   contactList.innerHTML = "";
-
   for (let i = 0; i < groupedContacts.length; i++) {
     let group = groupedContacts[i];
     contactList.innerHTML += generateGroupHTML(group.group);
-
-    // Zweite Schleife für die Kontakte unter den Lettern
     for (let j = 0; j < group.contacts.length; j++) {
       let contact = group.contacts[j];
       let initials = getInitials(contact.name);
@@ -128,7 +116,6 @@ function addNewContact() {
   }, 200);
 }
 
-
 function closeNewContact() {
   let closeFloater = document.getElementById("addContactOverlay");
   closeFloater.classList.remove("slideIn");
@@ -141,31 +128,64 @@ function closeNewContact() {
   }, 100);
 }
 
-
-async function createNewContact() {
-  let newContact = addContactInput();
+async function createNewContact(name, email, phone) {
+  let newContact = { name, email, phone };
   let response = await postToFirebase(newContact);
   if (response) {
-    console.log("contact successfully added:", newContact);
     await loadContactsFromFirebase();
+    getGroupedContacts();
     document.getElementById("contactForm").reset();
     closeNewContact();
   } else {
-    console.error("Error when adding contact");
+    console.error("Fehler beim Hinzufügen des Kontakts");
   }
   showSuccessMessage();
 }
 
-
 function validateForm() {
-  let form = document.getElementById("contactForm");
-  if (!form.checkValidity()) {
+  setTimeout(() => {
+    let name = document.getElementById("addContName").value.trim();
+    let email = document.getElementById("addContMail").value.trim();
+    let phone = document.getElementById("addContPhone").value.trim();
+    if (!name || !email || !phone) {
+      alert("Alle Felder müssen ausgefüllt sein.");
+      return false;
+    }
+    if (!loopValidation(name, email, phone)) {
+      return false;
+    }
+    createNewContact(name, email, phone);
     return false;
-  }
-  createNewContact();
-  return false;
+  }, 500);
 }
 
+function loopValidation(name, email, phone) {
+  if (!isCntNameValid(name)) {
+    alert("Bitte Vor- und Nachnamen eingeben.");
+    return false;
+  }
+  if (!isCntEmailValid(email)) {
+    alert("Bitte gültige E-Mail-Adresse eingeben.");
+    return false;
+  }
+  if (!isCntPhoneValid(phone)) {
+    alert("Bitte gültige Telefonnummer eingeben.");
+    return false;
+  }
+  return true;
+}
+
+function isCntNameValid(name) {
+  return name.includes(" ");
+}
+
+function isCntEmailValid(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function isCntPhoneValid(phone) {
+  return /^\+?\d{7,15}$/.test(phone);
+}
 
 async function postToFirebase(contact) {
   try {
@@ -184,29 +204,16 @@ async function postToFirebase(contact) {
   }
 }
 
-
-function addContactInput() {
-  let name = document.getElementById("addContName").value;
-  let email = document.getElementById("addContMail").value;
-  let phone = document.getElementById("addContPhone").value;
-  let newContact = { name, email, phone };
-  return newContact;
-}
-
-
 function showContactInfo(contactId) {
   let contact = contactsArray.find((c) => c.id === contactId);
   if (!contact) return;
   clearHighlightContact();
   highlightContact(contactId);
-
   let glanceWindow = document.getElementById("cnt-glance-contact");
   glanceWindow.style.display = "none";
-
   glanceWindow.innerHTML = generateContactsInfoHTML(contact);
   glanceWindow.style.display = "block";
 }
-
 
 function clearHighlightContact() {
   for (let contact of contactsArray) {
@@ -215,25 +222,22 @@ function clearHighlightContact() {
   }
 }
 
-
 function highlightContact(contactId) {
   let contactElement = document.getElementById(`contact-${contactId}`);
   contactElement.classList.toggle("cnt-name-highlight");
 }
 
-
 async function deleteContact(contactId) {
-  console.log("deleteContact - contact ID to delete:", contactId);
   try {
     await fetch(`${BASE_URL}/contacts/${contactId}.json`, { method: "DELETE" });
     contactsArray = contactsArray.filter((contact) => contact.id !== contactId);
     document.getElementById("cnt-glance-contact").style.display = "none";
     loadContactsFromFirebase();
+    getGroupedContacts();
   } catch (error) {
     console.error("Fehler beim Löschen des Kontakts:", error);
   }
 }
-
 
 async function updateContact(contactId) {
   try {
@@ -247,7 +251,6 @@ async function updateContact(contactId) {
   }
 }
 
-
 function getUpdatedContact() {
   return {
     name: document.getElementById("addContName").value,
@@ -255,7 +258,6 @@ function getUpdatedContact() {
     phone: document.getElementById("addContPhone").value,
   };
 }
-
 
 async function sendUpdateToFirebase(contactId, updatedContact) {
   const response = await fetch(`${BASE_URL}/contacts/${contactId}.json`, {
@@ -265,13 +267,11 @@ async function sendUpdateToFirebase(contactId, updatedContact) {
   });
 }
 
-
 function updateContactInArray(contactId, updatedContact) {
   contactsArray = contactsArray.map((contact) =>
     contact.id === contactId ? { id: contactId, ...updatedContact } : contact
   );
 }
-
 
 function addEditContact(contactId) {
   let contact = contactsArray.find((c) => c.id === contactId);
@@ -300,25 +300,20 @@ function closeEditFloater() {
   }, 100);
 }
 
-// erst in der Testphase
+// ist noch zu überarbeiten:
 
 function showSuccessMessage() {
   let successFloaterHTML = generateSuccessFloaterHTML();
   let successMessageContainer = document.createElement("div");
   successMessageContainer.id = "successMessageContainer";
   document.body.appendChild(successMessageContainer);
-
   successMessageContainer.innerHTML = successFloaterHTML;
-
   let successFloater = document.getElementById("successMessage");
-
   successFloater.classList.remove("cnt-hide");
   successFloater.classList.add("cnt-show");
-
   setTimeout(() => {
     successFloater.classList.remove("cnt-show");
     successFloater.classList.add("cnt-hide");
-
     setTimeout(() => {
       document.body.removeChild(successMessageContainer);
     }, 500); 
