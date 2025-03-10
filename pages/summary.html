@@ -26,24 +26,26 @@
     <div class="main-div">
       <div class="metrics-div">
         <div class="row-top">
-          <div class="todone-div hoverable">
+          <div onclick="setActiveToBoard(); loadPageContentPath('board')" class="todone-div hoverable box-shadow">
             <img src="../assets/img/pencil.svg" class="imgs-todo">
             <div class="numbers-div">
               <span class="number">1</span><span class="text-todo">To-do</span>
             </div>
           </div>
-          <div class="todone-div hoverable">
+          <div onclick="setActiveToBoard(); loadPageContentPath('board')" class="todone-div hoverable box-shadow">
             <img src="../assets/img/done.svg" class="imgs-todo">
             <div class="numbers-div">
-              <span class="number">1</span><span class="text-todo">Done</span>
+              <span class="number">1</span>
+              <span class="text-todo">Done</span>
             </div>
           </div>
         </div>
-        <div class="row-middle hoverable">
+        <div onclick="setActiveToBoard(); loadPageContentPath('board')" class="row-middle hoverable box-shadow">
           <div class="todone-div">
             <img src="../assets/img/urgent.svg" class="img-urgent no-invert">
             <div class="numbers-div">
-              <span class="number">1</span><span class="text-urgent">Urgent</span>
+              <span class="number">1</span>
+              <span class="text-urgent">Urgent</span>
             </div>
           </div>
           <div class="middle-sep"></div>
@@ -51,14 +53,24 @@
               Deadline</div>
         </div>
         <div class="row-bottom">
-          <div class="numbers-div tasks hoverable">
-            <span class="number">5</span><span class="text-todo">Tasks in Board</span>
+          <div onclick="setActiveToBoard(); loadPageContentPath('board')" class="numbers-div tasks hoverable">
+            <div class="numbers-toDo">
+              <span class="number">5</span>
+              <span class="text-todo">Tasks in Board</span>
+            </div>
           </div>
-          <div class="numbers-div tasks hoverable">
-            <span class="number">2</span><span class="text-todo">Tasks in Progress</span>
+          <div onclick="setActiveToBoard(); loadPageContentPath('board')" class="numbers-div tasks hoverable">
+            <div class="numbers-toDo">
+              <span class="number">2</span>
+              <span class="text-todo">Tasks in Progress</span>
+            </div>
           </div>
-          <div class="numbers-div tasks hoverable">
-            <span class="number">2</span><span class="text-todo">Awaiting Feedback</span>
+          <div onclick="setActiveToBoard(); loadPageContentPath('board')" class="numbers-div tasks hoverable">
+            <div class="numbers-toDo">
+              <span class="number">2</span>
+              <span class="text-todo">Awaiting Feedback</span>
+            </div>
+
           </div>
         </div>
       </div>
