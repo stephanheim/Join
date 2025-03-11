@@ -30,6 +30,7 @@
   padding-right: 40px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
   height: 96px;
+  z-index: 1;
 }
 
 .header-right-box {

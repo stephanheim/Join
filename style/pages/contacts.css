@@ -1,14 +1,16 @@
 .contact-wrapper {
+  height: calc(100vh - 100px);
   background-color: #f6f7f8;
   display: flex;
   flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
   margin-top: 4px;
+  overflow: hidden;
 }
 
 .cnt-main {
-  height: 928px;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -25,7 +27,7 @@
   flex-direction: column;
   align-items: center;
   min-width: 450px;
-  height: 928px;
+  height: 100vh;
   background-color: #ffffff;
   overflow-y: auto;
   cursor: pointer;

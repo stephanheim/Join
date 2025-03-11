@@ -62,9 +62,9 @@ function addTaskTemplate() {
                 <h2>Assigned to</h2>
               </div>
               <div id="dropDownMenuAssigned" class="main-drop-down d-none"></div>
-                <div id="standardInput" class="input-container-assigned">
+                <div id="standardInput" class="input-container-assigned" onclick="openDropdownMenuAssigned()">
                     <input type="text" placeholder="Select contacts to assign" />
-                  <div class="container-arrow-img-dropdown" onclick="openDropdownMenuAssigned()">
+                  <div class="container-arrow-img-dropdown">
                     <img src="../assets/icons/drop-down-arrow.svg" />
               </div>
             </div>
@@ -88,14 +88,56 @@ function addTaskTemplate() {
               <div>
                 <h2>Subtasks</h2>
               </div>
+              <div class="input-container-category">
+                <input type="text" name="category" id="category" placeholder="Add new subtask" oninput="toggleIcons()" />
+                <div class="container-arrow-img-dropdown" id="plusIcon">
+                  <img src="../assets/icons/add_plus.svg" />
+                </div>
+                <div class="input-other-icons d-none" id="otherIcons">
+                  <div class="container-icons" onclick="clearInput()">
+                    <img src="../assets/icons/close.svg" alt="" />
+                  </div>
+                  <div class="hyphen"></div>
+                  <div class="container-icons">
+                    <img src="../assets/icons/check-blue.svg" alt="" />
+                  </div>
+                </div>
+              </div>
               <div>
-                <input class="input_at" type="search" placeholder="Add new subtask" />
+                <div class="add-subtask">
+                  <ul>
+                    <li>Contact Form</li>
+                  </ul>
+                  <div class="input-other-icons">
+                    <div class="subtask-icons">
+                      <img src="../assets/icons/edit.svg" alt="" />
+                    </div>
+                    <div class="hyphen-subtask"></div>
+                    <div class="subtask-icons">
+                      <img src="../assets/icons/delete.svg" alt="" />
+                    </div>
+                  </div>
+                </div>
+                <div class="add-subtask">
+                  <ul>
+                    <li>Write Legal Imprint</li>
+                  </ul>
+                  <div class="input-other-icons">
+                    <div class="subtask-icons">
+                      <img src="../assets/icons/edit.svg" alt="" />
+                    </div>
+                    <div class="hyphen-subtask"></div>
+                    <div class="subtask-icons">
+                      <img src="../assets/icons/delete.svg" alt="" />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="required-section">
+      <div class="required-section-floating">
         <div class="required-field">
           <span class="span-star">*</span>
           <p>This field is required</p>
@@ -111,7 +153,7 @@ function addTaskTemplate() {
 function assignedToTemplate() {
   return `    
       <div class="input-container-assigned-dropdown">
-        <input type="text" placeholder="Select contacts to assign" />
+        <input id="addTaskAssigned" type="text" placeholder="Select contacts to assign" />
         <div onclick="closeDropdownMenuAssigned()" class="container-arrow-img-dropdown">
           <img src="../assets/icons/arrow_drop_up.svg" />
         </div>
@@ -240,19 +282,19 @@ function assignedToTemplate() {
 
 function categoryTemplate() {
   return `
-    <div class="input-container-category">
+  <div class="input-container-category" onclick="closeDropdownMenuCategory()">
       <div class="textfield">
-        <h2>Select task category</h2>
+          <h2>Select task category</h2>
       </div>
       <div onclick="closeDropdownMenuCategory()" class="container-arrow-img-dropdown">
-        <img src="../assets/icons/arrow_drop_up.svg">
+          <img src="../assets/icons/arrow_drop_up.svg">
       </div>
-    </div>
-    <div class="inner-task">
+  </div>
+  <div onclick="selectCategory('Technical Task')" class="inner-task">
       <h2>Technical Task</h2>
-    </div>
-    <div class="inner-task">
+  </div>
+  <div onclick="selectCategory('User Story')" class="inner-task">
       <h2>User Story</h2>
-    </div>
+  </div>
   `;
 }

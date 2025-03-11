@@ -166,12 +166,51 @@ function editBoardCardTemplate() {
             <div>
               <h2>Subtasks</h2>
             </div>
-            <div class="input-container-category">
-              <input type="text" placeholder="Add new subtask" />
-              <div class="container-arrow-img-dropdown">
-                <img src="../assets/icons/add_plus.svg" />
+                    <div class="input-container-category">
+                <input type="text" name="category" id="category" placeholder="Add new subtask" oninput="toggleIcons()" />
+                <div class="container-arrow-img-dropdown" id="plusIcon">
+                  <img src="../assets/icons/add_plus.svg" />
+                </div>
+                <div class="input-other-icons d-none" id="otherIcons">
+                  <div class="container-icons" onclick="clearInput()">
+                    <img src="../assets/icons/close.svg" alt="" />
+                  </div>
+                  <div class="hyphen"></div>
+                  <div class="container-icons">
+                    <img src="../assets/icons/check-blue.svg" alt="" />
+                  </div>
+                </div>
               </div>
-            </div>
+              <div>
+                <div class="add-subtask">
+                  <ul>
+                    <li>Contact Form</li>
+                  </ul>
+                  <div class="input-other-icons">
+                    <div class="subtask-icons">
+                      <img src="../assets/icons/edit.svg" alt="" />
+                    </div>
+                    <div class="hyphen-subtask"></div>
+                    <div class="subtask-icons">
+                      <img src="../assets/icons/delete.svg" alt="" />
+                    </div>
+                  </div>
+                </div>
+                <div class="add-subtask">
+                  <ul>
+                    <li>Write Legal Imprint</li>
+                  </ul>
+                  <div class="input-other-icons">
+                    <div class="subtask-icons">
+                      <img src="../assets/icons/edit.svg" alt="" />
+                    </div>
+                    <div class="hyphen-subtask"></div>
+                    <div class="subtask-icons">
+                      <img src="../assets/icons/delete.svg" alt="" />
+                    </div>
+                  </div>
+                </div>
+              </div>
           </div>
         </div>
         <div class="btn-section">

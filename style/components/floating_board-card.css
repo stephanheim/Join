@@ -262,9 +262,4 @@
   overflow-y: scroll;
 }
 
-.add-task-single {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+

@@ -67,3 +67,21 @@
     opacity: 0;
   }
 }
+
+@keyframes expand {
+  from {
+    height: 0;
+  }
+  to {
+    height: 150px;
+  }
+}
+
+@keyframes collapse {
+  from {
+    height: 150px;
+  }
+  to {
+    height: 0;
+  }
+}

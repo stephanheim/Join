@@ -100,3 +100,9 @@ function defaultBoardCardTemplate() {
   let boardCard = document.getElementById('boardCardLarge');
   boardCard.innerHTML = boardCardTemplate();
 }
+
+function getTaskValue(){
+  let title = document.getElementById('addTaskTitle').value.trim();
+  let description = document.getElementById('addTaskDescription').value.trim();
+  let date = document.getElementById('addTaskDate').value.trim();
+}

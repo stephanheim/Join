@@ -12,6 +12,18 @@
   transition: background-color 0.2s ease-in-out;
 }
 
+
+.required-section-floating {
+  position: absolute;
+  bottom: 74px;
+  right: 0;
+  width: 100%;
+  padding-left: 74px;
+  padding-right: 74px;
+  display: flex;
+  justify-content: space-between;
+}
+
 .slideIn {
   animation: slideIn 0.2s ease-in-out forwards;
 }
@@ -21,6 +33,7 @@
 }
 
 .floating-content {
+  position: relative;
   display: flex;
   flex-direction: column;
   padding-left: 74px;
