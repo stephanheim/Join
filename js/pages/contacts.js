@@ -6,6 +6,7 @@ const contactColors = ["#ff7a01", "#9327ff", "#6e52ff", "#fc71ff", "#ffbb2c", "#
 
 
 function initContacts() {
+  checkAndAddCurrentUser()
   getGroupedContacts();
 }
 
@@ -231,6 +232,7 @@ async function deleteContact(contactId) {
   try {
     await fetch(`${BASE_URL}/contacts/${contactId}.json`, { method: "DELETE" });
     contactsArray = contactsArray.filter((contact) => contact.id !== contactId);
+    closeEditFloater();
     document.getElementById("cnt-glance-contact").style.display = "none";
     loadContactsFromFirebase();
     getGroupedContacts();
@@ -245,6 +247,11 @@ async function updateContact(contactId) {
     await sendUpdateToFirebase(contactId, updatedContact);
     updateContactInArray(contactId, updatedContact);
     await loadContactsFromFirebase();
+    let glanceWindow = document.getElementById("cnt-glance-contact");
+    if (glanceWindow && glanceWindow.style.display !== "none") {
+      showContactInfo(contactId);
+    }
+    getGroupedContacts();
     closeEditFloater();
   } catch (error) {
     console.error("Fehler:", error);
@@ -287,7 +294,6 @@ function addEditContact(contactId) {
   }, 200);
 }
 
-
 function closeEditFloater() {
   let closeEditFloater = document.getElementById("addContactOverlay");
   closeEditFloater.classList.remove("slideIn");
@@ -318,4 +324,32 @@ function showSuccessMessage() {
       document.body.removeChild(successMessageContainer);
     }, 500); 
   }, 3000);
+}
+
+async function checkAndAddCurrentUser() {
+  let currentUser = JSON.parse(localStorage.getItem("loggedInUser"));
+  if (!currentUser || currentUser.name === "Guest") return;
+
+  if (!isUserInContacts(currentUser.email)) {
+    await addCurrentUserToContacts(currentUser);
+  }
+}
+
+function isUserInContacts(email) {
+  return contactsArray.some((contact) => contact.email === email);
+}
+
+async function addCurrentUserToContacts(user) {
+  let newContact = {
+    name: user.name,
+    email: user.email,
+    phone: user.phone || "",
+  };
+
+  let response = await postToFirebase(newContact);
+  if (response) {
+    contactsArray.push({ id: response.id, ...newContact });
+    await loadContactsFromFirebase();
+    getGroupedContacts();
+  }
 }
