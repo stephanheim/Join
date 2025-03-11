@@ -4,7 +4,6 @@ const contactColors = ["#ff7a01", "#9327ff", "#6e52ff", "#fc71ff", "#ffbb2c", "#
 
 // Kontakte ab Firebase holen, rendern, sortieren, Farben zuordnen
 
-
 function initContacts() {
   checkAndAddCurrentUser()
   getGroupedContacts();
@@ -133,14 +132,27 @@ async function createNewContact(name, email, phone) {
   let newContact = { name, email, phone };
   let response = await postToFirebase(newContact);
   if (response) {
+    let newContactId = response.id;
     await loadContactsFromFirebase();
     getGroupedContacts();
     document.getElementById("contactForm").reset();
     closeNewContact();
+    setTimeout(() => {
+      highlightContact(newContactId);
+      showContactInfo(newContactId);
+      scrollToContact(newContactId);
+    }, 100);
   } else {
     console.error("Fehler beim Hinzufügen des Kontakts");
   }
   showSuccessMessage();
+}
+
+function scrollToContact(contactId) {
+  let contactElement = document.getElementById(`contact-${contactId}`);
+  if (contactElement) {
+    contactElement.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
 }
 
 function validateForm() {

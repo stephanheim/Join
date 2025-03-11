@@ -246,10 +246,6 @@
   pointer-events: none;
 }
 
-/* Test Success message */
-
-
-
 .cnt-success-msg {
   position: absolute;
   bottom: 20px;
