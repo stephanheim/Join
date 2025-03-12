@@ -55,6 +55,7 @@
 }
 
 .input-container-assigned input {
+  width: 100%;
   border: none;
   border-radius: 10px;
   margin-left: 16px;
