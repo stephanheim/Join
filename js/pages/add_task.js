@@ -1,4 +1,4 @@
-function initAddTask() { }
+function initAddTask() {}
 
 function buttonsColorSwitch(btnId) {
   let buttons = document.getElementsByClassName('input-section')[0].getElementsByTagName('button');
@@ -36,7 +36,6 @@ function openDropdownMenuCategory() {
   }
   dropDownMenu.classList.remove('d-none', 'drop-down-hide');
   requestAnimationFrame(() => {
-    
     dropDownMenu.classList.add('drop-down-show');
   });
 }
@@ -46,7 +45,7 @@ function closeDropdownMenuCategory() {
   const dropDownMenu = document.getElementById('dropDownMenuCategory');
   dropDownMenu.classList.remove('drop-down-show');
   dropDownMenu.classList.add('drop-down-hide');
-    dropDownMenu.classList.add('d-none'); 
+  dropDownMenu.classList.add('d-none');
 }
 
 function toggleIcons() {
@@ -71,12 +70,12 @@ function clearInput() {
   plusIcon.classList.remove('d-none');
 }
 
-
 function selectCategory(category) {
   let selectedCategory = document.getElementById('selectedCategory');
   if (selectedCategory) {
     selectedCategory.innerText = category;
+    return category;
   }
+
   closeDropdownMenuCategory();
-  return category;
 }
