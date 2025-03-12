@@ -1,4 +1,4 @@
-function initAddTask() { }
+function initAddTask() {}
 
 function buttonsColorSwitch(btnId) {
   let buttons = document.getElementsByClassName('input-section')[0].getElementsByTagName('button');
@@ -43,7 +43,7 @@ function closeDropdownMenuCategory() {
 }
 
 function toggleIcons() {
-  const inputField = document.getElementById('category');
+  const inputField = document.getElementById('addTaskCategory');
   const plusIcon = document.getElementById('plusIcon');
   const otherIcons = document.getElementById('otherIcons');
   if (inputField.value.trim() !== '') {
