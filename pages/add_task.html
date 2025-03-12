@@ -91,18 +91,23 @@
               <h2>Category</h2>
               <span class="span-star">*</span>
             </div>
-            <div id="standardFieldCategory" class="input-container-category" onclick="openDropdownMenuCategory()">
-              <div class="textfield">
-                <h2 id="selectedCategory">Select task category</h2>
-              </div>
-              <div class="container-arrow-img-dropdown">
-                <img src="../assets/icons/drop-down-arrow.svg" />
+            <div>
+              <div id="standardFieldCategory" class="input-container-category" onclick="openDropdownMenuCategory()">
+                <div class="drop-down-placeholder">
+                  <div class="textfield">
+                    <h2 id="selectedCategory">Select task category</h2>
+                  </div>
+                  <div class="container-arrow-img-dropdown">
+                    <img src="../assets/icons/drop-down-arrow.svg" />
+                  </div>
+                </div>
+                <div id="dropDownMenuCategory" class="drop-down-field-category d-none"
+                  onclick="closeDropdownMenuCategory()"></div>
               </div>
             </div>
-            <div id="dropDownMenuCategory" class="drop-down-field-category d-none"></div>
           </div>
 
-          
+
           <div class="add-task-single">
             <label for="addTaskCategory">
               <h2>Subtasks</h2>

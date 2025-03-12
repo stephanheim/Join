@@ -282,19 +282,13 @@ function assignedToTemplate() {
 
 function categoryTemplate() {
   return `
-  <div class="input-container-category" onclick="closeDropdownMenuCategory()">
-      <div class="textfield">
-          <h2>Select task category</h2>
-      </div>
-      <div onclick="closeDropdownMenuCategory()" class="container-arrow-img-dropdown">
-          <img src="../assets/icons/arrow_drop_up.svg">
-      </div>
-  </div>
-  <div onclick="selectCategory('Technical Task')" class="inner-task">
+  <div>
+    <div onclick="selectCategory('Technical Task')" class="inner-task">
       <h2>Technical Task</h2>
-  </div>
-  <div onclick="selectCategory('User Story')" class="inner-task">
+    </div>
+    <div onclick="selectCategory('User Story')" class="inner-task">
       <h2>User Story</h2>
+    </div>
   </div>
   `;
-}
+  }
