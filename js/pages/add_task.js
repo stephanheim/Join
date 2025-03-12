@@ -35,11 +35,13 @@ function openDropdownMenuCategory() {
   }
   dropDownMenu.classList.toggle('d-none');
   dropDownMenu.classList.toggle('drop-down-show');
+  dropDownMenu.classList.add('box-shadow');
 }
 
 function closeDropdownMenuCategory() {
   const dropDownMenu = document.getElementById('dropDownMenuCategory');
   dropDownMenu.classList.add('d-none');
+  dropDownMenu.classList.remove('box-shadow');
 }
 
 function toggleIcons() {
