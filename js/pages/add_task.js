@@ -58,7 +58,7 @@ function toggleIcons() {
 }
 
 function clearInput() {
-  const inputField = document.getElementById('category');
+  const inputField = document.getElementById('addTaskCategory');
   const plusIcon = document.getElementById('plusIcon');
   const otherIcons = document.getElementById('otherIcons');
   inputField.value = '';
@@ -72,6 +72,15 @@ function selectCategory(category) {
     selectedCategory.innerText = category;
     return category;
   }
-
   closeDropdownMenuCategory();
+}
+
+function addSubtaksFromInput() {
+  const inputValue = document.getElementById('addTaskCategory').value;
+  document.getElementById('addedSubtaks').innerHTML += subtaskTemplate(inputValue);
+  clearInput();
+}
+
+function removeSubtask(subtask) {
+  subtask.closest('.add-subtask').remove();
 }
