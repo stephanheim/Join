@@ -101,7 +101,10 @@
   border: 1px solid rgba(209, 209, 209, 1);
   cursor: pointer;
   font-size: 20px;
-  color: rgba(209, 209, 209, 1);
+}
+
+.input-date::placeholder {
+  color: #D1D1D1;
 }
 
 .input-date[type='date']::-webkit-calendar-picker-indicator {
@@ -121,6 +124,8 @@
   border: 1px solid rgba(209, 209, 209, 1);
   resize: none;
   cursor: pointer;
+  font-weight: 400;
+  font-size: 21px;
 }
 
 .button-section {

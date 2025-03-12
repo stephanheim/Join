@@ -1,4 +1,5 @@
-function initAddTask() { }
+function initAddTask() {
+}
 
 function buttonsColorSwitch(btnId) {
   let buttons = document.getElementsByClassName('input-section')[0].getElementsByTagName('button');
@@ -78,4 +79,19 @@ function selectCategory(category) {
     return category;
   }
   closeDropdownMenuCategory();
+}
+
+
+function formatDate(input) {
+  let value = input.value.replace(/\D/g, "");
+  let formattedValue = "";
+  if (value.length > 4) {
+    formattedValue = value.substring(0, 2) + "/" + value.substring(2, 4) + "/" + value.substring(4, 8);
+  } else if (value.length > 2) {
+    formattedValue = value.substring(0, 2) + "/" + value.substring(2);
+  } else {
+    formattedValue = value;
+  }
+  input.value = formattedValue;
+  return;
 }
