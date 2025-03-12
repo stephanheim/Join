@@ -53,17 +53,9 @@ function resetFormRegister() {
 }
 
 
-function openSubMenu() {
+function showSubMenu() {
   const submenu = document.getElementById('submenu');
-  submenu.classList.remove('d-none');
-}
-
-
-function closeSubMenu() {
-  let submenu = document.getElementById('submenu');
-  if (submenu) {
-    submenu.classList.add('d-none');
-  }
+  submenu.classList.toggle('d-none');
 }
 
 
