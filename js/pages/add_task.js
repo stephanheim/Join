@@ -28,10 +28,17 @@ function closeDropdownMenuAssigned() {
   dropDownMenu.classList.add('d-none');
 }
 
+
 function openDropdownMenuCategory() {
   const dropDownMenu = document.getElementById('dropDownMenuCategory');
+  const selectedCategory = document.getElementById('selectedCategory');
+  let originalCategoryText = "Select task category";
+  const isCategorySelected = false;
   if (!dropDownMenu.innerHTML.trim()) {
     dropDownMenu.innerHTML = categoryTemplate();
+  }
+  if (dropDownMenu.classList.contains('d-none') && !isCategorySelected) {
+    selectedCategory.innerText = originalCategoryText;
   }
   dropDownMenu.classList.toggle('d-none');
   dropDownMenu.classList.toggle('drop-down-show');
@@ -70,6 +77,5 @@ function selectCategory(category) {
     selectedCategory.innerText = category;
     return category;
   }
-
   closeDropdownMenuCategory();
 }
