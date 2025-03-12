@@ -1,7 +1,6 @@
-const BASE_URL = "https://join-418-default-rtdb.europe-west1.firebasedatabase.app/";
+const BASE_URL = 'https://join-418-default-rtdb.europe-west1.firebasedatabase.app/';
 
 let contactOpen = false;
-
 
 const pageTitles = {
   add_task: 'Add Task',
@@ -13,19 +12,17 @@ const pageTitles = {
   help: 'Help',
 };
 
-
 function initPages(page) {
-  if (page === "summary") {
+  if (page === 'summary') {
     initSummary();
-  } else if (page === "add_task") {
+  } else if (page === 'add_task') {
     initAddTask();
-  } else if (page === "board") {
+  } else if (page === 'board') {
     initBoard();
-  } else if (page === "contacts") {
+  } else if (page === 'contacts') {
     initContacts();
   }
 }
-
 
 async function loadPageContentPath(page) {
   let contentPages = document.getElementById('content');
@@ -33,12 +30,10 @@ async function loadPageContentPath(page) {
   contentPages.innerHTML = content;
   initPages(page);
   changePageTitles(page);
-  closeSubMenu();
   if (page === 'summary') {
     showUserWelcome();
   }
 }
-
 
 async function fetchContent(page) {
   try {
@@ -49,12 +44,10 @@ async function fetchContent(page) {
   }
 }
 
-
 function changePageTitles(page) {
   let changeTitles = pageTitles[page];
   document.title = changeTitles;
 }
-
 
 function showUserWelcome() {
   let userData = JSON.parse(localStorage.getItem('loggedInUser'));
@@ -64,18 +57,16 @@ function showUserWelcome() {
   welcomeUser.innerText = showDaytimeGreeting();
 }
 
-
 function showDaytimeGreeting() {
   let hour = new Date().getHours();
   if (hour >= 5 && hour < 12) {
-    return "Good Morning";
+    return 'Good Morning';
   } else if (hour >= 12 && hour < 18) {
-    return "Good afternoon";
+    return 'Good afternoon';
   } else {
-    return "Good evening";
+    return 'Good evening';
   }
 }
-
 
 function setActiveNav(clickedNav) {
   let navLinks = document.getElementsByClassName('nav');
@@ -92,7 +83,6 @@ function setActiveNav(clickedNav) {
   clickedNav.style.pointerEvents = 'none';
 }
 
-
 function overlayClick(event) {
   let overlayContent = document.getElementById('contactFloater');
   if (!overlayContent.contains(event.target)) {
@@ -102,9 +92,9 @@ function overlayClick(event) {
 
 function getUserInitials() {
   let userData = JSON.parse(localStorage.getItem('loggedInUser'));
-  let nameParts = userData.name.split(" ");
+  let nameParts = userData.name.split(' ');
   let firstInitial = nameParts[0][0].toUpperCase();
-  let lastInitial = nameParts.length > 1 ? nameParts[1][0].toUpperCase() : "";
+  let lastInitial = nameParts.length > 1 ? nameParts[1][0].toUpperCase() : '';
   let initial = firstInitial + lastInitial;
   document.getElementById('userInitial').innerText = initial;
 }

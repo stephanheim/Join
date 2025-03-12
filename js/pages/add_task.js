@@ -1,3 +1,5 @@
+let subtaskNotes = [];
+
 function initAddTask() {}
 
 function buttonsColorSwitch(btnId) {
@@ -81,16 +83,13 @@ function selectCategory(category) {
   closeDropdownMenuCategory();
 }
 
-let subtaskNotes = [];
-console.log(subtaskNotes);
-
 function renderSubtask() {
   let subtaskRef = document.getElementById('addedSubtaks');
   subtaskRef.innerHTML = '';
-
   for (let i = 0; i < subtaskNotes.length; i++) {
-    subtaskRef.innerHTML += subtaskTemplate();
+    subtaskRef.innerHTML += subtaskTemplate(i);
   }
+  clearInput();
 }
 
 function addSubtaksFromInput() {
@@ -100,8 +99,9 @@ function addSubtaksFromInput() {
   renderSubtask();
 }
 
-function removeSubtask(subtask) {
-  subtask.closest('.add-subtask').remove();
+function deleteSubtask(i) {
+  subtaskNotes.splice(i, 1);
+  renderSubtask();
 }
 
 function formatDate(input) {

@@ -293,18 +293,18 @@ function categoryTemplate() {
   `;
 }
 
-function subtaskTemplate(inputValue) {
+function subtaskTemplate(i) {
   return `
     <div class="add-subtask">
       <ul>
-        <li>${inputValue}</li>
+        <li>${subtaskNotes[i]}</li>
       </ul>
       <div class="input-other-icons">
           <div class="subtask-icons">
             <img src="../assets/icons/edit.svg" alt="" />
           </div>
           <div class="hyphen-subtask"></div>
-          <div class="subtask-icons" onclick="removeSubtask(this)">
+          <div class="subtask-icons" onclick="deleteSubtask(${i})">
             <img src="../assets/icons/delete.svg" alt="" />
           </div>
         </div>
