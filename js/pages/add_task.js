@@ -1,5 +1,4 @@
-function initAddTask() {
-}
+function initAddTask() {}
 
 function buttonsColorSwitch(btnId) {
   let buttons = document.getElementsByClassName('input-section')[0].getElementsByTagName('button');
@@ -43,15 +42,17 @@ function openDropdownMenuCategory() {
   }
   dropDownMenu.classList.toggle('d-none');
   dropDownMenu.classList.toggle('drop-down-show');
+  dropDownMenu.classList.add('box-shadow');
 }
 
 function closeDropdownMenuCategory() {
   const dropDownMenu = document.getElementById('dropDownMenuCategory');
   dropDownMenu.classList.add('d-none');
+  dropDownMenu.classList.remove('box-shadow');
 }
 
 function toggleIcons() {
-  const inputField = document.getElementById('category');
+  const inputField = document.getElementById('addTaskCategory');
   const plusIcon = document.getElementById('plusIcon');
   const otherIcons = document.getElementById('otherIcons');
   if (inputField.value.trim() !== '') {
