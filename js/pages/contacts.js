@@ -5,7 +5,7 @@ const contactColors = ["#ff7a01", "#9327ff", "#6e52ff", "#fc71ff", "#ffbb2c", "#
 // Kontakte ab Firebase holen, rendern, sortieren, Farben zuordnen
 
 function initContacts() {
-  checkAndAddCurrentUser()
+  checkAndAddCurrentUser();
   getGroupedContacts();
 }
 
@@ -28,12 +28,10 @@ function getGroupedContacts() {
   renderContacts(groupedContacts);
 }
 
-
 async function getAllContacts() {
   let response = await fetch(`${BASE_URL}.json`);
   return await response.json();
 }
-
 
 async function getDetailInfo(contacts) {
   let userIds = Object.keys(contacts);
@@ -51,23 +49,21 @@ async function getDetailInfo(contacts) {
 }
 
 function sortContacts() {
-  contactsArray.sort(function (a, b) {
-    return a.name.localeCompare(b.name);
-  });
+  contactsArray.sort((a, b) => a.name.localeCompare(b.name));
+  return groupContactsByLetter();
+}
+
+function groupContactsByLetter() {
   let groupedByLetter = [];
   let letterGroup = null;
-  for (let i = 0; i < contactsArray.length; i++) {
-    let contact = contactsArray[i];
+  contactsArray.forEach((contact) => {
     let firstLetter = contact.name[0].toUpperCase();
     if (letterGroup !== firstLetter) {
       letterGroup = firstLetter;
-      groupedByLetter.push({
-        group: letterGroup,
-        contacts: [],
-      });
+      groupedByLetter.push({ group: letterGroup, contacts: [] });
     }
     groupedByLetter[groupedByLetter.length - 1].contacts.push(contact);
-  }
+  });
   return groupedByLetter;
 }
 
@@ -75,7 +71,6 @@ function assignColorsToContacts(groupedContacts) {
   let colorizeIndex = 0;
   for (let i = 0; i < groupedContacts.length; i++) {
     let group = groupedContacts[i];
-
     for (let j = 0; j < group.contacts.length; j++) {
       group.contacts[j].color = contactColors[colorizeIndex % contactColors.length];
       colorizeIndex++;
@@ -131,20 +126,20 @@ function closeNewContact() {
 async function createNewContact(name, email, phone) {
   let newContact = { name, email, phone };
   let response = await postToFirebase(newContact);
-  if (response) {
-    let newContactId = response.id;
-    await loadContactsFromFirebase();
-    getGroupedContacts();
-    document.getElementById("contactForm").reset();
-    closeNewContact();
-    setTimeout(() => {
-      highlightContact(newContactId);
-      showContactInfo(newContactId);
-      scrollToContact(newContactId);
-    }, 100);
-  } else {
-    console.error("Fehler beim Hinzufügen des Kontakts");
-  }
+  if (!response) return console.error("Fehler beim Hinzufügen des Kontakts");
+  await processNewContact(response.id);
+}
+
+async function processNewContact(contactId) {
+  await loadContactsFromFirebase();
+  getGroupedContacts();
+  document.getElementById("contactForm").reset();
+  closeNewContact();
+  setTimeout(() => {
+    highlightContact(contactId);
+    showContactInfo(contactId);
+    scrollToContact(contactId);
+  }, 100);
   showSuccessMessage();
 }
 
@@ -318,14 +313,16 @@ function closeEditFloater() {
   }, 100);
 }
 
-// ist noch zu überarbeiten:
-
 function showSuccessMessage() {
   let successFloaterHTML = generateSuccessFloaterHTML();
   let successMessageContainer = document.createElement("div");
   successMessageContainer.id = "successMessageContainer";
-  document.body.appendChild(successMessageContainer);
+  document.getElementById("cnt-main-div").appendChild(successMessageContainer);
   successMessageContainer.innerHTML = successFloaterHTML;
+  animateSuccessMessage(successMessageContainer);
+}
+
+function animateSuccessMessage(successMessageContainer) {
   let successFloater = document.getElementById("successMessage");
   successFloater.classList.remove("cnt-hide");
   successFloater.classList.add("cnt-show");
@@ -333,8 +330,8 @@ function showSuccessMessage() {
     successFloater.classList.remove("cnt-show");
     successFloater.classList.add("cnt-hide");
     setTimeout(() => {
-      document.body.removeChild(successMessageContainer);
-    }, 500); 
+    successMessageContainer.parentNode.removeChild(successMessageContainer);
+    }, 500);
   }, 3000);
 }
 
@@ -357,7 +354,6 @@ async function addCurrentUserToContacts(user) {
     email: user.email,
     phone: user.phone || "",
   };
-
   let response = await postToFirebase(newContact);
   if (response) {
     contactsArray.push({ id: response.id, ...newContact });

@@ -250,9 +250,9 @@
 
 .cnt-success-msg {
   position: absolute;
-  bottom: 20px;
-  left: 93vh;
-  transform: translateX(150%);
+  bottom: 32px;
+  margin-left: 40px;
+  transform: none;
   background-color: #2a3647;
   color: white;
   width: 326px;
@@ -282,14 +282,14 @@
   }
 
   to {
-    transform: translateX(-50%);
+    transform: translateX(0%);
     opacity: 1;
   }
 }
 
 @keyframes cntSlideOut {
   from {
-    transform: translateX(-50%);
+    transform: translateX(0%);
     opacity: 1;
   }
 
