@@ -81,10 +81,23 @@ function selectCategory(category) {
   closeDropdownMenuCategory();
 }
 
+let subtaskNotes = [];
+console.log(subtaskNotes);
+
+function renderSubtask() {
+  let subtaskRef = document.getElementById('addedSubtaks');
+  subtaskRef.innerHTML = '';
+
+  for (let i = 0; i < subtaskNotes.length; i++) {
+    subtaskRef.innerHTML += subtaskTemplate();
+  }
+}
+
 function addSubtaksFromInput() {
-  const inputValue = document.getElementById('addTaskCategory').value;
-  document.getElementById('addedSubtaks').innerHTML += subtaskTemplate(inputValue);
-  clearInput();
+  let subtaskInputRef = document.getElementById('addTaskCategory');
+  let subtaskNote = subtaskInputRef.value;
+  subtaskNotes.push(subtaskNote);
+  renderSubtask();
 }
 
 function removeSubtask(subtask) {
