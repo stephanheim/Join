@@ -30,8 +30,14 @@ function closeDropdownMenuAssigned() {
 
 function openDropdownMenuCategory() {
   const dropDownMenu = document.getElementById('dropDownMenuCategory');
+  const selectedCategory = document.getElementById('selectedCategory');
+  let originalCategoryText = 'Select task category';
+  const isCategorySelected = false;
   if (!dropDownMenu.innerHTML.trim()) {
     dropDownMenu.innerHTML = categoryTemplate();
+  }
+  if (dropDownMenu.classList.contains('d-none') && !isCategorySelected) {
+    selectedCategory.innerText = originalCategoryText;
   }
   dropDownMenu.classList.toggle('d-none');
   dropDownMenu.classList.toggle('drop-down-show');
@@ -83,4 +89,18 @@ function addSubtaksFromInput() {
 
 function removeSubtask(subtask) {
   subtask.closest('.add-subtask').remove();
+}
+
+function formatDate(input) {
+  let value = input.value.replace(/\D/g, '');
+  let formattedValue = '';
+  if (value.length > 4) {
+    formattedValue = value.substring(0, 2) + '/' + value.substring(2, 4) + '/' + value.substring(4, 8);
+  } else if (value.length > 2) {
+    formattedValue = value.substring(0, 2) + '/' + value.substring(2);
+  } else {
+    formattedValue = value;
+  }
+  input.value = formattedValue;
+  return;
 }
