@@ -89,14 +89,21 @@ function renderSubtask() {
   for (let i = 0; i < subtaskNotes.length; i++) {
     subtaskRef.innerHTML += subtaskTemplate(i);
   }
-  clearInput();
 }
 
 function addSubtaksFromInput() {
   let subtaskInputRef = document.getElementById('addTaskCategory');
   let subtaskNote = subtaskInputRef.value;
-  subtaskNotes.push(subtaskNote);
-  renderSubtask();
+  if (subtaskNote.trim() !== '') {
+    subtaskNotes.push(subtaskNote);
+    renderSubtask();
+  }
+  clearInput();
+}
+
+function editSubtask(i) {
+  let subtaskRef = document.getElementById(`subtask-${i}`);
+  subtaskRef.innerHTML = editSubtaskTemplate(i, subtaskNotes[i]);
 }
 
 function deleteSubtask(i) {

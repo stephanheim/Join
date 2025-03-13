@@ -295,18 +295,34 @@ function categoryTemplate() {
 
 function subtaskTemplate(i) {
   return `
-    <div class="add-subtask">
+    <div class="add-subtask" id="subtask-${i}">
       <ul>
         <li>${subtaskNotes[i]}</li>
       </ul>
       <div class="input-other-icons">
-          <div class="subtask-icons">
-            <img src="../assets/icons/edit.svg" alt="" />
+          <div class="subtask-icons" onclick="editSubtask(${i})">
+            <img src="../assets/icons/edit.svg" alt="edit-icon" />
           </div>
           <div class="hyphen-subtask"></div>
           <div class="subtask-icons" onclick="deleteSubtask(${i})">
-            <img src="../assets/icons/delete.svg" alt="" />
+            <img src="../assets/icons/delete.svg" alt="delete-icon" />
           </div>
         </div>
+    </div>`;
+}
+
+function editSubtaskTemplate(i, value) {
+  return `
+    <div class="input-container-edit">
+      <input type="text" name="category" id="editSubtask-${i}" value="${value}"/>
+      <div class="input-other-icons">
+        <div class="container-icons" onclick="clearInput()">
+          <img src="../assets/icons/delete.svg" alt="delete-icon" />
+        </div>
+        <div class="hyphen"></div>
+        <div class="container-icons" onclick="addSubtaksFromInput()">
+          <img src="../assets/icons/check-blue.svg" alt="check-icon" />
+        </div>
+      </div>
     </div>`;
 }
