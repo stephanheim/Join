@@ -78,23 +78,18 @@
 
 
           <div class="add-task-single">
-
             <div class="title-and-star" for="">
               <h2>Assigned to</h2>
             </div>
-
             <div class="assigned-input-outside">
-              <div class="input-container-assigned">
-                <input id="addTaskAssigned" type="text" name="contacts" placeholder="Select contacts to assign"
-                  onclick="openDropdownMenuAssigned()" />
+              <div class="input-container-assigned" onclick="openDropdownMenuAssigned()">
+                <input id="addTaskAssigned" type="text" name="contacts" placeholder="Select contacts to assign" />
                 <div class="container-arrow-img-dropdown">
-                  <img src="../assets/icons/drop_up_arrwow.svg" />
+                  <img id="dropdownArrow" src="../assets/icons/drop_up_arrwow.svg" />
                 </div>
               </div>
-              <div id="dropDownMenuAssigned" class="main-drop-down d-none"></div>
+              <div id="dropDownMenuAssigned" class="main-drop-down drop-down-hide d-none"></div>
             </div>
-
-
           </div>
 
 
@@ -125,19 +120,18 @@
             <label for="addTaskSubtasks">
               <h2>Subtasks</h2>
             </label>
-            <div class="input-container-assigned">
-              <input type="text" name="category" id="addTaskSubtasks" placeholder="Add new subtask"
-                oninput="toggleIcons()" />
+            <div class="input-container-subtask" onclick="openSubtaskInput()">
+              <input type="text" name="category" id="addTaskSubtasks" placeholder="Add new subtask" />
               <div class="container-arrow-img-dropdown" id="plusIcon">
                 <img src="../assets/icons/add_plus.svg" />
               </div>
               <div class="input-other-icons d-none" id="otherIcons">
-                <div class="container-icons" onclick="clearInput()">
-                  <img src="../assets/icons/close.svg" alt="" />
+                <div class="container-icons" onclick="closeSubtaskInput()">
+                  <img src="../assets/icons/close.svg" alt="close" />
                 </div>
                 <div class="hyphen"></div>
                 <div class="container-icons" onclick="addSubtaksFromInput()">
-                  <img src="../assets/icons/check-blue.svg" alt="" />
+                  <img src="../assets/icons/check-blue.svg" alt="check" />
                 </div>
               </div>
             </div>
@@ -165,7 +159,7 @@
     </div>
   </main>
   <script src="../js/script.js"></script>
-  <script src="../js/template.js"></script>
+  <script src="../js/components/add_task_temp.js"></script>
   <script src="../js/pages/add_task.js"></script>
 </body>
 

@@ -20,27 +20,45 @@ function openDropdownMenuAssigned() {
   const dropDownMenu = document.getElementById('dropDownMenuAssigned');
   const inputField = document.getElementById('addTaskAssigned');
   const isOpen = dropDownMenu.classList.contains('drop-down-show');
+  const isClose = dropDownMenu.classList.contains('drop-down-hide');
+  renderDropdownContent(dropDownMenu);
+  if (isOpen) {
+    hideDropdown(dropDownMenu);
+  } else {
+    showDropdown(dropDownMenu);
+  }
+  toggleArrowRotatin(isClose);
+  updatePlaceholder(inputField, isOpen);
+}
+
+
+function renderDropdownContent(dropDownMenu) {
   if (!dropDownMenu.innerHTML.trim()) {
     dropDownMenu.innerHTML = assignedToTemplate();
   }
-  if (isOpen) {
-    dropDownMenu.classList.remove('drop-down-show');
-    dropDownMenu.classList.add('drop-down-hide');
-    setTimeout(() => {
-      dropDownMenu.classList.add('d-none');
-    }, 300);
-    if (inputField) {
-      inputField.placeholder = 'Select contacts to assign';
-    }
-  } else {
-    dropDownMenu.classList.remove('d-none', 'drop-down-hide');
-    dropDownMenu.classList.add('drop-down-show');
-    if (inputField) {
-      inputField.placeholder = '';
-    }
-  }
 }
 
+
+function showDropdown(dropDownMenu) {
+  dropDownMenu.classList.remove('d-none', 'drop-down-hide');
+  dropDownMenu.classList.add('drop-down-show');
+}
+
+
+function hideDropdown(dropDownMenu) {
+  dropDownMenu.classList.remove('drop-down-show');
+  dropDownMenu.classList.add('drop-down-hide');
+  setTimeout(() => {
+    dropDownMenu.classList.add('d-none');
+  }, 300);
+}
+
+
+function updatePlaceholder(inputField, isClosing) {
+  if (inputField) {
+    inputField.placeholder = isClosing ? 'Select contacts to assign' : '';
+  }
+}
 
 
 function closeDropdownMenuAssigned() {
@@ -48,6 +66,17 @@ function closeDropdownMenuAssigned() {
   dropDownMenu.classList.remove('d-none');
 }
 
+
+function toggleArrowRotatin(isClose) {
+  const arrowImg = document.getElementById('dropdownArrow');
+  if (arrowImg) {
+    if (isClose) {
+      arrowImg.classList.add('rotate-arrow');
+    } else {
+      arrowImg.classList.remove('rotate-arrow');
+    }
+  }
+}
 
 function openDropdownMenuCategory() {
   const dropDownMenu = document.getElementById('dropDownMenuCategory');
@@ -77,28 +106,6 @@ function isCategorySelected() {
 }
 
 
-function toggleIcons() {
-  const inputField = document.getElementById('addTaskSubtasks');
-  const plusIcon = document.getElementById('plusIcon');
-  const otherIcons = document.getElementById('otherIcons');
-  if (inputField.value.trim() !== '') {
-    plusIcon.classList.add('d-none');
-    otherIcons.classList.remove('d-none');
-  } else {
-    plusIcon.classList.remove('d-none');
-    otherIcons.classList.add('d-none');
-  }
-}
-
-function clearInput() {
-  const inputField = document.getElementById('addTaskSubtasks');
-  const plusIcon = document.getElementById('plusIcon');
-  const otherIcons = document.getElementById('otherIcons');
-  inputField.value = '';
-  otherIcons.classList.add('d-none');
-  plusIcon.classList.remove('d-none');
-}
-
 function selectCategory(category) {
   let selectedCategory = document.getElementById('selectedCategory');
   if (selectedCategory) {
@@ -106,6 +113,26 @@ function selectCategory(category) {
     return category;
   }
   closeDropdownMenuCategory();
+}
+
+
+function openSubtaskInput() {
+  const inputField = document.getElementById('addTaskSubtasks');
+  const plusIcon = document.getElementById('plusIcon');
+  const otherIcons = document.getElementById('otherIcons');
+  plusIcon.classList.add('d-none');
+  otherIcons.classList.remove('d-none');
+  inputField.placeholder = "";
+}
+
+
+function closeSubtaskInput() {
+  const inputField = document.getElementById('addTaskSubtasks');
+  const plusIcon = document.getElementById('plusIcon');
+  const otherIcons = document.getElementById('otherIcons');
+  plusIcon.classList.remove('d-none');
+  otherIcons.classList.add('d-none');
+  inputField.placeholder = "Add new subtask";
 }
 
 function renderSubtask() {
@@ -128,7 +155,15 @@ function addSubtaksFromInput() {
 
 function editSubtask(i) {
   let subtaskRef = document.getElementById(`subtask-${i}`);
-  subtaskRef.innerHTML = editSubtaskTemplate(i, subtaskNotes[i]);
+  if (subtaskRef) {
+    subtaskRef.outerHTML = editSubtaskTemplate(i, subtaskNotes[i]);
+  }
+}
+
+function saveEditedSubtask(i) {
+  let inputRef = document.getElementById(`editSubtask-${i}`);
+  subtaskNotes[i] = inputRef.value;
+  renderSubtask();
 }
 
 function deleteSubtask(i) {

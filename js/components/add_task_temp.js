@@ -35,7 +35,6 @@ function addTaskTemplate() {
                 <input class="input-date" type="date" />
               </div>
             </div>
-
         </div>
         <div class="devider-ver"></div>
         <div>
@@ -192,84 +191,6 @@ function assignedToTemplate() {
             <input type="checkbox" />
           </div>
         </label>
-        <label class="inner-dropmenu">
-          <div class="contacts-line">
-            <div style="background-color: rgba(110, 82, 255, 1)" class="circle-color">
-              <span>BZ</span>
-            </div>
-            <div class="contact">
-              <span>Benedikt Ziegler</span>
-            </div>
-          </div>
-          <div class="checkbox">
-            <input type="checkbox" />
-          </div>
-        </label>
-        <label class="inner-dropmenu">
-          <div class="contacts-line">
-            <div style="background-color: rgba(252, 113, 255, 1)" class="circle-color">
-              <span>DE</span>
-            </div>
-            <div class="contact">
-              <span>David Eisenberg</span>
-            </div>
-          </div>
-          <div class="checkbox">
-            <input type="checkbox" />
-          </div>
-        </label>
-        <label class="inner-dropmenu">
-          <div class="contacts-line">
-            <div style="background-color: rgb(0, 255, 242)" class="circle-color">
-              <span>EF</span>
-            </div>
-            <div class="contact">
-              <span>Eva Fischer</span>
-            </div>
-          </div>
-          <div class="checkbox">
-            <input type="checkbox" />
-          </div>
-        </label>
-        <label class="inner-dropmenu">
-          <div class="contacts-line">
-            <div style="background-color: rgb(229, 255, 0)" class="circle-color">
-              <span>EM</span>
-            </div>
-            <div class="contact">
-              <span>Emmanuel Mauer</span>
-            </div>
-          </div>
-          <div class="checkbox">
-            <input type="checkbox" />
-          </div>
-        </label>
-        <label class="inner-dropmenu">
-          <div class="contacts-line">
-            <div style="background-color: rgb(248, 70, 70)" class="circle-color">
-              <span>MB</span>
-            </div>
-            <div class="contact">
-              <span>Marcel Bauer</span>
-            </div>
-          </div>
-          <div class="checkbox">
-            <input type="checkbox" />
-          </div>
-        </label>
-        <label class="inner-dropmenu">
-          <div class="contacts-line">
-            <div style="background-color: rgb(51, 245, 93)" class="circle-color">
-              <span>TW</span>
-            </div>
-            <div class="contact">
-              <span>Tatjana Wolf</span>
-            </div>
-          </div>
-          <div class="checkbox">
-            <input type="checkbox" />
-          </div>
-        </label>
       </div>`;
 }
 
@@ -304,16 +225,16 @@ function subtaskTemplate(i) {
     </div>`;
 }
 
-function editSubtaskTemplate(i, value) {
+function editSubtaskTemplate(i, subtaskNotes) {
   return `
     <div class="input-container-edit">
-      <input type="text" name="category" id="editSubtask-${i}" value="${value}"/>
+      <input type="text" name="category" id="editSubtask-${i}" value="${subtaskNotes}"/>
       <div class="input-other-icons">
-        <div class="container-icons" onclick="clearInput()">
+        <div class="container-icons" onclick="deleteSubtask()">
           <img src="../assets/icons/delete.svg" alt="delete-icon" />
         </div>
         <div class="hyphen"></div>
-        <div class="container-icons" onclick="addSubtaksFromInput()">
+        <div class="container-icons" onclick="saveEditedSubtask(${i})">
           <img src="../assets/icons/check-blue.svg" alt="check-icon" />
         </div>
       </div>
