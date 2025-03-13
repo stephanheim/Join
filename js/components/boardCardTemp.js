@@ -154,10 +154,9 @@ function editBoardCardTemplate() {
             </div>
             <!----------Drop-Down Inputfeld---------->
             <div id="dropDownMenuAssigned" class="main-drop-down d-none"></div>
-            <!--Standard Inputfeld Assigned to-->
             <div id="standardInput" class="input-container-assigned">
               <input type="text" placeholder="Select contacts to assign" />
-              <div class="container-arrow-img-dropdown" onclick="openDropdownMenuAssigned()">
+              <div class="container-arrow-img-dropdown">
                 <img src="../assets/icons/drop-down-arrow.svg" />
               </div>
             </div>

@@ -1,6 +1,6 @@
 let subtaskNotes = [];
 
-function initAddTask() {}
+function initAddTask() { }
 
 function buttonsColorSwitch(btnId) {
   let buttons = document.getElementsByClassName('input-section')[0].getElementsByTagName('button');
@@ -18,12 +18,30 @@ function buttonsColorSwitch(btnId) {
 
 function openDropdownMenuAssigned() {
   const dropDownMenu = document.getElementById('dropDownMenuAssigned');
+  const inputField = document.getElementById('addTaskAssigned');
+  const isOpen = dropDownMenu.classList.contains('drop-down-show');
   if (!dropDownMenu.innerHTML.trim()) {
     dropDownMenu.innerHTML = assignedToTemplate();
   }
-  dropDownMenu.classList.toggle('d-none');
-  dropDownMenu.classList.toggle('drop-down-show');
+  if (isOpen) {
+    dropDownMenu.classList.remove('drop-down-show');
+    dropDownMenu.classList.add('drop-down-hide');
+    setTimeout(() => {
+      dropDownMenu.classList.add('d-none');
+    }, 300);
+    if (inputField) {
+      inputField.placeholder = 'Select contacts to assign';
+    }
+  } else {
+    dropDownMenu.classList.remove('d-none', 'drop-down-hide');
+    dropDownMenu.classList.add('drop-down-show');
+    if (inputField) {
+      inputField.placeholder = '';
+    }
+  }
 }
+
+
 
 function closeDropdownMenuAssigned() {
   const dropDownMenu = document.getElementById('dropDownMenuAssigned');
@@ -33,23 +51,31 @@ function closeDropdownMenuAssigned() {
 
 function openDropdownMenuCategory() {
   const dropDownMenu = document.getElementById('dropDownMenuCategory');
-  const selectedCategory = document.getElementById('selectedCategory');
-  let originalCategoryText = 'Select task category';
-  const isCategorySelected = false;
   if (!dropDownMenu.innerHTML.trim()) {
     dropDownMenu.innerHTML = categoryTemplate();
   }
-  if (dropDownMenu.classList.contains('d-none') && !isCategorySelected) {
-    selectedCategory.innerText = originalCategoryText;
-  }
+  isCategorySelected();
   dropDownMenu.classList.toggle('d-none');
   dropDownMenu.classList.toggle('drop-down-show');
 }
+
 
 function closeDropdownMenuCategory() {
   const dropDownMenu = document.getElementById('dropDownMenuCategory');
   dropDownMenu.classList.add('d-none');
 }
+
+
+function isCategorySelected() {
+  const dropDownMenu = document.getElementById('dropDownMenuCategory');
+  const selectedCategory = document.getElementById('selectedCategory');
+  let originalCategoryText = 'Select task category';
+  const isCategorySelected = false;
+  if (dropDownMenu.classList.contains('d-none') && !isCategorySelected) {
+    selectedCategory.innerText = originalCategoryText;
+  }
+}
+
 
 function toggleIcons() {
   const inputField = document.getElementById('addTaskSubtasks');
