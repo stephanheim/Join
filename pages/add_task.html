@@ -1,154 +1,172 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add-Task</title>
-    <link rel="shortcut icon" href="../assets/img/join.svg" type="image/x-icon" />
-    <!-- <link rel="stylesheet" href="../style/global.css" />
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add-Task</title>
+  <link rel="shortcut icon" href="../assets/img/join.svg" type="image/x-icon" />
+  <link rel="stylesheet" href="../style/global.css" />
   <link rel="stylesheet" href="../style/typography.css" />
   <link rel="stylesheet" href="../style/pages/add_task.css" />
   <link rel="stylesheet" href="../style/variables.css" />
-  <link rel="stylesheet" href="../style/components/assigned_to_add_task.css" /> -->
-  </head>
+  <link rel="stylesheet" href="../style/components/assigned_to_add_task.css" />
+</head>
 
-  <body>
-    <main class="bg-white content">
-      <div class="headline-add-task">
-        <h1 class="h1-add-task">Add Task</h1>
-      </div>
-      <form class="input-section">
-        <div class="section-left">
-          <div class="add-task-single">
-            <label class="title-and-star" for="addTaskTitle">
-              <h2>Title</h2>
-              <span class="span-star">*</span>
-            </label>
-            <input id="addTaskTitle" class="input_at" type="text" name="title" placeholder="Enter a title" />
-          </div>
+<body>
+  <main class="bg-white content">
+    <div class="headline-add-task">
+      <h1 class="h1-add-task">Add Task</h1>
+    </div>
 
-          <div class="add-task-single">
-            <label for="addTaskDescription">
-              <h2>Description</h2>
-            </label>
-            <textarea id="addTaskDescription" class="textarea-add-task" name="description" placeholder="Enter a Description"></textarea>
-          </div>
 
-          <div class="add-task-single">
-            <label class="title-and-star" for="addTaskDate">
-              <h2>Due date</h2>
-              <span class="span-star">*</span>
-            </label>
-            <div class="input-date-outside">
-              <input oninput="formatDate(this)" id="addTaskDate" class="input-date" name="date" type="text" placeholder="dd/mm/yyyy" /><img
-                src="../assets/icons/date_event.svg"
-              />
-            </div>
+    <form class="input-section">
+      <div class="section-left">
+        <div class="add-task-single">
+          <label class="title-and-star" for="addTaskTitle">
+            <h2>Title</h2>
+            <span class="span-star">*</span>
+          </label>
+          <input id="addTaskTitle" class="input_at" type="text" name="title" placeholder="Enter a title" />
+        </div>
+
+
+        <div class="add-task-single">
+          <label for="addTaskDescription">
+            <h2>Description</h2>
+          </label>
+          <textarea id="addTaskDescription" class="textarea-add-task" name="description"
+            placeholder="Enter a Description"></textarea>
+        </div>
+
+
+        <div class="add-task-single">
+          <label class="title-and-star" for="addTaskDate">
+            <h2>Due date</h2>
+            <span class="span-star">*</span>
+          </label>
+          <div class="input-date-outside">
+            <input oninput="formatDate(this)" id="addTaskDate" class="input-date" name="date" type="text"
+              placeholder="dd/mm/yyyy" /><img src="../assets/icons/date_event.svg" />
           </div>
         </div>
-        <div class="devider-ver"></div>
-        <div>
-          <div class="section-right">
-            <div class="add-task-single">
-              <label>
-                <h2>Prio</h2>
-              </label>
-              <div class="button-section selected">
-                <button id="btn1" color="rgba(255, 61, 0, 1);" class="button-prio" onclick="buttonsColorSwitch('btn1')">
-                  Urgent <img src="../assets/icons/urgent-red.svg" />
-                </button>
-                <button id="btn2" color="rgba(255, 168, 0, 1)" class="button-prio isSelected" onclick="buttonsColorSwitch('btn2')">
-                  Medium <img src="../assets/icons/medium-orange.svg" />
-                </button>
-                <button id="btn3" color="rgba(122, 226, 41, 1)" class="button-prio" onclick="buttonsColorSwitch('btn3')">
-                  Low <img src="../assets/icons/low-green.svg" />
-                </button>
-              </div>
+      </div>
+
+
+      <div class="devider-ver"></div>
+
+
+      <div>
+        <div class="section-right">
+          <div class="add-task-single">
+            <label>
+              <h2>Prio</h2>
+            </label>
+            <div class="button-section selected">
+              <button id="btn1" color="rgba(255, 61, 0, 1);" class="button-prio" onclick="buttonsColorSwitch('btn1')">
+                Urgent <img src="../assets/icons/urgent-red.svg" />
+              </button>
+              <button id="btn2" color="rgba(255, 168, 0, 1)" class="button-prio isSelected"
+                onclick="buttonsColorSwitch('btn2')">
+                Medium <img src="../assets/icons/medium-orange.svg" />
+              </button>
+              <button id="btn3" color="rgba(122, 226, 41, 1)" class="button-prio" onclick="buttonsColorSwitch('btn3')">
+                Low <img src="../assets/icons/low-green.svg" />
+              </button>
             </div>
-            <div class="add-task-single">
-              <label class="title-and-star" for="addTaskAssigned">
-                <h2>Assigned to</h2>
-              </label>
-              <!----------Drop-Down Inputfeld---------->
-              <div id="dropDownMenuAssigned" class="main-drop-down d-none"></div>
-              <!--Standard Inputfeld Assigned to-->
-              <div id="standardInput" class="input-container-assigned" onclick="openDropdownMenuAssigned()">
-                <input type="text" name="contacts" placeholder="Select contacts to assign" />
+          </div>
+
+
+          <div class="add-task-single">
+
+            <label class="title-and-star" for="addTaskAssigned">
+              <h2>Assigned to</h2>
+            </label>
+
+            <div class="assigned-input-outside">
+              <div class="input-container-assigned">
+                <input id="addTaskAssigned" type="text" name="contacts" placeholder="Select contacts to assign"
+                  onclick="openDropdownMenuAssigned()" />
                 <div class="container-arrow-img-dropdown">
                   <img src="../assets/icons/drop-down-arrow.svg" />
                 </div>
               </div>
+              <div id="dropDownMenuAssigned" class="main-drop-down d-none"></div>
             </div>
 
-            <div class="add-task-single">
-              <div class="title-and-star">
-                <h2>Category</h2>
-                <span class="span-star">*</span>
-              </div>
-              <div>
-                <div id="" class="input-container-category">
-                  <div class="drop-down-placeholder" onclick="openDropdownMenuCategory()">
-                    <div class="textfield">
-                      <h2 id="selectedCategory">Select task category</h2>
-                    </div>
-                    <div class="container-arrow-img-dropdown">
-                      <img src="../assets/icons/drop-down-arrow.svg" />
-                    </div>
-                  </div>
-                  <div id="dropDownMenuCategory" class="drop-down-field-category d-none" onclick="closeDropdownMenuCategory()"></div>
-                </div>
-              </div>
+
+          </div>
+
+
+          <div class="add-task-single">
+
+            <div class="title-and-star">
+              <h2>Category</h2>
+              <span class="span-star">*</span>
             </div>
 
-            <div class="add-task-single">
-              <label for="addTaskCategory">
-                <h2>Subtasks</h2>
-              </label>
-              <div class="input-container-assigned">
-                <input type="text" name="category" id="addTaskCategory" placeholder="Add new subtask" oninput="toggleIcons()" />
-                <div class="container-arrow-img-dropdown" id="plusIcon">
-                  <img src="../assets/icons/add_plus.svg" />
+            <div id="addTaskCategory" class="input-container-category">
+              <div class="drop-down-placeholder" onclick="openDropdownMenuCategory()">
+                <div class="textfield">
+                  <h2 id="selectedCategory">Select task category</h2>
                 </div>
-                <div class="input-other-icons d-none" id="otherIcons">
-                  <div class="container-icons" onclick="clearInput()">
-                    <img src="../assets/icons/close.svg" alt="" />
-                  </div>
-                  <div class="hyphen"></div>
-                  <div class="container-icons" onclick="addSubtaksFromInput()">
-                    <img src="../assets/icons/check-blue.svg" alt="" />
-                  </div>
+                <div class="container-arrow-img-dropdown">
+                  <img src="../assets/icons/drop-down-arrow.svg" />
                 </div>
               </div>
-              <div id="addedSubtaks"></div>
+              <div id="dropDownMenuCategory" class="drop-down-field-category d-none"
+                onclick="closeDropdownMenuCategory()"></div>
             </div>
+
+          </div>
+
+
+          <div class="add-task-single">
+            <label for="addTaskSubtasks">
+              <h2>Subtasks</h2>
+            </label>
+            <div class="input-container-assigned">
+              <input type="text" name="category" id="addTaskSubtasks" placeholder="Add new subtask"
+                oninput="toggleIcons()" />
+              <div class="container-arrow-img-dropdown" id="plusIcon">
+                <img src="../assets/icons/add_plus.svg" />
+              </div>
+              <div class="input-other-icons d-none" id="otherIcons">
+                <div class="container-icons" onclick="clearInput()">
+                  <img src="../assets/icons/close.svg" alt="" />
+                </div>
+                <div class="hyphen"></div>
+                <div class="container-icons" onclick="addSubtaksFromInput()">
+                  <img src="../assets/icons/check-blue.svg" alt="" />
+                </div>
+              </div>
+            </div>
+            <div id="addedSubtaks"></div>
           </div>
         </div>
-      </form>
-      <div class="required-section">
-        <div class="required-field">
-          <span class="span-star">*</span>
-          <p>This field is required</p>
-        </div>
-        <div class="bt-section">
-          <button class="bt-clear">
-            Clear
-            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M12.2496 11.9998L17.4926 17.2428M7.00659 17.2428L12.2496 11.9998L7.00659 17.2428ZM17.4926 6.75684L12.2486 11.9998L17.4926
-            6.75684ZM12.2486 11.9998L7.00659 6.75684L12.2486 11.9998Z"
-                stroke="#2A3647"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </button>
-          <button class="bt-create-task">Create Task<img src="../assets/icons/check.svg" /></button>
-        </div>
       </div>
-    </main>
-    <script src="../js/script.js"></script>
-    <script src="../js/template.js"></script>
-    <script src="../js/pages/add_task.js"></script>
-  </body>
+    </form>
+    <div class="required-section">
+      <div class="required-field">
+        <span class="span-star">*</span>
+        <p>This field is required</p>
+      </div>
+      <div class="bt-section">
+        <button class="bt-clear">
+          Clear
+          <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.2496 11.9998L17.4926 17.2428M7.00659 17.2428L12.2496 11.9998L7.00659 17.2428ZM17.4926 6.75684L12.2486 11.9998L17.4926
+            6.75684ZM12.2486 11.9998L7.00659 6.75684L12.2486 11.9998Z" stroke="#2A3647" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+        <button class="bt-create-task">Create Task<img src="../assets/icons/check.svg" /></button>
+      </div>
+    </div>
+  </main>
+  <script src="../js/script.js"></script>
+  <script src="../js/template.js"></script>
+  <script src="../js/pages/add_task.js"></script>
+</body>
+
 </html>

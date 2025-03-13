@@ -70,18 +70,18 @@
 
 @keyframes expand {
   from {
-    height: 0;
+    max-height: 0;
   }
   to {
-    height: 110px;
+    max-height: 338px;
   }
 }
 
 @keyframes collapse {
   from {
-    height: 110px;
+    max-height: 338px;
   }
   to {
-    height: 0;
+    max-height: 0;
   }
 }
