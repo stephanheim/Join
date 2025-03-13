@@ -152,13 +152,6 @@ function addTaskTemplate() {
 
 function assignedToTemplate() {
   return `    
-      <div class="input-container-assigned-dropdown">
-        <input id="addTaskAssigned" type="text" placeholder="Select contacts to assign" />
-        <div onclick="closeDropdownMenuAssigned()" class="container-arrow-img-dropdown">
-          <img src="../assets/icons/arrow_drop_up.svg" />
-        </div>
-      </div>
-
       <div class="drop-down-container">
         <label class="inner-dropmenu">
           <div class="contacts-line">

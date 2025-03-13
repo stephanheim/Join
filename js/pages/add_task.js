@@ -15,20 +15,21 @@ function buttonsColorSwitch(btnId) {
   }
 }
 
+
 function openDropdownMenuAssigned() {
-  const inputArrow = document.getElementById('standardInput');
   const dropDownMenu = document.getElementById('dropDownMenuAssigned');
-  inputArrow.classList.add('d-none');
-  dropDownMenu.innerHTML = assignedToTemplate();
-  dropDownMenu.classList.remove('d-none');
+  if (!dropDownMenu.innerHTML.trim()) {
+    dropDownMenu.innerHTML = assignedToTemplate();
+  }
+  dropDownMenu.classList.toggle('d-none');
+  dropDownMenu.classList.toggle('drop-down-show');
 }
 
 function closeDropdownMenuAssigned() {
-  const inputArrow = document.getElementById('standardInput');
   const dropDownMenu = document.getElementById('dropDownMenuAssigned');
-  inputArrow.classList.remove('d-none');
-  dropDownMenu.classList.add('d-none');
+  dropDownMenu.classList.remove('d-none');
 }
+
 
 function openDropdownMenuCategory() {
   const dropDownMenu = document.getElementById('dropDownMenuCategory');
@@ -43,17 +44,15 @@ function openDropdownMenuCategory() {
   }
   dropDownMenu.classList.toggle('d-none');
   dropDownMenu.classList.toggle('drop-down-show');
-  dropDownMenu.classList.add('box-shadow');
 }
 
 function closeDropdownMenuCategory() {
   const dropDownMenu = document.getElementById('dropDownMenuCategory');
   dropDownMenu.classList.add('d-none');
-  dropDownMenu.classList.remove('box-shadow');
 }
 
 function toggleIcons() {
-  const inputField = document.getElementById('addTaskCategory');
+  const inputField = document.getElementById('addTaskSubtasks');
   const plusIcon = document.getElementById('plusIcon');
   const otherIcons = document.getElementById('otherIcons');
   if (inputField.value.trim() !== '') {
@@ -66,7 +65,7 @@ function toggleIcons() {
 }
 
 function clearInput() {
-  const inputField = document.getElementById('addTaskCategory');
+  const inputField = document.getElementById('addTaskSubtasks');
   const plusIcon = document.getElementById('plusIcon');
   const otherIcons = document.getElementById('otherIcons');
   inputField.value = '';
@@ -92,7 +91,7 @@ function renderSubtask() {
 }
 
 function addSubtaksFromInput() {
-  let subtaskInputRef = document.getElementById('addTaskCategory');
+  let subtaskInputRef = document.getElementById('addTaskSubtasks');
   let subtaskNote = subtaskInputRef.value;
   if (subtaskNote.trim() !== '') {
     subtaskNotes.push(subtaskNote);
