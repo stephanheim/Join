@@ -1,6 +1,6 @@
 let subtaskNotes = [];
 
-function initAddTask() { }
+function initAddTask() {}
 
 function buttonsColorSwitch(btnId) {
   let buttons = document.getElementsByClassName('input-section')[0].getElementsByTagName('button');
@@ -14,7 +14,6 @@ function buttonsColorSwitch(btnId) {
     activeButton.classList.add('isSelected');
   }
 }
-
 
 function openDropdownMenuAssigned() {
   const dropDownMenu = document.getElementById('dropDownMenuAssigned');
@@ -31,19 +30,16 @@ function openDropdownMenuAssigned() {
   updatePlaceholder(inputField, isOpen);
 }
 
-
 function renderDropdownContent(dropDownMenu) {
   if (!dropDownMenu.innerHTML.trim()) {
     dropDownMenu.innerHTML = assignedToTemplate();
   }
 }
 
-
 function showDropdown(dropDownMenu) {
   dropDownMenu.classList.remove('d-none', 'drop-down-hide');
   dropDownMenu.classList.add('drop-down-show');
 }
-
 
 function hideDropdown(dropDownMenu) {
   dropDownMenu.classList.remove('drop-down-show');
@@ -53,19 +49,16 @@ function hideDropdown(dropDownMenu) {
   }, 300);
 }
 
-
 function updatePlaceholder(inputField, isClosing) {
   if (inputField) {
     inputField.placeholder = isClosing ? 'Select contacts to assign' : '';
   }
 }
 
-
 function closeDropdownMenuAssigned() {
   const dropDownMenu = document.getElementById('dropDownMenuAssigned');
   dropDownMenu.classList.remove('d-none');
 }
-
 
 function toggleArrowRotatin(isClose) {
   const arrowImg = document.getElementById('dropdownArrow');
@@ -88,12 +81,10 @@ function openDropdownMenuCategory() {
   dropDownMenu.classList.toggle('drop-down-show');
 }
 
-
 function closeDropdownMenuCategory() {
   const dropDownMenu = document.getElementById('dropDownMenuCategory');
   dropDownMenu.classList.add('d-none');
 }
-
 
 function isCategorySelected() {
   const dropDownMenu = document.getElementById('dropDownMenuCategory');
@@ -105,7 +96,6 @@ function isCategorySelected() {
   }
 }
 
-
 function selectCategory(category) {
   let selectedCategory = document.getElementById('selectedCategory');
   if (selectedCategory) {
@@ -115,24 +105,24 @@ function selectCategory(category) {
   closeDropdownMenuCategory();
 }
 
-
 function openSubtaskInput() {
   const inputField = document.getElementById('addTaskSubtasks');
   const plusIcon = document.getElementById('plusIcon');
   const otherIcons = document.getElementById('otherIcons');
   plusIcon.classList.add('d-none');
   otherIcons.classList.remove('d-none');
-  inputField.placeholder = "";
+  inputField.placeholder = '';
 }
 
-
-function closeSubtaskInput() {
+function closeSubtaskInput(event) {
+  event.stopPropagation();
   const inputField = document.getElementById('addTaskSubtasks');
   const plusIcon = document.getElementById('plusIcon');
   const otherIcons = document.getElementById('otherIcons');
   plusIcon.classList.remove('d-none');
   otherIcons.classList.add('d-none');
-  inputField.placeholder = "Add new subtask";
+  inputField.placeholder = 'Add new subtask';
+  resetSubtaskInput();
 }
 
 function renderSubtask() {
@@ -143,14 +133,14 @@ function renderSubtask() {
   }
 }
 
-function addSubtaksFromInput() {
+function addSubtaksFromInput(event) {
   let subtaskInputRef = document.getElementById('addTaskSubtasks');
   let subtaskNote = subtaskInputRef.value;
   if (subtaskNote.trim() !== '') {
     subtaskNotes.push(subtaskNote);
     renderSubtask();
+    resetSubtaskInput(event);
   }
-  clearInput();
 }
 
 function editSubtask(i) {
@@ -164,6 +154,19 @@ function saveEditedSubtask(i) {
   let inputRef = document.getElementById(`editSubtask-${i}`);
   subtaskNotes[i] = inputRef.value;
   renderSubtask();
+}
+
+function resetSubtaskInput(event) {
+  event.stopPropagation();
+  const inputField = document.getElementById('addTaskSubtasks');
+  const plusIcon = document.getElementById('plusIcon');
+  const otherIcons = document.getElementById('otherIcons');
+  inputField.value = '';
+  inputField.placeholder = 'Add new subtask';
+  plusIcon.classList.remove('d-none');
+  if (otherIcons) {
+    otherIcons.classList.add('d-none');
+  }
 }
 
 function deleteSubtask(i) {
