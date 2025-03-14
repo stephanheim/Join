@@ -324,7 +324,7 @@
   align-items: center;
   justify-content: space-between;
   height: 32px;
-  padding: 4px 0 4px 36px;
+  padding: 4px 0 4px 16px;
 }
 
 .add-subtask:hover {

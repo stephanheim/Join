@@ -106,9 +106,11 @@ function selectCategory(category) {
 }
 
 function openSubtaskInput() {
-  const inputField = document.getElementById('addTaskSubtasks');
-  const plusIcon = document.getElementById('plusIcon');
-  const otherIcons = document.getElementById('otherIcons');
+  let inputField = document.getElementById('addTaskSubtasks');
+  let plusIcon = document.getElementById('plusIcon');
+  let otherIcons = document.getElementById('otherIcons');
+  let container = document.getElementById('inputContainer');
+  container.classList.add('active');
   plusIcon.classList.add('d-none');
   otherIcons.classList.remove('d-none');
   inputField.placeholder = '';
@@ -122,7 +124,7 @@ function closeSubtaskInput(event) {
   plusIcon.classList.remove('d-none');
   otherIcons.classList.add('d-none');
   inputField.placeholder = 'Add new subtask';
-  resetSubtaskInput();
+  resetSubtaskInput(event);
 }
 
 function renderSubtask() {
@@ -161,9 +163,11 @@ function resetSubtaskInput(event) {
   const inputField = document.getElementById('addTaskSubtasks');
   const plusIcon = document.getElementById('plusIcon');
   const otherIcons = document.getElementById('otherIcons');
+  let container = document.getElementById('inputContainer');
   inputField.value = '';
   inputField.placeholder = 'Add new subtask';
   plusIcon.classList.remove('d-none');
+  container.classList.remove('active');
   if (otherIcons) {
     otherIcons.classList.add('d-none');
   }
