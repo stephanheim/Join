@@ -1,4 +1,5 @@
 let contactsArray = [];
+let formattedContactsArray = [];
 
 const contactColors = ["#ff7a01", "#9327ff", "#6e52ff", "#fc71ff", "#ffbb2c", "#20d7c2", "#462f8a", "#ff4646"];
 
@@ -25,6 +26,7 @@ async function loadContactsFromFirebase() {
 function getGroupedContacts() {
   let groupedContacts = sortContacts();
   assignColorsToContacts(groupedContacts);
+  prepareFormattedContacts();
   renderContacts(groupedContacts);
 }
 
@@ -76,6 +78,13 @@ function assignColorsToContacts(groupedContacts) {
       colorizeIndex++;
     }
   }
+}
+
+function prepareFormattedContacts() {
+    formattedContactsArray = contactsArray.map((contact) => ({
+      ...contact,
+      initials: getInitials(contact.name),
+    }));
 }
 
 function getInitials(name) {

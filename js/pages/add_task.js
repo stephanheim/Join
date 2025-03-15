@@ -36,6 +36,12 @@ function renderDropdownContent(dropDownMenu) {
   }
 }
 
+// function renderDropdownContent(dropDownMenu) {
+//   if (!dropDownMenu.innerHTML.trim()) {
+//     dropDownMenu.innerHTML = formattedContactsArray.map((contact) => assignedToTemplate(contact)).join("");
+//   }
+// }
+
 function showDropdown(dropDownMenu) {
   dropDownMenu.classList.remove('d-none', 'drop-down-hide');
   dropDownMenu.classList.add('drop-down-show');
