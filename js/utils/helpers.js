@@ -66,4 +66,17 @@ function logout() {
 }
 
 
+function showDropdown(dropDownMenu) {
+  dropDownMenu.classList.remove('d-none', 'drop-down-hide');
+  dropDownMenu.classList.add('drop-down-show');
+}
+
+
+function hideDropdown(dropDownMenu) {
+  dropDownMenu.classList.remove('drop-down-show');
+  dropDownMenu.classList.add('drop-down-hide');
+  setTimeout(() => {
+    dropDownMenu.classList.add('d-none');
+  }, 300);
+}
 

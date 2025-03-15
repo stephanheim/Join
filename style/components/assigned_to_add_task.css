@@ -308,3 +308,8 @@
   transform: rotate(180deg);
   transition: transform 0.3s ease-in-out;
 }
+
+.rotate-arrow-0 {
+  transform: rotate(0deg);
+  transition: transform 0.3s ease-in-out;
+}
