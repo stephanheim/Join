@@ -1,6 +1,8 @@
 let subtaskNotes = [];
 
-function initAddTask() {}
+
+function initAddTask() { }
+
 
 function buttonsColorSwitch(btnId) {
   let buttons = document.getElementsByClassName('input-section')[0].getElementsByTagName('button');
@@ -15,20 +17,22 @@ function buttonsColorSwitch(btnId) {
   }
 }
 
-function openDropdownMenuAssigned() {
+
+function openDropdownAssigned() {
   const dropDownMenu = document.getElementById('dropDownMenuAssigned');
   const inputField = document.getElementById('addTaskAssigned');
-  const isOpen = dropDownMenu.classList.contains('drop-down-show');
-  const isClose = dropDownMenu.classList.contains('drop-down-hide');
+  const arrow = document.getElementById('arrowAssigned');
+  const isHidden = dropDownMenu.classList.contains('drop-down-hide');
   renderDropdownContent(dropDownMenu);
-  if (isOpen) {
-    hideDropdown(dropDownMenu);
-  } else {
+  if (isHidden) {
     showDropdown(dropDownMenu);
+  } else {
+    hideDropdown(dropDownMenu);
   }
-  toggleArrowRotatin(isClose);
-  updatePlaceholder(inputField, isOpen);
+  toggleArrowRotation(arrow, isHidden);
+  updatePlaceholder(inputField, isHidden);
 }
+
 
 function renderDropdownContent(dropDownMenu) {
   if (!dropDownMenu.innerHTML.trim()) {
@@ -42,74 +46,66 @@ function renderDropdownContent(dropDownMenu) {
 //   }
 // }
 
-function showDropdown(dropDownMenu) {
-  dropDownMenu.classList.remove('d-none', 'drop-down-hide');
-  dropDownMenu.classList.add('drop-down-show');
-}
-
-function hideDropdown(dropDownMenu) {
-  dropDownMenu.classList.remove('drop-down-show');
-  dropDownMenu.classList.add('drop-down-hide');
-  setTimeout(() => {
-    dropDownMenu.classList.add('d-none');
-  }, 300);
-}
-
-function updatePlaceholder(inputField, isClosing) {
+function updatePlaceholder(inputField, isHidden) {
   if (inputField) {
-    inputField.placeholder = isClosing ? 'Select contacts to assign' : '';
+    inputField.placeholder = isHidden ? '' : 'Select contacts to assign';
   }
 }
 
-function closeDropdownMenuAssigned() {
-  const dropDownMenu = document.getElementById('dropDownMenuAssigned');
-  dropDownMenu.classList.remove('d-none');
-}
 
-function toggleArrowRotatin(isClose) {
-  const arrowImg = document.getElementById('dropdownArrow');
-  if (arrowImg) {
-    if (isClose) {
-      arrowImg.classList.add('rotate-arrow');
-    } else {
-      arrowImg.classList.remove('rotate-arrow');
-    }
+function toggleArrowRotation(arrow, isHidden) {
+  if (arrow) {
+    arrow.classList.toggle('rotate-arrow', isHidden);
+    arrow.classList.toggle('rotate-arrow-0', !isHidden);
   }
 }
 
-function openDropdownMenuCategory() {
+
+function openDropdownCategory() {
   const dropDownMenu = document.getElementById('dropDownMenuCategory');
+  const arrow = document.getElementById('arrowCategory');
+  const isHidden = dropDownMenu.classList.contains('drop-down-hide');
+  renderDropdownMenuCategory(dropDownMenu);
+  if (isHidden) {
+    showDropdown(dropDownMenu);
+  } else {
+    hideDropdown(dropDownMenu);
+  }
+  isCategorySelected();
+  toggleArrowRotation(arrow, isHidden);
+}
+
+
+function renderDropdownMenuCategory(dropDownMenu) {
   if (!dropDownMenu.innerHTML.trim()) {
     dropDownMenu.innerHTML = categoryTemplate();
   }
-  isCategorySelected();
-  dropDownMenu.classList.toggle('d-none');
-  dropDownMenu.classList.toggle('drop-down-show');
 }
 
-function closeDropdownMenuCategory() {
-  const dropDownMenu = document.getElementById('dropDownMenuCategory');
-  dropDownMenu.classList.add('d-none');
-}
 
 function isCategorySelected() {
   const dropDownMenu = document.getElementById('dropDownMenuCategory');
   const selectedCategory = document.getElementById('selectedCategory');
   let originalCategoryText = 'Select task category';
-  const isCategorySelected = false;
-  if (dropDownMenu.classList.contains('d-none') && !isCategorySelected) {
+  if (dropDownMenu.classList.contains('d-none') && selectCategory()) {
     selectedCategory.innerText = originalCategoryText;
   }
 }
 
+
 function selectCategory(category) {
-  let selectedCategory = document.getElementById('selectedCategory');
+  const selectedCategory = document.getElementById('selectedCategory');
+  const dropDownMenu = document.getElementById('dropDownMenuCategory');
   if (selectedCategory) {
-    selectedCategory.innerText = category;
-    return category;
+    if (selectedCategory.innerText === category) {
+      selectedCategory.innerText = 'Select task category';
+    } else {
+      selectedCategory.innerText = category;
+    }
+    hideDropdown(dropDownMenu);
   }
-  closeDropdownMenuCategory();
 }
+
 
 function openSubtaskInput() {
   let inputField = document.getElementById('addTaskSubtasks');
@@ -122,6 +118,7 @@ function openSubtaskInput() {
   inputField.placeholder = '';
 }
 
+
 function closeSubtaskInput(event) {
   event.stopPropagation();
   const inputField = document.getElementById('addTaskSubtasks');
@@ -133,6 +130,7 @@ function closeSubtaskInput(event) {
   resetSubtaskInput(event);
 }
 
+
 function renderSubtask() {
   let subtaskRef = document.getElementById('addedSubtaks');
   subtaskRef.innerHTML = '';
@@ -140,6 +138,7 @@ function renderSubtask() {
     subtaskRef.innerHTML += subtaskTemplate(i);
   }
 }
+
 
 function addSubtaksFromInput(event) {
   let subtaskInputRef = document.getElementById('addTaskSubtasks');
@@ -150,6 +149,7 @@ function addSubtaksFromInput(event) {
     resetSubtaskInput(event);
   }
 }
+
 
 function editSubtask(i) {
   let subtaskRef = document.getElementById(`subtask-${i}`);
@@ -163,6 +163,7 @@ function saveEditedSubtask(i) {
   subtaskNotes[i] = inputRef.value;
   renderSubtask();
 }
+
 
 function resetSubtaskInput(event) {
   event.stopPropagation();
@@ -179,10 +180,12 @@ function resetSubtaskInput(event) {
   }
 }
 
+
 function deleteSubtask(i) {
   subtaskNotes.splice(i, 1);
   renderSubtask();
 }
+
 
 function formatDate(input) {
   let value = input.value.replace(/\D/g, '');
