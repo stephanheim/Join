@@ -36,7 +36,7 @@ function renderDropdownContent(dropDownMenu) {
   }
 }
 
-// function renderDropdownContent(dropDownMenu) {
+// function renderDropdownContent(dropDownMenu) {gi
 //   if (!dropDownMenu.innerHTML.trim()) {
 //     dropDownMenu.innerHTML = formattedContactsArray.map((contact) => assignedToTemplate(contact)).join("");
 //   }
