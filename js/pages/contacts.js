@@ -70,24 +70,6 @@ function groupContactsByLetter() {
   return groupedByLetter;
 }
 
-function assignColorsToContacts(groupedContacts) {
-  let colorizeIndex = 0;
-  for (let i = 0; i < groupedContacts.length; i++) {
-    let group = groupedContacts[i];
-    for (let j = 0; j < group.contacts.length; j++) {
-      group.contacts[j].color = contactColors[colorizeIndex % contactColors.length];
-      colorizeIndex++;
-    }
-  }
-}
-
-function prepareFormattedContacts() {
-  formattedContactsArray = contactsArray.map((contact) => ({
-    ...contact,
-    initials: getInitials(contact.name),
-  }));
-}
-
 function getInitials(name) {
   let nameParts = name.split(' ');
   return nameParts[0].charAt(0).toUpperCase() + nameParts[1].charAt(0).toUpperCase();
