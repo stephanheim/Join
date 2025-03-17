@@ -1,8 +1,6 @@
 let subtaskNotes = [];
 
-
-function initAddTask() { }
-
+function initAddTask() {}
 
 function buttonsColorSwitch(btnId) {
   let buttons = document.getElementsByClassName('input-section')[0].getElementsByTagName('button');
@@ -16,7 +14,6 @@ function buttonsColorSwitch(btnId) {
     activeButton.classList.add('isSelected');
   }
 }
-
 
 function openDropdownAssigned() {
   const dropDownMenu = document.getElementById('dropDownMenuAssigned');
@@ -33,13 +30,16 @@ function openDropdownAssigned() {
   updatePlaceholder(inputField, isHidden);
 }
 
-
 function renderDropdownContent(dropDownMenu) {
   if (!dropDownMenu.innerHTML.trim()) {
-    dropDownMenu.innerHTML = assignedToTemplate();
+    for (let i = 0; i < formattedContactsArray.length; i++) {
+      let name = formattedContactsArray[i].name;
+      let color = formattedContactsArray[i].color;
+      let initials = getInitials(formattedContactsArray[i].name);
+      dropDownMenu.innerHTML += assignedToTemplate(name, color, initials);
+    }
   }
 }
-
 
 function updatePlaceholder(inputField, isHidden) {
   if (inputField) {
@@ -47,14 +47,12 @@ function updatePlaceholder(inputField, isHidden) {
   }
 }
 
-
 function toggleArrowRotation(arrow, isHidden) {
   if (arrow) {
     arrow.classList.toggle('rotate-arrow', isHidden);
     arrow.classList.toggle('rotate-arrow-0', !isHidden);
   }
 }
-
 
 function openDropdownCategory() {
   const dropDownMenu = document.getElementById('dropDownMenuCategory');
@@ -70,13 +68,11 @@ function openDropdownCategory() {
   toggleArrowRotation(arrow, isHidden);
 }
 
-
 function renderDropdownMenuCategory(dropDownMenu) {
   if (!dropDownMenu.innerHTML.trim()) {
     dropDownMenu.innerHTML = categoryTemplate();
   }
 }
-
 
 function isCategorySelected() {
   const dropDownMenu = document.getElementById('dropDownMenuCategory');
@@ -86,7 +82,6 @@ function isCategorySelected() {
     selectedCategory.innerText = originalCategoryText;
   }
 }
-
 
 function selectCategory(category) {
   const selectedCategory = document.getElementById('selectedCategory');
@@ -101,7 +96,6 @@ function selectCategory(category) {
   }
 }
 
-
 function openSubtaskInput() {
   let inputField = document.getElementById('addTaskSubtasks');
   let plusIcon = document.getElementById('plusIcon');
@@ -112,7 +106,6 @@ function openSubtaskInput() {
   otherIcons.classList.remove('d-none');
   inputField.placeholder = '';
 }
-
 
 function closeSubtaskInput(event) {
   event.stopPropagation();
@@ -125,7 +118,6 @@ function closeSubtaskInput(event) {
   resetSubtaskInput(event);
 }
 
-
 function renderSubtask() {
   let subtaskRef = document.getElementById('addedSubtaks');
   subtaskRef.innerHTML = '';
@@ -133,7 +125,6 @@ function renderSubtask() {
     subtaskRef.innerHTML += subtaskTemplate(i);
   }
 }
-
 
 function addSubtaksFromInput(event) {
   let subtaskInputRef = document.getElementById('addTaskSubtasks');
@@ -144,7 +135,6 @@ function addSubtaksFromInput(event) {
     resetSubtaskInput(event);
   }
 }
-
 
 function editSubtask(i) {
   let subtaskRef = document.getElementById(`subtask-${i}`);
@@ -158,7 +148,6 @@ function saveEditedSubtask(i) {
   subtaskNotes[i] = inputRef.value;
   renderSubtask();
 }
-
 
 function resetSubtaskInput(event) {
   event.stopPropagation();
@@ -175,12 +164,10 @@ function resetSubtaskInput(event) {
   }
 }
 
-
 function deleteSubtask(i) {
   subtaskNotes.splice(i, 1);
   renderSubtask();
 }
-
 
 function formatDate(input) {
   let value = input.value.replace(/\D/g, '');

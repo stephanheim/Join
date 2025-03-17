@@ -149,49 +149,22 @@ function addTaskTemplate() {
     </div>`;
 }
 
-function assignedToTemplate() {
+function assignedToTemplate(name, color, initials) {
   return `    
-      <div class="drop-down-container">
+      
         <label class="inner-dropmenu">
           <div class="contacts-line">
-            <div style="background-color: rgba(0, 190, 232, 1)" class="circle-color">
-              <span>SM</span>
+            <div style="background-color:${color}" class="circle-color">
+              <span>${initials}</span>
             </div>
             <div class="contact">
-              <span>Sofia Müller (You)</span>
+              <span>${name}</span>
             </div>
           </div>
           <div class="checkbox">
-            <input type="checkbox" />
+            <input type="checkbox" name="checkbox" />
           </div>
-        </label>
-        <label class="inner-dropmenu">
-          <div class="contacts-line">
-            <div style="background-color: rgba(255, 122, 0, 1)" class="circle-color">
-              <span>AM</span>
-            </div>
-            <div class="contact">
-              <span>Anton Mayer</span>
-            </div>
-          </div>
-          <div class="checkbox">
-            <input type="checkbox" />
-          </div>
-        </label>
-        <label class="inner-dropmenu">
-          <div class="contacts-line">
-            <div style="background-color: rgba(147, 39, 255, 1)" class="circle-color">
-              <span>AS</span>
-            </div>
-            <div class="contact">
-              <span>Anja Schulz</span>
-            </div>
-          </div>
-          <div class="checkbox">
-            <input type="checkbox" />
-          </div>
-        </label>
-      </div>`;
+        </label>`;
 }
 
 function categoryTemplate() {
