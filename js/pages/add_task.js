@@ -1,9 +1,6 @@
 let subtaskNotes = [];
 
-function initAddTask() {
-  checkAndAddCurrentUser();
-  getGroupedContacts();
-}
+function initAddTask() {}
 
 function buttonsColorSwitch(btnId) {
   let buttons = document.getElementsByClassName('input-section')[0].getElementsByTagName('button');
@@ -36,9 +33,7 @@ function openDropdownAssigned() {
 function renderDropdownContent(dropDownMenu) {
   if (!dropDownMenu.innerHTML.trim()) {
     for (let i = 0; i < formattedContactsArray.length; i++) {
-      let name = formattedContactsArray[i].name;
-      let color = formattedContactsArray[i].color;
-      let initials = getInitials(formattedContactsArray[i].name);
+      let { name, color, initials } = formattedContactsArray[i];
       dropDownMenu.innerHTML += assignedToTemplate(name, color, initials);
     }
   }
