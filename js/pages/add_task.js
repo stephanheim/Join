@@ -1,6 +1,9 @@
 let subtaskNotes = [];
 
-function initAddTask() {}
+function initAddTask() {
+  checkAndAddCurrentUser();
+  getGroupedContacts();
+}
 
 function buttonsColorSwitch(btnId) {
   let buttons = document.getElementsByClassName('input-section')[0].getElementsByTagName('button');
