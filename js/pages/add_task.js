@@ -1,7 +1,7 @@
 let subtaskNotes = [];
 
-
-function initAddTask() { }
+function initAddTask() {
+}
 
 
 function buttonsColorSwitch(btnId) {
@@ -23,7 +23,7 @@ function openDropdownAssigned() {
   const inputField = document.getElementById('addTaskAssigned');
   const arrow = document.getElementById('arrowAssigned');
   const isHidden = dropDownMenu.classList.contains('drop-down-hide');
-  renderDropdownContent(dropDownMenu);
+  getContacts(dropDownMenu);
   if (isHidden) {
     showDropdown(dropDownMenu);
   } else {
@@ -34,9 +34,13 @@ function openDropdownAssigned() {
 }
 
 
-function renderDropdownContent(dropDownMenu) {
+function renderDropdownUser(dropDownMenu) {
+  dropDownMenu.innerHTML = '';
   if (!dropDownMenu.innerHTML.trim()) {
-    dropDownMenu.innerHTML = assignedToTemplate();
+    for (let i = 0; i < formattedContactsArray.length; i++) {
+      let { name, color, initials } = formattedContactsArray[i];
+      dropDownMenu.innerHTML += assignedToTemplate(name, color, initials);
+    }
   }
 }
 
@@ -45,6 +49,14 @@ function renderDropdownContent(dropDownMenu) {
 //     dropDownMenu.innerHTML = formattedContactsArray.map((contact) => assignedToTemplate(contact)).join("");
 //   }
 // }
+
+function getContacts(dropDownMenu){
+  let groupedContacts = sortContacts();
+  assignColorsToContacts(groupedContacts);
+  prepareFormattedContacts();
+  renderDropdownUser(dropDownMenu);
+}
+
 
 function updatePlaceholder(inputField, isHidden) {
   if (inputField) {
@@ -157,6 +169,7 @@ function editSubtask(i) {
     subtaskRef.outerHTML = editSubtaskTemplate(i, subtaskNotes[i]);
   }
 }
+
 
 function saveEditedSubtask(i) {
   let inputRef = document.getElementById(`editSubtask-${i}`);

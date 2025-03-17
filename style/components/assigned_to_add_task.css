@@ -283,7 +283,7 @@
 }
 
 .drop-down-show {
-  overflow: hidden;
+  overflow: auto;
   animation: expand 0.3s ease-out forwards;
 }
 
