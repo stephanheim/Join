@@ -43,13 +43,13 @@ function addTaskTemplate() {
       <div class="add-task-single">
         <h2>Prio</h2>
         <div class="prio-section">
-          <button id="btn1" onclick="buttonsColorSwitch('btn1')" class="button-prio">
+          <button id="btn1" color="rgba(255, 61, 0, 1);" onclick="buttonsColorSwitch('btn1')" class="button-prio">
             Urgent <img src="../assets/icons/urgent-red.svg" alt="Urgent" />
           </button>
-          <button id="btn2" onclick="buttonsColorSwitch('btn2')" class="button-prio isSelected">
+          <button id="btn2" color="rgba(255, 168, 0, 1)" onclick="buttonsColorSwitch('btn2')" class="button-prio isSelected">
             Medium <img src="../assets/icons/medium-orange.svg" alt="Medium" />
           </button>
-          <button id="btn3" onclick="buttonsColorSwitch('btn3')" class="button-prio">
+          <button id="btn3" color="rgba(122, 226, 41, 1)" onclick="buttonsColorSwitch('btn3')" class="button-prio">
             Low <img src="../assets/icons/low-green.svg" alt="Low" />
           </button>
         </div>
@@ -71,20 +71,23 @@ function addTaskTemplate() {
       </div>
 
       <div class="add-task-single">
-        <label class="title-and-star" for="addTaskCategory">
+        <div class="title-and-star">
           <h2>Category</h2>
           <span class="span-star">*</span>
-        </label>
-        <div id="addTaskCategory" class="input-container-category">
-          <div class="drop-down-placeholder" onclick="openDropdownCategory()">
-            <h2 id="selectedCategory">Select task category</h2>
-            <div class="container-arrow-img-dropdown">
-              <img id="arrowCategory" class="arrow-drop-down" src="../assets/icons/drop_up_arrwow.svg" alt="Dropdown" />
-            </div>
-          </div>
-          <div id="dropDownMenuCategory" class="drop-down-field-category drop-down-hide d-none"></div>
         </div>
-      </div>
+
+          <div id="addTaskCategory" class="input-container-category">
+                <div class="drop-down-placeholder" onclick="openDropdownCategory()">
+                  <div class="textfield">
+                    <h2 id="selectedCategory">Select task category</h2>
+                  </div>
+                  <div class="container-arrow-img-dropdown">
+                    <img id="arrowCategory" class="arrow-drop-down" src="../assets/icons/drop_up_arrwow.svg" />
+                  </div>
+                </div>
+                <div id="dropDownMenuCategory" class="drop-down-field-category drop-down-hide d-none"></div>
+          </div>
+        </div>
 
       <div class="add-task-single">
         <label for="addTaskSubtasks">
@@ -124,11 +127,11 @@ function addTaskTemplate() {
 `;
 }
 
-function assignedToTemplate(name, color, initials) {
+function assignedToTemplate(name, color, initials, i) {
   return `    
       
-        <label class="inner-dropmenu">
-          <div class="contacts-line">
+        <label id="innerDropmenu" class="inner-dropmenu" onclick="assignedCheckedContacts(${i})">
+          <div  class="contacts-line">
             <div style="background-color:${color}" class="circle-color">
               <span>${initials}</span>
             </div>
@@ -137,10 +140,12 @@ function assignedToTemplate(name, color, initials) {
             </div>
           </div>
           <div class="checkbox">
-            <input type="checkbox" name="checkbox" />
+            <input type="checkbox"  name="checkbox"/>
           </div>
         </label>`;
 }
+
+
 
 function categoryTemplate() {
   return `

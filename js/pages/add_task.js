@@ -4,6 +4,47 @@ function initAddTask() {
 }
 
 
+function taskGetValues() {
+  let title = document.getElementById('addTaskTitle').value.trim();
+  let description = document.getElementById('addTaskDescription').value.trim();
+  let date = document.getElementById('addTaskDate').value.trim();
+  let priority = selectedPriority();
+  let assignedTo = document.getElementById('').value.trim();
+  let category = selectCategory();
+  let subtasks = subtaskNotes;
+  return {
+    title: title,
+    description: description,
+    date: date,
+    priority: priority,
+    assignedTo: assignedTo,
+    category: category,
+    subtasks: subtasks,
+  }
+}
+
+
+function addNewTask() {
+  let taskData = taskGetValues();
+  if (!taskData.title || !taskData.date || !taskData.category) {
+    
+  }
+  let newTask = {
+    title: taskData.title,
+    description: taskData.description,
+    date: taskData.date,
+    priority: taskData.priority,
+    assignedTo: taskData.assignedTo,
+    category: taskData.category,
+    subtasks: taskData.subtasks,
+  }
+  console.log("Neue Aufgabe:", newTask);
+}
+
+function selectedPriority(prio) {
+  return prio;
+}
+
 function buttonsColorSwitch(btnId) {
   let buttons = document.getElementsByClassName('input-section')[0].getElementsByTagName('button');
   let activeButton = document.getElementById(btnId);
@@ -39,12 +80,12 @@ function renderDropdownUser(dropDownMenu) {
   if (!dropDownMenu.innerHTML.trim()) {
     for (let i = 0; i < formattedContactsArray.length; i++) {
       let { name, color, initials } = formattedContactsArray[i];
-      dropDownMenu.innerHTML += assignedToTemplate(name, color, initials);
+      dropDownMenu.innerHTML += assignedToTemplate(name, color, initials, i);
     }
   }
 }
 
-function getContacts(dropDownMenu){
+function getContacts(dropDownMenu) {
   let groupedContacts = sortContacts();
   assignColorsToContacts(groupedContacts);
   prepareFormattedContacts();
@@ -207,3 +248,17 @@ function formatDate(input) {
   input.value = formattedValue;
   return;
 }
+
+function assignedCheckedContacts() {
+  let checkedContact = document.getElementById('innerDropmenu');
+  for (let index = 0; index < checkedContact.length; index++) {
+    const element = checkedContact[i];
+    element.classList.add('inner-dropmenu-checked');
+  }
+}
+
+
+
+
+
+

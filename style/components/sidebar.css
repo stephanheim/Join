@@ -129,6 +129,7 @@
 }
 
 .index-main {
+  height: 100vh;
   max-width: 1440px;
   margin-left: 232px;
   padding-top: 96px;
