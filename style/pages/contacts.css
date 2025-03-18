@@ -202,6 +202,7 @@
   width: 159px;
   gap: 13px;
   cursor: pointer;
+  margin-top: 8px;
 }
 
 .cnt-spacer {
@@ -297,4 +298,20 @@
     transform: translateX(150%);
     opacity: 0;
   }
+}
+
+.clickable {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.clickable:hover {
+  font-weight: 600;
+  color: #29aae1;
+}
+
+.clickable:hover img {
+  filter: invert(52%) sepia(91%) saturate(414%) hue-rotate(160deg) brightness(99%) contrast(92%);
 }

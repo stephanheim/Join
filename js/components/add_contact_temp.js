@@ -90,9 +90,13 @@ function generateContactsInfoHTML(contact) {
         <div>
           ${contact.name}
           <div class="cnt-glance-icon-div">
-            <img src="../assets/icons/edit.svg" onclick="addEditContact('${contact.id}')"/><span>Edit</span>
+            <div class="clickable" onclick="addEditContact('${contact.id}')">
+              <img src="../assets/icons/edit.svg"/><span>Edit</span>
+            </div>
             <div class="cnt-spacer"></div>
-            <img src="../assets/icons/delete.svg" onclick="deleteContact('${contact.id}')"/><span>Delete</span>
+            <div class="clickable" onclick="deleteContact('${contact.id}')">
+              <img src="../assets/icons/delete.svg"/><span>Delete</span>
+            </div>
           </div>
         </div>
       </div>
@@ -106,6 +110,7 @@ function generateContactsInfoHTML(contact) {
     </div>
   `;
 }
+
 
 function generateContactsEditFloaterHTML(contact) {
   return `
