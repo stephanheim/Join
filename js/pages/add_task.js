@@ -1,8 +1,10 @@
 let subtaskNotes = [];
+let selectedContacts = [];
 
 function initAddTask() {
 }
 
+/* ---------- work in progress !-----------*/
 
 function taskGetValues() {
   let title = document.getElementById('addTaskTitle').value.trim();
@@ -23,11 +25,10 @@ function taskGetValues() {
   }
 }
 
-
 function addNewTask() {
   let taskData = taskGetValues();
   if (!taskData.title || !taskData.date || !taskData.category) {
-    
+    requiredMessageAddTask();
   }
   let newTask = {
     title: taskData.title,
@@ -41,9 +42,25 @@ function addNewTask() {
   console.log("Neue Aufgabe:", newTask);
 }
 
+function requiredMessageAddTask() {
+  const title = document.getElementById('titleMessage');
+  const date = document.getElementById('dateMessage');
+  const category = document.getElementById('categoryMessage');
+  if (!addNewTask()) {
+    message.innerText = "This field is required";
+    message.style.display = "block";
+  } else {
+    message.innerText = "";
+    message.style.display = "none";
+  }
+}
+
 function selectedPriority(prio) {
   return prio;
 }
+
+/* ----------------------------------- */
+
 
 function buttonsColorSwitch(btnId) {
   let buttons = document.getElementsByClassName('input-section')[0].getElementsByTagName('button');
@@ -254,6 +271,21 @@ function assignedCheckedContacts() {
   for (let index = 0; index < checkedContact.length; index++) {
     const element = checkedContact[i];
     element.classList.add('inner-dropmenu-checked');
+  }
+}
+
+/* -------------------function push to selectedContacts------------------- */
+
+function toggleContactsSelection(event, index) {
+  event.preventDefault();
+  let checkbox = document.getElementById(`checkbox-${index}`);
+  checkbox.checked = !checkbox.checked;
+  let contact = formattedContactsArray[index];
+  let contactIndex = selectedContacts.findIndex(c => c.id === contact.id)
+  if (checkbox.checked) {
+    if (contactIndex === -1) selectedContacts.push(contact);
+  } else {
+    if (contactIndex !== -1) selectedContacts.splice(contactIndex, 1);
   }
 }
 

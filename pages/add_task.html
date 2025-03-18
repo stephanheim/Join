@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="../style/pages/add_task.css" />
   <link rel="stylesheet" href="../style/variables.css" />
   <link rel="stylesheet" href="../style/components/assigned_to_add_task.css" />
+  <link rel="stylesheet" href="../style/animation.css" />
 </head>
 
 <body>
@@ -28,8 +29,9 @@
               <span class="span-star">*</span>
             </label>
             <input id="addTaskTitle" class="input_at" type="text" name="title" placeholder="Enter a title" />
+            <span id="titleMessage" class="error-message"></span>
           </div>
-  
+
           <div class="add-task-single">
             <label for="addTaskDescription">
               <h2>Description</h2>
@@ -37,7 +39,7 @@
             <textarea id="addTaskDescription" class="textarea-add-task" name="description"
               placeholder="Enter a Description"></textarea>
           </div>
-  
+
           <div class="add-task-single">
             <label class="title-and-star" for="addTaskDate">
               <h2>Due date</h2>
@@ -47,11 +49,12 @@
               <input oninput="formatDate(this)" id="addTaskDate" class="input-date" name="date" type="text"
                 placeholder="dd/mm/yyyy" /><img src="../assets/icons/date_event.svg" />
             </div>
+            <span id="dateMessage" class="error-message"></span>
           </div>
         </div>
-  
+
         <div class="devider-ver"></div>
-  
+
         <div>
           <div class="section-right">
             <div class="add-task-single">
@@ -73,7 +76,7 @@
                 </button>
               </div>
             </div>
-  
+
             <div class="add-task-single">
               <div class="title-and-star" for="">
                 <h2>Assigned to</h2>
@@ -88,13 +91,13 @@
                 <div id="dropDownMenuAssigned" class="main-drop-down drop-down-hide d-none"></div>
               </div>
             </div>
-  
+
             <div class="add-task-single">
               <div class="title-and-star">
                 <h2>Category</h2>
                 <span class="span-star">*</span>
               </div>
-  
+
               <div id="addTaskCategory" class="input-container-category">
                 <div class="drop-down-placeholder" onclick="openDropdownCategory()">
                   <div class="textfield">
@@ -104,10 +107,11 @@
                     <img id="arrowCategory" class="arrow-drop-down" src="../assets/icons/drop_up_arrwow.svg" />
                   </div>
                 </div>
+                <span id="categoryMessage" class="error-message"></span>
                 <div id="dropDownMenuCategory" class="drop-down-field-category drop-down-hide d-none"></div>
               </div>
             </div>
-  
+
             <div class="add-task-single">
               <label for="addTaskSubtasks">
                 <h2>Subtasks</h2>
@@ -132,7 +136,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="required-section">
         <div class="required-field">
           <span class="span-star">*</span>
@@ -153,8 +157,11 @@
     </form>
   </main>
   <script src="../js/script.js"></script>
+  <script src="../js/utils/helpers.js"></script>
   <script src="../js/components/add_task_temp.js"></script>
   <script src="../js/pages/add_task.js"></script>
+  <script src="../js/pages/contacts.js"></script>
 </body>
 
 </html>
+
