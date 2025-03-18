@@ -44,12 +44,6 @@ function renderDropdownUser(dropDownMenu) {
   }
 }
 
-// function renderDropdownContent(dropDownMenu) {gi
-//   if (!dropDownMenu.innerHTML.trim()) {
-//     dropDownMenu.innerHTML = formattedContactsArray.map((contact) => assignedToTemplate(contact)).join("");
-//   }
-// }
-
 function getContacts(dropDownMenu){
   let groupedContacts = sortContacts();
   assignColorsToContacts(groupedContacts);

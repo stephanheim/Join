@@ -351,3 +351,5 @@ async function addCurrentUserToContacts(user) {
     getGroupedContacts();
   }
 }
+
+
