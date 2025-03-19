@@ -350,3 +350,8 @@
   transform: rotate(0deg);
   transition: transform 0.3s ease-in-out;
 }
+
+.initial-container {
+  display: flex;
+  gap: 8px;
+}
