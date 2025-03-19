@@ -18,8 +18,7 @@
       <div class="headline-add-task">
         <h1 class="h1-add-task">Add Task</h1>
       </div>
-
-      <form class="">
+      <form class="" onsubmit="addNewTask();return false;">
         <div class="input-section">
           <div class="section-left">
             <div class="add-task-single">
@@ -30,7 +29,6 @@
               <input id="addTaskTitle" class="input_at" type="text" name="title" placeholder="Enter a title" />
               <span id="titleMessage" class="error-message"></span>
             </div>
-
             <div class="add-task-single">
               <label for="addTaskDescription">
                 <h2>Description</h2>
@@ -42,7 +40,6 @@
                 placeholder="Enter a Description"
               ></textarea>
             </div>
-
             <div class="add-task-single">
               <label class="title-and-star" for="addTaskDate">
                 <h2>Due date</h2>
@@ -61,9 +58,7 @@
               <span id="dateMessage" class="error-message"></span>
             </div>
           </div>
-
           <div class="devider-ver"></div>
-
           <div>
             <div class="section-right">
               <div class="add-task-single">
@@ -100,7 +95,6 @@
                   </button>
                 </div>
               </div>
-
               <div class="add-task-single">
                 <div class="title-and-star" for="">
                   <h2>Assigned to</h2>
@@ -126,13 +120,11 @@
                   </div>
                 </div>
               </div>
-
               <div class="add-task-single">
                 <div class="title-and-star">
                   <h2>Category</h2>
                   <span class="span-star">*</span>
                 </div>
-
                 <div id="addTaskCategory" class="input-container-category">
                   <div class="drop-down-placeholder" onclick="openDropdownCategory()">
                     <div class="textfield">
@@ -146,7 +138,6 @@
                   <div id="dropDownMenuCategory" class="drop-down-field-category drop-down-hide d-none"></div>
                 </div>
               </div>
-
               <div class="add-task-single">
                 <label for="addTaskSubtasks">
                   <h2>Subtasks</h2>
@@ -171,7 +162,6 @@
             </div>
           </div>
         </div>
-
         <div class="required-section">
           <div class="required-field">
             <span class="span-star">*</span>
@@ -191,7 +181,7 @@
                 />
               </svg>
             </button>
-            <button class="bt-create-task" type="submit" disabled>
+            <button class="bt-create-task" type="submit">
               Create Task<img src="../assets/icons/check.svg" />
             </button>
           </div>
