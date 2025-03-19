@@ -190,3 +190,10 @@ function editSubtaskTemplate(i, subtask) {
       </div>
     </div>`;
 }
+
+function initialsTemplate(initials, initialsColor) {
+  return `   
+    <div class="circle-color" style="background-color: ${initialsColor}">
+      <span>${initials}</span>
+    </div>`;
+}

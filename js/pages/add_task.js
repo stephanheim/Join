@@ -3,17 +3,16 @@ let selectedContacts = [];
 let selectedCategoryValue = '';
 let addSubtask = [];
 
-function initAddTask() { }
+function initAddTask() {}
 
 function selectedPriority(prio, element) {
-  buttonsColorSwitch(element)
+  buttonsColorSwitch(element);
   selectedPriorityValue = prio;
   console.log(selectedPriorityValue);
 }
 
-
 function buttonsColorSwitch(activeButton) {
-  let buttons = activeButton.parentElement.getElementsByTagName('button')
+  let buttons = activeButton.parentElement.getElementsByTagName('button');
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].classList.remove('isSelected');
   }
@@ -221,10 +220,22 @@ function updateSelectedContacts(index, isChecked) {
   } else if (!isChecked && contactIndex !== -1) {
     selectedContacts.splice(contactIndex, 1);
   }
+  renderSelectedInitials();
   console.log(selectedContacts);
 }
 
 function updateSelectedStyle(element, isChecked) {
   element.classList.toggle('inner-dropmenu', !isChecked);
   element.classList.toggle('inner-dropmenu-checked', isChecked);
+}
+
+function renderSelectedInitials() {
+  const initialsRef = document.getElementById('selectedInitials');
+  initialsRef.innerHTML = '';
+  for (let i = 0; i < selectedContacts.length; i++) {
+    const initials = selectedContacts[i].initials;
+    const initialsColor = selectedContacts[i].color;
+    initialsRef.innerHTML += initialsTemplate(initials, initialsColor);
+  }
+  console.log(selectedContacts);
 }

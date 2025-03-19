@@ -352,6 +352,7 @@
 }
 
 .initial-container {
+  flex-wrap: wrap;
   display: flex;
-  gap: 8px;
+  gap: 7px;
 }
