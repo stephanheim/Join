@@ -13,22 +13,20 @@ function addNewTask(){
 
 
 function selectedPriority(prio, element) {
-  buttonsColorSwitch(element)
+  buttonsColorSwitch(element);
   selectedPriorityValue = prio;
   console.log(selectedPriorityValue);
 }
 
-
 function buttonsColorSwitch(activeButton) {
-  let buttons = activeButton.parentElement.getElementsByTagName('button')
+  let buttons = activeButton.parentElement.getElementsByTagName('button');
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].classList.remove('isSelected');
   }
   activeButton.classList.add('isSelected');
 }
 
-
-function resetSelectedPriority(){
+function resetSelectedPriority() {
   let buttons = document.getElementsByClassName('button-prio');
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].classList.remove('isSelected');
@@ -39,7 +37,6 @@ function resetSelectedPriority(){
   }
   selectedPriorityValue = '';
 }
-
 
 function openDropdownAssigned() {
   const dropDownMenu = document.getElementById('dropDownMenuAssigned');
@@ -135,13 +132,11 @@ function selectCategory(category) {
   console.log(selectedCategoryValue);
 }
 
-
 function resetSelectCategory() {
   const selectedCategory = document.getElementById('selectedCategory');
   selectedCategory.innerText = 'Select task category';
   selectedCategoryValue = '';
 }
-
 
 function openSubtaskInput() {
   let inputField = document.getElementById('addTaskSubtasks');
@@ -260,6 +255,7 @@ function updateSelectedContacts(index, isChecked) {
   } else if (!isChecked && contactIndex !== -1) {
     selectedContacts.splice(contactIndex, 1);
   }
+  renderSelectedInitials();
   console.log(selectedContacts);
 }
 
@@ -268,9 +264,13 @@ function updateSelectedStyle(element, isChecked) {
   element.classList.toggle('inner-dropmenu-checked', isChecked);
 }
 
-function clearAddTask() {
-  resetSelectCategory();
-  resetContactsSelection();
-  resetSubtask();
-  resetSelectedPriority();
+function renderSelectedInitials() {
+  const initialsRef = document.getElementById('selectedInitials');
+  initialsRef.innerHTML = '';
+  for (let i = 0; i < selectedContacts.length; i++) {
+    const initials = selectedContacts[i].initials;
+    const initialsColor = selectedContacts[i].color;
+    initialsRef.innerHTML += initialsTemplate(initials, initialsColor);
+  }
+  console.log(selectedContacts);
 }
