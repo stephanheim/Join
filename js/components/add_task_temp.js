@@ -161,7 +161,7 @@ function subtaskTemplate(i) {
   return `
     <div class="add-subtask" id="subtask-${i}">
       <ul>
-        <li>${subtaskNotes[i]}</li>
+        <li>${addSubtask[i]}</li>
       </ul>
       <div class="input-other-icons">
           <div class="subtask-icons" onclick="editSubtask(${i})">
@@ -175,10 +175,10 @@ function subtaskTemplate(i) {
     </div>`;
 }
 
-function editSubtaskTemplate(i, subtaskNotes) {
+function editSubtaskTemplate(i, subtask) {
   return `
     <div class="input-container-edit">
-      <input type="text" name="category" id="editSubtask-${i}" value="${subtaskNotes}"/>
+      <input type="text" name="category" id="editSubtask-${i}" value="${subtask}"/>
       <div class="input-other-icons">
         <div class="container-icons" onclick="deleteSubtask()">
           <img src="../assets/icons/delete.svg" alt="delete-icon" />

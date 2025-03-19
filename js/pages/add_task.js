@@ -3,65 +3,13 @@ let selectedContacts = [];
 let selectedCategoryValue = '';
 let addSubtask = [];
 
-function initAddTask() {}
-
-/* ---------- work in progress !-----------*/
-
-// function taskGetValues() {
-//   let title = document.getElementById('addTaskTitle').value.trim();
-//   let description = document.getElementById('addTaskDescription').value.trim();
-//   let date = document.getElementById('addTaskDate').value.trim();
-//   let priority = selectedPriority();
-//   let assignedTo = selectedContacts;
-//   let category = selectCategory();
-//   let subtasks = addSubtask;
-//   return {
-//     title: title,
-//     description: description,
-//     date: date,
-//     priority: priority,
-//     assignedTo: assignedTo,
-//     category: category,
-//     subtasks: subtasks,
-//   }
-// }
-
-// function addNewTask() {
-//   let taskData = taskGetValues();
-//   if (!taskData.title || !taskData.date || !taskData.category) {
-//     requiredMessageAddTask();
-//   }
-//   let newTask = {
-//     title: taskData.title,
-//     description: taskData.description,
-//     date: taskData.date,
-//     priority: taskData.priority,
-//     assignedTo: taskData.assignedTo,
-//     category: taskData.category,
-//     subtasks: taskData.subtasks,
-//   }
-//   console.log("Neue Aufgabe:", newTask);
-// }
-
-// function requiredMessageAddTask() {
-//   const title = document.getElementById('titleMessage');
-//   const date = document.getElementById('dateMessage');
-//   const category = document.getElementById('categoryMessage');
-//   if (!addNewTask()) {
-//     message.innerText = "This field is required";
-//     message.style.display = "block";
-//   } else {
-//     message.innerText = "";
-//     message.style.display = "none";
-//   }
-// }
+function initAddTask() { }
 
 function selectedPriority(prio, element) {
   buttonsColorSwitch(element)
   selectedPriorityValue = prio;
+  console.log(selectedPriorityValue);
 }
-
-/* ----------------------------------- */
 
 
 function buttonsColorSwitch(activeButton) {
@@ -162,6 +110,8 @@ function selectCategory(category) {
     }
     hideDropdown(dropDownMenu);
   }
+  selectedCategoryValue = category;
+  console.log(selectedCategoryValue);
 }
 
 function openSubtaskInput() {
