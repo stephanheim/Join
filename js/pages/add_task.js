@@ -19,6 +19,18 @@ function buttonsColorSwitch(activeButton) {
   activeButton.classList.add('isSelected');
 }
 
+function resetSelectedPriority() {
+  let buttons = document.getElementsByClassName('button-prio');
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].classList.remove('isSelected');
+  }
+  let defaultButton = document.getElementById('btn2');
+  if (defaultButton) {
+    defaultButton.classList.add('isSelected');
+  }
+  selectedPriorityValue = '';
+}
+
 function openDropdownAssigned() {
   const dropDownMenu = document.getElementById('dropDownMenuAssigned');
   const inputField = document.getElementById('addTaskAssigned');
@@ -113,6 +125,12 @@ function selectCategory(category) {
   console.log(selectedCategoryValue);
 }
 
+function resetSelectCategory() {
+  const selectedCategory = document.getElementById('selectedCategory');
+  selectedCategory.innerText = 'Select task category';
+  selectedCategoryValue = '';
+}
+
 function openSubtaskInput() {
   let inputField = document.getElementById('addTaskSubtasks');
   let plusIcon = document.getElementById('plusIcon');
@@ -186,6 +204,12 @@ function deleteSubtask(i) {
   renderSubtask();
 }
 
+function resetSubtask() {
+  let subtaskRef = document.getElementById('addedSubtaks');
+  subtaskRef.innerHTML = '';
+  addSubtask.length = 0;
+}
+
 function formatDate(input) {
   let value = input.value.replace(/\D/g, '');
   let formattedValue = '';
@@ -210,6 +234,10 @@ function toggleContactsSelection(event, index) {
   checkbox.checked = !checkbox.checked;
   updateSelectedContacts(index, checkbox.checked);
   updateSelectedStyle(checkedContainer, checkbox.checked);
+}
+
+function resetContactsSelection() {
+  selectedContacts.length = 0;
 }
 
 function updateSelectedContacts(index, isChecked) {
