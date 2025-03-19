@@ -93,9 +93,11 @@ function assignColorsToContacts(groupedContacts) {
 }
 
 
-function prepareFormattedContacts() {
-  formattedContactsArray = contactsArray.map((contact) => ({
-    ...contact,
+function prepareFormattedContacts() { 
+  formattedContactsArray = contactsArray.map((contact, index) => ({
+    id: index + 1, 
+    name: contact.name,
     initials: getInitials(contact.name),
+    color: contact.color
   }));
 }

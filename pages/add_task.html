@@ -20,7 +20,7 @@
       <h1 class="h1-add-task">Add Task</h1>
     </div>
 
-    <form class="" onsubmit="addNewTask();return false;">
+    <form class="" >
       <div class="input-section">
         <div class="section-left">
           <div class="add-task-single">
@@ -63,15 +63,15 @@
               </label>
               <div class="button-section selected">
                 <button id="btn1" color="rgba(255, 61, 0, 1);" class="button-prio"
-                  onclick="selectedPriority('Urgent'); buttonsColorSwitch('btn1')">
+                  onclick="selectedPriority('Urgent', this)">
                   Urgent <img src="../assets/icons/urgent-red.svg" />
                 </button>
                 <button id="btn2" color="rgba(255, 168, 0, 1)" class="button-prio isSelected"
-                  onclick="selectedPriority('Medium'); buttonsColorSwitch('btn2')">
+                  onclick="selectedPriority('Medium', this)">
                   Medium <img src="../assets/icons/medium-orange.svg" />
                 </button>
                 <button id="btn3" color="rgba(122, 226, 41, 1)" class="button-prio"
-                  onclick="selectedPriority('Low'); buttonsColorSwitch('btn3')">
+                  onclick="selectedPriority('Low', this)">
                   Low <img src="../assets/icons/low-green.svg" />
                 </button>
               </div>
@@ -151,7 +151,7 @@
                 stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </button>
-          <button class="bt-create-task" type="submit">Create Task<img src="../assets/icons/check.svg" /></button>
+          <button class="bt-create-task" type="submit" disabled>Create Task<img src="../assets/icons/check.svg"/></button>
         </div>
       </div>
     </form>

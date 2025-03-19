@@ -1,78 +1,76 @@
-let subtaskNotes = [];
+let selectedPriorityValue = '';
 let selectedContacts = [];
+let selectedCategoryValue = '';
+let addSubtask = [];
 
 function initAddTask() {
 }
 
 /* ---------- work in progress !-----------*/
 
-function taskGetValues() {
-  let title = document.getElementById('addTaskTitle').value.trim();
-  let description = document.getElementById('addTaskDescription').value.trim();
-  let date = document.getElementById('addTaskDate').value.trim();
-  let priority = selectedPriority();
-  let assignedTo = document.getElementById('').value.trim();
-  let category = selectCategory();
-  let subtasks = subtaskNotes;
-  return {
-    title: title,
-    description: description,
-    date: date,
-    priority: priority,
-    assignedTo: assignedTo,
-    category: category,
-    subtasks: subtasks,
-  }
-}
+// function taskGetValues() {
+//   let title = document.getElementById('addTaskTitle').value.trim();
+//   let description = document.getElementById('addTaskDescription').value.trim();
+//   let date = document.getElementById('addTaskDate').value.trim();
+//   let priority = selectedPriority();
+//   let assignedTo = selectedContacts;
+//   let category = selectCategory();
+//   let subtasks = addSubtask;
+//   return {
+//     title: title,
+//     description: description,
+//     date: date,
+//     priority: priority,
+//     assignedTo: assignedTo,
+//     category: category,
+//     subtasks: subtasks,
+//   }
+// }
 
-function addNewTask() {
-  let taskData = taskGetValues();
-  if (!taskData.title || !taskData.date || !taskData.category) {
-    requiredMessageAddTask();
-  }
-  let newTask = {
-    title: taskData.title,
-    description: taskData.description,
-    date: taskData.date,
-    priority: taskData.priority,
-    assignedTo: taskData.assignedTo,
-    category: taskData.category,
-    subtasks: taskData.subtasks,
-  }
-  console.log("Neue Aufgabe:", newTask);
-}
+// function addNewTask() {
+//   let taskData = taskGetValues();
+//   if (!taskData.title || !taskData.date || !taskData.category) {
+//     requiredMessageAddTask();
+//   }
+//   let newTask = {
+//     title: taskData.title,
+//     description: taskData.description,
+//     date: taskData.date,
+//     priority: taskData.priority,
+//     assignedTo: taskData.assignedTo,
+//     category: taskData.category,
+//     subtasks: taskData.subtasks,
+//   }
+//   console.log("Neue Aufgabe:", newTask);
+// }
 
-function requiredMessageAddTask() {
-  const title = document.getElementById('titleMessage');
-  const date = document.getElementById('dateMessage');
-  const category = document.getElementById('categoryMessage');
-  if (!addNewTask()) {
-    message.innerText = "This field is required";
-    message.style.display = "block";
-  } else {
-    message.innerText = "";
-    message.style.display = "none";
-  }
-}
+// function requiredMessageAddTask() {
+//   const title = document.getElementById('titleMessage');
+//   const date = document.getElementById('dateMessage');
+//   const category = document.getElementById('categoryMessage');
+//   if (!addNewTask()) {
+//     message.innerText = "This field is required";
+//     message.style.display = "block";
+//   } else {
+//     message.innerText = "";
+//     message.style.display = "none";
+//   }
+// }
 
-function selectedPriority(prio) {
-  return prio;
+function selectedPriority(prio, element) {
+  buttonsColorSwitch(element)
+  selectedPriorityValue = prio;
 }
 
 /* ----------------------------------- */
 
 
-function buttonsColorSwitch(btnId) {
-  let buttons = document.getElementsByClassName('input-section')[0].getElementsByTagName('button');
-  let activeButton = document.getElementById(btnId);
-  if (activeButton.classList.contains('isSelected')) {
-    activeButton.classList.remove('isSelected');
-  } else {
-    for (let i = 0; i < buttons.length; i++) {
-      buttons[i].classList.remove('isSelected');
-    }
-    activeButton.classList.add('isSelected');
+function buttonsColorSwitch(activeButton) {
+  let buttons = activeButton.parentElement.getElementsByTagName('button')
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].classList.remove('isSelected');
   }
+  activeButton.classList.add('isSelected');
 }
 
 
@@ -198,7 +196,7 @@ function closeSubtaskInput(event) {
 function renderSubtask() {
   let subtaskRef = document.getElementById('addedSubtaks');
   subtaskRef.innerHTML = '';
-  for (let i = 0; i < subtaskNotes.length; i++) {
+  for (let i = 0; i < addSubtask.length; i++) {
     subtaskRef.innerHTML += subtaskTemplate(i);
   }
 }
@@ -208,7 +206,7 @@ function addSubtaksFromInput(event) {
   let subtaskInputRef = document.getElementById('addTaskSubtasks');
   let subtaskNote = subtaskInputRef.value;
   if (subtaskNote.trim() !== '') {
-    subtaskNotes.push(subtaskNote);
+    addSubtask.push(subtaskNote);
     renderSubtask();
     resetSubtaskInput(event);
   }
@@ -218,14 +216,14 @@ function addSubtaksFromInput(event) {
 function editSubtask(i) {
   let subtaskRef = document.getElementById(`subtask-${i}`);
   if (subtaskRef) {
-    subtaskRef.outerHTML = editSubtaskTemplate(i, subtaskNotes[i]);
+    subtaskRef.outerHTML = editSubtaskTemplate(i, addSubtask[i]);
   }
 }
 
 
 function saveEditedSubtask(i) {
   let inputRef = document.getElementById(`editSubtask-${i}`);
-  subtaskNotes[i] = inputRef.value;
+  addSubtask[i] = inputRef.value;
   renderSubtask();
 }
 
@@ -247,7 +245,7 @@ function resetSubtaskInput(event) {
 
 
 function deleteSubtask(i) {
-  subtaskNotes.splice(i, 1);
+  addSubtask.splice(i, 1);
   renderSubtask();
 }
 
@@ -287,6 +285,7 @@ function toggleContactsSelection(event, index) {
   } else {
     if (contactIndex !== -1) selectedContacts.splice(contactIndex, 1);
   }
+  console.log(selectedContacts);
 }
 
 
