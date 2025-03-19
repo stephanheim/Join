@@ -1,8 +1,7 @@
 let subtaskNotes = [];
 let selectedContacts = [];
 
-function initAddTask() {
-}
+function initAddTask() {}
 
 /* ---------- work in progress !-----------*/
 
@@ -22,7 +21,7 @@ function taskGetValues() {
     assignedTo: assignedTo,
     category: category,
     subtasks: subtasks,
-  }
+  };
 }
 
 function addNewTask() {
@@ -38,8 +37,8 @@ function addNewTask() {
     assignedTo: taskData.assignedTo,
     category: taskData.category,
     subtasks: taskData.subtasks,
-  }
-  console.log("Neue Aufgabe:", newTask);
+  };
+  console.log('Neue Aufgabe:', newTask);
 }
 
 function requiredMessageAddTask() {
@@ -47,11 +46,11 @@ function requiredMessageAddTask() {
   const date = document.getElementById('dateMessage');
   const category = document.getElementById('categoryMessage');
   if (!addNewTask()) {
-    message.innerText = "This field is required";
-    message.style.display = "block";
+    message.innerText = 'This field is required';
+    message.style.display = 'block';
   } else {
-    message.innerText = "";
-    message.style.display = "none";
+    message.innerText = '';
+    message.style.display = 'none';
   }
 }
 
@@ -60,7 +59,6 @@ function selectedPriority(prio) {
 }
 
 /* ----------------------------------- */
-
 
 function buttonsColorSwitch(btnId) {
   let buttons = document.getElementsByClassName('input-section')[0].getElementsByTagName('button');
@@ -74,7 +72,6 @@ function buttonsColorSwitch(btnId) {
     activeButton.classList.add('isSelected');
   }
 }
-
 
 function openDropdownAssigned() {
   const dropDownMenu = document.getElementById('dropDownMenuAssigned');
@@ -91,15 +88,19 @@ function openDropdownAssigned() {
   updatePlaceholder(inputField, isHidden);
 }
 
-
 function renderDropdownUser(dropDownMenu) {
   dropDownMenu.innerHTML = '';
-  if (!dropDownMenu.innerHTML.trim()) {
-    for (let i = 0; i < formattedContactsArray.length; i++) {
-      let { name, color, initials } = formattedContactsArray[i];
-      dropDownMenu.innerHTML += assignedToTemplate(name, color, initials, i);
-    }
-  }
+  formattedContactsArray.forEach((contact, i) => {
+    let { name, color, initials } = contact;
+    let isChecked = selectedContacts.some((c) => c.id === contact.id);
+    dropDownMenu.innerHTML += assignedToTemplate(name, color, initials, i, isChecked);
+  });
+  formattedContactsArray.forEach((_, i) =>
+    updateSelectedStyle(
+      document.getElementById(`innerDropmenu-${i}`),
+      document.getElementById(`checkbox-${i}`)?.checked
+    )
+  );
 }
 
 function getContacts(dropDownMenu) {
@@ -109,13 +110,11 @@ function getContacts(dropDownMenu) {
   renderDropdownUser(dropDownMenu);
 }
 
-
 function updatePlaceholder(inputField, isHidden) {
   if (inputField) {
     inputField.placeholder = isHidden ? '' : 'Select contacts to assign';
   }
 }
-
 
 function toggleArrowRotation(arrow, isHidden) {
   if (arrow) {
@@ -123,7 +122,6 @@ function toggleArrowRotation(arrow, isHidden) {
     arrow.classList.toggle('rotate-arrow-0', !isHidden);
   }
 }
-
 
 function openDropdownCategory() {
   const dropDownMenu = document.getElementById('dropDownMenuCategory');
@@ -139,13 +137,11 @@ function openDropdownCategory() {
   toggleArrowRotation(arrow, isHidden);
 }
 
-
 function renderDropdownMenuCategory(dropDownMenu) {
   if (!dropDownMenu.innerHTML.trim()) {
     dropDownMenu.innerHTML = categoryTemplate();
   }
 }
-
 
 function isCategorySelected() {
   const dropDownMenu = document.getElementById('dropDownMenuCategory');
@@ -155,7 +151,6 @@ function isCategorySelected() {
     selectedCategory.innerText = originalCategoryText;
   }
 }
-
 
 function selectCategory(category) {
   const selectedCategory = document.getElementById('selectedCategory');
@@ -170,7 +165,6 @@ function selectCategory(category) {
   }
 }
 
-
 function openSubtaskInput() {
   let inputField = document.getElementById('addTaskSubtasks');
   let plusIcon = document.getElementById('plusIcon');
@@ -181,7 +175,6 @@ function openSubtaskInput() {
   otherIcons.classList.remove('d-none');
   inputField.placeholder = '';
 }
-
 
 function closeSubtaskInput(event) {
   event.stopPropagation();
@@ -194,7 +187,6 @@ function closeSubtaskInput(event) {
   resetSubtaskInput(event);
 }
 
-
 function renderSubtask() {
   let subtaskRef = document.getElementById('addedSubtaks');
   subtaskRef.innerHTML = '';
@@ -202,7 +194,6 @@ function renderSubtask() {
     subtaskRef.innerHTML += subtaskTemplate(i);
   }
 }
-
 
 function addSubtaksFromInput(event) {
   let subtaskInputRef = document.getElementById('addTaskSubtasks');
@@ -214,7 +205,6 @@ function addSubtaksFromInput(event) {
   }
 }
 
-
 function editSubtask(i) {
   let subtaskRef = document.getElementById(`subtask-${i}`);
   if (subtaskRef) {
@@ -222,13 +212,11 @@ function editSubtask(i) {
   }
 }
 
-
 function saveEditedSubtask(i) {
   let inputRef = document.getElementById(`editSubtask-${i}`);
   subtaskNotes[i] = inputRef.value;
   renderSubtask();
 }
-
 
 function resetSubtaskInput(event) {
   event.stopPropagation();
@@ -245,12 +233,10 @@ function resetSubtaskInput(event) {
   }
 }
 
-
 function deleteSubtask(i) {
   subtaskNotes.splice(i, 1);
   renderSubtask();
 }
-
 
 function formatDate(input) {
   let value = input.value.replace(/\D/g, '');
@@ -266,31 +252,29 @@ function formatDate(input) {
   return;
 }
 
-function assignedCheckedContacts() {
-  let checkedContact = document.getElementById('innerDropmenu');
-  for (let index = 0; index < checkedContact.length; index++) {
-    const element = checkedContact[i];
-    element.classList.add('inner-dropmenu-checked');
-  }
-}
-
-/* -------------------function push to selectedContacts------------------- */
+/*- wird ein benutzer ausgewählt, werden die initials in ein div über ein template reingerendert*/
 
 function toggleContactsSelection(event, index) {
   event.preventDefault();
   let checkbox = document.getElementById(`checkbox-${index}`);
+  let checkedContainer = document.getElementById(`innerDropmenu-${index}`);
+  if (!checkbox || !checkedContainer) return;
   checkbox.checked = !checkbox.checked;
+  updateSelectedContacts(index, checkbox.checked);
+  updateSelectedStyle(checkedContainer, checkbox.checked);
+}
+
+function updateSelectedContacts(index, isChecked) {
   let contact = formattedContactsArray[index];
-  let contactIndex = selectedContacts.findIndex(c => c.id === contact.id)
-  if (checkbox.checked) {
-    if (contactIndex === -1) selectedContacts.push(contact);
-  } else {
-    if (contactIndex !== -1) selectedContacts.splice(contactIndex, 1);
+  let contactIndex = selectedContacts.findIndex((c) => c.id === contact.id);
+  if (isChecked && contactIndex === -1) {
+    selectedContacts.push(contact);
+  } else if (!isChecked && contactIndex !== -1) {
+    selectedContacts.splice(contactIndex, 1);
   }
 }
 
-
-
-
-
-
+function updateSelectedStyle(element, isChecked) {
+  element.classList.toggle('inner-dropmenu', !isChecked);
+  element.classList.toggle('inner-dropmenu-checked', isChecked);
+}

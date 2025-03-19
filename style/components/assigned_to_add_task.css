@@ -125,6 +125,7 @@
   box-shadow: 0 0 14px 3px rgba(0, 0, 0, 0.04);
   border-radius: 10px;
   background-color: #ffffff;
+  gap: 2px;
   z-index: 1;
 }
 
@@ -211,9 +212,15 @@
   align-items: center;
   justify-content: space-between;
   background-color: rgba(42, 54, 71, 1);
+  color: white;
+  border-radius: 10px;
   height: 68px;
   padding: 7px 16px 7px 16px;
   cursor: pointer;
+}
+
+.inner-dropmenu-checked:hover {
+  background-color: rgba(9, 25, 49, 1);
 }
 
 .inner-dropmenu:hover {
@@ -286,6 +293,26 @@
   top: -4px;
   left: 4px;
   animation: fadeIn 300ms ease-out forwards;
+}
+
+.inner-dropmenu-checked .checkbox input[type='checkbox'] {
+  border-color: white;
+}
+
+.inner-dropmenu-checked .checkbox input[type='checkbox']:checked::before {
+  background-color: rgba(42, 54, 71, 1);
+}
+
+.inner-dropmenu-checked .checkbox input[type='checkbox']:checked::after {
+  border-color: white;
+}
+
+.inner-dropmenu-checked .checkbox input[type='checkbox'] {
+  background-color: rgba(42, 54, 71, 1);
+}
+
+.inner-dropmenu-checked .checkbox input[type='checkbox']:hover {
+  background-color: rgba(9, 25, 49, 1);
 }
 
 .textfield {
