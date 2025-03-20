@@ -39,12 +39,11 @@ function openDropdownAssigned() {
   const arrow = document.getElementById('arrowAssigned');
   const isHidden = dropDownMenu.classList.contains('drop-down-hide');
   getContacts(dropDownMenu);
+  initialsShowOnAssinged();
   if (isHidden) {
     showDropdown(dropDownMenu);
-    initialsShowOnAssinged();
   } else {
     hideDropdown(dropDownMenu);
-    initialsShowOnAssinged();
   }
   toggleArrowRotation(arrow, isHidden);
   updatePlaceholder(inputField, isHidden);
@@ -240,7 +239,7 @@ function toggleContactsSelection(event, index) {
 
 function resetContactsSelection() {
   let initialContainer = document.getElementById('selectedInitials');
-  initialContainer.innerHTML = "";
+  initialContainer.innerHTML = '';
   selectedContacts.length = 0;
 }
 
