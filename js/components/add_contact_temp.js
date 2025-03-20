@@ -1,6 +1,6 @@
 function generateFloaterHTML() {
   return `
-<form id="contactForm" onsubmit="return validateForm()">
+<form id="contactForm" onsubmit="validateForm(event)">
 <div id="contactFloater" class="main-floater">
   <div class="add-contact">
     <img src="../assets/img/join.svg" class="add-icon" />
@@ -33,7 +33,7 @@ function generateFloaterHTML() {
         </div>
       </div>
       <div class="add-btn-div">
-        <button onclick="closeNewContact()" class="add-btn-cancel">
+        <button type="button" onclick="closeNewContact()" class="add-btn-cancel">
           Cancel
           <div class="btn-icons">
             <img src="../assets/icons/close.svg" class="img-btn-close" />
@@ -82,7 +82,7 @@ function generateContactsHTML(contact, initials) {
 
 function generateContactsInfoHTML(contact) {
   return `
-    <div class="cnt-glance">
+    <div class="cnt-glance" onsubmit="validateForm(event)">
       <div class="cnt-glance-details">
         <div class="cnt-glance-initials" style="background-color: ${contact.color}">
           ${getInitials(contact.name)}
@@ -148,10 +148,10 @@ function generateContactsEditFloaterHTML(contact) {
             </div>
           </div>
           <div class="add-btn-div">
-            <button onclick="deleteContact('${contact.id}')" class="add-btn-cancel">
+            <button type="button" onclick="deleteContact('${contact.id}')" class="add-btn-cancel">
               Delete
             </button>
-            <button type="button" onclick="updateContact('${contact.id}')" class="add-btn-create">
+            <button type="submit" onclick="updateContact('${contact.id}')" class="add-btn-create">
               Save
               <div class="btn-icons">
                 <img src="../assets/icons/check.svg" class="img-btn-check" />

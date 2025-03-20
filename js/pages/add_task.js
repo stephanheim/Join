@@ -3,7 +3,14 @@ let selectedContacts = [];
 let selectedCategoryValue = '';
 let addSubtask = [];
 
-function initAddTask() {}
+
+function initAddTask() { }
+
+
+function addNewTask(){
+
+}
+
 
 function selectedPriority(prio, element) {
   buttonsColorSwitch(element);
