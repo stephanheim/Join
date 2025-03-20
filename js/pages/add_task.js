@@ -224,8 +224,6 @@ function formatDate(input) {
   return;
 }
 
-/*- wird ein benutzer ausgewählt, werden die initials in ein div über ein template reingerendert*/
-
 function toggleContactsSelection(event, index) {
   event.preventDefault();
   let checkbox = document.getElementById(`checkbox-${index}`);
@@ -265,5 +263,4 @@ function renderSelectedInitials() {
     const initialsColor = selectedContacts[i].color;
     initialsRef.innerHTML += initialsTemplate(initials, initialsColor);
   }
-  console.log(selectedContacts);
 }

@@ -70,6 +70,8 @@ function addTaskTemplate() {
         </div>
       </div>
 
+      <div id="selectedInitials" class="initial-container"></div>
+
       <div class="add-task-single">
         <div class="title-and-star">
           <h2>Category</h2>
