@@ -247,6 +247,17 @@
   border-radius: 50%;
 }
 
+.circle-color-checked-assigned {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border: 2px solid white;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+}
+
 .checkbox {
   display: flex;
   justify-content: center;

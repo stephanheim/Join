@@ -102,8 +102,14 @@
                   <h2>Assigned to</h2>
                 </div>
                 <div class="assigned-input-outside">
-                  <div class="input-container-assigned" onclick="openDropdownAssigned()">
-                    <input id="addTaskAssigned" type="text" name="contacts" placeholder="Select contacts to assign" />
+                  <div id="assignedInputBorderColor" class="input-container-assigned" onclick="openDropdownAssigned()">
+                    <input
+                      id="addTaskAssigned"
+                      type="text"
+                      name="contacts"
+                      placeholder="Select contacts to assign"
+                      oninput="searchContacts(this.value)"
+                    />
                     <div class="container-arrow-img-dropdown">
                       <img id="arrowAssigned" class="arrow-drop-down" src="../assets/icons/drop_up_arrwow.svg" />
                     </div>
