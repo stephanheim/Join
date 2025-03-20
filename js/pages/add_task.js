@@ -244,6 +244,8 @@ function toggleContactsSelection(event, index) {
 }
 
 function resetContactsSelection() {
+  let initialContainer = document.getElementById('selectedInitials');
+  initialContainer.innerHTML = "";
   selectedContacts.length = 0;
 }
 
@@ -273,4 +275,11 @@ function renderSelectedInitials() {
     initialsRef.innerHTML += initialsTemplate(initials, initialsColor);
   }
   console.log(selectedContacts);
+}
+
+function clearAddTask() {
+  resetSelectCategory();
+  resetContactsSelection();
+  resetSubtask();
+  resetSelectedPriority();
 }
