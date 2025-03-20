@@ -3,9 +3,9 @@ let selectedContacts = [];
 let selectedCategoryValue = '';
 let addSubtask = [];
 
-function initAddTask() {}
+function initAddTask() { }
 
-function addNewTask() {}
+function addNewTask() { }
 
 function selectedPriority(prio, element) {
   buttonsColorSwitch(element);
@@ -37,14 +37,19 @@ function openDropdownAssigned() {
   const dropDownMenu = document.getElementById('dropDownMenuAssigned');
   const inputField = document.getElementById('addTaskAssigned');
   const arrow = document.getElementById('arrowAssigned');
+  toggleDropdown(dropDownMenu);
+  initialsShowOnAssinged(dropDownMenu);
+  updateUIElements(inputField, arrow, dropDownMenu);
+}
+
+function toggleDropdown(dropDownMenu) {
   const isHidden = dropDownMenu.classList.contains('drop-down-hide');
   getContacts(dropDownMenu);
-  initialsShowOnAssinged();
-  if (isHidden) {
-    showDropdown(dropDownMenu);
-  } else {
-    hideDropdown(dropDownMenu);
-  }
+  isHidden ? showDropdown(dropDownMenu) : hideDropdown(dropDownMenu);
+}
+
+function updateUIElements(inputField, arrow, dropDownMenu) {
+  const isHidden = dropDownMenu.classList.contains('drop-down-hide');
   toggleArrowRotation(arrow, isHidden);
   updatePlaceholder(inputField, isHidden);
 }
@@ -73,7 +78,8 @@ function getContacts(dropDownMenu) {
 
 function updatePlaceholder(inputField, isHidden) {
   if (inputField) {
-    inputField.placeholder = isHidden ? '' : 'Select contacts to assign';
+    inputField.placeholder = !isHidden ? '' : 'Select contacts to assign';
+    inputField.value = isHidden ? "" : inputField.value;
   }
 }
 
@@ -270,9 +276,8 @@ function renderSelectedInitials() {
   }
 }
 
-function initialsShowOnAssinged() {
+function initialsShowOnAssinged(dropDownMenu) {
   const initialCircle = document.getElementById('selectedInitials');
-  const dropDownMenu = document.getElementById('dropDownMenuAssigned');
   const isHidden = dropDownMenu.classList.contains('drop-down-hide');
   if (isHidden) {
     initialCircle.classList.remove('d-none');
