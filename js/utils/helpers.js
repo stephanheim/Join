@@ -7,7 +7,6 @@ function isCheckboxChecked(type) {
   }
 }
 
-
 function toggleRequiredInput(isFocused) {
   let border = document.getElementById('requiredInput');
   if (border) {
@@ -15,23 +14,20 @@ function toggleRequiredInput(isFocused) {
   }
 }
 
-
 function toggleRequiredInput(inputElement, isFocused) {
   let border = inputElement.parentElement.parentElement;
   if (border) {
-    border.classList.toggle('input-focus', isFocused)
+    border.classList.toggle('input-focus', isFocused);
   }
 }
-
 
 function toggleSubmitButton() {
   if (allFieldsValid()) {
-    activateButton()
+    activateButton();
   } else {
-    deactivateButton()
+    deactivateButton();
   }
 }
-
 
 function deactivateButton() {
   const button = document.getElementById('buttonSignup');
@@ -39,38 +35,32 @@ function deactivateButton() {
   return button;
 }
 
-
 function activateButton() {
   const button = document.getElementById('buttonSignup');
   button.disabled = false;
   return button;
 }
 
-
 function resetFormRegister() {
   const form = document.getElementById('formRegister');
   return form.reset();
 }
-
 
 function showSubMenu() {
   const submenu = document.getElementById('submenu');
   submenu.classList.toggle('d-none');
 }
 
-
 function logout() {
-  localStorage.removeItem("loggedInUser");
-  localStorage.removeItem("loggedInGuest")
-  window.location.href = "../index.html";
+  localStorage.removeItem('loggedInUser');
+  localStorage.removeItem('loggedInGuest');
+  window.location.href = '../index.html';
 }
-
 
 function showDropdown(dropDownMenu) {
   dropDownMenu.classList.remove('d-none', 'drop-down-hide');
   dropDownMenu.classList.add('drop-down-show');
 }
-
 
 function hideDropdown(dropDownMenu) {
   dropDownMenu.classList.remove('drop-down-show');
@@ -79,7 +69,6 @@ function hideDropdown(dropDownMenu) {
     dropDownMenu.classList.add('d-none');
   }, 300);
 }
-
 
 function assignColorsToContacts(groupedContacts) {
   let colorizeIndex = 0;
@@ -92,12 +81,11 @@ function assignColorsToContacts(groupedContacts) {
   }
 }
 
-
-function prepareFormattedContacts() { 
+function prepareFormattedContacts() {
   formattedContactsArray = contactsArray.map((contact, index) => ({
-    id: index + 1, 
+    id: index + 1,
     name: contact.name,
     initials: getInitials(contact.name),
-    color: contact.color
+    color: contact.color,
   }));
 }

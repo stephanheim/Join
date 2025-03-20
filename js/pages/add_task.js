@@ -4,6 +4,7 @@ let selectedCategoryValue = '';
 let addSubtask = [];
 let addNewTask = [];
 
+<<<<<<< HEAD
 function initAddTask() {
 
 }
@@ -61,6 +62,11 @@ function createNewTask() {
 //   }
 // }
 
+=======
+function initAddTask() {}
+
+function addNewTask() {}
+>>>>>>> 3b289fabf7263b4850ae8ecb6e0d44be37c1d9c2
 
 function selectedPriority(prio, element) {
   buttonsColorSwitch(element);
@@ -95,6 +101,7 @@ function openDropdownAssigned() {
   toggleDropdown(dropDownMenu);
   initialsShowOnAssinged(dropDownMenu);
   updateUIElements(inputField, arrow, dropDownMenu);
+  assignedBorderColor(dropDownMenu);
 }
 
 function toggleDropdown(dropDownMenu) {
@@ -109,19 +116,50 @@ function updateUIElements(inputField, arrow, dropDownMenu) {
   updatePlaceholder(inputField, isHidden);
 }
 
-function renderDropdownUser(dropDownMenu) {
+function assignedBorderColor(dropDownMenu) {
+  const borderColor = document.getElementById('assignedInputBorderColor');
+  const isHidden = dropDownMenu.classList.contains('drop-down-hide');
+  if (isHidden) {
+    borderColor.style.border = '1px solid rgba(209, 209, 209, 1)';
+  } else {
+    borderColor.style.border = '1px solid rgba(41, 171, 226, 1)';
+  }
+}
+
+function renderDropdownUser(dropDownMenu, contacts) {
+  contacts = contacts || formattedContactsArray;
   dropDownMenu.innerHTML = '';
-  formattedContactsArray.forEach((contact, i) => {
+  addedContacts(dropDownMenu, contacts);
+  applySelectionStyles(contacts);
+}
+
+function addedContacts(dropDownMenu, contacts) {
+  contacts.forEach((contact, i) => {
     let { name, color, initials } = contact;
     let isChecked = selectedContacts.some((c) => c.id === contact.id);
     dropDownMenu.innerHTML += assignedToTemplate(name, color, initials, i, isChecked);
   });
-  formattedContactsArray.forEach((_, i) =>
+}
+
+function applySelectionStyles(contacts) {
+  contacts.forEach((_, i) =>
     updateSelectedStyle(
       document.getElementById(`innerDropmenu-${i}`),
       document.getElementById(`checkbox-${i}`)?.checked
     )
   );
+}
+
+function searchContacts(searchTerm) {
+  const dropDownMenu = document.getElementById('dropDownMenuAssigned');
+  if (searchTerm.length < 2) {
+    renderDropdownUser(dropDownMenu, formattedContactsArray);
+    return;
+  }
+  let searchContacts = formattedContactsArray.filter((contact) =>
+    contact.name.toLowerCase().startsWith(searchTerm.toLowerCase())
+  );
+  renderDropdownUser(dropDownMenu, searchContacts);
 }
 
 function getContacts(dropDownMenu) {
@@ -134,7 +172,7 @@ function getContacts(dropDownMenu) {
 function updatePlaceholder(inputField, isHidden) {
   if (inputField) {
     inputField.placeholder = !isHidden ? '' : 'Select contacts to assign';
-    inputField.value = isHidden ? "" : inputField.value;
+    inputField.value = isHidden ? '' : inputField.value;
   }
 }
 
@@ -313,7 +351,6 @@ function updateSelectedContacts(index, isChecked) {
     selectedContacts.splice(contactIndex, 1);
   }
   renderSelectedInitials();
-  console.log(selectedContacts);
 }
 
 function updateSelectedStyle(element, isChecked) {

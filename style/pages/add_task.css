@@ -86,8 +86,7 @@
 }
 
 .input_at:focus,
-.textarea-add-task:focus,
-.input-date:focus {
+.textarea-add-task:focus {
   outline: none;
   border-color: rgba(41, 171, 226, 1);
 }
@@ -103,6 +102,10 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+}
+
+.input-date-outside:focus-within {
+  border: 1px solid rgba(41, 171, 226, 1);
 }
 
 .input-date {

@@ -11,18 +11,19 @@ function addTaskTemplate() {
   <div class="input-section">
     <div class="section-left">
       <div class="add-task-single">
-        <label class="title-and-star" for="taskTitle">
+        <label class="title-and-star" for="addTaskTitle">
           <h2>Title</h2>
           <span class="span-star">*</span>
         </label>
-        <input id="taskTitle" class="input_at" type="text" placeholder="Enter a title" />
+        <input id="addTaskTitle" class="input_at" type="text" placeholder="Enter a title" />
+        <span id="titleMessage" class="error-message"></span>
       </div>
 
       <div class="add-task-single">
-        <label for="taskDescription">
+        <label for="addTaskDescription">
           <h2>Description</h2>
         </label>
-        <textarea id="taskDescription" class="textarea-add-task" placeholder="Enter a Description"></textarea>
+        <textarea id="addTaskDescription" class="textarea-add-task" placeholder="Enter a Description"></textarea>
       </div>
 
       <div class="add-task-single">
@@ -43,13 +44,13 @@ function addTaskTemplate() {
       <div class="add-task-single">
         <h2>Prio</h2>
         <div class="prio-section">
-          <button id="btn1" color="rgba(255, 61, 0, 1);" onclick="buttonsColorSwitch('btn1')" class="button-prio">
+          <button id="btn1" color="rgba(255, 61, 0, 1);" onclick="selectedPriority('Urgent', this)" class="button-prio">
             Urgent <img src="../assets/icons/urgent-red.svg" alt="Urgent" />
           </button>
-          <button id="btn2" color="rgba(255, 168, 0, 1)" onclick="buttonsColorSwitch('btn2')" class="button-prio isSelected">
+          <button id="btn2" color="rgba(255, 168, 0, 1)" onclick="selectedPriority('Medium', this)" class="button-prio isSelected">
             Medium <img src="../assets/icons/medium-orange.svg" alt="Medium" />
           </button>
-          <button id="btn3" color="rgba(122, 226, 41, 1)" onclick="buttonsColorSwitch('btn3')" class="button-prio">
+          <button id="btn3" color="rgba(122, 226, 41, 1)" onclick="selectedPriority('Low', this)" class="button-prio">
             Low <img src="../assets/icons/low-green.svg" alt="Low" />
           </button>
         </div>
@@ -60,17 +61,18 @@ function addTaskTemplate() {
           <h2>Assigned to</h2>
         </label>
         <div class="assigned-input-outside">
-          <div class="input-container-assigned" onclick="openDropdownAssigned()">
-            <input id="addTaskAssigned" type="text" placeholder="Select contacts to assign" />
+          <div id="assignedInputBorderColor" class="input-container-assigned" onclick="openDropdownAssigned()">
+            <input id="addTaskAssigned" type="text" placeholder="Select contacts to assign" oninput="searchContacts(this.value)" />
             <div class="container-arrow-img-dropdown">
               <img id="arrowAssigned" class="arrow-drop-down" src="../assets/icons/drop_up_arrwow.svg" alt="Dropdown" />
             </div>
           </div>
           <div id="dropDownMenuAssigned" class="main-drop-down drop-down-hide d-none"></div>
         </div>
+        <div id="selectedInitials" class="initial-container"></div>
       </div>
 
-      <div id="selectedInitials" class="initial-container"></div>
+      
 
       <div class="add-task-single">
         <div class="title-and-star">
@@ -121,7 +123,19 @@ function addTaskTemplate() {
       <p>This field is required</p>
     </div>
     <div class="bt-section">
-      <button class="bt-clear">Clear x</button>
+          <button class="bt-clear" type="reset" onclick="clearAddTask()">
+              Clear
+              <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12.2496 11.9998L17.4926 17.2428M7.00659 17.2428L12.2496 11.9998L7.00659 17.2428ZM17.4926 6.75684L12.2486 11.9998L17.4926
+              6.75684ZM12.2486 11.9998L7.00659 6.75684L12.2486 11.9998Z"
+                  stroke="#2A3647"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
       <button class="bt-add-float-task">Create Task <img src="../assets/icons/check.svg" alt="Check" /></button>
     </div>
   </div>
@@ -195,7 +209,7 @@ function editSubtaskTemplate(i, subtask) {
 
 function initialsTemplate(initials, initialsColor) {
   return `   
-    <div class="circle-color" style="background-color: ${initialsColor}">
+    <div class="circle-color-checked-assigned" style="background-color: ${initialsColor}">
       <span>${initials}</span>
     </div>`;
 }
