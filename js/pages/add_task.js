@@ -4,7 +4,6 @@ let selectedCategoryValue = '';
 let addSubtask = [];
 let addNewTask = [];
 
-<<<<<<< HEAD
 function initAddTask() {
 
 }
@@ -62,11 +61,6 @@ function createNewTask() {
 //   }
 // }
 
-=======
-function initAddTask() {}
-
-function addNewTask() {}
->>>>>>> 3b289fabf7263b4850ae8ecb6e0d44be37c1d9c2
 
 function selectedPriority(prio, element) {
   buttonsColorSwitch(element);
