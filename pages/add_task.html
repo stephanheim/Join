@@ -26,8 +26,10 @@
                 <h2>Title</h2>
                 <span class="span-star">*</span>
               </label>
-              <input id="addTaskTitle" class="input_at" type="text" name="title" placeholder="Enter a title" />
-              <span id="titleMessage" class="error-message"></span>
+              <div>
+                <input id="addTaskTitle" class="input_at" type="text" name="title" placeholder="Enter a title" />
+                <span id="titleMessage" class="error-message"></span>
+              </div>
             </div>
             <div class="add-task-single">
               <label for="addTaskDescription">
@@ -108,7 +110,7 @@
                   </div>
                   <div id="dropDownMenuAssigned" class="main-drop-down drop-down-hide d-none"></div>
                 </div>
-                <div id="selectedInitials" class="initial-container"></div>
+                <div id="selectedInitials" class="initial-container d-none"></div>
               </div>
               <div class="add-task-single">
                 <div class="title-and-star">
@@ -171,9 +173,7 @@
                 />
               </svg>
             </button>
-            <button class="bt-create-task" type="submit">
-              Create Task<img src="../assets/icons/check.svg" />
-            </button>
+            <button class="bt-create-task" type="submit">Create Task<img src="../assets/icons/check.svg" /></button>
           </div>
         </div>
       </form>

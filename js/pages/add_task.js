@@ -3,14 +3,9 @@ let selectedContacts = [];
 let selectedCategoryValue = '';
 let addSubtask = [];
 
+function initAddTask() {}
 
-function initAddTask() { }
-
-
-function addNewTask(){
-
-}
-
+function addNewTask() {}
 
 function selectedPriority(prio, element) {
   buttonsColorSwitch(element);
@@ -46,8 +41,10 @@ function openDropdownAssigned() {
   getContacts(dropDownMenu);
   if (isHidden) {
     showDropdown(dropDownMenu);
+    initialsShowOnAssinged();
   } else {
     hideDropdown(dropDownMenu);
+    initialsShowOnAssinged();
   }
   toggleArrowRotation(arrow, isHidden);
   updatePlaceholder(inputField, isHidden);
@@ -269,5 +266,16 @@ function renderSelectedInitials() {
     const initials = selectedContacts[i].initials;
     const initialsColor = selectedContacts[i].color;
     initialsRef.innerHTML += initialsTemplate(initials, initialsColor);
+  }
+}
+
+function initialsShowOnAssinged() {
+  const initialCircle = document.getElementById('selectedInitials');
+  const dropDownMenu = document.getElementById('dropDownMenuAssigned');
+  const isHidden = dropDownMenu.classList.contains('drop-down-hide');
+  if (isHidden) {
+    initialCircle.classList.remove('d-none');
+  } else {
+    initialCircle.classList.add('d-none');
   }
 }
