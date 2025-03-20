@@ -57,6 +57,7 @@
   }
 }
 
+
 @keyframes slideOut {
   from {
     transform: translateX(0);

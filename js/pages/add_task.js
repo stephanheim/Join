@@ -2,10 +2,65 @@ let selectedPriorityValue = '';
 let selectedContacts = [];
 let selectedCategoryValue = '';
 let addSubtask = [];
+let addNewTask = [];
 
-function initAddTask() { }
+function initAddTask() {
 
-function addNewTask() { }
+}
+
+function getAddTaskValue() {
+  let title = document.getElementById('addTaskTitle').value.trim();
+  let description = document.getElementById('addTaskDescription').value.trim();
+  let date = document.getElementById('addTaskDate').value.trim();
+  let newTask = {
+    title,
+    description,
+    date,
+    priority: selectedPriorityValue,
+    contacts: Array.from(selectedContacts),
+    subtasks: Array.from(addSubtask)
+  };
+  addNewTask.push(newTask);
+  return newTask;
+}
+
+
+function areTaskFieldsFilled() {
+  let title = document.getElementById('addTaskTitle').value.trim();
+  let date = document.getElementById('addTaskDate').value.trim();
+  let category = selectedCategoryValue.trim();
+  if (!title || !date || !category) {
+    alert('Bitte alle Pflichtfelder ausfüllen!');
+    return false;
+  }
+  return true;
+}
+
+
+
+function createNewTask() {
+  if (!areTaskFieldsFilled()) return;
+  let newTask = getAddTaskValue();
+  let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+  tasks.push(newTask);
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+  console.log('Task gespeichert:', newTask);
+  clearAddTask();
+}
+
+// function requiredMessageAddTask() {
+//   const title = document.getElementById('titleMessage');
+//   const date = document.getElementById('dateMessage');
+//   const category = document.getElementById('categoryMessage');
+//   if (!addNewTask()) {
+//     message.innerText = "This field is required";
+//     message.style.display = "block";
+//   } else {
+//     message.innerText = "";
+//     message.style.display = "none";
+//   }
+// }
+
 
 function selectedPriority(prio, element) {
   buttonsColorSwitch(element);
@@ -287,6 +342,9 @@ function initialsShowOnAssinged(dropDownMenu) {
 }
 
 function clearAddTask() {
+  document.getElementById('addTaskTitle').value = '';
+  document.getElementById('addTaskDescription').value = '';
+  document.getElementById('addTaskDate').value = '';
   resetSelectCategory();
   resetContactsSelection();
   resetSubtask();
