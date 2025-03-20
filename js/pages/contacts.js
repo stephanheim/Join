@@ -140,37 +140,35 @@ function scrollToContact(contactId) {
   }
 }
 
-function validateForm() {
-  setTimeout(() => {
-    let name = document.getElementById('addContName').value.trim();
-    let email = document.getElementById('addContMail').value.trim();
-    let phone = document.getElementById('addContPhone').value.trim();
-    if (!name || !email || !phone) {
-      alert('Alle Felder müssen ausgefüllt sein.');
+function validateForm(event) {
+  event.preventDefault();
+    let { name, email, phone } = getFormValues();
+    if (!isFormValid(name, email, phone)) {
       return false;
     }
-    if (!loopValidation(name, email, phone)) {
-      return false;
-    }
-    createNewContact(name, email, phone);
+       createNewContact(name, email, phone);
     return false;
-  }, 500);
+  }
+
+function getFormValues() {
+  return {
+  name: document.getElementById('addContName').value.trim(),
+  email: document.getElementById('addContMail').value.trim(),
+  phone: document.getElementById('addContPhone').value.trim(),
+  };
 }
 
-function loopValidation(name, email, phone) {
-  if (!isCntNameValid(name)) {
-    alert('Bitte Vor- und Nachnamen eingeben.');
-    return false;
-  }
-  if (!isCntEmailValid(email)) {
-    alert('Bitte gültige E-Mail-Adresse eingeben.');
-    return false;
-  }
-  if (!isCntPhoneValid(phone)) {
-    alert('Bitte gültige Telefonnummer eingeben.');
-    return false;
-  }
+function isFormValid(name, email, phone) {
+  if (!name || !email || !phone) return showValidationError('Alle Felder müssen ausgefüllt sein.');
+  if (!isCntNameValid(name)) return showValidationError('Bitte Vor- und Nachnamen eingeben.');
+  if (!isCntEmailValid(email)) return showValidationError('Bitte gültige E-Mail-Adresse eingeben.');
+  if (!isCntPhoneValid(phone)) return showValidationError('Bitte gültige Telefonnummer eingeben.');
   return true;
+}
+
+function showValidationError(message) {
+  alert(message);
+  return false;
 }
 
 function isCntNameValid(name) {
@@ -184,6 +182,7 @@ function isCntEmailValid(email) {
 function isCntPhoneValid(phone) {
   return /^\+?\d{7,15}$/.test(phone);
 }
+
 
 async function postToFirebase(contact) {
   try {
