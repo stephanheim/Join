@@ -1,34 +1,34 @@
-function boardCardTemplate() {
+function boardCardTemplate(task) {
   return `<div class="user-story-card">
         <div class="inner-card">
           <header class="headline-story-user">
             <div class="user-headline">
-              <span class="span-headline">User Story</span>
+              <span class="span-headline">${task.category}</span>
             </div>
             <div class="img-close-div" onclick="closeBoardCard()">
               <img src="../assets/icons/close.svg" />
             </div>
           </header>
           <div>
-            <h1>Kochwelt Page & Recipe Recommender</h1>
+            <h1>${task.title}</h1>
           </div>
           <div class="inner-text-build-start">
             <div>
-              <span>Build start page with recipe recommendation.</span>
+              <span>${task.description}</span>
             </div>
             <div class="priority-content">
               <div>
                 <p class="headline-boardcard">Due date:</p>
               </div>
               <div>
-                <span>06/03/2025</span>
+                <span>${task.date}</span>
               </div>
             </div>
             <div>
               <div class="priority-content">
                 <p class="headline-boardcard">Priority:</p>
                 <div class="img-content">
-                  <span>Medium </span>
+                  <span>${task.priority}</span>
                   <img src="../assets/icons/medium-orange.svg" />
                 </div>
               </div>
@@ -37,6 +37,7 @@ function boardCardTemplate() {
               <p class="headline-boardcard">Assigned To:</p>
             </div>
             <div class="contact-container">
+            
               <div class="contact-section">
                 <div class="circle-content" style="background-color: rgba(31, 215, 193, 1)">
                   <p>EM</p>

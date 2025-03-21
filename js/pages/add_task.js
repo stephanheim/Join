@@ -13,11 +13,13 @@ function getAddTaskValue() {
   let description = document.getElementById('addTaskDescription').value.trim();
   let date = document.getElementById('addTaskDate').value.trim();
   let newTask = {
+    id: generateUniqueId(),
     title,
     description,
     date,
     priority: selectedPriorityValue,
     contacts: Array.from(selectedContacts),
+    category: selectedCategoryValue,
     subtasks: Array.from(addSubtask)
   };
   addNewTask.push(newTask);
@@ -37,8 +39,7 @@ function areTaskFieldsFilled() {
 }
 
 
-
-function createNewTask() {
+function createNewTaskToStorage() {
   if (!areTaskFieldsFilled()) return;
   let newTask = getAddTaskValue();
   let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
@@ -47,6 +48,32 @@ function createNewTask() {
   console.log('Task gespeichert:', newTask);
   clearAddTask();
 }
+
+
+
+function loadTaskFromStorage() {
+  return JSON.parse(localStorage.getItem('tasks')) || [];
+}
+
+function getContactsInitials(task) {
+  let html = '';
+  for (let contact of task.contacts) {
+    html += `
+    <div class="card-badge" style="background-color: ${contact.color}">
+        <span>${contact.initials}</span>
+      </div>
+    `
+  }
+  return html;
+}
+
+function renderTasks() {
+  let toDoContainer = document.getElementById('toDo');
+  let tasks = loadTaskFromStorage();
+  toDoContainer.innerHTML = '';
+  tasks.forEach(task => toDoContainer.innerHTML += createTaskCard(task));
+}
+
 
 // function requiredMessageAddTask() {
 //   const title = document.getElementById('titleMessage');

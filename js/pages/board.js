@@ -2,7 +2,8 @@ let preTaskCards = [];
 
 
 function initBoard() {
-  loadPreTaskCards();
+  // loadPreTaskCards();
+  renderTasks();
 }
 
 
@@ -27,19 +28,19 @@ async function loadPreTaskCards() {
 }
 
 
-function renderPreTaskCard() {
-  let taskCard = document.getElementById('inProgress');
-  let hideNoTask = document.getElementById('noTaskInProgress');
-  if (preTaskCards.length === 0) {
-    hideNoTask.classList.remove('d-none');
-    return;
-  }
-  taskCard.innerHTML = "";
-  preTaskCards.forEach(task => {
-    let taskHTML = createTaskCard(task.category, task.title, task.description, task.assigned);
-    taskCard.innerHTML += taskHTML;
-  })
-}
+// function renderPreTaskCard() {
+//   let taskCard = document.getElementById('inProgress');
+//   let hideNoTask = document.getElementById('noTaskInProgress');
+//   if (preTaskCards.length === 0) {
+//     hideNoTask.classList.remove('d-none');
+//     return;
+//   }
+//   taskCard.innerHTML = "";
+//   preTaskCards.forEach(task => {
+//     let taskHTML = createTaskCard(task.category, task.title, task.description, task.assigned);
+//     taskCard.innerHTML += taskHTML;
+//   })
+// }
 
 
 function openAddFloatingTask() {

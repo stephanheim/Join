@@ -1,4 +1,4 @@
-.task-render-container{
+.task-render-container {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -20,7 +20,7 @@
 }
 
 .card-headline {
-  width: 113px;
+  max-width: 150px;
   height: 27px;
   border-radius: 8px;
   background-color: #0038FF;
@@ -83,10 +83,14 @@
 }
 
 .card-badge {
-  width: 100%;
-  height: 100%;
   display: flex;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border: 2px solid white;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
 }
 
 .user-badge {

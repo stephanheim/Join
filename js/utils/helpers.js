@@ -89,3 +89,18 @@ function prepareFormattedContacts() {
     color: contact.color,
   }));
 }
+
+
+function generateUniqueId() {
+  return 'task-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
+}
+
+
+function getPriorityIcon(priority) {
+  switch (priority.toLowerCase()) {
+    case 'urgent': return 'urgent-red.svg';
+    case 'medium': return 'medium-orange.svg';
+    case 'low': return 'low-green.svg';
+    default: return 'medium-orange.svg';
+  }
+}
