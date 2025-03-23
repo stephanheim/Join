@@ -40,6 +40,13 @@
   font-weight: 700;
 }
 
+.add-task-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100vh - 265px);
+}
+
 .input-section {
   display: flex;
   justify-content: space-between;
@@ -204,15 +211,12 @@
   color: red;
 }
 
-.required-section {
-  max-width: 1015px;
-  width: 100%;
+.required-section-content {
+  margin-bottom: 80px;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  padding-bottom: 70px;
-  position: fixed;
-  bottom: 0;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .required-field {
@@ -403,5 +407,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+}
+
+@media (max-width: 1200px) {
+  .required-section {
+    max-width: 100%;
+    padding: 0 10px;
+    /* optional für inneren Abstand */
   }
 }
