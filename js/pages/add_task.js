@@ -61,7 +61,8 @@ function progressSubtasks(task) {
   let completedSubtasks = task.subtasks?.filter(s => s.completed).length || 0;
   let progressPercent = totalSubtasks > 0 ? Math.round((completedSubtasks / totalSubtasks) * 100) : 0;
   let progressColor = progressPercent === 100 ? '#00cc66' : '#4589ff';
-  return { totalSubtasks, completedSubtasks, progressPercent, progressColor };
+  let hideProgressBar = totalSubtasks === 0 ? 'display:none;' : '';
+  return { totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar };
 }
 
 function getContactsInitials(task) {

@@ -43,6 +43,7 @@ async function loadPreTaskCards() {
 // }
 
 
+
 function openAddFloatingTask() {
   let addTask = document.getElementById('floatingAddTask');
   addTask.innerHTML = addTaskTemplate();
