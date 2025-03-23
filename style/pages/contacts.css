@@ -315,3 +315,35 @@
 .clickable:hover img {
   filter: invert(52%) sepia(91%) saturate(414%) hue-rotate(160deg) brightness(99%) contrast(92%);
 }
+
+.resp-btn {
+  display: none;
+}
+
+/* Media Queries */
+
+@media(max-width: 1200px) {
+
+.cnt-main {
+  display: none;
+}
+
+.cnt-list {
+  width: 100%;
+  max-height: calc(100vh - 80px);
+  padding-bottom: 108px;
+  overflow-y: auto;
+}
+
+.cnt-btn-div {
+  display: none;
+}
+
+.resp-btn {
+  display: block;
+  position: absolute;
+  bottom: 88px;
+  right: 5%;
+}
+
+}
