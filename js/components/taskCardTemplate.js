@@ -1,6 +1,6 @@
 function createTaskCard(task) {
   let initialsHTML = getContactsInitials(task);
-  let { totalSubtasks, completedSubtasks, progressPercent, progressColor } = progressSubtasks(task);
+  let { totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar } = progressSubtasks(task);
   return `<div draggable="true" ondragstart="startDragging()" onclick="openBoardCard()" id="task${task.id}"
     class="task-card-outside">
     <div class="card-headline">
@@ -10,7 +10,7 @@ function createTaskCard(task) {
       <span>${task.title}</span>
       <p>${task.description}</p>
     </div>
-    <div class="card-progress">
+    <div class="card-progress" style="${hideProgressBar}">
       <div class="card-progress-bar-container">
         <div class="card-progress-bar" id="progressBar" role="progressbar" style="width: ${progressPercent}%;" background-color: ${progressColor}></div>
       </div>
