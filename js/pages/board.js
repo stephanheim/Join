@@ -1,4 +1,5 @@
 let preTaskCards = [];
+let taskDataMap = {};
 
 
 function initBoard() {
@@ -43,8 +44,61 @@ async function loadPreTaskCards() {
 // }
 
 
+function loadTaskFromStorage() {
+  return JSON.parse(localStorage.getItem('tasks')) || [];
+}
 
-function openAddFloatingTask() {
+
+function progressSubtasks(task) {
+  let totalSubtasks = task.subtasks?.length || 0;
+  let completedSubtasks = task.subtasks?.filter(s => s.completed).length || 0;
+  let progressPercent = totalSubtasks > 0 ? Math.round((completedSubtasks / totalSubtasks) * 100) : 0;
+  let progressColor = progressPercent === 100 ? '#00cc66' : '#4589ff';
+  let hideProgressBar = totalSubtasks === 0 ? 'display:none;' : '';
+  return { totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar };
+}
+
+
+function getContactsInitials(task) {
+  let html = '';
+  for (let contact of task.contacts) {
+    html += `
+    <div class="card-badge" style="background-color: ${contact.color}">
+        <span>${contact.initials}</span>
+      </div>
+    `
+  }
+  return html;
+}
+
+
+function prepareTaskData(task) {
+  let initialsHTML = getContactsInitials(task);
+  let { totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar } = progressSubtasks(task);
+  taskDataMap[task.id] = {
+    task,
+    initialsHTML,
+    totalSubtasks,
+    completedSubtasks,
+    progressPercent,
+    progressColor,
+    hideProgressBar
+  };
+}
+
+
+function renderTasks() {
+  let toDoContainer = document.getElementById('toDo');
+  let tasks = loadTaskFromStorage();
+  toDoContainer.innerHTML = '';
+  tasks.forEach(task => {
+    prepareTaskData(task);
+    toDoContainer.innerHTML += createTaskCard(task);
+  });
+}
+
+
+function openAddTaskFloating() {
   let addTask = document.getElementById('floatingAddTask');
   addTask.innerHTML = addTaskTemplate();
   document.body.style.overflow = 'hidden';
@@ -56,7 +110,7 @@ function openAddFloatingTask() {
 }
 
 
-function closeAddFloatingTask() {
+function closeAddTaskFloating() {
   let floatingTask = document.getElementById('floatingAddTask');
   floatingTask.classList.remove('slideIn');
   floatingTask.classList.add('slideOut');
@@ -69,9 +123,10 @@ function closeAddFloatingTask() {
 }
 
 
-function openBoardCard() {
+function openBoardCard(id) {
+  let { task, initialsHTML, totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar } = taskDataMap[id];
   let boardCard = document.getElementById('boardCardLarge');
-  boardCard.innerHTML = boardCardTemplate();
+  boardCard.innerHTML = boardCardTemplate(task, initialsHTML, totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar);
   document.body.style.overflow = 'hidden';
   boardCard.classList.remove('slideOut', 'd-none');
   boardCard.classList.add('slideIn');

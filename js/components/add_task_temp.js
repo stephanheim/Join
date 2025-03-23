@@ -3,7 +3,7 @@ function addTaskTemplate() {
 <div class="floating-content">
   <div class="headline-add-task">
     <h1 class="h1-add-task">Add Task</h1>
-    <div class="close-div" onclick="closeAddFloatingTask()">
+    <div class="close-div" onclick="closeAddTaskFloating()">
       <img src="../assets/icons/close.svg" class="add-close-btn" alt="Close" />
     </div>
   </div>
