@@ -4,9 +4,7 @@ let selectedCategoryValue = '';
 let addSubtask = [];
 let addNewTask = [];
 
-function initAddTask() {
-
-}
+function initAddTask() {}
 
 function getAddTaskValue() {
   let title = document.getElementById('addTaskTitle').value.trim();
@@ -20,12 +18,11 @@ function getAddTaskValue() {
     priority: selectedPriorityValue,
     contacts: Array.from(selectedContacts),
     category: selectedCategoryValue,
-    subtasks: Array.from(addSubtask)
+    subtasks: Array.from(addSubtask),
   };
   addNewTask.push(newTask);
   return newTask;
 }
-
 
 function areTaskFieldsFilled() {
   let title = document.getElementById('addTaskTitle').value.trim();
@@ -38,7 +35,6 @@ function areTaskFieldsFilled() {
   return true;
 }
 
-
 function createNewTaskToStorage() {
   if (!areTaskFieldsFilled()) return;
   let newTask = getAddTaskValue();
@@ -49,16 +45,13 @@ function createNewTaskToStorage() {
   clearAddTask();
 }
 
-
-
 function loadTaskFromStorage() {
   return JSON.parse(localStorage.getItem('tasks')) || [];
 }
 
-
 function progressSubtasks(task) {
   let totalSubtasks = task.subtasks?.length || 0;
-  let completedSubtasks = task.subtasks?.filter(s => s.completed).length || 0;
+  let completedSubtasks = task.subtasks?.filter((s) => s.completed).length || 0;
   let progressPercent = totalSubtasks > 0 ? Math.round((completedSubtasks / totalSubtasks) * 100) : 0;
   let progressColor = progressPercent === 100 ? '#00cc66' : '#4589ff';
   let hideProgressBar = totalSubtasks === 0 ? 'display:none;' : '';
@@ -72,7 +65,7 @@ function getContactsInitials(task) {
     <div class="card-badge" style="background-color: ${contact.color}">
         <span>${contact.initials}</span>
       </div>
-    `
+    `;
   }
   return html;
 }
@@ -81,9 +74,8 @@ function renderTasks() {
   let toDoContainer = document.getElementById('toDo');
   let tasks = loadTaskFromStorage();
   toDoContainer.innerHTML = '';
-  tasks.forEach(task => toDoContainer.innerHTML += createTaskCard(task));
+  tasks.forEach((task) => (toDoContainer.innerHTML += createTaskCard(task)));
 }
-
 
 // function requiredMessageAddTask() {
 //   const title = document.getElementById('titleMessage');
@@ -97,7 +89,6 @@ function renderTasks() {
 //     message.style.display = "none";
 //   }
 // }
-
 
 function selectedPriority(prio, element) {
   buttonsColorSwitch(element);
