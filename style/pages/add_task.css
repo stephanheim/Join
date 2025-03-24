@@ -43,7 +43,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: calc(100vh - 265px);
 }
 
 .input-section {
@@ -210,10 +209,10 @@
 }
 
 .required-section-content {
-  margin-bottom: 80px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  padding-top: 70px;
   gap: 16px;
 }
 
@@ -404,6 +403,7 @@
   .content {
     display: flex;
     flex-direction: column;
+    align-items: center;
     overflow-y: auto;
   }
 
@@ -413,20 +413,16 @@
     margin-bottom: 0;
   }
 
-  .add-task-form {
-    max-width: 100%;
-    height: 100vh;
-  }
-
-  .section-left {
-    width: 100%;
-  }
-
+  .add-task-form,
+  .input-container-category,
+  .section-left,
   .section-right {
-    width: 100%;
+    max-width: 396px;
   }
 
   .bt-section {
+    max-width: 440px;
+    position: sticky;
     gap: 32px;
     justify-content: flex-end;
   }
@@ -440,10 +436,6 @@
     height: 41px;
   }
 
-  .input-container-category {
-    width: 100%;
-  }
-
   .input-date-outside {
     justify-content: space-between;
   }
@@ -453,6 +445,7 @@
   }
 
   .headline-add-task {
+    width: 396px;
     padding: 48px 0 40px;
   }
 
@@ -469,16 +462,21 @@
 
 @media (max-width: 430px) {
   .button-section {
-    flex-direction: column;
     align-items: center;
     gap: 16px;
   }
 
-  a {
-    font-size: 14px;
-  }
-
   .side-menu-below {
     padding: 0 5px 0 5px;
+  }
+
+  .bt-section {
+    width: 100%;
+    position: fixed;
+    padding: 30px 9px;
+    bottom: 80px;
+    right: 0;
+    z-index: 2;
+    background-color: #f6f7f8;
   }
 }
