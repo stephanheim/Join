@@ -1,5 +1,11 @@
 let preTaskCards = [];
 let taskDataMap = {};
+let boardContainers = [
+  { id: 'toDo', emptyId: 'noTaskToDo' },
+  { id: 'inProgress', emptyId: 'noTaskInProgress' },
+  { id: 'awaitFeedback', emptyId: 'noTaskAwaitFeedback' },
+  { id: 'done', emptyId: 'noTaskDone' }
+]
 
 
 function initBoard() {
@@ -94,6 +100,20 @@ function renderTasks() {
   tasks.forEach(task => {
     prepareTaskData(task);
     toDoContainer.innerHTML += createTaskCard(task);
+  });
+  noTaskVisibility();
+}
+
+
+function noTaskVisibility() {
+  boardContainers.forEach(({ id, emptyId }) => {
+    let container = document.getElementById(id);
+    let empty = document.getElementById(emptyId);
+    if (container.children.length === 0) {
+      empty.style.display = 'flex';
+    } else {
+      empty.style.display = 'none';
+    }
   });
 }
 

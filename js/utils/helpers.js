@@ -104,14 +104,3 @@ function getPriorityIcon(priority) {
     default: return 'medium-orange.svg';
   }
 }
-
-function ifNoTask(tasks){
-switch (tasks) {
-  case value:
-    
-    break;
-
-  default:
-    break;
-}
-}
