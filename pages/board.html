@@ -44,8 +44,8 @@
   <main class="board-main">
     <div class="board-task">
       <div class="nav-add-task">
-        <span>To do</span><svg onclick="openAddTaskFloating()" width="24" height="24" viewBox="0 0 24 24" fill="none"
-          xmlns="http://www.w3.org/2000/svg">
+        <span>To do</span><svg onclick="openAddTaskFloating('toDo')" width="24" height="24" viewBox="0 0 24 24"
+          fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="1" y="1" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2" />
           <path d="M12 8V16" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
           <path d="M16 12.0754L8 12.0754" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
@@ -54,31 +54,29 @@
       <div class="no-task" id="noTaskToDo">
         <span>No Tasks To do</span>
       </div>
-      <div class="board-task">
-        <div class="task-render-container" id="toDo"></div>
+      <div class="task-render-container" id="toDo" ondrop="moveTo('toDo')" ondragover="allowDrop(event)">
       </div>
     </div>
     <div class="board-task">
       <div class="nav-add-task">
-        <span>In progress</span><svg onclick="openAddTaskFloating()" width="24" height="24" viewBox="0 0 24 24"
-          fill="none" xmlns="http://www.w3.org/2000/svg">
+        <span>In progress</span><svg onclick="openAddTaskFloating('inProgress')" width="24" height="24"
+          viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="1" y="1" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2" />
           <path d="M12 8V16" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
           <path d="M16 12.0754L8 12.0754" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
         </svg>
       </div>
-      <div class="no-task" id="noTaskInProgress">
+      <div class="no-task" id="noTaskInProgress" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)">
         <span>No Tasks In progress</span>
       </div>
-      <div class="board-task">
-        <div class="task-render-container" id="inProgress"></div>
+      <div class="task-render-container" id="inProgress" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)">
       </div>
     </div>
     </div>
     <div class="board-task">
       <div class="nav-add-task">
-        <span>Await feedback</span><svg onclick="openAddTaskFloating()" width="24" height="24" viewBox="0 0 24 24"
-          fill="none" xmlns="http://www.w3.org/2000/svg">
+        <span>Await feedback</span><svg onclick="openAddTaskFloating('awaitFeedback')" width="24" height="24"
+          viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="1" y="1" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2" />
           <path d="M12 8V16" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
           <path d="M16 12.0754L8 12.0754" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
@@ -87,26 +85,25 @@
       <div class="no-task" id="noTaskAwaitFeedback">
         <span>No Tasks Await feedback</span>
       </div>
-      <div class="board-task">
-        <div class="task-render-container" id="awaitFeedback"></div>
+      <div class="task-render-container" id="awaitFeedback" ondrop="moveTo('awaitFeedback')"
+        ondragover="allowDrop(event)">
       </div>
     </div>
     </div>
     </div>
     <div class="board-task">
-      <div class="board-task">
-        <div class="nav-add-task"><span>Done</span></div>
-        <div class="no-task" id="noTaskDone"><span>No Tasks Done</span></div>
-        <div class="task-render-container" id="done"></div>
-      </div>
+      <div class="nav-add-task"><span>Done</span></div>
+      <div class="no-task" id="noTaskDone"><span>No Tasks Done</span></div>
+      <div class="task-render-container" id="done" ondrop="moveTo('done')" ondragover="allowDrop(event)"></div>
     </div>
     </div>
   </main>
   <script src="../js/components/add_task_temp.js"></script>
   <script src="../js/script.js"></script>
-  <script src="../js/pages/board.js"></script>
   <script src="../js/components/taskCardTemplate.js"></script>
+  <script src="../js/pages/board.js"></script>
   <script src="../js/pages/add_task.js"></script>
+  <script src="../js/utils/helpers.js"></script>
 </body>
 
 </html>

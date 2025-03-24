@@ -6,6 +6,8 @@ let boardContainers = [
   { id: 'awaitFeedback', emptyId: 'noTaskAwaitFeedback' },
   { id: 'done', emptyId: 'noTaskDone' }
 ]
+let currentDraggedTaskId;
+let addTaskStatusTarget;
 
 
 function initBoard() {
@@ -95,12 +97,14 @@ function prepareTaskData(task) {
 
 
 function renderTasks() {
-  let toDoContainer = document.getElementById('toDo');
   let tasks = loadTaskFromStorage();
-  toDoContainer.innerHTML = '';
+  boardContainers.forEach(({ id }) => {
+    document.getElementById(id).innerHTML = '';
+  });
   tasks.forEach(task => {
     prepareTaskData(task);
-    toDoContainer.innerHTML += createTaskCard(task);
+    let container = document.getElementById(task.status);
+    container.innerHTML += createTaskCard(task);
   });
   noTaskVisibility();
 }
@@ -119,7 +123,7 @@ function noTaskVisibility() {
 }
 
 
-function openAddTaskFloating() {
+function openAddTaskFloating(status) {
   let addTask = document.getElementById('floatingAddTask');
   addTask.innerHTML = addTaskTemplate();
   document.body.style.overflow = 'hidden';
@@ -128,6 +132,7 @@ function openAddTaskFloating() {
   setTimeout(() => {
     addTask.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
   }, 200);
+  addTaskStatusTarget = status;
 }
 
 
@@ -177,4 +182,34 @@ function changeBoardCardTemplate() {
 function defaultBoardCardTemplate() {
   let boardCard = document.getElementById('boardCardLarge');
   boardCard.innerHTML = boardCardTemplate();
+}
+
+
+function startDragging(id) {
+  currentDraggedTaskId = id;
+}
+
+function allowDrop(event) {
+  event.preventDefault();
+}
+
+function moveTo(newStatus) {
+  let data = taskDataMap[currentDraggedTaskId];
+  if (data && data.task) {
+    data.task.status = newStatus;
+    saveTaskDataMapToStorage();
+    renderTasks();
+  }
+}
+
+
+function saveTaskDataMapToStorage() {
+  let tastDataArray = Object.values(taskDataMap);
+  let tasks = [];
+  for (let i = 0; i < tastDataArray.length; i++) {
+    let entry = tastDataArray[i];
+    let task = entry.task;
+    tasks.push(task);
+  }
+  localStorage.setItem('tasks', JSON.stringify(tasks));
 }

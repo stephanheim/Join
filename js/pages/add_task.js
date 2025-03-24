@@ -41,11 +41,12 @@ function areTaskFieldsFilled() {
 function createNewTaskToStorage() {
   if (!areTaskFieldsFilled()) return;
   let newTask = getAddTaskValue();
+  newTask.status = addTaskStatusTarget;
   let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
   tasks.push(newTask);
   localStorage.setItem('tasks', JSON.stringify(tasks));
   clearAddTask();
-  window.location.href = './board.html';
+  loadPageContentPath('board');
 }
 
 
@@ -74,13 +75,6 @@ function getContactsInitials(task) {
     `
   }
   return html;
-}
-
-function renderTasks() {
-  let toDoContainer = document.getElementById('toDo');
-  let tasks = loadTaskFromStorage();
-  toDoContainer.innerHTML = '';
-  tasks.forEach(task => toDoContainer.innerHTML += createTaskCard(task));
 }
 
 
