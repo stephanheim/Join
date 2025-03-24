@@ -1,8 +1,7 @@
 .board-header {
     max-width: 1208px;
     width: 100%;
-    height: 208px;
-    padding: 80px 88px 0px 64px;
+    padding: 80px 88px 48px 64px;
 }
 
 .board-header-content {
@@ -12,6 +11,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 .board-headline {
@@ -25,14 +25,11 @@
     font-weight: 700;
 }
 
-.find-add-task-content {
-    max-width: 504px;
-    width: 100%;
-    height: 48px;
+.container-find-task {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 32px;
+    justify-content: flex-end;
+    flex: 1;
+    margin-right: 32px;
 }
 
 .outside-find-task {
@@ -104,9 +101,9 @@
     width: 100%;
     height: auto;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     gap: 26px;
-    padding: 0px 64px;
+    padding: 0px 64px 80px 64px;
     flex-wrap: wrap;
 }
 
@@ -126,7 +123,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    top: 205px;
 }
 
 .nav-add-task span {
@@ -160,4 +156,69 @@
 .no-task span {
     font-weight: 400;
     font-size: 16px;
+}
+
+@media screen and (max-width:856px) {
+    .board-header {
+        padding: 48px 64px 24px 64px;
+    }
+
+    .board-header-content {
+        height: 144px;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+
+    .container-find-task {
+        flex: unset;
+        margin-right: unset;
+        max-width: 396px;
+        width: 100%;
+    }
+
+    .outside-find-task {
+        max-width: unset;
+    }
+
+    .bt-add-task {
+        position: absolute;
+        top: 12px;
+        right: 0px;
+    }
+    .board-task{
+        max-width: 396px;
+        width: 100%;
+        align-items: flex-start;
+    }
+    .nav-add-task{
+      
+    }
+}
+
+@media screen and (max-width:539px) {
+    .board-header {
+        padding: 48px 16px 24px 16px;
+    }
+
+    .board-main {
+        padding: 0px 16px 80px 16px;
+    }
+    .container-find-task {
+        max-width: unset;
+    }
+    .board-task{
+        max-width: unset;
+    }
+}
+
+@media screen and (max-width:444px) {
+    .bt-add-task {
+        width: 40px;
+        height: 40px;
+    }
+
+    .bt-add-task span {
+        display: none;
+    }
 }

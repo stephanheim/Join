@@ -26,29 +26,32 @@
       <div class="board-headline">
         <h1>Board</h1>
       </div>
-      <div class="find-add-task-content">
+      <div class="container-find-task">
         <label class="outside-find-task">
           <input required class="ft-inside-input" id="taskSearch" minlength="3" type="search" placeholder="Find Task"
             aria-label="Search Tasks" />
           <img src="../assets/icons/seperaor_horicentral.svg" alt="Strich" />
           <img src="../assets/icons/search_magnifier.svg" alt="Such Icon" />
         </label>
-        <button class="bt-add-task" onclick="openAddTaskFloating()"><span>Add Task</span><img
-            src="../assets/icons/cross_add.svg" alt="" /></button>
       </div>
+
+      <button class="bt-add-task" onclick="openAddTaskFloating()">
+        <span>Add Task</span>
+        <img src="../assets/icons/cross_add.svg" alt="" />
+      </button>
     </div>
   </header>
   <main class="board-main">
     <div class="board-task">
+      <div class="nav-add-task">
+        <span>To do</span><svg onclick="openAddTaskFloating()" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2" />
+          <path d="M12 8V16" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
+          <path d="M16 12.0754L8 12.0754" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </div>
       <div class="board-task">
-        <div class="nav-add-task">
-          <span>To do</span><svg onclick="openAddTaskFloating()" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <rect x="1" y="1" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2" />
-            <path d="M12 8V16" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
-            <path d="M16 12.0754L8 12.0754" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
-          </svg>
-        </div>
         <div class="no-task" id="noTaskToDo">
           <span>No Tasks To do</span>
         </div>
@@ -56,30 +59,30 @@
       </div>
     </div>
     <div class="board-task">
+      <div class="nav-add-task">
+        <span>In progress</span><svg onclick="openAddTaskFloating()" width="24" height="24" viewBox="0 0 24 24"
+          fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2" />
+          <path d="M12 8V16" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
+          <path d="M16 12.0754L8 12.0754" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </div>
       <div class="board-task">
-        <div class="nav-add-task">
-          <span>In progress</span><svg onclick="openAddTaskFloating()" width="24" height="24" viewBox="0 0 24 24"
-            fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="1" y="1" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2" />
-            <path d="M12 8V16" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
-            <path d="M16 12.0754L8 12.0754" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
-          </svg>
-        </div>
         <div class="no-task" id="noTaskInProgress"><span>No Tasks In progress</span></div>
         <div class="task-render-container" id="inProgress"></div>
       </div>
     </div>
     </div>
     <div class="board-task">
+      <div class="nav-add-task" id="noTaskAwaitFeedback">
+        <span>Await feedback</span><svg onclick="openAddTaskFloating()" width="24" height="24" viewBox="0 0 24 24"
+          fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2" />
+          <path d="M12 8V16" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
+          <path d="M16 12.0754L8 12.0754" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </div>
       <div class="board-task">
-        <div class="nav-add-task" id="noTaskAwaitFeedback">
-          <span>Await feedback</span><svg onclick="openAddTaskFloating" width="24" height="24" viewBox="0 0 24 24"
-            fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="1" y="1" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2" />
-            <path d="M12 8V16" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
-            <path d="M16 12.0754L8 12.0754" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
-          </svg>
-        </div>
         <div class="no-task"><span>No Tasks Await feedback</span></div>
         <div class="task-render-container" id="awaitFeedback"></div>
       </div>
@@ -103,6 +106,3 @@
 </body>
 
 </html>
-
-
-

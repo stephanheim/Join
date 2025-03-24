@@ -29,7 +29,7 @@ function boardCardTemplate(task, initialsHTML, totalSubtasks, completedSubtasks,
                 <p class="headline-boardcard">Priority:</p>
                 <div class="img-content">
                   <span>${task.priority}</span>
-                  <img src="../assets/icons/medium-orange.svg" />
+                  <img src="../assets/icons/${getPriorityIcon(task.priority)}" />
                 </div>
               </div>
             </div>
@@ -40,7 +40,7 @@ function boardCardTemplate(task, initialsHTML, totalSubtasks, completedSubtasks,
               ${initialsHTML}
             </div>
             <div>
-              <p class="headline-boardcard">Subtask</p>
+              <p class="headline-boardcard">Subtasks</p>
             </div>
             <div>
               <span>${completedSubtasks} / ${totalSubtasks} Subtasks abgeschlossen</span>

@@ -44,8 +44,8 @@ function createNewTaskToStorage() {
   let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
   tasks.push(newTask);
   localStorage.setItem('tasks', JSON.stringify(tasks));
-  console.log('Task gespeichert:', newTask);
   clearAddTask();
+  window.location.href = './board.html';
 }
 
 
