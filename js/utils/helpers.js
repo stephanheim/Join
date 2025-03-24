@@ -104,3 +104,10 @@ function getPriorityIcon(priority) {
     default: return 'medium-orange.svg';
   }
 }
+
+function getCategoryColor(category) {
+  switch (category.toLowerCase()) {
+    case 'technical task': return '#1FD7C1';
+    case 'user story': return '#0038FF';
+  }
+}

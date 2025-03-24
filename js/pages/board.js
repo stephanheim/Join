@@ -11,6 +11,7 @@ let boardContainers = [
 function initBoard() {
   // loadPreTaskCards();
   renderTasks();
+  console.log(taskDataMap);
 }
 
 
