@@ -68,7 +68,7 @@ function progressSubtasks(task) {
 }
 
 
-function getContactsInitials(task) {
+function getInitialsTaskCard(task) {
   let html = '';
   for (let contact of task.contacts) {
     html += `
@@ -80,9 +80,13 @@ function getContactsInitials(task) {
   return html;
 }
 
+function getNamesTaskCardTemp() {
+
+}
+
 
 function prepareTaskData(task) {
-  let initialsHTML = getContactsInitials(task);
+  let initialsHTML = getInitialsTaskCard(task);
   let { totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar } = progressSubtasks(task);
   taskDataMap[task.id] = {
     task,
@@ -204,7 +208,7 @@ function clearDropHighlight(event) {
 document.addEventListener('dragend', globalDragEnd())
 
 
-function globalDragEnd(){
+function globalDragEnd() {
   let noTasksContainer = document.getElementById('no-task');
   for (let i = 0; i < noTasksContainer.length; i++) {
     noTasksContainer[i].classList.remove('highlight');
