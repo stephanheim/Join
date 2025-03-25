@@ -187,6 +187,7 @@ function defaultBoardCardTemplate() {
 
 function startDragging(id) {
   currentDraggedTaskId = id;
+  document.getElementById(id).classList.add('dragging');
 }
 
 function allowDrop(event) {

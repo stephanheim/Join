@@ -134,6 +134,11 @@
   align-items: center;
 }
 
+.task-card-outside.dragging {
+  transform: rotate(5deg);
+  opacity: 0.8;
+  transition: transform 0.2s ease;
+}
 
 @media screen and (max-width:856px) {
   .task-render-container {
