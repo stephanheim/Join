@@ -50,11 +50,13 @@
               <h2>Due date</h2>
               <span class="span-star">*</span>
             </label>
-            <div class="input-date-outside">
-              <input oninput="formatDate(this)" id="addTaskDate" class="input-date" name="date" type="text"
-                placeholder="dd/mm/yyyy" /><img src="../assets/icons/date_event.svg" />
+            <div>
+              <div id="inputDate" class="input-date-outside">
+                <input oninput="formatDate(this)" id="addTaskDate" class="input-date" name="date" type="text"
+                  placeholder="dd/mm/yyyy" /><img src="../assets/icons/date_event.svg" />
+              </div>
+              <span id="dateMessage" class="error-message"></span>
             </div>
-            <span id="dateMessage" class="error-message"></span>
           </div>
         </div>
         <div class="devider-ver"></div>
@@ -100,16 +102,18 @@
                 <span class="span-star">*</span>
               </div>
               <div id="addTaskCategory" class="input-container-category">
-                <div class="drop-down-placeholder" onclick="openDropdownCategory()">
-                  <div class="textfield">
-                    <h2 id="selectedCategory">Select task category</h2>
+                <div class="category-container" onclick="openDropdownCategory()">
+                  <div id="categoryDropDown" class="drop-down-placeholder">
+                    <div class="textfield">
+                      <h2 id="selectedCategory">Select task category</h2>
+                    </div>
+                    <div class="container-arrow-img-dropdown">
+                      <img id="arrowCategory" class="arrow-drop-down" src="../assets/icons/drop_up_arrwow.svg" />
+                    </div>
                   </div>
-                  <div class="container-arrow-img-dropdown">
-                    <img id="arrowCategory" class="arrow-drop-down" src="../assets/icons/drop_up_arrwow.svg" />
-                  </div>
+                  <div id="dropDownMenuCategory" class="drop-down-field-category drop-down-hide d-none"></div>
                 </div>
                 <span id="categoryMessage" class="error-message"></span>
-                <div id="dropDownMenuCategory" class="drop-down-field-category drop-down-hide d-none"></div>
               </div>
             </div>
             <div class="add-task-single">

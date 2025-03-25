@@ -28,12 +28,34 @@ function getAddTaskValue() {
 }
 
 function areTaskFieldsFilled() {
-  let title = document.getElementById('addTaskTitle').value.trim();
+  let titleContainer = document.getElementById('addTaskTitle');
+  let dateContainer = document.getElementById('inputDate');
+  let categoryContainer = document.getElementById('categoryDropDown');
   let date = document.getElementById('addTaskDate').value.trim();
+
+  let title = titleContainer.value.trim();
   let category = selectedCategoryValue.trim();
+
+  const messages = document.getElementsByClassName('error-message');
+  const requirements = [titleContainer, dateContainer, categoryContainer];
+
   if (!title || !date || !category) {
-    alert('Bitte alle Pflichtfelder ausfüllen!');
+    for (const message of messages) {
+      message.innerText = "This field is required";
+      message.style.display = "block";
+    }
+    for (const required of requirements) {
+      required.style.borderColor = "#FF001F";
+    }
     return false;
+  }
+
+  for (const message of messages) {
+    message.innerText = "";
+    message.style.display = "none";
+  }
+  for (const required of requirements) {
+    required.style.borderColor = "";
   }
   return true;
 }
@@ -47,21 +69,11 @@ function createNewTaskToStorage(status) {
   tasks.push(newTask);
   localStorage.setItem('tasks', JSON.stringify(tasks));
   clearAddTask();
-  loadPageContentPath('board');
+  setTimeout(() => {
+    loadPageContentPath('board');
+  }, 200);
 }
 
-// function requiredMessageAddTask() {
-//   const title = document.getElementById('titleMessage');
-//   const date = document.getElementById('dateMessage');
-//   const category = document.getElementById('categoryMessage');
-//   if (!addNewTask()) {
-//     message.innerText = "This field is required";
-//     message.style.display = "block";
-//   } else {
-//     message.innerText = "";
-//     message.style.display = "none";
-//   }
-// }
 
 function selectedPriority(prio, element) {
   buttonsColorSwitch(element);
@@ -236,7 +248,6 @@ function selectCategory(category) {
     hideDropdown(dropDownMenu);
   }
   selectedCategoryValue = category;
-  console.log(selectedCategoryValue);
 }
 
 

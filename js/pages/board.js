@@ -205,15 +205,20 @@ function clearDropHighlight(event) {
   event.currentTarget.classList.remove('highlight');
 }
 
-document.addEventListener('dragend', globalDragEnd())
+document.addEventListener('dragend', globalDragEnd);
 
 
 function globalDragEnd() {
-  let noTasksContainer = document.getElementById('no-task');
-  for (let i = 0; i < noTasksContainer.length; i++) {
-    noTasksContainer[i].classList.remove('highlight');
+  let noTaskContainer = document.getElementsByClassName('no-task');
+  for (let i = 0; i < noTaskContainer.length; i++) {
+    noTaskContainer[i].classList.remove('highlight');
+  }
+  let containers = document.getElementsByClassName('task-card-outside');
+  for (let i = 0; i < containers.length; i++) {
+    containers[i].classList.remove('dragging');
   }
 }
+
 
 
 function moveTo(newStatus) {
