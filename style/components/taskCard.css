@@ -140,6 +140,13 @@
   transition: transform 0.2s ease;
 }
 
+.task-card-outside.highlight,
+.no-task.highlight {
+  border: 2px dashed #0038FF;
+  background-color: rgba(0, 56, 255, 0.05);
+  transition: background-color 0.2s ease, border 0.2s ease;
+}
+
 @media screen and (max-width:856px) {
   .task-render-container {
     flex-direction: row;

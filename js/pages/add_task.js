@@ -50,34 +50,6 @@ function createNewTaskToStorage(status) {
   loadPageContentPath('board');
 }
 
-
-function loadTaskFromStorage() {
-  return JSON.parse(localStorage.getItem('tasks')) || [];
-}
-
-
-function progressSubtasks(task) {
-  let totalSubtasks = task.subtasks?.length || 0;
-  let completedSubtasks = task.subtasks?.filter(s => s.completed).length || 0;
-  let progressPercent = totalSubtasks > 0 ? Math.round((completedSubtasks / totalSubtasks) * 100) : 0;
-  let progressColor = progressPercent === 100 ? '#00cc66' : '#4589ff';
-  let hideProgressBar = totalSubtasks === 0 ? 'display:none;' : '';
-  return { totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar };
-}
-
-function getContactsInitials(task) {
-  let html = '';
-  for (let contact of task.contacts) {
-    html += `
-    <div class="card-badge" style="background-color: ${contact.color}">
-        <span>${contact.initials}</span>
-      </div>
-    `
-  }
-  return html;
-}
-
-
 // function requiredMessageAddTask() {
 //   const title = document.getElementById('titleMessage');
 //   const date = document.getElementById('dateMessage');

@@ -190,9 +190,27 @@ function startDragging(id) {
   document.getElementById(id).classList.add('dragging');
 }
 
+
 function allowDrop(event) {
   event.preventDefault();
+  event.currentTarget.classList.add('highlight');
 }
+
+
+function clearDropHighlight(event) {
+  event.currentTarget.classList.remove('highlight');
+}
+
+document.addEventListener('dragend', globalDragEnd())
+
+
+function globalDragEnd(){
+  let noTasksContainer = document.getElementById('no-task');
+  for (let i = 0; i < noTasksContainer.length; i++) {
+    noTasksContainer[i].classList.remove('highlight');
+  }
+}
+
 
 function moveTo(newStatus) {
   let data = taskDataMap[currentDraggedTaskId];
