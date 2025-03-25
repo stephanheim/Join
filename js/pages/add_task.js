@@ -38,17 +38,17 @@ function areTaskFieldsFilled() {
   return true;
 }
 
-function createNewTaskToStorage() {
+
+function createNewTaskToStorage(status) {
   if (!areTaskFieldsFilled()) return;
   let newTask = getAddTaskValue();
-  newTask.status = addTaskStatusTarget;
+  newTask.status = status;
   let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
   tasks.push(newTask);
   localStorage.setItem('tasks', JSON.stringify(tasks));
   clearAddTask();
   loadPageContentPath('board');
 }
-
 
 
 function loadTaskFromStorage() {
