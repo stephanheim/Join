@@ -4,18 +4,16 @@ let boardContainers = [
   { id: 'toDo', emptyId: 'noTaskToDo' },
   { id: 'inProgress', emptyId: 'noTaskInProgress' },
   { id: 'awaitFeedback', emptyId: 'noTaskAwaitFeedback' },
-  { id: 'done', emptyId: 'noTaskDone' }
-]
+  { id: 'done', emptyId: 'noTaskDone' },
+];
 let currentDraggedTaskId;
 let addTaskStatusTarget;
-
 
 function initBoard() {
   // loadPreTaskCards();
   renderTasks();
   console.log(taskDataMap);
 }
-
 
 async function getPreTaskCardFromDB() {
   const url = `${BASE_URL}board/preTask.json`;
@@ -26,17 +24,15 @@ async function getPreTaskCardFromDB() {
     if (!tasks) return [];
     return Object.values(tasks);
   } catch (error) {
-    console.error("Error when retrieving the tasks", error);
+    console.error('Error when retrieving the tasks', error);
     return [];
   }
 }
-
 
 async function loadPreTaskCards() {
   preTaskCards = await getPreTaskCardFromDB();
   renderPreTaskCard();
 }
-
 
 // function renderPreTaskCard() {
 //   let taskCard = document.getElementById('inProgress');
@@ -52,21 +48,18 @@ async function loadPreTaskCards() {
 //   })
 // }
 
-
 function loadTaskFromStorage() {
   return JSON.parse(localStorage.getItem('tasks')) || [];
 }
 
-
 function progressSubtasks(task) {
   let totalSubtasks = task.subtasks?.length || 0;
-  let completedSubtasks = task.subtasks?.filter(s => s.completed).length || 0;
+  let completedSubtasks = task.subtasks?.filter((s) => s.completed).length || 0;
   let progressPercent = totalSubtasks > 0 ? Math.round((completedSubtasks / totalSubtasks) * 100) : 0;
   let progressColor = progressPercent === 100 ? '#00cc66' : '#4589ff';
   let hideProgressBar = totalSubtasks === 0 ? 'display:none;' : '';
   return { totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar };
 }
-
 
 function getInitialsTaskCard(task) {
   let html = '';
@@ -75,44 +68,56 @@ function getInitialsTaskCard(task) {
     <div class="card-badge" style="background-color: ${contact.color}">
         <span>${contact.initials}</span>
       </div>
-    `
+    `;
   }
   return html;
 }
 
-function getNamesTaskCardTemp() {
-
+function getNamesTaskCardTemp(task) {
+  let html = '';
+  for (let contact of task.contacts) {
+    html += `
+    <div class="contact-section">
+      <div class="circle-content" style="background-color: ${contact.color}">
+        <span>${contact.initials}</span>
+      </div>
+      <div>
+        <span>${contact.name}</span>
+      </div>
+    </div>
+    `;
+  }
+  return html;
 }
-
 
 function prepareTaskData(task) {
   let initialsHTML = getInitialsTaskCard(task);
+  let namesHTML = getNamesTaskCardTemp(task);
   let { totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar } = progressSubtasks(task);
   taskDataMap[task.id] = {
     task,
     initialsHTML,
+    namesHTML,
     totalSubtasks,
     completedSubtasks,
     progressPercent,
     progressColor,
-    hideProgressBar
+    hideProgressBar,
   };
 }
-
 
 function renderTasks() {
   let tasks = loadTaskFromStorage();
   boardContainers.forEach(({ id }) => {
     document.getElementById(id).innerHTML = '';
   });
-  tasks.forEach(task => {
+  tasks.forEach((task) => {
     prepareTaskData(task);
     let container = document.getElementById(task.status);
     container.innerHTML += createTaskCard(task);
   });
   noTaskVisibility();
 }
-
 
 function noTaskVisibility() {
   boardContainers.forEach(({ id, emptyId }) => {
@@ -126,7 +131,6 @@ function noTaskVisibility() {
   });
 }
 
-
 function openAddTaskFloating(status) {
   let addTask = document.getElementById('floatingAddTask');
   addTask.innerHTML = addTaskTemplate();
@@ -138,7 +142,6 @@ function openAddTaskFloating(status) {
   }, 200);
   addTaskStatusTarget = status;
 }
-
 
 function closeAddTaskFloating() {
   let floatingTask = document.getElementById('floatingAddTask');
@@ -152,11 +155,10 @@ function closeAddTaskFloating() {
   }, 100);
 }
 
-
 function openBoardCard(id) {
-  let { task, initialsHTML, totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar } = taskDataMap[id];
+  let { task, initialsHTML, namesHTML, totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar } = taskDataMap[id];
   let boardCard = document.getElementById('boardCardLarge');
-  boardCard.innerHTML = boardCardTemplate(task, initialsHTML, totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar);
+  boardCard.innerHTML = boardCardTemplate(task, initialsHTML, namesHTML, totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar);
   document.body.style.overflow = 'hidden';
   boardCard.classList.remove('slideOut', 'd-none');
   boardCard.classList.add('slideIn');
@@ -164,7 +166,6 @@ function openBoardCard(id) {
     boardCard.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
   }, 200);
 }
-
 
 function closeBoardCard() {
   let boardCard = document.getElementById('boardCardLarge');
@@ -188,25 +189,21 @@ function defaultBoardCardTemplate() {
   boardCard.innerHTML = boardCardTemplate();
 }
 
-
 function startDragging(id) {
   currentDraggedTaskId = id;
   document.getElementById(id).classList.add('dragging');
 }
-
 
 function allowDrop(event) {
   event.preventDefault();
   event.currentTarget.classList.add('highlight');
 }
 
-
 function clearDropHighlight(event) {
   event.currentTarget.classList.remove('highlight');
 }
 
-document.addEventListener('dragend', globalDragEnd())
-
+document.addEventListener('dragend', globalDragEnd());
 
 function globalDragEnd() {
   let noTasksContainer = document.getElementById('no-task');
@@ -214,7 +211,6 @@ function globalDragEnd() {
     noTasksContainer[i].classList.remove('highlight');
   }
 }
-
 
 function moveTo(newStatus) {
   let data = taskDataMap[currentDraggedTaskId];
@@ -224,7 +220,6 @@ function moveTo(newStatus) {
     renderTasks();
   }
 }
-
 
 function saveTaskDataMapToStorage() {
   let tastDataArray = Object.values(taskDataMap);

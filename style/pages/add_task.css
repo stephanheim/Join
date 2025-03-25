@@ -8,6 +8,7 @@
 .headline-add-task {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 64px 0 32px;
 }
 
@@ -212,7 +213,7 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding-top: 70px;
+  padding-top: 104px;
   gap: 16px;
 }
 
@@ -224,7 +225,7 @@
 
 .bt-section {
   display: flex;
-  align-items: center;
+  justify-content: flex-end;
   gap: 16px;
 }
 
@@ -405,6 +406,7 @@
     flex-direction: column;
     align-items: center;
     overflow-y: auto;
+    padding-bottom: 200px;
   }
 
   .required-section-content {
@@ -421,10 +423,13 @@
   }
 
   .bt-section {
-    max-width: 440px;
-    position: sticky;
-    gap: 32px;
-    justify-content: flex-end;
+    width: 100%;
+    position: fixed;
+    padding: 10px 9px;
+    bottom: 80px;
+    right: 0;
+    z-index: 2;
+    background-color: #f6f7f8;
   }
 
   .devider-ver {
@@ -468,15 +473,5 @@
 
   .side-menu-below {
     padding: 0 5px 0 5px;
-  }
-
-  .bt-section {
-    width: 100%;
-    position: fixed;
-    padding: 30px 9px;
-    bottom: 80px;
-    right: 0;
-    z-index: 2;
-    background-color: #f6f7f8;
   }
 }
