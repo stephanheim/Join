@@ -1,4 +1,4 @@
-function boardCardTemplate(task, initialsHTML, totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar) {
+function boardCardTemplate(task, initialsHTML, namesHTML, totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar) {
   return `<div class="user-story-card">
         <div class="inner-card">
           <header class="headline-story-user">
@@ -9,7 +9,7 @@ function boardCardTemplate(task, initialsHTML, totalSubtasks, completedSubtasks,
               <img src="../assets/icons/close.svg" />
             </div>
           </header>
-          <div>
+          <div class="task-title">
             <h1>${task.title}</h1>
           </div>
           <div class="inner-text-build-start">
@@ -37,7 +37,7 @@ function boardCardTemplate(task, initialsHTML, totalSubtasks, completedSubtasks,
               <p class="headline-boardcard">Assigned To:</p>
             </div>
             <div class="contact-container">
-              ${initialsHTML}
+              ${namesHTML}
             </div>
             <div>
               <p class="headline-boardcard">Subtasks</p>
