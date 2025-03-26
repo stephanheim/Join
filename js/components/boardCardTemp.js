@@ -1,4 +1,4 @@
-function boardCardTemplate(task, initialsHTML, namesHTML, totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar) {
+function boardCardTemplate(task, namesHTML, totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar) {
   return `<div class="user-story-card">
         <div class="inner-card">
           <header class="headline-story-user">
@@ -79,6 +79,7 @@ function editBoardCardTemplate() {
             </div>
           </div>
         </div>
+        <form>
         <div class="inner-card-lower">
           <div class="add-task-single">
             <div>
@@ -108,35 +109,38 @@ function editBoardCardTemplate() {
             </div>
           </div>
           <div class="add-task-single">
-            <div>
-              <h2>Prio</h2>
-            </div>
-            <div class="prio-section input-section">
-              <button id="btn1" color="rgba(255, 61, 0, 1);" class="button-prio" onclick="buttonsColorSwitch('btn1')">
-                Urgent <img src="../assets/icons/urgent-red.svg" />
+            <h2>Prio</h2>
+            <div class="prio-section">
+              <button id="btn1" color="rgba(255, 61, 0, 1);" onclick="selectedPriority('Urgent', this)"
+                class="button-prio" type="button">
+                Urgent <img src="../assets/icons/urgent-red.svg" alt="Urgent" />
               </button>
-              <button id="btn2" color="rgba(255, 168, 0, 1)" class="button-prio isSelected" onclick="buttonsColorSwitch('btn2')">
-                Medium <img src="../assets/icons/medium-orange.svg" />
+              <button id="btn2" color="rgba(255, 168, 0, 1)" onclick="selectedPriority('Medium', this)"
+                class="button-prio isSelected" type="button">
+                Medium <img src="../assets/icons/medium-orange.svg" alt="Medium" />
               </button>
-              <button id="btn3" color="rgba(122, 226, 41, 1)" class="button-prio" onclick="buttonsColorSwitch('btn3')">
-                Low <img src="../assets/icons/low-green.svg" />
+              <button id="btn3" color="rgba(122, 226, 41, 1)" onclick="selectedPriority('Low', this)" class="button-prio" type="button">
+                Low <img src="../assets/icons/low-green.svg" alt="Low" />
               </button>
             </div>
           </div>
-            <div class="add-task-single">
-              <div class="title-and-star" for="">
-                <h2>Assigned to</h2>
-              </div>
-              <div class="assigned-input-outside">
-                <div class="input-container-assigned" onclick="openDropdownAssigned()">
-                  <input id="addTaskAssigned" type="text" name="contacts" placeholder="Select contacts to assign" />
-                  <div class="container-arrow-img-dropdown">
-                    <img id="arrowAssigned" class="arrow-drop-down" src="../assets/icons/drop_up_arrwow.svg" />
-                  </div>
+          <div class="add-task-single">
+            <label class="title-and-star" for="addTaskAssigned">
+              <h2>Assigned to</h2>
+            </label>
+            <div class="assigned-input-outside">
+              <div id="assignedInputBorderColor" class="input-container-assigned" onclick="openDropdownAssigned()">
+                <input id="addTaskAssigned" type="text" placeholder="Select contacts to assign"
+                  oninput="searchContacts(this.value)" />
+                <div class="container-arrow-img-dropdown">
+                  <img id="arrowAssigned" class="arrow-drop-down" src="../assets/icons/drop_up_arrwow.svg"
+                    alt="Dropdown" />
                 </div>
-                <div id="dropDownMenuAssigned" class="main-drop-down drop-down-hide d-none"></div>
               </div>
+              <div id="dropDownMenuAssigned" class="main-drop-down drop-down-hide d-none"></div>
             </div>
+            <div id="selectedInitials" class="initial-container"></div>
+          </div>
             <div class="add-task-single">
               <label for="addTaskSubtasks">
                 <h2>Subtasks</h2>
@@ -159,6 +163,7 @@ function editBoardCardTemplate() {
               <div class="subtask-content" id="addedSubtaks"></div>
             </div>
         </div>
+        </form>
         <div class="btn-section">
           <button class="bt-board-card-edit" onclick="defaultBoardCardTemplate()">
             Ok

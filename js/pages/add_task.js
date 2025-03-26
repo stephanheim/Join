@@ -4,10 +4,7 @@ let selectedCategoryValue = '';
 let addSubtask = [];
 let addNewTask = [];
 
-
-function initAddTask() {
-
-}
+function initAddTask() {}
 
 function getAddTaskValue() {
   let title = document.getElementById('addTaskTitle').value.trim();
@@ -41,25 +38,24 @@ function areTaskFieldsFilled() {
 
   if (!title || !date || !category) {
     for (const message of messages) {
-      message.innerText = "This field is required";
-      message.style.display = "block";
+      message.innerText = 'This field is required';
+      message.style.display = 'block';
     }
     for (const required of requirements) {
-      required.style.borderColor = "#FF001F";
+      required.style.borderColor = '#FF001F';
     }
     return false;
   }
 
   for (const message of messages) {
-    message.innerText = "";
-    message.style.display = "none";
+    message.innerText = '';
+    message.style.display = 'none';
   }
   for (const required of requirements) {
-    required.style.borderColor = "";
+    required.style.borderColor = '';
   }
   return true;
 }
-
 
 function createNewTaskToStorage(status) {
   if (!areTaskFieldsFilled()) return;
@@ -74,13 +70,11 @@ function createNewTaskToStorage(status) {
   }, 200);
 }
 
-
 function selectedPriority(prio, element) {
   buttonsColorSwitch(element);
   selectedPriorityValue = prio;
   console.log(selectedPriorityValue);
 }
-
 
 function buttonsColorSwitch(activeButton) {
   let buttons = activeButton.parentElement.getElementsByTagName('button');
@@ -89,7 +83,6 @@ function buttonsColorSwitch(activeButton) {
   }
   activeButton.classList.add('isSelected');
 }
-
 
 function resetSelectedPriority() {
   let buttons = document.getElementsByClassName('button-prio');
@@ -103,7 +96,6 @@ function resetSelectedPriority() {
   selectedPriorityValue = '';
 }
 
-
 function openDropdownAssigned() {
   const dropDownMenu = document.getElementById('dropDownMenuAssigned');
   const inputField = document.getElementById('addTaskAssigned');
@@ -114,20 +106,17 @@ function openDropdownAssigned() {
   assignedBorderColor(dropDownMenu);
 }
 
-
 function toggleDropdown(dropDownMenu) {
   const isHidden = dropDownMenu.classList.contains('drop-down-hide');
   getContacts(dropDownMenu);
   isHidden ? showDropdown(dropDownMenu) : hideDropdown(dropDownMenu);
 }
 
-
 function updateUIElements(inputField, arrow, dropDownMenu) {
   const isHidden = dropDownMenu.classList.contains('drop-down-hide');
   toggleArrowRotation(arrow, isHidden);
   updatePlaceholder(inputField, isHidden);
 }
-
 
 function assignedBorderColor(dropDownMenu) {
   const borderColor = document.getElementById('assignedInputBorderColor');
@@ -139,14 +128,12 @@ function assignedBorderColor(dropDownMenu) {
   }
 }
 
-
 function renderDropdownUser(dropDownMenu, contacts) {
   contacts = contacts || formattedContactsArray;
   dropDownMenu.innerHTML = '';
   addedContacts(dropDownMenu, contacts);
   applySelectionStyles(contacts);
 }
-
 
 function addedContacts(dropDownMenu, contacts) {
   contacts.forEach((contact, i) => {
@@ -156,16 +143,9 @@ function addedContacts(dropDownMenu, contacts) {
   });
 }
 
-
 function applySelectionStyles(contacts) {
-  contacts.forEach((_, i) =>
-    updateSelectedStyle(
-      document.getElementById(`innerDropmenu-${i}`),
-      document.getElementById(`checkbox-${i}`)?.checked
-    )
-  );
+  contacts.forEach((_, i) => updateSelectedStyle(document.getElementById(`innerDropmenu-${i}`), document.getElementById(`checkbox-${i}`)?.checked));
 }
-
 
 function searchContacts(searchTerm) {
   const dropDownMenu = document.getElementById('dropDownMenuAssigned');
@@ -173,12 +153,9 @@ function searchContacts(searchTerm) {
     renderDropdownUser(dropDownMenu, formattedContactsArray);
     return;
   }
-  let searchContacts = formattedContactsArray.filter((contact) =>
-    contact.name.toLowerCase().startsWith(searchTerm.toLowerCase())
-  );
+  let searchContacts = formattedContactsArray.filter((contact) => contact.name.toLowerCase().startsWith(searchTerm.toLowerCase()));
   renderDropdownUser(dropDownMenu, searchContacts);
 }
-
 
 function getContacts(dropDownMenu) {
   let groupedContacts = sortContacts();
@@ -187,7 +164,6 @@ function getContacts(dropDownMenu) {
   renderDropdownUser(dropDownMenu);
 }
 
-
 function updatePlaceholder(inputField, isHidden) {
   if (inputField) {
     inputField.placeholder = !isHidden ? '' : 'Select contacts to assign';
@@ -195,14 +171,12 @@ function updatePlaceholder(inputField, isHidden) {
   }
 }
 
-
 function toggleArrowRotation(arrow, isHidden) {
   if (arrow) {
     arrow.classList.toggle('rotate-arrow', isHidden);
     arrow.classList.toggle('rotate-arrow-0', !isHidden);
   }
 }
-
 
 function openDropdownCategory() {
   const dropDownMenu = document.getElementById('dropDownMenuCategory');
@@ -218,13 +192,11 @@ function openDropdownCategory() {
   toggleArrowRotation(arrow, isHidden);
 }
 
-
 function renderDropdownMenuCategory(dropDownMenu) {
   if (!dropDownMenu.innerHTML.trim()) {
     dropDownMenu.innerHTML = categoryTemplate();
   }
 }
-
 
 function isCategorySelected() {
   const dropDownMenu = document.getElementById('dropDownMenuCategory');
@@ -234,7 +206,6 @@ function isCategorySelected() {
     selectedCategory.innerText = originalCategoryText;
   }
 }
-
 
 function selectCategory(category) {
   const selectedCategory = document.getElementById('selectedCategory');
@@ -250,13 +221,11 @@ function selectCategory(category) {
   selectedCategoryValue = category;
 }
 
-
 function resetSelectCategory() {
   const selectedCategory = document.getElementById('selectedCategory');
   selectedCategory.innerText = 'Select task category';
   selectedCategoryValue = '';
 }
-
 
 function openSubtaskInput() {
   let inputField = document.getElementById('addTaskSubtasks');
@@ -269,7 +238,6 @@ function openSubtaskInput() {
   inputField.placeholder = '';
 }
 
-
 function closeSubtaskInput(event) {
   event.stopPropagation();
   const inputField = document.getElementById('addTaskSubtasks');
@@ -281,7 +249,6 @@ function closeSubtaskInput(event) {
   resetSubtaskInput(event);
 }
 
-
 function renderSubtask() {
   let subtaskRef = document.getElementById('addedSubtaks');
   subtaskRef.innerHTML = '';
@@ -289,7 +256,6 @@ function renderSubtask() {
     subtaskRef.innerHTML += subtaskTemplate(i);
   }
 }
-
 
 function addSubtaksFromInput(event) {
   let subtaskInputRef = document.getElementById('addTaskSubtasks');
@@ -301,7 +267,6 @@ function addSubtaksFromInput(event) {
   }
 }
 
-
 function editSubtask(i) {
   let subtaskRef = document.getElementById(`subtask-${i}`);
   if (subtaskRef) {
@@ -309,13 +274,11 @@ function editSubtask(i) {
   }
 }
 
-
 function saveEditedSubtask(i) {
   let inputRef = document.getElementById(`editSubtask-${i}`);
   addSubtask[i] = inputRef.value;
   renderSubtask();
 }
-
 
 function resetSubtaskInput(event) {
   event.stopPropagation();
@@ -332,19 +295,16 @@ function resetSubtaskInput(event) {
   }
 }
 
-
 function deleteSubtask(i) {
   addSubtask.splice(i, 1);
   renderSubtask();
 }
-
 
 function resetSubtask() {
   let subtaskRef = document.getElementById('addedSubtaks');
   subtaskRef.innerHTML = '';
   addSubtask.length = 0;
 }
-
 
 function formatDate(input) {
   let value = input.value.replace(/\D/g, '');
@@ -360,24 +320,25 @@ function formatDate(input) {
   return;
 }
 
-
 function toggleContactsSelection(event, index) {
-  event.preventDefault();
-  let checkbox = document.getElementById(`checkbox-${index}`);
-  let checkedContainer = document.getElementById(`innerDropmenu-${index}`);
-  if (!checkbox || !checkedContainer) return;
-  checkbox.checked = !checkbox.checked;
-  updateSelectedContacts(index, checkbox.checked);
-  updateSelectedStyle(checkedContainer, checkbox.checked);
+  const checkbox = document.getElementById(`checkbox-${index}`);
+  const container = document.getElementById(`innerDropmenu-${index}`);
+  const isCheckbox = event.target === checkbox;
+  const checked = isCheckbox ? checkbox.checked : !checkbox.checked;
+  if (!checkbox || !container) return;
+  if (!isCheckbox) {
+    event.preventDefault();
+    checkbox.checked = checked;
+  }
+  updateSelectedContacts(index, checked);
+  updateSelectedStyle(container, checked);
 }
-
 
 function resetContactsSelection() {
   let initialContainer = document.getElementById('selectedInitials');
   initialContainer.innerHTML = '';
   selectedContacts.length = 0;
 }
-
 
 function updateSelectedContacts(index, isChecked) {
   let contact = formattedContactsArray[index];
@@ -390,12 +351,10 @@ function updateSelectedContacts(index, isChecked) {
   renderSelectedInitials();
 }
 
-
 function updateSelectedStyle(element, isChecked) {
   element.classList.toggle('inner-dropmenu', !isChecked);
   element.classList.toggle('inner-dropmenu-checked', isChecked);
 }
-
 
 function renderSelectedInitials() {
   const initialsRef = document.getElementById('selectedInitials');
@@ -407,7 +366,6 @@ function renderSelectedInitials() {
   }
 }
 
-
 function initialsShowOnAssinged(dropDownMenu) {
   const initialCircle = document.getElementById('selectedInitials');
   const isHidden = dropDownMenu.classList.contains('drop-down-hide');
@@ -417,7 +375,6 @@ function initialsShowOnAssinged(dropDownMenu) {
     initialCircle.classList.add('d-none');
   }
 }
-
 
 function clearAddTask() {
   document.getElementById('addTaskTitle').value = '';
