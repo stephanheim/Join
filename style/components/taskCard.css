@@ -135,9 +135,6 @@
   align-items: center;
 }
 
-<<<<<<< HEAD
-@media screen and (max-width:856px) {
-=======
 .task-card-outside.dragging {
   transform: rotate(5deg);
   opacity: 0.8;
@@ -152,7 +149,6 @@
 }
 
 @media screen and (max-width: 856px) {
->>>>>>> eec88999c7b3ee678cfcecff919fc747031c7744
   .task-render-container {
     flex-direction: row;
   }
