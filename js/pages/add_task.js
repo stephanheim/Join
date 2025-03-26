@@ -4,7 +4,7 @@ let selectedCategoryValue = '';
 let addSubtask = [];
 let addNewTask = [];
 
-function initAddTask() {}
+function initAddTask() { }
 
 function getAddTaskValue() {
   let title = document.getElementById('addTaskTitle').value.trim();
@@ -24,29 +24,50 @@ function getAddTaskValue() {
   return newTask;
 }
 
+
 function areTaskFieldsFilled() {
-  let titleContainer = document.getElementById('addTaskTitle');
-  let dateContainer = document.getElementById('inputDate');
-  let categoryContainer = document.getElementById('categoryDropDown');
-  let date = document.getElementById('addTaskDate').value.trim();
-
-  let title = titleContainer.value.trim();
-  let category = selectedCategoryValue.trim();
-
-  const messages = document.getElementsByClassName('error-message');
-  const requirements = [titleContainer, dateContainer, categoryContainer];
-
+  let { title, date, category } = getTaskFieldValues();
   if (!title || !date || !category) {
-    for (const message of messages) {
-      message.innerText = 'This field is required';
-      message.style.display = 'block';
-    }
-    for (const required of requirements) {
-      required.style.borderColor = '#FF001F';
-    }
+    showFieldErrors();
     return false;
   }
+  clearFieldErrors();
+  return true;
+}
 
+
+function getTaskFieldValues() {
+  let title = document.getElementById('addTaskTitle').value.trim();
+  let date = document.getElementById('addTaskDate').value.trim();
+  let category = selectedCategoryValue.trim();
+  return { title, date, category };
+}
+
+
+function showFieldErrors() {
+  const messages = document.getElementsByClassName('error-message');
+  const requirements = [
+    document.getElementById('addTaskTitle'),
+    document.getElementById('inputDate'),
+    document.getElementById('categoryDropDown')
+  ];
+  for (const message of messages) {
+    message.innerText = 'This field is required';
+    message.style.display = 'block';
+  }
+  for (const required of requirements) {
+    required.style.borderColor = '#FF001F';
+  }
+}
+
+
+function clearFieldErrors() {
+  const messages = document.getElementsByClassName('error-message');
+  const requirements = [
+    document.getElementById('addTaskTitle'),
+    document.getElementById('inputDate'),
+    document.getElementById('categoryDropDown')
+  ];
   for (const message of messages) {
     message.innerText = '';
     message.style.display = 'none';
@@ -54,8 +75,8 @@ function areTaskFieldsFilled() {
   for (const required of requirements) {
     required.style.borderColor = '';
   }
-  return true;
 }
+
 
 function createNewTaskToStorage(status) {
   if (!areTaskFieldsFilled()) return;
