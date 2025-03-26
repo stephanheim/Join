@@ -145,7 +145,7 @@ function addTaskTemplate() {
 
 function assignedToTemplate(name, color, initials, i, isChecked) {
   return `
-  <label id="innerDropmenu-${i}" class="inner-dropmenu" onclick="toggleContactsSelection(event, ${i})">
+  <div id="innerDropmenu-${i}" class="inner-dropmenu" onclick="toggleContactsSelection(event, ${i})">
     <div class="contacts-line">
       <div style="background-color:${color}" class="circle-color">
         <span>${initials}</span>
@@ -155,9 +155,9 @@ function assignedToTemplate(name, color, initials, i, isChecked) {
       </div>
     </div>
     <div class="checkbox">
-      <input id="checkbox-${i}" ${isChecked ? 'checked' : ''} type="checkbox" name="checkbox" />
+      <input id="checkbox-${i}" ${isChecked ? 'checked' : ''} type="checkbox" name="checkbox" onclick=" toggleContactsSelection(event, ${i})" />
     </div>
-  </label>`;
+  </div>`;
 }
 
 function categoryTemplate() {

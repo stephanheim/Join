@@ -156,9 +156,9 @@ function closeAddTaskFloating() {
 }
 
 function openBoardCard(id) {
-  let { task, initialsHTML, namesHTML, totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar } = taskDataMap[id];
+  let { task, namesHTML, totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar } = taskDataMap[id];
   let boardCard = document.getElementById('boardCardLarge');
-  boardCard.innerHTML = boardCardTemplate(task, initialsHTML, namesHTML, totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar);
+  boardCard.innerHTML = boardCardTemplate(task, namesHTML, totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar);
   document.body.style.overflow = 'hidden';
   boardCard.classList.remove('slideOut', 'd-none');
   boardCard.classList.add('slideIn');
@@ -205,7 +205,6 @@ function clearDropHighlight(event) {
 
 document.addEventListener('dragend', globalDragEnd);
 
-
 function globalDragEnd() {
   let noTaskContainer = document.getElementsByClassName('no-task');
   for (let i = 0; i < noTaskContainer.length; i++) {
@@ -216,7 +215,6 @@ function globalDragEnd() {
     containers[i].classList.remove('dragging');
   }
 }
-
 
 function moveTo(newStatus) {
   let data = taskDataMap[currentDraggedTaskId];
