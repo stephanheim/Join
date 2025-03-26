@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="de">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Board</title>
-  <!-- <link rel="shortcut icon" href="../assets/img/join.svg" type="image/x-icon" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Board</title>
+    <!-- <link rel="shortcut icon" href="../assets/img/join.svg" type="image/x-icon" />
   <link rel="stylesheet" href="../style/global.css" />
   <link rel="stylesheet" href="../style/typography.css" />
   <link rel="stylesheet" href="../style/variables.css" />
@@ -14,7 +13,7 @@
   <link rel="stylesheet" href="../style/components/floating_add_task.css" />
   <link rel="stylesheet" href="../style/animation.css" />
   <link rel="stylesheet" href="../style/components/taskCard.css" /> -->
-</head>
+  </head>
 
 <body onload="initBoard()">
   <main id="floatingAddTask" class="floating-main slideIn d-none"></main>
@@ -41,8 +40,7 @@
     </div>
   </header>
   <main class="board-main">
-    <div class="board-task" ondrop="moveTo('toDo')" ondragover="allowDrop(event)"
-      ondragleave="clearDropHighlight(event)">
+    <div class="board-task">
       <div class="nav-add-task">
         <span>To do</span><svg onclick="openAddTaskFloating('toDo')" width="24" height="24" viewBox="0 0 24 24"
           fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -51,14 +49,14 @@
           <path d="M16 12.0754L8 12.0754" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
         </svg>
       </div>
-      <div class="no-task" id="noTaskToDo" ondragover="allowDrop(event)">
+      <div class="no-task" id="noTaskToDo" ondrop="moveTo('toDo')" ondragover="allowDrop(event)"
+        ondragleave="clearDropHighlight(event)">
         <span>No Tasks To do</span>
       </div>
-      <div class="task-render-container" id="toDo" ondrop="moveTo('toDo')">
+      <div class="task-render-container" id="toDo" ondrop="moveTo('toDo')" ondragover="allowDrop(event)">
       </div>
     </div>
-    <div class="board-task" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)"
-      ondragleave="clearDropHighlight(event)">
+    <div class="board-task">
       <div class="nav-add-task">
         <span>In progress</span><svg onclick="openAddTaskFloating('inProgress')" width="24" height="24"
           viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -67,15 +65,15 @@
           <path d="M16 12.0754L8 12.0754" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
         </svg>
       </div>
-      <div class="no-task" id="noTaskInProgress" ondragover="allowDrop(event)">
+      <div class="no-task" id="noTaskInProgress" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)"
+        ondragleave="clearDropHighlight(event)">
         <span>No Tasks In progress</span>
       </div>
-      <div class="task-render-container" id="inProgress" ondrop="moveTo('inProgress')">
+      <div class="task-render-container" id="inProgress" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)">
       </div>
     </div>
     </div>
-    <div class="board-task" ondrop="moveTo('awaitFeedback')" ondragover="allowDrop(event)"
-      ondragleave="clearDropHighlight(event)">
+    <div class="board-task">
       <div class="nav-add-task">
         <span>Await feedback</span><svg onclick="openAddTaskFloating('awaitFeedback')" width="24" height="24"
           viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -84,23 +82,21 @@
           <path d="M16 12.0754L8 12.0754" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
         </svg>
       </div>
-      <div class="no-task" id="noTaskAwaitFeedback" ondragover="allowDrop(event)">
+      <div class="no-task" id="noTaskAwaitFeedback" ondrop="moveTo('awaitFeedback')" ondragover="allowDrop(event)"
+        ondragleave="clearDropHighlight(event)">
         <span>No Tasks Await feedback</span>
       </div>
-      <div class="task-render-container" id="awaitFeedback" ondrop="moveTo('awaitFeedback')">
+      <div class="task-render-container" id="awaitFeedback" ondrop="moveTo('awaitFeedback')"
+        ondragover="allowDrop(event)">
       </div>
     </div>
     </div>
     </div>
-    <div class="board-task" ondrop="moveTo('done')" ondragover="allowDrop(event)"
-      ondragleave="clearDropHighlight(event)">
-      <div class="nav-add-task">
-        <span>Done</span>
-      </div>
-      <div class="no-task" id="noTaskDone" ondragover="allowDrop(event)">
-        <span>No Tasks Done</span>
-      </div>
-      <div class="task-render-container" id="done" ondrop="moveTo('done')"></div>
+    <div class="board-task">
+      <div class="nav-add-task"><span>Done</span></div>
+      <div class="no-task" id="noTaskDone" ondrop="moveTo('done')" ondragover="allowDrop(event)"
+        ondragleave="clearDropHighlight(event)"><span>No Tasks Done</span></div>
+      <div class="task-render-container" id="done" ondrop="moveTo('done')" ondragover="allowDrop(event)"></div>
     </div>
     </div>
   </main>
