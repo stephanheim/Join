@@ -1,60 +1,45 @@
 function initSummary() {
   loadContactsFromFirebase();
-
-  let tasks = loadTaskFromStorage(); 
+  let tasks = loadTaskFromStorage();
   if (tasks && tasks.length > 0) {
-    let taskCounts = countTasksForSummary(tasks); 
-    console.log(taskCounts); 
+    let taskCounts = countTasksForSummary(tasks);
+    console.log(taskCounts);
+    renderSummary(taskCounts);
   } else {
     console.log("Keine Aufgaben gefunden.");
   }
 }
 
-function setActiveToBoard() {
-  const toBoard = document.getElementById("sumToBoard");
-  const removeSum = document.getElementById("removeActive");
-  if (toBoard) {
-    toBoard.classList.add("active");
-    toBoard.style.pointerEvents = "none";
-  }
-  if (removeSum) {
-    removeSum.classList.remove("active");
-    removeSum.style.pointerEvents = "auto";
-  }
-}
-
 function countTasksForSummary(tasks) {
-  const total = countTotal(tasks);
-  const toDo = countToDo(tasks);
-  const done = countDone(tasks);
-  const inProgress = countInProgress(tasks);
-  const awaitingFeedback = countAwaitingFeedback(tasks);
-
   return {
-    total,
-    toDo,
-    done,
-    inProgress,
-    awaitingFeedback,
+    total: countTotal(tasks),
+    toDo: countToDo(tasks),
+    done: countDone(tasks),
+    inProgress: countInProgress(tasks),
+    awaitingFeedback: countAwaitingFeedback(tasks),
   };
 }
 
 function countToDo(tasks) {
-  return tasks.filter((task) => task.status.toLowerCase() === "toDo").length;
+  return tasks.filter((task) => task.status && task.status.toLowerCase() === "todo").length;
 }
 
 function countDone(tasks) {
-  return tasks.filter((task) => task.status.toLowerCase() === "done").length;
+  return tasks.filter((task) => task.status && task.status.toLowerCase() === "done").length;
 }
 
 function countInProgress(tasks) {
-  return tasks.filter((task) => task.status.toLowerCase() === "inProgress").length;
+  return tasks.filter((task) => task.status && task.status.toLowerCase() === "inprogress").length;
 }
 
 function countAwaitingFeedback(tasks) {
-  return tasks.filter((task) => task.status.toLowerCase() === "awaitFeedback").length;
+  return tasks.filter((task) => task.status && task.status.toLowerCase() === "awaitfeedback").length;
 }
 
 function countTotal(tasks) {
   return tasks.length;
+}
+
+function renderSummary(taskCounts) {
+  document.getElementById("summary-container").innerHTML = generateSummaryHTML(taskCounts);
 }
