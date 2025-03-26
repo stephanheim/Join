@@ -17,7 +17,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   padding: 48px 40px;
   background-color: rgba(255, 255, 255, 1);
   border-radius: 30px;
@@ -36,6 +35,10 @@
 .inner-card h1 {
   font-size: 61px;
   font-weight: 700;
+}
+
+.inner-subtask {
+  display: flex;
 }
 
 .headline-story-user {
@@ -90,6 +93,10 @@
 .inner-text-build-start p {
   font-size: 16px;
   font-weight: 400;
+}
+
+.description-text-brake {
+  word-break: break-word;
 }
 
 .headline-boardcard {
@@ -178,6 +185,8 @@
 
 .subtask {
   display: flex;
+  align-items: center;
+  height: 30px;
   gap: 18px;
   padding-left: 16px;
   padding-right: 16px;

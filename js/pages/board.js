@@ -90,12 +90,30 @@ function getNamesTaskCardTemp(task) {
   return html;
 }
 
+function getSubtaskCardTemp(task) {
+  let html = '';
+  for (let subtask of task.subtasks) {
+    html += `
+    <div class="subtask">
+      <div class="checkbox" class="checkbox">
+        <input type="checkbox" name="checkbox" />
+      </div>
+        <div>
+          <p>${subtask}</p>
+        </div>
+    </div>`;
+  }
+  return html;
+}
+
 function prepareTaskData(task) {
   let initialsHTML = getInitialsTaskCard(task);
   let namesHTML = getNamesTaskCardTemp(task);
+  let subtaskHTML = getSubtaskCardTemp(task);
   let { totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar } = progressSubtasks(task);
   taskDataMap[task.id] = {
     task,
+    subtaskHTML,
     initialsHTML,
     namesHTML,
     totalSubtasks,
@@ -156,9 +174,9 @@ function closeAddTaskFloating() {
 }
 
 function openBoardCard(id) {
-  let { task, namesHTML, totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar } = taskDataMap[id];
+  let { task, subtaskHTML, namesHTML, totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar } = taskDataMap[id];
   let boardCard = document.getElementById('boardCardLarge');
-  boardCard.innerHTML = boardCardTemplate(task, namesHTML, totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar);
+  boardCard.innerHTML = boardCardTemplate(task, subtaskHTML, namesHTML, totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar);
   document.body.style.overflow = 'hidden';
   boardCard.classList.remove('slideOut', 'd-none');
   boardCard.classList.add('slideIn');
