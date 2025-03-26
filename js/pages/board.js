@@ -203,12 +203,8 @@ function clearDropHighlight(event) {
   event.currentTarget.classList.remove('highlight');
 }
 
-<<<<<<< HEAD
 document.addEventListener('dragend', globalDragEnd);
 
-=======
-document.addEventListener('dragend', globalDragEnd());
->>>>>>> 5deea437909bdf9ce1d44140af2d33387b8d064b
 
 function globalDragEnd() {
   let noTaskContainer = document.getElementsByClassName('no-task');
@@ -221,11 +217,7 @@ function globalDragEnd() {
   }
 }
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 5deea437909bdf9ce1d44140af2d33387b8d064b
 function moveTo(newStatus) {
   let data = taskDataMap[currentDraggedTaskId];
   if (data && data.task) {
