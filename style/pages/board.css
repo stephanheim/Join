@@ -108,6 +108,7 @@
 }
 
 .board-task {
+    min-height: 354px;
     width: 250px;
     height: auto;
     display: flex;
@@ -163,6 +164,25 @@
     border-radius: 30px;
     box-shadow: 0px 0px 4px 0px #00000029;
 }
+
+.task-card-outside.dragging {
+    transform: rotate(5deg);
+    opacity: 0.8;
+    transition: transform 0.2s ease;
+}
+
+.board-task.highlight {
+    border-radius: 24px;
+    border: dotted 1px #A8A8A8;
+    box-shadow: 0px 0px 4px 0px #00000029;
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.board-task.highlight:hover {
+    border-color: #A8A8A8;
+}
+
+.render-dragged-container {}
 
 @media screen and (max-width:856px) {
     .board-header {

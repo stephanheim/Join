@@ -48,9 +48,11 @@ async function loadPreTaskCards() {
 //   })
 // }
 
+
 function loadTaskFromStorage() {
   return JSON.parse(localStorage.getItem('tasks')) || [];
 }
+
 
 function progressSubtasks(task) {
   let totalSubtasks = task.subtasks?.length || 0;
@@ -60,6 +62,7 @@ function progressSubtasks(task) {
   let hideProgressBar = totalSubtasks === 0 ? 'display:none;' : '';
   return { totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar };
 }
+
 
 function getInitialsTaskCard(task) {
   let html = '';
@@ -206,7 +209,7 @@ function clearDropHighlight(event) {
 document.addEventListener('dragend', globalDragEnd);
 
 function globalDragEnd() {
-  let noTaskContainer = document.getElementsByClassName('no-task');
+  let noTaskContainer = document.getElementsByClassName('board-task');
   for (let i = 0; i < noTaskContainer.length; i++) {
     noTaskContainer[i].classList.remove('highlight');
   }
@@ -216,6 +219,15 @@ function globalDragEnd() {
   }
 }
 
+
+function renderDraggedContainer(event){
+  let renderContainer = document.classList('task-render-container');
+  for (let i = 0; i < renderContainer.length; i++) {
+    renderContainer[i].classList
+  }
+}
+
+
 function moveTo(newStatus) {
   let data = taskDataMap[currentDraggedTaskId];
   if (data && data.task) {
@@ -224,6 +236,7 @@ function moveTo(newStatus) {
     renderTasks();
   }
 }
+
 
 function saveTaskDataMapToStorage() {
   let tastDataArray = Object.values(taskDataMap);
