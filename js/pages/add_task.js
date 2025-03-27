@@ -84,12 +84,28 @@ function createNewTaskToStorage(status) {
   newTask.status = status;
   let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
   tasks.push(newTask);
+  postNewTaskToDB(newTask);
   localStorage.setItem('tasks', JSON.stringify(tasks));
   clearAddTask();
   setTimeout(() => {
     loadPageContentPath('board');
+    setActiveNavBoard();
   }, 200);
 }
+
+
+async function postNewTaskToDB(newTask) {
+  const url = BASE_URL + "/board/newTasks.json";
+  const options = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(newTask)
+  };
+  const response = await fetchData(url, options);
+  if (!response) return;
+  newTask.firebaseId = response.name;
+}
+
 
 function selectedPriority(prio, element) {
   buttonsColorSwitch(element);

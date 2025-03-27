@@ -1,24 +1,3 @@
-/**
- * Fetches data from the specified URL
- *
- * @param {string} url - The URL from which to fetch the data
- * @param {object} options - Options for the fetch request (method, headers, body)
- * @return {Promise<object|undefined>} - A promise that resolves to a JSON object on success or `undefined` on failure
- */
-async function fetchData(url, options) {
-  try {
-    const response = await fetch(url, options);
-    if (!response.ok) throw new Error(`Server Error: ${response.status}`);
-    return await response.json();
-  } catch (error) {
-    console.error("Fetch Error:", error);
-    return undefined;
-  } finally {
-    activateButton()
-  }
-}
-
-
 function checkForm() {
   toggleSubmitButton();
   return allFieldsValid();

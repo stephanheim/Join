@@ -12,41 +12,40 @@ let addTaskStatusTarget;
 function initBoard() {
   // loadPreTaskCards();
   renderTasks();
-  console.log(taskDataMap);
 }
 
-async function getPreTaskCardFromDB() {
-  const url = `${BASE_URL}board/preTask.json`;
-  try {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error(`Server Error: ${response.status}`);
-    const tasks = await response.json();
-    if (!tasks) return [];
-    return Object.values(tasks);
-  } catch (error) {
-    console.error('Error when retrieving the tasks', error);
-    return [];
-  }
-}
+// async function getPreTaskCardFromDB() {
+//   const url = `${BASE_URL}board/preTask.json`;
+//   try {
+//     const response = await fetch(url);
+//     if (!response.ok) throw new Error(`Server Error: ${response.status}`);
+//     const tasks = await response.json();
+//     if (!tasks) return [];
+//     return Object.values(tasks);
+//   } catch (error) {
+//     console.error('Error when retrieving the tasks', error);
+//     return [];
+//   }
+// }
 
 async function loadPreTaskCards() {
   preTaskCards = await getPreTaskCardFromDB();
   renderPreTaskCard();
 }
 
-// function renderPreTaskCard() {
-//   let taskCard = document.getElementById('inProgress');
-//   let hideNoTask = document.getElementById('noTaskInProgress');
-//   if (preTaskCards.length === 0) {
-//     hideNoTask.classList.remove('d-none');
-//     return;
-//   }
-//   taskCard.innerHTML = "";
-//   preTaskCards.forEach(task => {
-//     let taskHTML = createTaskCard(task.category, task.title, task.description, task.assigned);
-//     taskCard.innerHTML += taskHTML;
-//   })
-// }
+function renderPreTaskCard() {
+  let taskCard = document.getElementById('inProgress');
+  let hideNoTask = document.getElementById('noTaskInProgress');
+  if (preTaskCards.length === 0) {
+    hideNoTask.classList.remove('d-none');
+    return;
+  }
+  taskCard.innerHTML = "";
+  preTaskCards.forEach(task => {
+    let taskHTML = createTaskCard(task.category, task.title, task.description, task.assigned);
+    taskCard.innerHTML += taskHTML;
+  })
+}
 
 
 function progressSubtasks(task) {
@@ -210,23 +209,24 @@ function startDragging(id) {
   document.getElementById(id).classList.add('dragging');
 }
 
-// function allowDrop(event, targetId) {
-//   event.preventDefault();
-//   let container = document.getElementById(targetId);
-//   if (!container) return;
-//   let exists = false;
-//   for (let i = 0; i < container.children.length; i++) {
-//     if (container.children[i].classList.contains('drop-preview')) {
-//       exists = true;
-//       break;
-//     }
-//   }
-//   if (!exists) {
-//     let preview = document.createElement('div');
-//     preview.className = 'drop-preview';
-//     container.appendChild(preview);
-//   }
-// }
+
+function allowDrop(event, targetId) {
+  event.preventDefault();
+  let container = document.getElementById(targetId);
+  if (!container) return;
+  let exists = false;
+  for (let i = 0; i < container.children.length; i++) {
+    if (container.children[i].classList.contains('drop-preview')) {
+      exists = true;
+      break;
+    }
+  }
+  if (!exists) {
+    let preview = document.createElement('div');
+    preview.className = 'drop-preview';
+    container.appendChild(preview);
+  }
+}
 
 
 function allowDrop(event, targetId) {

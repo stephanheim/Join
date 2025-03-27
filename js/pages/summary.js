@@ -10,6 +10,7 @@ function countTasksForSummary(tasks) {
     done: countDone(tasks),
     inProgress: countInProgress(tasks),
     awaitingFeedback: countAwaitingFeedback(tasks),
+    urgent: countUrgent(tasks)
   };
 }
 
@@ -33,14 +34,20 @@ function countTotal(tasks) {
   return tasks.length;
 }
 
-function getSummaryData(){
+function countUrgent(tasks) {
+  return tasks.filter((task) => task.priority && task.priority.toLowerCase() === 'urgent').length;
+}
+
+function getSummaryData() {
   let tasks = loadTaskFromStorage();
+  let noTasks = document.getElementById('summaryContainer');
   if (tasks && tasks.length > 0) {
     let taskCounts = countTasksForSummary(tasks);
     console.log(taskCounts);
     renderSummary(taskCounts);
   } else {
     console.log("Keine Aufgaben gefunden.");
+    noTasks.innerHTML += generateSummaryNoTasksHTML();
   }
 }
 
