@@ -213,9 +213,9 @@
     }
 
     .board-task {
+        min-height: unset;
         width: 100%;
         align-items: flex-start;
-        overflow-y: auto;
     }
 
     .nav-add-task {
