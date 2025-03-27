@@ -210,13 +210,34 @@ function startDragging(id) {
   document.getElementById(id).classList.add('dragging');
 }
 
+// function allowDrop(event, targetId) {
+//   event.preventDefault();
+//   let container = document.getElementById(targetId);
+//   if (!container) return;
+//   let exists = false;
+//   for (let i = 0; i < container.children.length; i++) {
+//     if (container.children[i].classList.contains('drop-preview')) {
+//       exists = true;
+//       break;
+//     }
+//   }
+//   if (!exists) {
+//     let preview = document.createElement('div');
+//     preview.className = 'drop-preview';
+//     container.appendChild(preview);
+//   }
+// }
+
+
 function allowDrop(event, targetId) {
   event.preventDefault();
-
   let container = document.getElementById(targetId);
   if (!container) return;
+  renderPreview(container);
+}
 
-  // Prüfen ob Vorschau bereits existiert
+
+function renderPreview(container) {
   let exists = false;
   for (let i = 0; i < container.children.length; i++) {
     if (container.children[i].classList.contains('drop-preview')) {
@@ -224,21 +245,17 @@ function allowDrop(event, targetId) {
       break;
     }
   }
-
   if (!exists) {
-    let preview = document.createElement('div');
-    preview.className = 'drop-preview';
-    preview.textContent = 'Hierher ziehen...';
-    container.appendChild(preview);
+    container.innerHTML += `
+      <div class="drop-preview"></div>
+    `;
   }
 }
-
 
 
 function clearDropHighlight(targetId) {
   let container = document.getElementById(targetId);
   if (!container) return;
-
   for (let i = 0; i < container.children.length; i++) {
     if (container.children[i].classList.contains('drop-preview')) {
       container.removeChild(container.children[i]);
@@ -248,14 +265,13 @@ function clearDropHighlight(targetId) {
 }
 
 
-
 document.addEventListener('dragend', globalDragEnd);
 
 
 function globalDragEnd() {
-  let cards = document.getElementsByClassName('task-card-outside');
-  for (let i = 0; i < cards.length; i++) {
-    cards[i].classList.remove('dragging');
+  let taskCard = document.getElementsByClassName('task-card-outside');
+  for (let i = 0; i < taskCard.length; i++) {
+    taskCard[i].classList.remove('dragging');
   }
 }
 
