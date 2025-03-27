@@ -12,7 +12,7 @@ const pageTitles = {
   help: 'Help',
 };
 
-function initPages(page) {
+async function initPages(page) {
   if (page === 'summary') {
     initSummary();
   } else if (page === 'add_task') {

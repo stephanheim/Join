@@ -111,3 +111,7 @@ function getCategoryColor(category) {
     case 'user story': return '#0038FF';
   }
 }
+
+function loadTaskFromStorage() {
+  return JSON.parse(localStorage.getItem('tasks')) || [];
+}

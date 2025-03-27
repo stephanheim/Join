@@ -1,13 +1,6 @@
 function initSummary() {
+  getSummaryData();
   loadContactsFromFirebase();
-  let tasks = loadTaskFromStorage();
-  if (tasks && tasks.length > 0) {
-    let taskCounts = countTasksForSummary(tasks);
-    console.log(taskCounts);
-    renderSummary(taskCounts);
-  } else {
-    console.log("Keine Aufgaben gefunden.");
-  }
 }
 
 function countTasksForSummary(tasks) {
@@ -40,6 +33,17 @@ function countTotal(tasks) {
   return tasks.length;
 }
 
+function getSummaryData(){
+  let tasks = loadTaskFromStorage();
+  if (tasks && tasks.length > 0) {
+    let taskCounts = countTasksForSummary(tasks);
+    console.log(taskCounts);
+    renderSummary(taskCounts);
+  } else {
+    console.log("Keine Aufgaben gefunden.");
+  }
+}
+
 function renderSummary(taskCounts) {
-  document.getElementById("summary-container").innerHTML = generateSummaryHTML(taskCounts);
+  document.getElementById('summaryContainer').innerHTML = generateSummaryHTML(taskCounts);
 }

@@ -49,11 +49,6 @@ async function loadPreTaskCards() {
 // }
 
 
-function loadTaskFromStorage() {
-  return JSON.parse(localStorage.getItem('tasks')) || [];
-}
-
-
 function progressSubtasks(task) {
   let totalSubtasks = task.subtasks?.length || 0;
   let completedSubtasks = task.subtasks?.filter((s) => s.completed).length || 0;
@@ -215,33 +210,52 @@ function startDragging(id) {
   document.getElementById(id).classList.add('dragging');
 }
 
-function allowDrop(event) {
+function allowDrop(event, targetId) {
   event.preventDefault();
-  event.currentTarget.classList.add('highlight');
+
+  let container = document.getElementById(targetId);
+  if (!container) return;
+
+  // Prüfen ob Vorschau bereits existiert
+  let exists = false;
+  for (let i = 0; i < container.children.length; i++) {
+    if (container.children[i].classList.contains('drop-preview')) {
+      exists = true;
+      break;
+    }
+  }
+
+  if (!exists) {
+    let preview = document.createElement('div');
+    preview.className = 'drop-preview';
+    preview.textContent = 'Hierher ziehen...';
+    container.appendChild(preview);
+  }
 }
 
-function clearDropHighlight(event) {
-  event.currentTarget.classList.remove('highlight');
+
+
+function clearDropHighlight(targetId) {
+  let container = document.getElementById(targetId);
+  if (!container) return;
+
+  for (let i = 0; i < container.children.length; i++) {
+    if (container.children[i].classList.contains('drop-preview')) {
+      container.removeChild(container.children[i]);
+      break;
+    }
+  }
 }
+
+
 
 document.addEventListener('dragend', globalDragEnd);
 
+
 function globalDragEnd() {
-  let noTaskContainer = document.getElementsByClassName('board-task');
-  for (let i = 0; i < noTaskContainer.length; i++) {
-    noTaskContainer[i].classList.remove('highlight');
-  }
-  let containers = document.getElementsByClassName('task-card-outside');
-  for (let i = 0; i < containers.length; i++) {
-    containers[i].classList.remove('dragging');
-  }
-}
-
-
-function renderDraggedContainer(event){
-  let renderContainer = document.classList('task-render-container');
-  for (let i = 0; i < renderContainer.length; i++) {
-    renderContainer[i].classList
+  let cards = document.getElementsByClassName('task-card-outside');
+  for (let i = 0; i < cards.length; i++) {
+    cards[i].classList.remove('dragging');
   }
 }
 
