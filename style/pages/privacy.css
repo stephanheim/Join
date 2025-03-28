@@ -23,3 +23,13 @@ ul {
   color: #29abe2;
   text-decoration: none;
 }
+
+@media (max-width: 640px) {
+  .privacy-wrap {
+    padding: 110px 9px 80px 9px;
+  }
+
+  h1 {
+    font-size: 47px;
+  }
+}
