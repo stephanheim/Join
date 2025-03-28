@@ -4,7 +4,9 @@ let selectedCategoryValue = '';
 let addSubtask = [];
 let addNewTask = [];
 
-function initAddTask() { }
+function initAddTask() {
+  preventFormSubmitOnEnter();
+}
 
 function getAddTaskValue() {
   let title = document.getElementById('addTaskTitle').value.trim();
@@ -78,19 +80,20 @@ function clearFieldErrors() {
 }
 
 
-function createNewTaskToStorage(status) {
+async function createNewTaskToStorage(status) {
   if (!areTaskFieldsFilled()) return;
   let newTask = getAddTaskValue();
   newTask.status = status;
   let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
   tasks.push(newTask);
-  postNewTaskToDB(newTask);
+  await postNewTaskToDB(newTask);
   localStorage.setItem('tasks', JSON.stringify(tasks));
   clearAddTask();
+  messageTaskAdded();
   setTimeout(() => {
     loadPageContentPath('board');
     setActiveNavBoard();
-  }, 200);
+  }, 1300);
 }
 
 

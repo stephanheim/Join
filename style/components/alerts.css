@@ -21,6 +21,17 @@
   animation: fadeIn 800ms ease-in-out forwards;
 }
 
+.overlay-task-added-board {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  animation: fadeIn 800ms ease-in-out forwards;
+}
+
 .message-succsessful {
   width: 312px;
   height: 74px;

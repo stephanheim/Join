@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="../style/animation.css" /> -->
 </head>
 
-<body>
+<body onload="initAddTask()">
   <div id="overlayTaskAdded" class="overlay-task-added">
     <div class="message-task-added">
       <span>Task added to board</span>
@@ -25,7 +25,7 @@
     <div class="headline-add-task">
       <h1 class="h1-add-task">Add Task</h1>
     </div>
-    <form class="add-task-form" onsubmit="createNewTaskToStorage('toDo');return false;">
+    <form id="addTaskForm" class="add-task-form" onsubmit="createNewTaskToStorage('toDo');return false;">
       <div class="input-section">
         <div class="section-left">
           <div class="add-task-single">

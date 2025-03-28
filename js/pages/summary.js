@@ -43,7 +43,6 @@ function getSummaryData() {
   let noTasks = document.getElementById('summaryContainer');
   if (tasks && tasks.length > 0) {
     let taskCounts = countTasksForSummary(tasks);
-    console.log(taskCounts);
     renderSummary(taskCounts);
   } else {
     console.log("Keine Aufgaben gefunden.");

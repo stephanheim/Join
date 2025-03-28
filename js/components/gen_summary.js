@@ -54,13 +54,13 @@ function generateSummaryHTML(taskCounts) {
 function generateSummaryNoTasksHTML() {
   return `
   <div class="row-top">
-    <div onclick="loadPageContentPath('board')" class="todone-div hoverable box-shadow">
+    <div onclick="setActiveNavBoard(); loadPageContentPath('board')" class="todone-div hoverable box-shadow">
       <img src="../assets/img/pencil.svg" class="imgs-todo">
       <div class="numbers-div">
         <span class="number">0</span><span class="text-todo">To-do</span>
       </div>
     </div>
-    <div onclick="loadPageContentPath('board')" class="todone-div hoverable box-shadow">
+    <div onclick="setActiveNavBoard(); loadPageContentPath('board')" class="todone-div hoverable box-shadow">
       <img src="../assets/img/done.svg" class="imgs-todo">
       <div class="numbers-div">
         <span class="number">0</span>
@@ -68,7 +68,7 @@ function generateSummaryNoTasksHTML() {
       </div>
     </div>
   </div>
-  <div onclick="loadPageContentPath('board')" class="row-middle hoverable box-shadow">
+  <div onclick="setActiveNavBoard(); loadPageContentPath('board')" class="row-middle hoverable box-shadow">
     <div class="todone-div">
       <img src="../assets/img/urgent.svg" class="img-urgent no-invert">
       <div class="numbers-div">
@@ -81,19 +81,19 @@ function generateSummaryNoTasksHTML() {
         Deadline</div>
   </div>
   <div class="row-bottom">
-    <div onclick="loadPageContentPath('board')" class="numbers-div tasks hoverable">
+    <div onclick="setActiveNavBoard(); loadPageContentPath('board')" class="numbers-div tasks hoverable">
       <div class="numbers-toDo">
         <span class="number">0</span>
         <span class="text-todo">Tasks in Board</span>
       </div>
     </div>
-    <div onclick="loadPageContentPath('board')" class="numbers-div tasks hoverable">
+    <div onclick="setActiveNavBoard(); loadPageContentPath('board')" class="numbers-div tasks hoverable">
       <div class="numbers-toDo">
         <span class="number">0</span>
         <span class="text-todo">Tasks in Progress</span>
       </div>
     </div>
-    <div onclick="loadPageContentPath('board')" class="numbers-div tasks hoverable">
+    <div onclick="setActiveNavBoard(); loadPageContentPath('board')" class="numbers-div tasks hoverable">
       <div class="numbers-toDo">
         <span class="number">0</span>
         <span class="text-todo">Awaiting Feedback</span>

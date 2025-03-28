@@ -149,6 +149,7 @@ function noTaskVisibility() {
 function openAddTaskFloating(status) {
   let addTask = document.getElementById('floatingAddTask');
   addTask.innerHTML = addTaskTemplate();
+  preventFormSubmitOnEnter();
   document.body.style.overflow = 'hidden';
   addTask.classList.remove('slideOut', 'd-none');
   addTask.classList.add('slideIn');
@@ -157,6 +158,7 @@ function openAddTaskFloating(status) {
   }, 200);
   addTaskStatusTarget = status;
 }
+
 
 function closeAddTaskFloating() {
   let floatingTask = document.getElementById('floatingAddTask');

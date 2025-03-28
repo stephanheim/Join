@@ -155,3 +155,33 @@ function setActiveNavBoard() {
     setActiveNav(boardNav);
   }
 }
+
+function messageTaskAdded() {
+  let msg = document.getElementById('overlayTaskAdded');
+  if (!msg) return;
+  msg.style.display = 'block';
+  setTimeout(() => {
+    msg.style.display = 'none';
+  }, 1300);
+}
+
+function messageTaskAdded() {
+  let msg = document.getElementById('overlayTaskAdded');
+  if (!msg) return;
+  msg.style.display = 'block';
+  setTimeout(() => {
+    msg.style.display = 'none';
+  }, 1300);
+}
+
+function preventFormSubmitOnEnter() {
+  let form = document.getElementById('addTaskForm');
+  let inputs = form.getElementsByTagName('input');
+  for (let i = 0; i < inputs.length; i++) {
+    inputs[i].addEventListener('keydown', function (event) {
+      if (event.key === 'Enter' && inputs[i].type !== 'submit') {
+        event.preventDefault();
+      }
+    });
+  }
+}
