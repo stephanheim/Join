@@ -11,11 +11,10 @@ async function fetchData(url, options) {
     if (!response.ok) throw new Error(`Server Error: ${response.status}`);
     return await response.json();
   } catch (error) {
-    console.error("Fetch Error:", error);
+    console.error('Fetch Error:', error);
     return undefined;
   }
 }
-
 
 function isCheckboxChecked(type) {
   if (type === 'signup') {
@@ -26,7 +25,6 @@ function isCheckboxChecked(type) {
   }
 }
 
-
 function toggleRequiredInput(isFocused) {
   let border = document.getElementById('requiredInput');
   if (border) {
@@ -34,14 +32,12 @@ function toggleRequiredInput(isFocused) {
   }
 }
 
-
 function toggleRequiredInput(inputElement, isFocused) {
   let border = inputElement.parentElement.parentElement;
   if (border) {
     border.classList.toggle('input-focus', isFocused);
   }
 }
-
 
 function toggleSubmitButton() {
   if (allFieldsValid()) {
@@ -51,13 +47,11 @@ function toggleSubmitButton() {
   }
 }
 
-
 function deactivateButton() {
   const button = document.getElementById('buttonSignup');
   button.disabled = true;
   return button;
 }
-
 
 function activateButton() {
   const button = document.getElementById('buttonSignup');
@@ -65,18 +59,15 @@ function activateButton() {
   return button;
 }
 
-
 function resetFormRegister() {
   const form = document.getElementById('formRegister');
   return form.reset();
 }
 
-
 function showSubMenu() {
   const submenu = document.getElementById('submenu');
   submenu.classList.toggle('d-none');
 }
-
 
 function logout() {
   localStorage.removeItem('loggedInUser');
@@ -84,12 +75,10 @@ function logout() {
   window.location.href = '../index.html';
 }
 
-
 function showDropdown(dropDownMenu) {
   dropDownMenu.classList.remove('d-none', 'drop-down-hide');
   dropDownMenu.classList.add('drop-down-show');
 }
-
 
 function hideDropdown(dropDownMenu) {
   dropDownMenu.classList.remove('drop-down-show');
@@ -98,7 +87,6 @@ function hideDropdown(dropDownMenu) {
     dropDownMenu.classList.add('d-none');
   }, 300);
 }
-
 
 function assignColorsToContacts(groupedContacts) {
   let colorizeIndex = 0;
@@ -111,7 +99,6 @@ function assignColorsToContacts(groupedContacts) {
   }
 }
 
-
 function prepareFormattedContacts() {
   formattedContactsArray = contactsArray.map((contact, index) => ({
     id: index + 1,
@@ -121,33 +108,35 @@ function prepareFormattedContacts() {
   }));
 }
 
-
 function generateUniqueId() {
   return 'task-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
 }
 
-
 function getPriorityIcon(priority) {
   switch (priority.toLowerCase()) {
-    case 'urgent': return 'urgent-red.svg';
-    case 'medium': return 'medium-orange.svg';
-    case 'low': return 'low-green.svg';
-    default: return 'medium-orange.svg';
+    case 'urgent':
+      return 'urgent-red.svg';
+    case 'medium':
+      return 'medium-orange.svg';
+    case 'low':
+      return 'low-green.svg';
+    default:
+      return 'medium-orange.svg';
   }
 }
 
-
 function getCategoryColor(category) {
   switch (category.toLowerCase()) {
-    case 'technical task': return '#1FD7C1';
-    case 'user story': return '#0038FF';
+    case 'technical task':
+      return '#1FD7C1';
+    case 'user story':
+      return '#0038FF';
   }
 }
 
 function loadTaskFromStorage() {
   return JSON.parse(localStorage.getItem('tasks')) || [];
 }
-
 
 function setActiveNavBoard() {
   let boardNav = document.getElementById('sumToBoard');
@@ -176,6 +165,9 @@ function messageTaskAdded() {
 
 function preventFormSubmitOnEnter() {
   let form = document.getElementById('addTaskForm');
+  if (!form) {
+    return;
+  }
   let inputs = form.getElementsByTagName('input');
   for (let i = 0; i < inputs.length; i++) {
     inputs[i].addEventListener('keydown', function (event) {

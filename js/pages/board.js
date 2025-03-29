@@ -40,13 +40,12 @@ function renderPreTaskCard() {
     hideNoTask.classList.remove('d-none');
     return;
   }
-  taskCard.innerHTML = "";
-  preTaskCards.forEach(task => {
+  taskCard.innerHTML = '';
+  preTaskCards.forEach((task) => {
     let taskHTML = createTaskCard(task.category, task.title, task.description, task.assigned);
     taskCard.innerHTML += taskHTML;
-  })
+  });
 }
-
 
 function progressSubtasks(task) {
   let totalSubtasks = task.subtasks?.length || 0;
@@ -56,7 +55,6 @@ function progressSubtasks(task) {
   let hideProgressBar = totalSubtasks === 0 ? 'display:none;' : '';
   return { totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar };
 }
-
 
 function getInitialsTaskCard(task) {
   let html = '';
@@ -149,7 +147,9 @@ function noTaskVisibility() {
 function openAddTaskFloating(status) {
   let addTask = document.getElementById('floatingAddTask');
   addTask.innerHTML = addTaskTemplate();
-  preventFormSubmitOnEnter();
+  setTimeout(() => {
+    preventFormSubmitOnEnter();
+  }, 100);
   document.body.style.overflow = 'hidden';
   addTask.classList.remove('slideOut', 'd-none');
   addTask.classList.add('slideIn');
@@ -158,7 +158,6 @@ function openAddTaskFloating(status) {
   }, 200);
   addTaskStatusTarget = status;
 }
-
 
 function closeAddTaskFloating() {
   let floatingTask = document.getElementById('floatingAddTask');
@@ -170,6 +169,33 @@ function closeAddTaskFloating() {
     floatingTask.innerHTML = '';
     document.body.style.overflow = '';
   }, 100);
+}
+
+function handleClickFloatingTask(status) {
+  const addTaskNav = findNavLinkByText('Add Task');
+
+  if (window.innerWidth <= 1200) {
+    loadAddTaskPage(status, addTaskNav);
+  } else {
+    openAddTaskOverlay(status, addTaskNav);
+  }
+}
+
+function findNavLinkByText(text) {
+  return Array.from(document.querySelectorAll('.nav')).find((link) => link.textContent.trim().includes(text));
+}
+
+function loadAddTaskPage(status, navElement) {
+  loadPageContentPath('add_task').then(() => {
+    addTaskStatusTarget = status;
+    if (navElement) setActiveNav(navElement);
+  });
+}
+
+function openAddTaskOverlay(status, navElement) {
+  if (navElement) setActiveNav(navElement);
+  initPages('add_task');
+  openAddTaskFloating(status);
 }
 
 function openBoardCard(id) {
@@ -211,7 +237,6 @@ function startDragging(id) {
   document.getElementById(id).classList.add('dragging');
 }
 
-
 function allowDrop(event, targetId) {
   event.preventDefault();
   let container = document.getElementById(targetId);
@@ -230,14 +255,12 @@ function allowDrop(event, targetId) {
   }
 }
 
-
 function allowDrop(event, targetId) {
   event.preventDefault();
   let container = document.getElementById(targetId);
   if (!container) return;
   renderPreview(container);
 }
-
 
 function renderPreview(container) {
   let exists = false;
@@ -254,7 +277,6 @@ function renderPreview(container) {
   }
 }
 
-
 function clearDropHighlight(targetId) {
   let container = document.getElementById(targetId);
   if (!container) return;
@@ -266,9 +288,7 @@ function clearDropHighlight(targetId) {
   }
 }
 
-
 document.addEventListener('dragend', globalDragEnd);
-
 
 function globalDragEnd() {
   let taskCard = document.getElementsByClassName('task-card-outside');
@@ -276,7 +296,6 @@ function globalDragEnd() {
     taskCard[i].classList.remove('dragging');
   }
 }
-
 
 function moveTo(newStatus) {
   let data = taskDataMap[currentDraggedTaskId];
@@ -286,7 +305,6 @@ function moveTo(newStatus) {
     renderTasks();
   }
 }
-
 
 function saveTaskDataMapToStorage() {
   let tastDataArray = Object.values(taskDataMap);
