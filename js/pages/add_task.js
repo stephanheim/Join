@@ -26,7 +26,6 @@ function getAddTaskValue() {
   return newTask;
 }
 
-
 function areTaskFieldsFilled() {
   let { title, date, category } = getTaskFieldValues();
   if (!title || !date || !category) {
@@ -37,7 +36,6 @@ function areTaskFieldsFilled() {
   return true;
 }
 
-
 function getTaskFieldValues() {
   let title = document.getElementById('addTaskTitle').value.trim();
   let date = document.getElementById('addTaskDate').value.trim();
@@ -45,14 +43,9 @@ function getTaskFieldValues() {
   return { title, date, category };
 }
 
-
 function showFieldErrors() {
   const messages = document.getElementsByClassName('error-message');
-  const requirements = [
-    document.getElementById('addTaskTitle'),
-    document.getElementById('inputDate'),
-    document.getElementById('categoryDropDown')
-  ];
+  const requirements = [document.getElementById('addTaskTitle'), document.getElementById('inputDate'), document.getElementById('categoryDropDown')];
   for (const message of messages) {
     message.innerText = 'This field is required';
     message.style.display = 'block';
@@ -62,14 +55,9 @@ function showFieldErrors() {
   }
 }
 
-
 function clearFieldErrors() {
   const messages = document.getElementsByClassName('error-message');
-  const requirements = [
-    document.getElementById('addTaskTitle'),
-    document.getElementById('inputDate'),
-    document.getElementById('categoryDropDown')
-  ];
+  const requirements = [document.getElementById('addTaskTitle'), document.getElementById('inputDate'), document.getElementById('categoryDropDown')];
   for (const message of messages) {
     message.innerText = '';
     message.style.display = 'none';
@@ -78,7 +66,6 @@ function clearFieldErrors() {
     required.style.borderColor = '';
   }
 }
-
 
 async function createNewTaskToStorage(status) {
   if (!areTaskFieldsFilled()) return;
@@ -96,19 +83,17 @@ async function createNewTaskToStorage(status) {
   }, 1300);
 }
 
-
 async function postNewTaskToDB(newTask) {
-  const url = BASE_URL + "/board/newTasks.json";
+  const url = BASE_URL + '/board/newTasks.json';
   const options = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(newTask)
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(newTask),
   };
   const response = await fetchData(url, options);
   if (!response) return;
   newTask.firebaseId = response.name;
 }
-
 
 function selectedPriority(prio, element) {
   buttonsColorSwitch(element);
@@ -242,7 +227,7 @@ function isCategorySelected() {
   const dropDownMenu = document.getElementById('dropDownMenuCategory');
   const selectedCategory = document.getElementById('selectedCategory');
   let originalCategoryText = 'Select task category';
-  if (dropDownMenu.classList.contains('d-none') && selectCategory()) {
+  if (dropDownMenu.classList.contains('d-none') && selectCategory(originalCategoryText)) {
     selectedCategory.innerText = originalCategoryText;
   }
 }
