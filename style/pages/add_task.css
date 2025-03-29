@@ -467,16 +467,21 @@
   }
 }
 
-@media (max-width: 430px) {
+@media (max-width: 428px) {
   .content {
     align-items: flex-start;
     padding: 0 9px 200px 9px;
   }
 
   .button-section {
-    flex-direction: column;
     align-items: center;
     gap: 16px;
+  }
+
+  .button-prio {
+    flex-direction: column;
+    width: 121px;
+    height: 56px;
   }
 
   .side-menu-below {

@@ -245,7 +245,7 @@
     }
 }
 
-@media screen and (max-width:444px) {
+@media screen and (max-width:428px) {
     .bt-add-task {
         width: 40px;
         height: 40px;
