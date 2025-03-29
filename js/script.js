@@ -2,6 +2,8 @@ const BASE_URL = 'https://join-418-default-rtdb.europe-west1.firebasedatabase.ap
 
 let contactOpen = false;
 
+let currentPage = '';
+
 const pageTitles = {
   add_task: 'Add Task',
   summary: 'Summary User',
@@ -13,6 +15,8 @@ const pageTitles = {
 };
 
 async function initPages(page) {
+  currentPage = page;
+  toggleNavPrivacyByPage(page);
   if (page === 'summary') {
     initSummary();
   } else if (page === 'add_task') {
@@ -24,11 +28,25 @@ async function initPages(page) {
   }
 }
 
+function toggleNavPrivacyByPage(page) {
+  const nav = document.getElementById('navPrivacy');
+  if (!nav) return;
+  const isDashboardPage = ['summary', 'add_task', 'board', 'contacts'].includes(page);
+  const isSmallScreen = window.innerWidth < 1200;
+  if (isDashboardPage && isSmallScreen) {
+    nav.classList.add('d-none');
+  } else {
+    nav.classList.remove('d-none');
+  }
+}
+window.onresize = () => toggleNavPrivacyByPage(currentPage);
+
 async function loadPageContentPath(page) {
   let contentPages = document.getElementById('content');
   let content = await fetchContent(`${page}.html`);
   contentPages.innerHTML = content;
   initPages(page);
+  toggleNavPrivacyByPage(page);
   changePageTitles(page);
   if (page === 'summary') {
     showUserWelcome();

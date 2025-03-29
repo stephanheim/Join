@@ -33,3 +33,9 @@ ul {
     font-size: 47px;
   }
 }
+
+@media (max-width: 320px) {
+  .policy-content {
+    padding: 12px 4px;
+  }
+}

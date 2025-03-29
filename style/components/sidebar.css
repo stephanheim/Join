@@ -240,8 +240,35 @@
     justify-content: space-between;
   }
 
+  .navbar-section-bottom {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 0;
+    gap: 6px;
+  }
+
   .policy-content {
-    display: none;
+    justify-content: center;
+    width: 112px;
+    height: 76px;
+    padding: 12px 8px;
+    gap: 6.67px;
+    border-radius: 16px;
+    cursor: pointer;
+  }
+
+  .policy-content.active {
+    pointer-events: fill;
+  }
+
+  .a-policy {
+    font-size: 14px;
+  }
+
+  .a-policy:hover {
+    color: rgba(205, 205, 205, 1);
+    font-weight: 400;
   }
 
   .join-logo-section {
