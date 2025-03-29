@@ -41,6 +41,7 @@
 }
 
 .add-task-form {
+  height: calc(100vh - 265px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -49,7 +50,6 @@
 .input-section {
   display: flex;
   justify-content: space-between;
-  overflow: hidden;
 }
 
 .section-left {
@@ -196,7 +196,7 @@
   color: white;
 }
 
-.isSelected > img {
+.isSelected>img {
   filter: brightness(0) invert(1);
 }
 
@@ -210,11 +210,12 @@
 }
 
 .required-section-content {
+  max-width: 1208px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding-top: 104px;
-  gap: 16px;
+  padding-bottom: 80px;
 }
 
 .required-field {
@@ -400,20 +401,25 @@
   .input-section {
     flex-direction: column;
     gap: 32px;
+    overflow: auto;
+    scrollbar-width: none;
   }
 
   .content {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    overflow-y: auto;
-    padding-bottom: 200px;
+    flex-direction: column;
+    overflow: hidden;
   }
 
   .required-section-content {
-    flex-direction: column-reverse;
-    padding: 0;
-    margin-bottom: 0;
+    justify-content: flex-end;
+    padding-bottom: 100px;
+  }
+
+  .add-task-form {
+    height: calc(100vh - 258px);
   }
 
   .add-task-form,
@@ -426,11 +432,6 @@
 
   .bt-section {
     width: 100%;
-    position: fixed;
-    padding: 10px 9px;
-    bottom: 80px;
-    right: 0;
-    z-index: 2;
     background-color: #f6f7f8;
   }
 
@@ -470,7 +471,7 @@
 @media (max-width: 428px) {
   .content {
     align-items: flex-start;
-    padding: 0 9px 200px 9px;
+    padding: 0 16px;
   }
 
   .button-section {
