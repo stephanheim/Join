@@ -99,6 +99,9 @@ function generateContactsInfoHTML(contact) {
             </div>
           </div>
         </div>
+        <div class="cnt-resp-back-btn">
+        <img src="../assets/icons/arrow-left-line.svg" class="b-btn" onclick="backToList()">
+        </div>
       </div>
       <div class="cnt-glance-contact">
         <span class="cnt-contact-info">Contact Information</span>
