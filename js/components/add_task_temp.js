@@ -7,7 +7,7 @@ function addTaskTemplate() {
         <img src="../assets/icons/close.svg" class="add-close-btn" alt="Close" />
       </div>
     </div>
-    <form id="addTaskForm" class="add-task-form" onsubmit="createNewTaskToStorage(addTaskStatusTarget);return false;">
+    <form id="addTaskForm" class="add-task-form" onsubmit="createNewTaskToStorage();return false;">
       <div class="input-section">
         <div class="section-left">
           <div class="add-task-single">

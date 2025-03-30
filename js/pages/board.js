@@ -173,7 +173,6 @@ function closeAddTaskFloating() {
 
 function handleClickFloatingTask(status) {
   const addTaskNav = findNavLinkByText('Add Task');
-
   if (window.innerWidth <= 1200) {
     loadAddTaskPage(status, addTaskNav);
   } else {
