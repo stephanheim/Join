@@ -212,6 +212,7 @@ function showContactInfo(contactId) {
   glanceWindow.style.display = 'block';
   if (window.innerWidth < 1200) {
     document.getElementById('cnt-list-div').classList.add('hidden');
+    document.getElementById('cnt-main-div').style.display='block';
   }
 }
 
@@ -353,7 +354,7 @@ async function addCurrentUserToContacts(user) {
 }
 
 function backToList() {
-  document.getElementById("cnt-main-div").classList.add("hidden");
   document.getElementById("cnt-list-div").classList.remove("hidden");
+  document.getElementById('cnt-main-div').style.display='none';
 }
 

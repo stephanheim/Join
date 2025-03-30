@@ -1,16 +1,17 @@
 .contact-wrapper {
-  height: calc(100vh - 100px);
+  max-width: 1208px;
+  width: 100%;
+  height: auto;
   background-color: #f6f7f8;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
   margin-top: 4px;
   overflow: hidden;
 }
 
 .cnt-main {
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -326,16 +327,20 @@
 
 /* Media Queries */
 
-
-@media(max-width: 1200px) {
+@media screen and (max-width: 1300px) {
+  /* .cnt-title {
+    flex-direction: column;
+  }
 
   .cnt-main {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    flex-direction: column;
-    padding-top: 48px;
+    padding-top: 32px;
+  } */
+}
+
+
+@media screen and (max-width: 1200px) {
+  .cnt-main {
+    display: none;
   }
 
   .cnt-list {
@@ -418,8 +423,7 @@
     display: block;
   }
 
-  .hidden{
+  .hidden {
     display: none;
   }
-
 }
