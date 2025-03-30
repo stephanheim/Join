@@ -327,15 +327,7 @@
 
 /* Media Queries */
 
-@media screen and (max-width: 1300px) {
-  /* .cnt-title {
-    flex-direction: column;
-  }
-
-  .cnt-main {
-    padding-top: 32px;
-  } */
-}
+@media screen and (max-width: 1300px) {}
 
 
 @media screen and (max-width: 1200px) {
