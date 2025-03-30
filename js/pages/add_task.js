@@ -86,7 +86,7 @@ async function createNewTaskToStorage(status) {
 async function postNewTaskToDB(newTask) {
   const url = BASE_URL + '/board/newTasks.json';
   const options = {
-    method: 'POS',
+    method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(newTask),
   };
@@ -97,9 +97,11 @@ async function postNewTaskToDB(newTask) {
 
 
 async function deleteTask(taskId) {
-  await deleteTaskInDB(taskId);
-  deleteTaskInLocalStorage(taskId);
-  loadPageContentPath('board');
+  let success = await deleteTaskInDB(taskId);
+  if (!success) {
+    deleteTaskInLocalStorage(taskId);
+    loadPageContentPath('board');
+  }
 }
 
 
@@ -115,15 +117,14 @@ async function deleteTaskInDB(taskId) {
 
 function deleteTaskInLocalStorage(taskId) {
   let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-  tasks = tasks.filter(task => task.id !== taskId);
-  localStorage.removeItem('tasks', JSON.stringify(tasks));
+  tasks = tasks.filter(task => task.firebaseId !== taskId);
+  localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 
 function selectedPriority(prio, element) {
   buttonsColorSwitch(element);
   selectedPriorityValue = prio;
-  console.log(selectedPriorityValue);
 }
 
 function buttonsColorSwitch(activeButton) {

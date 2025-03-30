@@ -40,7 +40,7 @@ function boardCardTemplate(task, subtaskHTML, namesHTML, totalSubtasks, complete
             <div>
               <p class="headline-boardcard">Subtasks</p>
             </div>
-            <div>
+            <div class="subtask-content">
               ${subtaskHTML}
             </div>
    

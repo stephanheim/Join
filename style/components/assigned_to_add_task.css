@@ -73,7 +73,7 @@
   cursor: pointer;
 }
 
-.category-container{
+.category-container {
   width: 100%;
   background-color: #ffffff;
 }
@@ -369,4 +369,9 @@
   flex-wrap: wrap;
   display: flex;
   gap: 7px;
+}
+
+.subtask-content {
+  overflow: auto;
+  height: 96px;
 }

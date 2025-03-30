@@ -138,6 +138,8 @@
 }
 
 .contact-container {
+  overflow: auto;
+  height: 165px;
   display: flex;
   flex-direction: column;
   gap: 16px;
