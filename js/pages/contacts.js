@@ -210,6 +210,9 @@ function showContactInfo(contactId) {
   glanceWindow.style.display = 'none';
   glanceWindow.innerHTML = generateContactsInfoHTML(contact);
   glanceWindow.style.display = 'block';
+  if (window.innerWidth < 1200) {
+    document.getElementById('cnt-list-div').classList.add('hidden');
+  }
 }
 
 function clearHighlightContact() {
@@ -349,4 +352,8 @@ async function addCurrentUserToContacts(user) {
   }
 }
 
+function backToList() {
+  document.getElementById("cnt-main-div").classList.add("hidden");
+  document.getElementById("cnt-list-div").classList.remove("hidden");
+}
 
