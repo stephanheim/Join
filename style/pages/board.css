@@ -70,6 +70,13 @@
     font-weight: 400;
 }
 
+.ft-inside-icon {
+    width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .bt-add-task {
     width: 160px;
     height: 48px;

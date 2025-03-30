@@ -391,9 +391,12 @@
   .content {
     padding: 0 16px;
   }
+  .add-task-form {
+max-width: 1016px;
+  }
 }
 
-@media (max-width: 920px) {
+@media (max-width: 970px) {
   body::-webkit-scrollbar {
     display: none;
   }
