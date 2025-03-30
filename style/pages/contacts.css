@@ -327,13 +327,21 @@
 
 /* Media Queries */
 
-@media screen and (max-width: 1300px) {}
-
 
 @media screen and (max-width: 1200px) {
   .cnt-main {
-    display: none;
+    width: 100%;
   }
+
+  .cnt-info {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    padding-right: 16px;
+  }
+         
 
   .cnt-list {
     width: 100%;
@@ -377,7 +385,6 @@
     gap: 16px;
     align-items: flex-start;
     margin-bottom: 48px;
-    display: none;
   }
 
   .cnt-title-font {
