@@ -347,12 +347,10 @@
   .cnt-info {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: baseline;
     justify-content: space-between;
     width: 100%;
-    padding-right: 16px;
   }
-
 
   .cnt-list {
     max-width: unset;
@@ -397,6 +395,7 @@
     gap: 16px;
     align-items: flex-start;
     margin-bottom: 48px;
+    margin-left: 0;
   }
 
   .cnt-title-font {
@@ -426,6 +425,10 @@
     margin: 0;
   }
 
+  .cnt-glance {
+    margin: 0;
+  }
+
   .cnt-contact-info {
     padding-top: 32px;
   }
@@ -437,10 +440,43 @@
   .hidden {
     display: none;
   }
+
+  .contact-wrapper {
+    padding: 0 16px 0 16px;
+  }
+
 }
 
 @media screen and (max-width:428px) {
   .contact-wrapper {
     padding: 0 16px;
   }
+
+  .cnt-glance-details {
+    max-width: 100%;
+  }
+
+  .cnt-glance-initials {
+    font-size: 21px;
+    font-weight: 400;
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .cnt-resp-name {
+    font-size: 28px;
+  }
+
+  .cnt-contact-info {
+    font-size: 16px;
+  }
+
+  .cnt-info-title,
+  .cnt-info-mail,
+  .cnt-info-phone {
+    font-size: 14px;
+  }
+
 }
