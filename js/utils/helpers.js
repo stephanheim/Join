@@ -138,6 +138,20 @@ function loadTaskFromStorage() {
   return JSON.parse(localStorage.getItem('tasks')) || [];
 }
 
+
+async function loadTaskFromDB() {
+  let data = await fetchData(BASE_URL + '/board/newTasks.json');
+  if (!data) return [];
+  return Object.values(data);
+}
+
+
+async function syncTasksFromDBToLocalStorage(){
+  let tasks = await loadTaskFromDB();
+  localStorage.setItem('tasks', JSON.stringify(tasks))
+}
+
+
 function setActiveNavBoard() {
   let boardNav = document.getElementById('sumToBoard');
   if (boardNav) {
