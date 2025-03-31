@@ -74,8 +74,8 @@ async function createNewTaskToStorage(status) {
   let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
   tasks.push(newTask);
   await postNewTaskToDB(newTask);
-
   let index = tasks.findIndex(t => t.id === newTask.id);
+
   if (index !== -1) {
     tasks[index].firebaseId = newTask.firebaseId || '';
   }

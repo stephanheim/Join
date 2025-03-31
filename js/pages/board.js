@@ -9,7 +9,8 @@ let boardContainers = [
 let currentDraggedTaskId;
 let addTaskStatusTarget;
 
-function initBoard() {
+async function initBoard() {
+  await syncTasksFromDBToLocalStorage();
   // loadPreTaskCards();
   renderTasks();
 }
