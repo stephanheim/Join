@@ -91,19 +91,42 @@ function getNamesTaskCardTemp(task, hideNames = false) {
 function getSubtaskCardTemp(task) {
   let html = '';
   let subtasks = task.subtasks || [];
-  for (let subtask of subtasks) {
+  subtasks.forEach((subtask, index) => {
     html += `
-    <div class="subtask">
-      <div class="checkbox" class="checkbox">
-        <input type="checkbox" name="checkbox" />
-      </div>
-        <div>
-          <p>${subtask}</p>
+      <div class="subtask">
+        <div class="checkbox">
+          <input type="checkbox" onchange="toggleSubtaskCompleted('${task.id}', ${index}, this.checked)" ${subtask.completed ? 'checked' : ''}>
         </div>
-    </div>`;
-  }
+        <div>
+          <p>${subtask.text}</p>
+        </div>
+      </div>`;
+  });
   return html;
 }
+
+
+
+async function toggleSubtaskCompleted(taskId, subtaskIndex, isChecked) {
+  let data = taskDataMap[taskId];
+  if (!data) return;
+
+  data.task.subtasks[subtaskIndex].completed = isChecked;
+
+  await updateTaskDB(data.task);
+  saveTaskDataMapToStorage();
+  updateSubTaskTaskCard(taskId);
+}
+
+
+function updateSubTaskTaskCard(taskId) {
+  let oldCard = document.getElementById(taskId);
+  if (!oldCard) return;
+  prepareTaskData(taskDataMap[taskId].task);
+  let newCardHTML = createTaskCard(taskDataMap[taskId].task);
+  oldCard.outerHTML = newCardHTML;
+}
+
 
 function prepareTaskData(task) {
   let initialsHTML = getInitialsTaskCard(task);
@@ -229,7 +252,7 @@ function closeBoardCard() {
 function changeBoardCardTemplate(id) {
   const { task } = taskDataMap[id];
   const subtasks = task.subtasks || [];
-  const subtaskHTML = subtasks.map((_, i) => subtaskTemplate(i, subtasks)).join('');
+  const subtaskHTML = subtasks.map((subtasks, i) => subtaskTemplate(i, subtasks)).join('');
   const namesHTML = getNamesTaskCardTemp(task, true);
   const boardCard = document.getElementById('boardCardLarge');
   boardCard.innerHTML = editBoardCardTemplate(task, subtaskHTML, namesHTML);
@@ -305,17 +328,25 @@ function globalDragEnd() {
   }
 }
 
-function moveTo(newStatus) {
+async function moveTo(newStatus) {
   let data = taskDataMap[currentDraggedTaskId];
   if (data && data.task) {
     data.task.status = newStatus;
+    await updateTaskDB(data.task);
     saveTaskDataMapToStorage();
     renderTasks();
   }
 }
 
-async function updateTaskDB(){
-  
+async function updateTaskDB(task) {
+  if (!task.firebaseId) return;
+  const idUrl = BASE_URL + `/board/newTasks/${task.firebaseId}.json`;
+  const options = {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ status: task.status }),
+  };
+  await fetchData(idUrl, options);
 }
 
 function saveTaskDataMapToStorage() {

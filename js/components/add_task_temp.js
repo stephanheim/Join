@@ -173,11 +173,11 @@ function categoryTemplate() {
   `;
 }
 
-function subtaskTemplate(i, subtasks) {
+function subtaskTemplate(i, subtask) {
   return `
     <div class="add-subtask" id="subtask-${i}">
       <ul>
-        <li>${subtasks[i]}</li>
+        <li>${subtask.text}</li>
       </ul>
       <div class="input-other-icons">
         <div class="subtask-icons" onclick="editSubtask(${i})">
@@ -190,6 +190,7 @@ function subtaskTemplate(i, subtasks) {
       </div>
     </div>`;
 }
+
 
 function editSubtaskTemplate(i, subtask) {
   return `

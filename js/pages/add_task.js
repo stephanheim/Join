@@ -20,7 +20,7 @@ function getAddTaskValue() {
     priority: selectedPriorityValue,
     contacts: Array.from(selectedContacts),
     category: selectedCategoryValue,
-    subtasks: Array.from(addSubtask),
+    subtasks: addSubtask,
   };
   addNewTask.push(newTask);
   return newTask;
@@ -318,7 +318,7 @@ function addSubtaksFromInput(event) {
   let subtaskInputRef = document.getElementById('addTaskSubtasks');
   let subtaskNote = subtaskInputRef.value;
   if (subtaskNote.trim() !== '') {
-    addSubtask.push(subtaskNote);
+    addSubtask.push({ text: subtaskNote, completed: false });
     renderSubtask();
     resetSubtaskInput(event);
   }
