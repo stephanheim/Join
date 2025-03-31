@@ -1,6 +1,4 @@
 .contact-wrapper {
-  max-width: 1208px;
-  width: 100%;
   height: auto;
   background-color: #f6f7f8;
   display: flex;
@@ -9,6 +7,14 @@
   flex-wrap: wrap;
   margin-top: 4px;
   overflow: hidden;
+}
+
+.cnt-rander-div {
+  max-width: 450px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .cnt-main {
@@ -24,10 +30,11 @@
 }
 
 .cnt-list {
+  max-width: 450px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 450px;
   height: 100vh;
   background-color: #ffffff;
   overflow-y: auto;
@@ -92,7 +99,8 @@
 }
 
 .cnt-letter-div {
-  width: 352px;
+  max-width: 352px;
+  width: 100%;
   height: 58px;
   padding: 17px 36px 17px 36px;
   gap: 8px;
@@ -107,7 +115,8 @@
 .cnt-list-seperator {
   min-height: 1px;
   height: 1px;
-  width: 352px;
+  max-width: 352px;
+  width: 100%;
   border-radius: 10px;
   background-color: #d1d1d1;
   gap: 10px;
@@ -115,11 +124,12 @@
 }
 
 .cnt-name {
+  max-width: 352px;
+  width: 100%;
+  height: 78px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 352px;
-  height: 78px;
   padding: 15px 24px 15px 24px;
   gap: 35px;
   border-radius: 10px;
@@ -331,6 +341,7 @@
 @media screen and (max-width: 1200px) {
   .cnt-main {
     width: 100%;
+    display: none;
   }
 
   .cnt-info {
@@ -341,14 +352,15 @@
     width: 100%;
     padding-right: 16px;
   }
-         
+
 
   .cnt-list {
+    max-width: unset;
     width: 100%;
-    max-height: calc(100vh - 80px);
+    max-height: calc(100vh - 100px);
     padding-bottom: 108px;
     overflow-y: auto;
-    z-index: 10;
+    z-index: unset;
   }
 
   .cnt-btn-div {
@@ -424,5 +436,11 @@
 
   .hidden {
     display: none;
+  }
+}
+
+@media screen and (max-width:428px) {
+  .contact-wrapper {
+    padding: 0 16px;
   }
 }

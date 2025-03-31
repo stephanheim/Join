@@ -313,6 +313,10 @@ function moveTo(newStatus) {
   }
 }
 
+async function updateTaskDB(){
+  
+}
+
 function saveTaskDataMapToStorage() {
   let tastDataArray = Object.values(taskDataMap);
   let tasks = [];
