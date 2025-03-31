@@ -202,9 +202,9 @@ function openAddTaskOverlay(status, navElement) {
 }
 
 function openBoardCard(id) {
-  let { task, subtaskHTML, namesHTML, totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar } = taskDataMap[id];
+  let { task, subtaskHTML, namesHTML } = taskDataMap[id];
   let boardCard = document.getElementById('boardCardLarge');
-  boardCard.innerHTML = boardCardTemplate(task, subtaskHTML, namesHTML, totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar);
+  boardCard.innerHTML = boardCardTemplate(task, subtaskHTML, namesHTML);
   document.body.style.overflow = 'hidden';
   boardCard.classList.remove('slideOut', 'd-none');
   boardCard.classList.add('slideIn');
@@ -226,9 +226,12 @@ function closeBoardCard() {
 }
 
 function changeBoardCardTemplate(id) {
-  let { task, subtaskHTML, namesHTML } = taskDataMap[id];
-  let boardCard = document.getElementById('boardCardLarge');
-  boardCard.innerHTML = editBoardCardTemplate(task, subtaskHTML, namesHTML);
+  const { task } = taskDataMap[id];
+  const subtasks = task.subtasks || [];
+  const subtaskHTML = subtasks.map((_, i) => subtaskTemplate(i, subtasks)).join('');
+  const initialsHTML = getInitialsTaskCard(task);
+  const boardCard = document.getElementById('boardCardLarge');
+  boardCard.innerHTML = editBoardCardTemplate(task, subtaskHTML, initialsHTML);
 }
 
 function defaultBoardCardTemplate() {

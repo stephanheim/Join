@@ -70,7 +70,11 @@ function boardCardTemplate(task, subtaskHTML, namesHTML) {
       `;
 }
 
-function editBoardCardTemplate(task, subtaskHTML, namesHTML) {
+function editBoardCardTemplate(task, subtaskHTML, initialsHTML) {
+  const prio = task.priority;
+  const isUrgent = prio === 'Urgent' ? 'isSelected' : '';
+  const isMedium = prio === 'Medium' ? 'isSelected' : '';
+  const isLow = prio === 'Low' ? 'isSelected' : '';
   return `      <div class="user-story-card">
         <div class="inner-card">
           <div class="headline-story-user-edit">
@@ -110,16 +114,14 @@ function editBoardCardTemplate(task, subtaskHTML, namesHTML) {
           </div>
           <div class="add-task-single">
             <h2>Prio</h2>
-            <div class="prio-section">
-              <button id="btn1" color="rgba(255, 61, 0, 1);" onclick="selectedPriority('Urgent', this)"
-                class="button-prio" type="button">
+           <div class="prio-section">
+              <button id="btn1" color="rgba(255, 61, 0, 1);" onclick="selectedPriority('Urgent', this)" class="button-prio ${isUrgent}" type="button">
                 Urgent <img src="../assets/icons/urgent-red.svg" alt="Urgent" />
               </button>
-              <button id="btn2" color="rgba(255, 168, 0, 1)" onclick="selectedPriority('Medium', this)"
-                class="button-prio isSelected" type="button">
+              <button id="btn2" color="rgba(255, 168, 0, 1)" onclick="selectedPriority('Medium', this)" class="button-prio ${isMedium}" type="button">
                 Medium <img src="../assets/icons/medium-orange.svg" alt="Medium" />
               </button>
-              <button id="btn3" color="rgba(122, 226, 41, 1)" onclick="selectedPriority('Low', this)" class="button-prio" type="button">
+              <button id="btn3" color="rgba(122, 226, 41, 1)" onclick="selectedPriority('Low', this)" class="button-prio ${isLow}" type="button">
                 Low <img src="../assets/icons/low-green.svg" alt="Low" />
               </button>
             </div>
@@ -139,7 +141,7 @@ function editBoardCardTemplate(task, subtaskHTML, namesHTML) {
               </div>
               <div id="dropDownMenuAssigned" class="main-drop-down drop-down-hide d-none"></div>
             </div>
-            <div id="selectedInitials" class="initial-container">${namesHTML}</div>
+            <div id="selectedInitials" class="initial-container">${initialsHTML}</div>
           </div>
             <div class="add-task-single">
               <label for="addTaskSubtasks">

@@ -368,10 +368,16 @@
 .initial-container {
   flex-wrap: wrap;
   display: flex;
+  padding-left: 5px;
   gap: 7px;
 }
 
 .subtask-content {
   overflow: auto;
+<<<<<<< HEAD
   max-height: 96px;
 }
+=======
+  height: 96px;
+}
+>>>>>>> 8a2df049e501c2c3cf6b78d749e39afcaebeba50
