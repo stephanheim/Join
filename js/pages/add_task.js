@@ -71,13 +71,11 @@ async function createNewTaskToStorage(status) {
   if (!areTaskFieldsFilled()) return;
   let newTask = getAddTaskValue();
   newTask.status = status || addTaskStatusTarget;
-  await postNewTaskToDB(newTask);
+  const response = await postNewTaskToDB(newTask);
+  newTask.firebaseId = response.name;
+  await patchFirebaseId(response.name);
   let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
   tasks.push(newTask);
-  // let index = tasks.findIndex(t => t.id === newTask.id);
-  // if (index !== -1) {
-  //   tasks[index].firebaseId = newTask.firebaseId || '';
-  // }
   localStorage.setItem('tasks', JSON.stringify(tasks));
   clearAddTask();
   messageTaskAdded();
@@ -87,6 +85,7 @@ async function createNewTaskToStorage(status) {
   }, 1300);
 }
 
+
 async function postNewTaskToDB(newTask) {
   const url = BASE_URL + '/board/newTasks.json';
   const options = {
@@ -94,10 +93,20 @@ async function postNewTaskToDB(newTask) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(newTask),
   };
-  const response = await fetchData(url, options);
-  if (!response) return;
-  newTask.firebaseId = response.name;
+  return await fetchData(url, options);
 }
+
+
+async function patchFirebaseId(firebaseId) {
+  const patchUrl = BASE_URL + `/board/newTasks/${firebaseId}.json`;
+  const patchOptions = {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ firebaseId }),
+  };
+  await fetchData(patchUrl, patchOptions);
+}
+
 
 
 async function deleteTask(taskId) {

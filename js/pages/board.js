@@ -59,7 +59,8 @@ function progressSubtasks(task) {
 
 function getInitialsTaskCard(task) {
   let html = '';
-  for (let contact of task.contacts) {
+  let contacts = task.contacts || [];
+  for (let contact of contacts) {
     html += `
     <div class="card-badge" style="background-color: ${contact.color}">
         <span>${contact.initials}</span>
@@ -71,7 +72,8 @@ function getInitialsTaskCard(task) {
 
 function getNamesTaskCardTemp(task) {
   let html = '';
-  for (let contact of task.contacts) {
+  let contacts = task.contacts || [];
+  for (let contact of contacts) {
     html += `
     <div class="contact-section">
       <div class="circle-content" style="background-color: ${contact.color}">
@@ -88,7 +90,8 @@ function getNamesTaskCardTemp(task) {
 
 function getSubtaskCardTemp(task) {
   let html = '';
-  for (let subtask of task.subtasks) {
+  let subtasks = task.subtasks || [];
+  for (let subtask of subtasks) {
     html += `
     <div class="subtask">
       <div class="checkbox" class="checkbox">

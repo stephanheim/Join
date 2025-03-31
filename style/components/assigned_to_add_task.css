@@ -373,5 +373,5 @@
 
 .subtask-content {
   overflow: auto;
-  height: 96px;
+  max-height: 96px;
 }
