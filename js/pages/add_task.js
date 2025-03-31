@@ -85,7 +85,6 @@ async function createNewTaskToStorage(status) {
   }, 1300);
 }
 
-
 async function postNewTaskToDB(newTask) {
   const url = BASE_URL + '/board/newTasks.json';
   const options = {
@@ -95,7 +94,6 @@ async function postNewTaskToDB(newTask) {
   };
   return await fetchData(url, options);
 }
-
 
 async function patchFirebaseId(firebaseId) {
   const patchUrl = BASE_URL + `/board/newTasks/${firebaseId}.json`;
@@ -107,8 +105,6 @@ async function patchFirebaseId(firebaseId) {
   await fetchData(patchUrl, patchOptions);
 }
 
-
-
 async function deleteTask(taskId) {
   let success = await deleteTaskInDB(taskId);
   if (!success) {
@@ -116,7 +112,6 @@ async function deleteTask(taskId) {
     loadPageContentPath('board');
   }
 }
-
 
 async function deleteTaskInDB(taskId) {
   const url = BASE_URL + `/board/newTasks/${taskId}.json`;
@@ -127,13 +122,11 @@ async function deleteTaskInDB(taskId) {
   if (!response) return;
 }
 
-
 function deleteTaskInLocalStorage(taskId) {
   let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-  tasks = tasks.filter(task => task.firebaseId !== taskId);
+  tasks = tasks.filter((task) => task.firebaseId !== taskId);
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
-
 
 function selectedPriority(prio, element) {
   buttonsColorSwitch(element);
@@ -317,7 +310,7 @@ function renderSubtask() {
   let subtaskRef = document.getElementById('addedSubtaks');
   subtaskRef.innerHTML = '';
   for (let i = 0; i < addSubtask.length; i++) {
-    subtaskRef.innerHTML += subtaskTemplate(i);
+    subtaskRef.innerHTML += subtaskTemplate(i, addSubtask);
   }
 }
 

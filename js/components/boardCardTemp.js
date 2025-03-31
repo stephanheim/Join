@@ -70,7 +70,7 @@ function boardCardTemplate(task, subtaskHTML, namesHTML) {
       `;
 }
 
-function editBoardCardTemplate(task, subtaskHTML, initialsHTML) {
+function editBoardCardTemplate(task, subtaskHTML, namesHTML) {
   const prio = task.priority;
   const isUrgent = prio === 'Urgent' ? 'isSelected' : '';
   const isMedium = prio === 'Medium' ? 'isSelected' : '';
@@ -141,7 +141,7 @@ function editBoardCardTemplate(task, subtaskHTML, initialsHTML) {
               </div>
               <div id="dropDownMenuAssigned" class="main-drop-down drop-down-hide d-none"></div>
             </div>
-            <div id="selectedInitials" class="initial-container">${initialsHTML}</div>
+            <div id="selectedInitials" class="initial-container">${namesHTML}</div>
           </div>
             <div class="add-task-single">
               <label for="addTaskSubtasks">
