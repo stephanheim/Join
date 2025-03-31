@@ -70,7 +70,7 @@ function getInitialsTaskCard(task) {
   return html;
 }
 
-function getNamesTaskCardTemp(task) {
+function getNamesTaskCardTemp(task, hideNames = false) {
   let html = '';
   let contacts = task.contacts || [];
   for (let contact of contacts) {
@@ -80,7 +80,7 @@ function getNamesTaskCardTemp(task) {
         <span>${contact.initials}</span>
       </div>
       <div>
-        <span>${contact.name}</span>
+      ${hideNames ? '' : `<div><span>${contact.name}</span></div>`}
       </div>
     </div>
     `;
@@ -203,6 +203,7 @@ function openAddTaskOverlay(status, navElement) {
 
 function openBoardCard(id) {
   let { task, subtaskHTML, namesHTML } = taskDataMap[id];
+  addSubtask = [...(task.subtasks || '')];
   let boardCard = document.getElementById('boardCardLarge');
   boardCard.innerHTML = boardCardTemplate(task, subtaskHTML, namesHTML);
   document.body.style.overflow = 'hidden';
@@ -229,9 +230,9 @@ function changeBoardCardTemplate(id) {
   const { task } = taskDataMap[id];
   const subtasks = task.subtasks || [];
   const subtaskHTML = subtasks.map((_, i) => subtaskTemplate(i, subtasks)).join('');
-  const initialsHTML = getInitialsTaskCard(task);
+  const namesHTML = getNamesTaskCardTemp(task, true);
   const boardCard = document.getElementById('boardCardLarge');
-  boardCard.innerHTML = editBoardCardTemplate(task, subtaskHTML, initialsHTML);
+  boardCard.innerHTML = editBoardCardTemplate(task, subtaskHTML, namesHTML);
 }
 
 function defaultBoardCardTemplate() {
