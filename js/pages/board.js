@@ -221,9 +221,10 @@ function closeBoardCard() {
   }, 100);
 }
 
-function changeBoardCardTemplate() {
+function changeBoardCardTemplate(id) {
+  let { task, subtaskHTML, namesHTML } = taskDataMap[id];
   let boardCard = document.getElementById('boardCardLarge');
-  boardCard.innerHTML = editBoardCardTemplate();
+  boardCard.innerHTML = editBoardCardTemplate(task, subtaskHTML, namesHTML);
 }
 
 function defaultBoardCardTemplate() {

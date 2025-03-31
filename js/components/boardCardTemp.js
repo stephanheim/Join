@@ -1,4 +1,4 @@
-function boardCardTemplate(task, subtaskHTML, namesHTML, totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar) {
+function boardCardTemplate(task, subtaskHTML, namesHTML) {
   return `      <div class="user-story-card">
         <div class="inner-card">
           <header class="headline-story-user">
@@ -55,7 +55,7 @@ function boardCardTemplate(task, subtaskHTML, namesHTML, totalSubtasks, complete
                 <span>Delete</span>
               </div>
               <div class="hyphen"></div>
-              <div class="edit" onclick="changeBoardCardTemplate()">
+              <div class="edit" onclick="changeBoardCardTemplate('${task.id}')">
                 <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M2.68213 16.3967H4.08213L12.7071 7.77173L11.3071 6.37173L2.68213 14.9967V16.3967ZM16.9821 6.32173L12.7321 2.12173L14.1321 0.721729C14.5155 0.338395 14.9863 0.146729 15.5446 0.146729C16.103 0.146729 16.5738 0.338395 16.9571 0.721729L18.3571 2.12173C18.7405 2.50506 18.9405 2.96756 18.9571 3.50923C18.9738 4.0509 18.7905 4.5134 18.4071 4.89673L16.9821 6.32173ZM15.5321 7.79673L4.93213 18.3967H0.682129V14.1467L11.2821 3.54673L15.5321 7.79673Z"
@@ -70,7 +70,7 @@ function boardCardTemplate(task, subtaskHTML, namesHTML, totalSubtasks, complete
       `;
 }
 
-function editBoardCardTemplate() {
+function editBoardCardTemplate(task, subtaskHTML, namesHTML) {
   return `      <div class="user-story-card">
         <div class="inner-card">
           <div class="headline-story-user-edit">
@@ -86,7 +86,7 @@ function editBoardCardTemplate() {
               <h2>Title</h2>
             </div>
             <div>
-              <input class="input_at" type="text" placeholder="Enter a title" />
+              <input class="input_at" type="text" placeholder="Enter a title" value="${task.title}" />
             </div>
           </div>
           <div class="add-task-single">
@@ -94,7 +94,7 @@ function editBoardCardTemplate() {
               <h2>Description</h2>
             </div>
             <div>
-              <textarea class="textarea-add-task" name="" id="" placeholder="Enter a Description"></textarea>
+              <textarea class="textarea-add-task" name="" id="" placeholder="Enter a Description">${task.description}</textarea>
             </div>
           </div>
                 <div class="add-task-single">
@@ -103,7 +103,7 @@ function editBoardCardTemplate() {
               <span class="span-star">*</span>
             </label>
             <div class="input-date-outside">
-              <input oninput="formatDate(this)" id="addTaskDate" class="input-date" name="date" type="text" placeholder="dd/mm/yyyy" /><img
+              <input oninput="formatDate(this)" id="addTaskDate" class="input-date" name="date" type="text" placeholder="dd/mm/yyyy" value="${task.date}" /><img
                 src="../assets/icons/date_event.svg"
               />
             </div>
@@ -139,7 +139,7 @@ function editBoardCardTemplate() {
               </div>
               <div id="dropDownMenuAssigned" class="main-drop-down drop-down-hide d-none"></div>
             </div>
-            <div id="selectedInitials" class="initial-container"></div>
+            <div id="selectedInitials" class="initial-container">${namesHTML}</div>
           </div>
             <div class="add-task-single">
               <label for="addTaskSubtasks">
@@ -160,7 +160,9 @@ function editBoardCardTemplate() {
                   </div>
                 </div>
               </div>
-              <div class="subtask-content" id="addedSubtaks"></div>
+              <div class="subtask-content" id="addedSubtaks">
+              ${subtaskHTML}
+              </div>
             </div>
         </div>
         </form>
