@@ -173,21 +173,21 @@ function categoryTemplate() {
   `;
 }
 
-function subtaskTemplate(i) {
+function subtaskTemplate(i, subtasks) {
   return `
     <div class="add-subtask" id="subtask-${i}">
       <ul>
-        <li>${addSubtask[i]}</li>
+        <li>${subtasks[i]}</li>
       </ul>
       <div class="input-other-icons">
-          <div class="subtask-icons" onclick="editSubtask(${i})">
-            <img src="../assets/icons/edit.svg" alt="edit-icon" />
-          </div>
-          <div class="hyphen-subtask"></div>
-          <div class="subtask-icons" onclick="deleteSubtask(${i})">
-            <img src="../assets/icons/delete.svg" alt="delete-icon" />
-          </div>
+        <div class="subtask-icons" onclick="editSubtask(${i})">
+          <img src="../assets/icons/edit.svg" alt="edit-icon" />
         </div>
+        <div class="hyphen-subtask"></div>
+        <div class="subtask-icons" onclick="deleteSubtask(${i})">
+          <img src="../assets/icons/delete.svg" alt="delete-icon" />
+        </div>
+      </div>
     </div>`;
 }
 

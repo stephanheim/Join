@@ -70,7 +70,7 @@ function boardCardTemplate(task, subtaskHTML, namesHTML) {
       `;
 }
 
-function editBoardCardTemplate(task, subtaskHTML, namesHTML) {
+function editBoardCardTemplate(task, subtaskHTML, initialsHTML) {
   return `      <div class="user-story-card">
         <div class="inner-card">
           <div class="headline-story-user-edit">
@@ -139,7 +139,7 @@ function editBoardCardTemplate(task, subtaskHTML, namesHTML) {
               </div>
               <div id="dropDownMenuAssigned" class="main-drop-down drop-down-hide d-none"></div>
             </div>
-            <div id="selectedInitials" class="initial-container">${namesHTML}</div>
+            <div id="selectedInitials" class="initial-container">${initialsHTML}</div>
           </div>
             <div class="add-task-single">
               <label for="addTaskSubtasks">
