@@ -87,7 +87,7 @@ function generateContactsInfoHTML(contact) {
         <div class="cnt-glance-initials" style="background-color: ${contact.color}">
           ${getInitials(contact.name)}
         </div>
-        <div>
+        <div class="cnt-resp-name">
           ${contact.name}
           <div class="cnt-glance-icon-div">
             <div class="clickable" onclick="addEditContact('${contact.id}')">
