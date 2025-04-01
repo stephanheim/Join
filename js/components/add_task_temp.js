@@ -194,7 +194,7 @@ function subtaskTemplate(i, subtask) {
 function editSubtaskTemplate(i, subtask) {
   return `
     <div class="input-container-edit">
-      <input type="text" name="category" id="editSubtask-${i}" value="${subtask}"/>
+      <input type="text" name="category" id="editSubtask-${i}" value="${subtask.text}"/>
       <div class="input-other-icons">
         <div class="container-icons" onclick="deleteSubtask()">
           <img src="../assets/icons/delete.svg" alt="delete-icon" />

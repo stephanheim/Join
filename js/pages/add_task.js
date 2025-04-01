@@ -307,7 +307,7 @@ function closeSubtaskInput(event) {
 }
 
 function renderSubtask(subtask) {
-  let subtaskRef = document.getElementById('addedSubtaks');
+  let subtaskRef = document.getElementById('addedSubtask');
   let i = addSubtask.length - 1;
   subtaskRef.innerHTML += subtaskTemplate(i, subtask);
 }
@@ -332,8 +332,9 @@ function editSubtask(i) {
 
 function saveEditedSubtask(i) {
   let inputRef = document.getElementById(`editSubtask-${i}`);
-  addSubtask[i] = inputRef.value;
-  renderSubtask();
+  addSubtask[i].text = inputRef.value;
+  let container = inputRef.closest('.input-container-edit');
+  container.outerHTML = subtaskTemplate(i, addSubtask[i]);
 }
 
 function resetSubtaskInput(event) {
@@ -351,13 +352,21 @@ function resetSubtaskInput(event) {
   }
 }
 
+function renderAllSubtasks() {
+  let subtaskRef = document.getElementById('addedSubtask');
+  subtaskRef.innerHTML = '';
+  addSubtask.forEach((subtask, i) => {
+    subtaskRef.innerHTML += subtaskTemplate(i, subtask);
+  });
+}
+
 function deleteSubtask(i) {
   addSubtask.splice(i, 1);
-  renderSubtask();
+  renderAllSubtasks();
 }
 
 function resetSubtask() {
-  let subtaskRef = document.getElementById('addedSubtaks');
+  let subtaskRef = document.getElementById('addedSubtask');
   subtaskRef.innerHTML = '';
   addSubtask.length = 0;
 }
