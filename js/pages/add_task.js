@@ -105,16 +105,17 @@ async function patchFirebaseId(firebaseId) {
   await fetchData(patchUrl, patchOptions);
 }
 
-async function deleteTask(taskId) {
-  let success = await deleteTaskInDB(taskId);
+async function deleteTask(firebaseId, taskId) {
+  let success = await deleteTaskInDB(firebaseId);
   if (!success) {
-    deleteTaskInLocalStorage(taskId);
+    deleteTaskInLocalStorage(firebaseId);
+    delete taskDataMap[taskId]
     loadPageContentPath('board');
   }
 }
 
-async function deleteTaskInDB(taskId) {
-  const url = BASE_URL + `/board/newTasks/${taskId}.json`;
+async function deleteTaskInDB(firebaseId) {
+  const url = BASE_URL + `/board/newTasks/${firebaseId}.json`;
   const options = {
     method: 'DELETE',
   };
@@ -122,10 +123,14 @@ async function deleteTaskInDB(taskId) {
   if (!response) return;
 }
 
-function deleteTaskInLocalStorage(taskId) {
+function deleteTaskInLocalStorage(firebaseId) {
   let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-  tasks = tasks.filter((task) => task.firebaseId !== taskId);
+  tasks = tasks.filter((task) => task.firebaseId !== firebaseId);
   localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+function updatedTaskDataMapArray(){
+
 }
 
 function selectedPriority(prio, element) {

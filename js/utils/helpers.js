@@ -152,13 +152,8 @@ async function loadDefaultTaskFromDB() {
   return Object.values(data);
 }
 
-// async function syncTasksFromDBToLocalStorage(){
-//   let tasks = await loadTaskFromDB();
-//   localStorage.setItem('tasks', JSON.stringify(tasks))
-// }
 
-
-async function syncTasksFromDBToLocalStorage(){
+async function syncTasksFromDBToLocalStorage() {
   let userTasks = await loadTaskFromDB();
   let defaultTasks = await loadDefaultTaskFromDB();
   let allTasks = defaultTasks.concat(userTasks);
