@@ -213,10 +213,29 @@ function showContactInfo(contactId) {
   if (window.innerWidth < 1200) {
     document.getElementById('cnt-list-div').classList.add('hidden');
     document.getElementById('cnt-main-div').style.display = 'block';
+    updateRespCmd(window.innerWidth < 1200, contactId);
   } else {
     document.getElementById('cnt-main-div').style.display = 'block';
   }
+    // updateRespCmd(true, contactId);
 }
+
+function updateRespCmd(showMoreOptions, contactId) {
+  let respCmdImg = document.getElementById("resp-cmd-img");
+
+  if (showMoreOptions) {
+    respCmdImg.src = "../assets/icons/more-resp-contact.svg";
+    respCmdImg.onclick = function () {
+      moreOptions(contactId);
+    };
+  } else {
+    respCmdImg.src = "../assets/icons/add-contact-mobile.svg";
+    respCmdImg.onclick = function () {
+      addNewContact();
+    };
+  }
+}
+
 
 function clearHighlightContact() {
   for (let contact of contactsArray) {
@@ -358,5 +377,10 @@ async function addCurrentUserToContacts(user) {
 function backToList() {
   document.getElementById("cnt-list-div").classList.remove("hidden");
   document.getElementById('cnt-main-div').style.display = 'none';
+  resetRespCmd(false);
+}
+
+function resetRespCmd() {
+  updateRespCmd(false);
 }
 
