@@ -116,7 +116,7 @@ function addTaskTemplate() {
                 </div>
               </div>
             </div>
-            <div class="subtask-content" id="addedSubtaks"></div>
+            <div class="subtask-content" id="addedSubtask"></div>
           </div>
         </div>
       </div>

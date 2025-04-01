@@ -16,20 +16,6 @@ async function initBoard() {
 }
 
 
-function renderPreTaskCard() {
-  let taskCard = document.getElementById('inProgress');
-  let hideNoTask = document.getElementById('noTaskInProgress');
-  if (preTaskCards.length === 0) {
-    hideNoTask.classList.remove('d-none');
-    return;
-  }
-  taskCard.innerHTML = '';
-  preTaskCards.forEach((task) => {
-    let taskHTML = createTaskCard(task.category, task.title, task.description, task.assigned);
-    taskCard.innerHTML += taskHTML;
-  });
-}
-
 function progressSubtasks(task) {
   let totalSubtasks = task.subtasks?.length || 0;
   let completedSubtasks = task.subtasks?.filter((s) => s.completed).length || 0;
