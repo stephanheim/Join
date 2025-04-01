@@ -172,3 +172,16 @@ function generateSuccessFloaterHTML() {
     </div>
   `;
 }
+
+function generateRespEditFloaterHTML () {
+  return `
+  <div class="edit-floater">
+    <div class="clickable" onclick="addEditContact('${contact.id}')">
+    <img src="../assets/icons/edit.svg"/><span>Edit</span>
+    </div>
+    <div class="clickable" onclick="deleteContact('${contact.id}')">
+    <img src="../assets/icons/delete.svg"/><span>Delete</span>
+    </div>
+  </div>
+  `;
+}
