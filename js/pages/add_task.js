@@ -306,20 +306,19 @@ function closeSubtaskInput(event) {
   resetSubtaskInput(event);
 }
 
-function renderSubtask() {
+function renderSubtask(subtask) {
   let subtaskRef = document.getElementById('addedSubtaks');
-  subtaskRef.innerHTML = '';
-  for (let i = 0; i < addSubtask.length; i++) {
-    subtaskRef.innerHTML += subtaskTemplate(i, addSubtask[i]);
-  }
+  let i = addSubtask.length - 1;
+  subtaskRef.innerHTML += subtaskTemplate(i, subtask);
 }
 
 function addSubtaksFromInput(event) {
   let subtaskInputRef = document.getElementById('addTaskSubtasks');
   let subtaskNote = subtaskInputRef.value;
   if (subtaskNote.trim() !== '') {
-    addSubtask.push({ text: subtaskNote, completed: false });
-    renderSubtask();
+    let newSubtask = { text: subtaskNote, completed: false };
+    addSubtask.push(newSubtask);
+    renderSubtask(newSubtask);
     resetSubtaskInput(event);
   }
 }
