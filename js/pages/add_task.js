@@ -368,7 +368,7 @@ function deleteSubtask(i) {
 function resetSubtask() {
   let subtaskRef = document.getElementById('addedSubtask');
   subtaskRef.innerHTML = '';
-  addSubtask.length = 0;
+  addSubtask.length = [];
 }
 
 function formatDate(input) {
