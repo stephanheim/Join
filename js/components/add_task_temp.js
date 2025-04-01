@@ -191,7 +191,6 @@ function subtaskTemplate(i, subtask) {
     </div>`;
 }
 
-
 function editSubtaskTemplate(i, subtask) {
   return `
     <div class="input-container-edit">

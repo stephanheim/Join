@@ -310,7 +310,7 @@ function renderSubtask() {
   let subtaskRef = document.getElementById('addedSubtaks');
   subtaskRef.innerHTML = '';
   for (let i = 0; i < addSubtask.length; i++) {
-    subtaskRef.innerHTML += subtaskTemplate(i, addSubtask);
+    subtaskRef.innerHTML += subtaskTemplate(i, addSubtask[i]);
   }
 }
 

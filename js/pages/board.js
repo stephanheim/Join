@@ -105,8 +105,6 @@ function getSubtaskCardTemp(task) {
   return html;
 }
 
-
-
 async function toggleSubtaskCompleted(taskId, subtaskIndex, isChecked) {
   let data = taskDataMap[taskId];
   if (!data) return;
@@ -118,7 +116,6 @@ async function toggleSubtaskCompleted(taskId, subtaskIndex, isChecked) {
   updateSubTaskTaskCard(taskId);
 }
 
-
 function updateSubTaskTaskCard(taskId) {
   let oldCard = document.getElementById(taskId);
   if (!oldCard) return;
@@ -126,7 +123,6 @@ function updateSubTaskTaskCard(taskId) {
   let newCardHTML = createTaskCard(taskDataMap[taskId].task);
   oldCard.outerHTML = newCardHTML;
 }
-
 
 function prepareTaskData(task) {
   let initialsHTML = getInitialsTaskCard(task);
