@@ -146,9 +146,23 @@ async function loadTaskFromDB() {
 }
 
 
+async function loadDefaultTaskFromDB() {
+  let data = await fetchData(BASE_URL + '/board/default.json');
+  if (!data) return [];
+  return Object.values(data);
+}
+
+// async function syncTasksFromDBToLocalStorage(){
+//   let tasks = await loadTaskFromDB();
+//   localStorage.setItem('tasks', JSON.stringify(tasks))
+// }
+
+
 async function syncTasksFromDBToLocalStorage(){
-  let tasks = await loadTaskFromDB();
-  localStorage.setItem('tasks', JSON.stringify(tasks))
+  let userTasks = await loadTaskFromDB();
+  let defaultTasks = await loadDefaultTaskFromDB();
+  let allTasks = defaultTasks.concat(userTasks);
+  localStorage.setItem('tasks', JSON.stringify(allTasks))
 }
 
 

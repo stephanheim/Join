@@ -11,28 +11,10 @@ let addTaskStatusTarget;
 
 async function initBoard() {
   await syncTasksFromDBToLocalStorage();
-  // loadPreTaskCards();
+  // await uploadDefaultTasks();
   renderTasks();
 }
 
-// async function getPreTaskCardFromDB() {
-//   const url = `${BASE_URL}board/preTask.json`;
-//   try {
-//     const response = await fetch(url);
-//     if (!response.ok) throw new Error(`Server Error: ${response.status}`);
-//     const tasks = await response.json();
-//     if (!tasks) return [];
-//     return Object.values(tasks);
-//   } catch (error) {
-//     console.error('Error when retrieving the tasks', error);
-//     return [];
-//   }
-// }
-
-async function loadPreTaskCards() {
-  preTaskCards = await getPreTaskCardFromDB();
-  renderPreTaskCard();
-}
 
 function renderPreTaskCard() {
   let taskCard = document.getElementById('inProgress');
@@ -108,9 +90,7 @@ function getSubtaskCardTemp(task) {
 async function toggleSubtaskCompleted(taskId, subtaskIndex, isChecked) {
   let data = taskDataMap[taskId];
   if (!data) return;
-
   data.task.subtasks[subtaskIndex].completed = isChecked;
-
   await updateTaskDB(data.task);
   saveTaskDataMapToStorage();
   updateSubTaskTaskCard(taskId);
@@ -336,11 +316,16 @@ async function moveTo(newStatus) {
 
 async function updateTaskDB(task) {
   if (!task.firebaseId) return;
-  const idUrl = BASE_URL + `/board/newTasks/${task.firebaseId}.json`;
+
+  let path = task.isDefault ? '/board/default' : '/board/newTasks';
+  const idUrl = BASE_URL + `${path}/${task.firebaseId}.json`;
   const options = {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ status: task.status }),
+    body: JSON.stringify({
+      status: task.status,
+      subtasks: task.subtasks
+    }),
   };
   await fetchData(idUrl, options);
 }
