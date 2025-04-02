@@ -165,26 +165,25 @@ function handleClickFloatingTask(status) {
   if (window.innerWidth <= 1200) {
     loadAddTaskPage(status, addTaskNav);
   } else {
-    openAddTaskOverlay(status, addTaskNav);
+    openAddTaskFloating(status);
   }
 }
 
 function findNavLinkByText(text) {
-  return Array.from(document.querySelectorAll('.nav')).find((link) => link.textContent.trim().includes(text));
+  return Array.from(document.querySelectorAll('.nav')).find((link) =>
+    link.textContent.trim().includes(text)
+  );
 }
 
 function loadAddTaskPage(status, navElement) {
   loadPageContentPath('add_task').then(() => {
     addTaskStatusTarget = status;
-    if (navElement) setActiveNav(navElement);
+    if (navElement) {
+      setActiveNav(navElement);
+    }
   });
 }
 
-function openAddTaskOverlay(status, navElement) {
-  if (navElement) setActiveNav(navElement);
-  initPages('add_task');
-  openAddTaskFloating(status);
-}
 
 function openBoardCard(id) {
   let { task, subtaskHTML, namesHTML } = taskDataMap[id];
