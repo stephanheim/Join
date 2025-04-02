@@ -67,23 +67,51 @@ function clearFieldErrors() {
   }
 }
 
-async function createNewTaskToStorage(status) {
+
+async function createNewTask(status) {
   if (!areTaskFieldsFilled()) return;
-  let newTask = getAddTaskValue();
-  newTask.status = status || addTaskStatusTarget;
-  const response = await postNewTaskToDB(newTask);
-  newTask.firebaseId = response.name;
-  await patchFirebaseId(response.name);
-  let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-  tasks.push(newTask);
-  localStorage.setItem('tasks', JSON.stringify(tasks));
+  let currentStatus = getTaskStatus(status);
+  let newTask = initTaskWithStatus(currentStatus);
+  await saveTaskToDB(newTask);
+  addTaskToLocalStorage(newTask);
+
   clearAddTask();
   messageTaskAdded();
+  showBoardAfterDelay();
+}
+
+function getTaskStatus(status) {
+  return status || addTaskStatusTarget || 'toDo';
+}
+
+function initTaskWithStatus(status) {
+  let task = getAddTaskValue();
+  task.status = status;
+  return task;
+}
+
+
+async function saveTaskToDB(task) {
+  const response = await postNewTaskToDB(task);
+  task.firebaseId = response.name;
+  await patchFirebaseId(response.name);
+}
+
+
+function addTaskToLocalStorage(task) {
+  let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+  tasks.push(task);
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+
+function showBoardAfterDelay() {
   setTimeout(() => {
     loadPageContentPath('board');
     setActiveNavBoard();
   }, 1300);
 }
+
 
 async function postNewTaskToDB(newTask) {
   const url = BASE_URL + '/board/newTasks.json';
