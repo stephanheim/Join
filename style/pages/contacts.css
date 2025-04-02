@@ -38,7 +38,7 @@
   height: 100vh;
   background-color: #ffffff;
   overflow-y: auto;
-  cursor: pointer;
+  /* cursor: pointer; */
   box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.1)
 }
 
@@ -133,6 +133,7 @@
   padding: 15px 24px 15px 24px;
   gap: 35px;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .cnt-name:hover {
@@ -370,6 +371,7 @@
     position: absolute;
     bottom: 88px;
     right: 5%;
+    cursor: pointer;
   }
 
   .cnt-glance {
