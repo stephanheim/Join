@@ -321,3 +321,39 @@ function saveTaskDataMapToStorage() {
   }
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
+
+
+function searchTask(inputEvent) {
+  let query = inputEvent.target.value.toLowerCase().trim();
+  if (query) {
+    let filteredTasks = taskMapToArray().filter(entry => matchesSearch(entry, query));
+    renderFilteredTasks(filteredTasks);
+  } else {
+    renderTasks();
+  }
+}
+
+
+function taskMapToArray() {
+  return Object.values(taskDataMap);
+}
+
+
+function matchesSearch(entry, query) {
+  let title = entry.task.title?.toLowerCase() || '';
+  let description = entry.task.description?.toLowerCase() || '';
+  return title.includes(query) || description.includes(query);
+}
+
+
+function renderFilteredTasks(filteredTasks) {
+  boardContainers.forEach(({ id }) => {
+    document.getElementById(id).innerHTML = '';
+  });
+  filteredTasks.forEach((entry) => {
+    prepareTaskData(entry.task);
+    let container = document.getElementById(entry.task.status);
+    container.innerHTML += createTaskCard(entry.task);
+  });
+  noTaskVisibility();
+}
