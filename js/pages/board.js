@@ -15,7 +15,6 @@ async function initBoard() {
   renderTasks();
 }
 
-
 function progressSubtasks(task) {
   let totalSubtasks = task.subtasks?.length || 0;
   let completedSubtasks = task.subtasks?.filter((s) => s.completed).length || 0;
@@ -170,9 +169,7 @@ function handleClickFloatingTask(status) {
 }
 
 function findNavLinkByText(text) {
-  return Array.from(document.querySelectorAll('.nav')).find((link) =>
-    link.textContent.trim().includes(text)
-  );
+  return Array.from(document.querySelectorAll('.nav')).find((link) => link.textContent.trim().includes(text));
 }
 
 function loadAddTaskPage(status, navElement) {
@@ -183,7 +180,6 @@ function loadAddTaskPage(status, navElement) {
     }
   });
 }
-
 
 function openBoardCard(id) {
   let { task, subtaskHTML, namesHTML } = taskDataMap[id];
@@ -309,7 +305,7 @@ async function updateTaskDB(task) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       status: task.status,
-      subtasks: task.subtasks
+      subtasks: task.subtasks,
     }),
   };
   await fetchData(idUrl, options);
