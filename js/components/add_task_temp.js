@@ -73,7 +73,7 @@ function addTaskTemplate() {
                   <img id="arrowAssigned" class="arrow-drop-down" src="../assets/icons/drop_up_arrwow.svg" />
                 </div>
               </div>
-              <div id="dropDownMenuAssigned" class="main-drop-down drop-down-hide d-none"></div>
+              <div id="dropDownMenuAssigned" class="main-drop-down drop-down-hide"></div>
             </div>
             <div id="selectedInitials" class="initial-container d-none"></div>
           </div>
@@ -92,7 +92,7 @@ function addTaskTemplate() {
                     <img id="arrowCategory" class="arrow-drop-down" src="../assets/icons/drop_up_arrwow.svg" />
                   </div>
                 </div>
-                <div id="dropDownMenuCategory" class="drop-down-field-category drop-down-hide d-none"></div>
+                <div id="dropDownMenuCategory" class="drop-down-field-category drop-down-hide"></div>
               </div>
               <span id="categoryMessage" class="error-message"></span>
             </div>
@@ -163,10 +163,10 @@ function assignedToTemplate(name, color, initials, i, isChecked) {
 function categoryTemplate() {
   return `
   <div>
-    <div onclick="selectCategory('Technical Task')" class="inner-task">
+    <div onclick="selectCategory('Technical Task', event)" class="inner-task">
       <h2>Technical Task</h2>
     </div>
-    <div onclick="selectCategory('User Story')" class="inner-task">
+    <div onclick="selectCategory('User Story', event)" class="inner-task">
       <h2>User Story</h2>
     </div>
   </div>
