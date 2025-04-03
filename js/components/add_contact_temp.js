@@ -173,13 +173,13 @@ function generateSuccessFloaterHTML() {
   `;
 }
 
-function generateRespEditFloaterHTML (contact) {
+function generateRespEditFloaterHTML (contactId) {
   return `
-  <div class="edit-floater">
-    <div class="clickable" onclick="addEditContact('${contact.id}')">
+  <div id="respFloater" class="edit-floater">
+    <div class="clickable" onclick="addEditContact('${contactId}')">
     <img src="../assets/icons/edit.svg"/><span>Edit</span>
     </div>
-    <div class="clickable" onclick="deleteContact('${contact.id}')">
+    <div class="clickable" onclick="deleteContact('${contactId}')">
     <img src="../assets/icons/delete.svg"/><span>Delete</span>
     </div>
   </div>

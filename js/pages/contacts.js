@@ -220,13 +220,12 @@ function showContactInfo(contactId) {
     // updateRespCmd(true, contactId);
 }
 
-function updateRespCmd(showMoreOptions, contactId) {
+function updateRespCmd(windowWidthOptions, contactId) {
   let respCmdImg = document.getElementById("resp-cmd-img");
-
-  if (showMoreOptions) {
+  if (windowWidthOptions) {
     respCmdImg.src = "../assets/icons/more-resp-contact.svg";
     respCmdImg.onclick = function () {
-      moreOptions(contactId);
+      showMoreOptions(contactId);
     };
   } else {
     respCmdImg.src = "../assets/icons/add-contact-mobile.svg";
@@ -236,35 +235,25 @@ function updateRespCmd(showMoreOptions, contactId) {
   }
 }
 
-function moreOptions(contactId) {
-  let contact = contactsArray.find((c) => c.id === contactId);
-  if (!contact) return;
+
+function showMoreOptions(contactId) {
   let respCmdContainer = document.getElementById('resp-cmd');
-  let editFloaterHTML = generateRespEditFloaterHTML(contact);
-  let underImg = document.getElementById('resp-cmd-img');
+  let editFloaterHTML = generateRespEditFloaterHTML(contactId);
   respCmdContainer.innerHTML += editFloaterHTML;
-  underImg.classList.add('d-none');
   respCmdContainer.classList.remove("slideOut");
   respCmdContainer.classList.add("slideIn");
-  respCmdContainer.classList.remove("d-none");
-  document.addEventListener("click", function closeFloater(event) {
-    if (!respCmdContainer.contains(event.target)) {
-      closeRespEditFloater();
-      document.removeEventListener("click", closeFloater); 
-    }
-  });
 }
 
+
 function closeRespEditFloater() {
-  let respEditFloater = document.getElementById("resp-cmd");
-  let underImg = document.getElementById("resp-cmd-img");
-  underImg.classList.remove('d-none');
+  let respCmdContainer = document.getElementById('resp-cmd');
+  let respEditFloater = document.getElementById('respFloater');
   respEditFloater.classList.remove("slideIn");
   respEditFloater.classList.add("slideOut");
-  setTimeout(() => {
-    respEditFloater.innerHTML = ""; 
-  }, 300); 
+  respCmdContainer.classList.remove("slideIn");
+  respCmdContainer.innerHTML = '';
 }
+
 
 function clearHighlightContact() {
   for (let contact of contactsArray) {
@@ -284,11 +273,16 @@ async function deleteContact(contactId) {
     contactsArray = contactsArray.filter((contact) => contact.id !== contactId);
     closeEditFloater();
     document.getElementById('cnt-glance-contact').style.display = 'none';
-    loadContactsFromFirebase();
+    await loadContactsFromFirebase();
     getGroupedContacts();
+    await updateAssignedContactsDB(contactId)
   } catch (error) {
     console.error('Fehler beim Löschen des Kontakts:', error);
   }
+}
+
+async function updateAssignedContactsDB(){
+
 }
 
 async function updateContact(contactId) {
