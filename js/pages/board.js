@@ -299,7 +299,9 @@ async function updateTaskDB(task) {
   if (!task.firebaseId) return;
   let path = task.isDefault ? '/board/default' : '/board/newTasks';
   await updateTaskStatusDB(path, task);
-  await updateTaskSubtasksDB(path, task);
+  if (task.subtasks) {
+    await updateTaskSubtasksDB(path, task);
+  }
 }
 
 
