@@ -270,6 +270,7 @@ footer {
 
 @media screen and (max-width: 428px) {
   .bt-login-content {
+    width: 100%;
     flex-direction: column;
     align-items: center;
     gap: 21px;
