@@ -173,7 +173,7 @@ function generateSuccessFloaterHTML() {
   `;
 }
 
-function generateRespEditFloaterHTML () {
+function generateRespEditFloaterHTML (contact) {
   return `
   <div class="edit-floater">
     <div class="clickable" onclick="addEditContact('${contact.id}')">

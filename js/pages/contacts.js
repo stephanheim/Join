@@ -236,6 +236,29 @@ function updateRespCmd(showMoreOptions, contactId) {
   }
 }
 
+function moreOptions(contactId) {
+  let contact = contactsArray.find((c) => c.id === contactId);
+  if (!contact) return;
+  let respCmdContainer = document.getElementById('resp-cmd');
+  let editFloaterHTML = generateRespEditFloaterHTML(contact);
+  let underImg = document.getElementById('resp-cmd-img');
+  respCmdContainer.innerHTML += editFloaterHTML;
+  underImg.classList.add('d-none');
+  respCmdContainer.classList.remove("slideOut");
+  respCmdContainer.classList.add("slideIn");
+  respCmdContainer.classList.remove("d-none");
+}
+
+function closeRespEditFloater() {
+  let respEditFloater = document.getElementById("resp-cmd");
+  let underImg = document.getElementById("resp-cmd-img");
+  underImg.classList.remove('d-none');
+  respEditFloater.classList.remove("slideIn");
+  respEditFloater.classList.add("slideOut");
+  setTimeout(() => {
+    respEditFloater.innerHTML = ""; 
+  }, 300); 
+}
 
 function clearHighlightContact() {
   for (let contact of contactsArray) {
