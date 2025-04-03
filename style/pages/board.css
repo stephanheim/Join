@@ -45,6 +45,7 @@
   gap: 10px;
   transition: all 100ms ease-in-out;
   cursor: pointer;
+  position: relative;
 }
 
 .outside-find-task:focus-within {
@@ -75,6 +76,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.ft-inside-icon svg:hover path,
+.ft-inside-icon svg:hover rect {
+  stroke: #29abe2;
 }
 
 .bt-add-task {

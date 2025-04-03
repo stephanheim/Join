@@ -366,10 +366,16 @@ function renderFilteredTasks(filteredTasks) {
   boardContainers.forEach(({ id }) => {
     document.getElementById(id).innerHTML = '';
   });
-  filteredTasks.forEach((entry) => {
-    prepareTaskData(entry.task);
-    let container = document.getElementById(entry.task.status);
-    container.innerHTML += createTaskCard(entry.task);
-  });
+  const emptyMessage = document.getElementById('emptyId');
+  if (filteredTasks.length === 0) {
+    emptyMessage.style.display = 'flex';
+  } else {
+    emptyMessage.style.display = 'none';
+    filteredTasks.forEach((entry) => {
+      prepareTaskData(entry.task);
+      let container = document.getElementById(entry.task.status);
+      container.innerHTML += createTaskCard(entry.task);
+    });
+  }
   noTaskVisibility();
 }
