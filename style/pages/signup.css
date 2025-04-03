@@ -45,6 +45,8 @@
 }
 
 .form-content {
+  max-width: 422px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
