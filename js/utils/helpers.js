@@ -83,9 +83,6 @@ function showDropdown(dropDownMenu) {
 function hideDropdown(dropDownMenu) {
   dropDownMenu.classList.remove('drop-down-show');
   dropDownMenu.classList.add('drop-down-hide');
-  setTimeout(() => {
-    dropDownMenu.classList.add('d-none');
-  }, 300);
 }
 
 function assignColorsToContacts(groupedContacts) {

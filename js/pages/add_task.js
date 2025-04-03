@@ -6,6 +6,7 @@ let addNewTask = [];
 
 function initAddTask() {
   preventFormSubmitOnEnter();
+  resetSelectCategory();
 }
 
 function getAddTaskValue() {
@@ -74,7 +75,6 @@ async function createNewTask(status) {
   let newTask = initTaskWithStatus(currentStatus);
   await saveTaskToDB(newTask);
   addTaskToLocalStorage(newTask);
-
   clearAddTask();
   messageTaskAdded();
   showBoardAfterDelay();
@@ -94,7 +94,7 @@ function initTaskWithStatus(status) {
 async function saveTaskToDB(task) {
   const response = await postNewTaskToDB(task);
   task.firebaseId = response.name;
-  await patchFirebaseId(response.name);
+  await setFirebaseIdInDB(response.name);
 }
 
 
@@ -123,14 +123,14 @@ async function postNewTaskToDB(newTask) {
   return await fetchData(url, options);
 }
 
-async function patchFirebaseId(firebaseId) {
-  const patchUrl = BASE_URL + `/board/newTasks/${firebaseId}.json`;
-  const patchOptions = {
-    method: 'PATCH',
+async function setFirebaseIdInDB(firebaseId) {
+  const url = BASE_URL + `/board/newTasks/${firebaseId}/firebaseId.json`;
+  const options = {
+    method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ firebaseId }),
+    body: JSON.stringify(firebaseId),
   };
-  await fetchData(patchUrl, patchOptions);
+  await fetchData(url, options);
 }
 
 async function deleteTask(firebaseId, taskId) {
@@ -157,7 +157,7 @@ function deleteTaskInLocalStorage(firebaseId) {
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
-function updatedTaskDataMapArray(){
+function updatedTaskDataMapArray() {
 
 }
 
@@ -190,9 +190,9 @@ function openDropdownAssigned() {
   const dropDownMenu = document.getElementById('dropDownMenuAssigned');
   const inputField = document.getElementById('addTaskAssigned');
   const arrow = document.getElementById('arrowAssigned');
+  updateUIElements(inputField, arrow, dropDownMenu);
   toggleDropdown(dropDownMenu);
   initialsShowOnAssinged(dropDownMenu);
-  updateUIElements(inputField, arrow, dropDownMenu);
   assignedBorderColor(dropDownMenu);
 }
 
@@ -272,15 +272,15 @@ function openDropdownCategory() {
   const dropDownMenu = document.getElementById('dropDownMenuCategory');
   const arrow = document.getElementById('arrowCategory');
   const isHidden = dropDownMenu.classList.contains('drop-down-hide');
+  toggleArrowRotation(arrow, isHidden);
   renderDropdownMenuCategory(dropDownMenu);
   if (isHidden) {
     showDropdown(dropDownMenu);
   } else {
     hideDropdown(dropDownMenu);
   }
-  isCategorySelected();
-  toggleArrowRotation(arrow, isHidden);
 }
+
 
 function renderDropdownMenuCategory(dropDownMenu) {
   if (!dropDownMenu.innerHTML.trim()) {
@@ -288,33 +288,30 @@ function renderDropdownMenuCategory(dropDownMenu) {
   }
 }
 
-function isCategorySelected() {
-  const dropDownMenu = document.getElementById('dropDownMenuCategory');
-  const selectedCategory = document.getElementById('selectedCategory');
-  let originalCategoryText = 'Select task category';
-  if (dropDownMenu.classList.contains('d-none') && selectCategory(originalCategoryText)) {
-    selectedCategory.innerText = originalCategoryText;
-  }
-}
 
-function selectCategory(category) {
-  const selectedCategory = document.getElementById('selectedCategory');
+function selectCategory(category, event) {
+  if (event) {
+    event.stopPropagation();
+  }
   const dropDownMenu = document.getElementById('dropDownMenuCategory');
+  const selectedCategory = document.getElementById('selectedCategory');
+  const arrow = document.getElementById('arrowCategory');
+  const isHidden = dropDownMenu.classList.contains('drop-down-hide');
+  hideDropdown(dropDownMenu);
+  toggleArrowRotation(arrow, isHidden);
   if (selectedCategory) {
-    if (selectedCategory.innerText === category) {
-      selectedCategory.innerText = 'Select task category';
-    } else {
-      selectedCategory.innerText = category;
-    }
-    hideDropdown(dropDownMenu);
+    selectedCategory.innerText = category;
   }
   selectedCategoryValue = category;
 }
 
+
 function resetSelectCategory() {
   const selectedCategory = document.getElementById('selectedCategory');
-  selectedCategory.innerText = 'Select task category';
-  selectedCategoryValue = '';
+  if (selectedCategory) {
+    selectedCategory.innerText = 'Select task category';
+    selectedCategoryValue = '';
+  }
 }
 
 function openSubtaskInput() {

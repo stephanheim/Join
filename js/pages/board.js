@@ -297,19 +297,33 @@ async function moveTo(newStatus) {
 
 async function updateTaskDB(task) {
   if (!task.firebaseId) return;
-
   let path = task.isDefault ? '/board/default' : '/board/newTasks';
-  const idUrl = BASE_URL + `${path}/${task.firebaseId}.json`;
-  const options = {
-    method: 'PATCH',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      status: task.status,
-      subtasks: task.subtasks,
-    }),
-  };
-  await fetchData(idUrl, options);
+  await updateTaskStatusDB(path, task);
+  await updateTaskSubtasksDB(path, task);
 }
+
+
+async function updateTaskStatusDB(path, task) {
+  const urlStatus = BASE_URL + `${path}/${task.firebaseId}/status.json`;
+  const optionsStatus = {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(task.status),
+  };
+  await fetchData(urlStatus, optionsStatus);
+}
+
+
+async function updateTaskSubtasksDB(path, task) {
+  const urlSubtasks = BASE_URL + `${path}/${task.firebaseId}/subtasks.json`;
+  const optionsSubtasks = {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(task.subtasks),
+  };
+  await fetchData(urlSubtasks, optionsSubtasks);
+}
+
 
 function saveTaskDataMapToStorage() {
   let tastDataArray = Object.values(taskDataMap);

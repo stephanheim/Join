@@ -82,7 +82,7 @@ function isEmailValid() {
 
 
 async function isThisEmailAvailable(email) {
-  const url = BASE_URL + "/register/users.json";
+  const url = BASE_URL + "register/users.json";
   try {
     const response = await fetch(url);
     if (!response.ok) throw new Error(`Server Error: ${response.status}`);
