@@ -22,6 +22,8 @@
 .start-join-logo img {
   width: 100%;
   height: 100%;
+  transition: opacity 300ms ease-in-out;
+  opacity: 1;
 }
 
 .login-logo-left {
@@ -231,6 +233,10 @@ footer {
 }
 
 @media screen and (max-width: 600px) {
+  .overlay-join-logo {
+    background-color: #2a3647 !important;
+  }
+
   .login-signup-right {
     position: unset;
     display: flex;
@@ -246,7 +252,7 @@ footer {
     height: 122px;
     z-index: 999;
     transform: translate(-50%, -50%);
-    animation: shrinkLogo 500ms ease-in-out 600ms forwards;
+    animation: shrinkLogo 300ms ease-in-out 600ms forwards;
   }
 
   @keyframes shrinkLogo {

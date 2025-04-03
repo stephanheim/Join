@@ -138,13 +138,11 @@ function loadTaskFromStorage() {
   return JSON.parse(localStorage.getItem('tasks')) || [];
 }
 
-
 async function loadTaskFromDB() {
   let data = await fetchData(BASE_URL + '/board/newTasks.json');
   if (!data) return [];
   return Object.values(data);
 }
-
 
 async function loadDefaultTaskFromDB() {
   let data = await fetchData(BASE_URL + '/board/default.json');
@@ -152,14 +150,12 @@ async function loadDefaultTaskFromDB() {
   return Object.values(data);
 }
 
-
 async function syncTasksFromDBToLocalStorage() {
   let userTasks = await loadTaskFromDB();
   let defaultTasks = await loadDefaultTaskFromDB();
   let allTasks = defaultTasks.concat(userTasks);
-  localStorage.setItem('tasks', JSON.stringify(allTasks))
+  localStorage.setItem('tasks', JSON.stringify(allTasks));
 }
-
 
 function setActiveNavBoard() {
   let boardNav = document.getElementById('sumToBoard');
@@ -199,4 +195,12 @@ function preventFormSubmitOnEnter() {
       }
     });
   }
+}
+
+const joinLogoMobile = document.querySelector('.start-join-logo img');
+if (joinLogoMobile && window.innerWidth <= 600) {
+  joinLogoMobile.src = './assets/img/join.svg';
+  setTimeout(() => {
+    joinLogoMobile.src = './assets/img/join_login.svg';
+  }, 800);
 }
