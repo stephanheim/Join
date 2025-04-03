@@ -218,6 +218,7 @@ footer {
     position: relative;
     max-width: 396px;
     padding: 0 16px;
+    height: 595px;
   }
 
   .headline h1 {
