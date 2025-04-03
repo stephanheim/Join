@@ -247,6 +247,12 @@ function moreOptions(contactId) {
   respCmdContainer.classList.remove("slideOut");
   respCmdContainer.classList.add("slideIn");
   respCmdContainer.classList.remove("d-none");
+  document.addEventListener("click", function closeFloater(event) {
+    if (!respCmdContainer.contains(event.target)) {
+      closeRespEditFloater();
+      document.removeEventListener("click", closeFloater); 
+    }
+  });
 }
 
 function closeRespEditFloater() {
