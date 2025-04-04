@@ -237,16 +237,24 @@ function updateRespCmd(windowWidthOptions, contactId) {
 
 
 function showMoreOptions(contactId) {
-  let respCmdContainer = document.getElementById('resp-cmd');
+  let respCmdContainer = document.getElementById("resp-cmd");
   let editFloaterHTML = generateRespEditFloaterHTML(contactId);
   respCmdContainer.innerHTML += editFloaterHTML;
 
-  let img = document.getElementById('resp-cmd-img');
-  if (img) img.classList.add('d-none');
+  let img = document.getElementById("resp-cmd-img");
+  if (img) img.classList.add("d-none");
 
-  respCmdContainer.classList.remove("slideOut");
-  respCmdContainer.classList.add("slideIn");
+  let floater = document.getElementById("respFloater");
+  if (floater) {
+    floater.classList.add("preSlideIn");
+    setTimeout(() => {
+      floater.classList.remove("preSlideIn");
+      floater.classList.add("slideIn");
+    }, 20);
+  } 
 }
+
+
 
 
 function closeRespEditFloater() {
