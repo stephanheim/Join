@@ -240,10 +240,8 @@ function showMoreOptions(contactId) {
   let respCmdContainer = document.getElementById("resp-cmd");
   let editFloaterHTML = generateRespEditFloaterHTML(contactId);
   respCmdContainer.innerHTML += editFloaterHTML;
-
   let img = document.getElementById("resp-cmd-img");
   if (img) img.classList.add("d-none");
-
   let floater = document.getElementById("respFloater");
   if (floater) {
     floater.classList.add("preSlideIn");
@@ -251,10 +249,19 @@ function showMoreOptions(contactId) {
       floater.classList.remove("preSlideIn");
       floater.classList.add("slideIn");
     }, 20);
+    setTimeout(() => {
+      document.addEventListener("click", handleOutsideClick);
+    }, 50); 
   } 
 }
 
-
+function handleOutsideClick(event) {
+  const floater = document.getElementById("respFloater");
+  if (floater && !floater.contains(event.target)) {
+    closeRespEditFloater();
+    document.removeEventListener("click", handleOutsideClick); 
+  }
+}
 
 
 function closeRespEditFloater() {
