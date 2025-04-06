@@ -1,6 +1,6 @@
 function generateFloaterHTML() {
   return `
-<form id="contactForm" onsubmit="validateForm(event)">
+<form id="contactForm" class="form-floater" onsubmit="validateForm(event)">
 <div id="contactFloater" class="main-floater">
   <div class="add-contact">
     <img src="../assets/img/join.svg" class="add-icon" />

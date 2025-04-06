@@ -1,6 +1,12 @@
-.main-floater {
-  width: 1212px;
+.form-floater {
+  max-width: 1212px;
+  width: 100%;
   height: 592px;
+}
+
+.main-floater {
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   background-color: white;
@@ -8,7 +14,6 @@
 }
 
 .add-contact {
-  height: 594px;
   width: 467px;
   background-color: #2a3647;
   display: flex;
@@ -272,3 +277,5 @@ slideIn {
 slideOut {
   animation: slideOut 0.5s ease-in-out forwards;
 }
+
+@media screen and (max-width:) {}

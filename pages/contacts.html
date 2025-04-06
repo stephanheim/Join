@@ -5,6 +5,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Join - Contacts</title>
+  <!-- <link rel="stylesheet" href="../style/global.css" />
+  <link rel="stylesheet" href="../style/typography.css" />
+  <link rel="stylesheet" href="../style/variables.css" />
+  <link rel="stylesheet" href="../style/components/floating_contact.css" />
+  <link rel="stylesheet" href="../style/animation.css" /> -->
 </head>
 
 <body onload="initContacts()">
@@ -20,24 +25,27 @@
     </div>
     <div class="cnt-main" id="cnt-main-div">
       <div class="cnt-info">
-      <div class="cnt-title">
-        <span class="cnt-title-font">Contacts</span>
-        <div class="cnt-seperator"></div>
-        <div class="cnt-subline">Better with a team</div>
+        <div class="cnt-title">
+          <span class="cnt-title-font">Contacts</span>
+          <div class="cnt-seperator"></div>
+          <div class="cnt-subline">Better with a team</div>
+        </div>
+        <div class="cnt-resp-back-btn">
+          <img src="../assets/icons/arrow-left-line.svg" class="b-btn" onclick="backToList()">
+        </div>
       </div>
-       <div class="cnt-resp-back-btn">
-      <img src="../assets/icons/arrow-left-line.svg" class="b-btn" onclick="backToList()">
-        </div>
-        </div>
       <!-- Ab hier wieder dynamisch rendern -->
       <div class="cnt-glance" id="cnt-glance-contact">
       </div>
     </div>
-     <div class="resp-btn" id="resp-cmd">
+    <div class="resp-btn" id="resp-cmd">
       <img id="resp-cmd-img" src="../assets/icons/add-contact-mobile.svg" onclick="addNewContact()">
-      </div>
+    </div>
   </div>
   <script src="../js/pages/contacts.js"></script>
   <script src="../js/script.js"></script>
+  <script src="../js/components/add_contact_temp.js"></script>
+  <script src="../js/utils/helpers.js"></script>
 </body>
+
 </html>

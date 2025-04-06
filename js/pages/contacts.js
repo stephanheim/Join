@@ -217,7 +217,7 @@ function showContactInfo(contactId) {
   } else {
     document.getElementById('cnt-main-div').style.display = 'block';
   }
-    // updateRespCmd(true, contactId);
+  // updateRespCmd(true, contactId);
 }
 
 function updateRespCmd(windowWidthOptions, contactId) {
@@ -281,9 +281,7 @@ async function deleteContact(contactId) {
   }
 }
 
-async function updateAssignedContactsDB(){
 
-}
 
 async function updateContact(contactId) {
   try {
