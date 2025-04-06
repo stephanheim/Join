@@ -118,7 +118,7 @@ function generateContactsInfoHTML(contact) {
 
 function generateContactsEditFloaterHTML(contact) {
   return `
-  <form id="contactForm">
+  <form id="contactForm" class="form-floater">
     <div id="contactFloater" class="main-floater">
       <div class="add-contact">
         <img src="../assets/img/join.svg" class="add-icon" />
@@ -126,16 +126,17 @@ function generateContactsEditFloaterHTML(contact) {
           <span class="add-title">Edit contact</span>
         </div>
         <div class="add-seperator"></div>
+        <div onclick="closeNewContact()" class="add-close-div-white d-none">
+          <img src="../assets/icons/close_white.svg" class="add-close-btn-white" />
+        </div>
       </div>
       <div class="add-form">
-        <div class="add-form-circle">
-          <div class="cnt-glance-initials" style="background-color: ${contact.color}">
-            ${getInitials(contact.name)}
-          </div>
+        <div class="add-form-circle edit-form-circle" style="background-color: ${contact.color}">
+            ${getInitials(contact.name)}  
         </div>
         <div class="right-wrap">
-          <div onclick="closeNewContact()" class="add-close-div">
-            <img src="../assets/icons/close.svg" class="add-close-btn" />
+          <div onclick="closeNewContact()" class="add-close-div-dark">
+            <img src="../assets/icons/close.svg"  class="add-close-btn-dark" />
           </div>
           <div class="add-fields">
             <div class="input-div">
@@ -152,13 +153,13 @@ function generateContactsEditFloaterHTML(contact) {
             </div>
           </div>
           <div class="add-btn-div">
-            <button type="button" onclick="deleteContact('${contact.id}')" class="add-btn-cancel">
+            <button type="button" onclick="deleteContact('${contact.id}')" class="edit-btn-delete">
               Delete
             </button>
-            <button type="submit" onclick="updateContact('${contact.id}')" class="add-btn-create">
+            <button type="submit" onclick="updateContact('${contact.id}')" 
+            class="edit-btn-save">
               Save
-              <div class="btn-icons">
-                <img src="../assets/icons/check.svg" class="img-btn-check" />
+              <img src="../assets/icons/check.svg" class="img-btn-check btn-icons" />                
               </div>
             </button>
           </div>

@@ -196,13 +196,14 @@
   align-items: center;
   background-color: #ff7a00;
   color: white;
-  border: 3px solid white;
-  border-radius: 70px;
+  border: solid 3px #FFFFFF;
+  border-radius: 50%;
   gap: 10px;
   width: 120px;
   height: 120px;
-  font-size: 47px;
+  font-size: 46px;
   font-weight: 500;
+  line-height: 120%;
 }
 
 .cnt-glance-icon-div {
@@ -432,13 +433,6 @@
     display: none;
   }
 
-  .cnt-glance-initials {
-    font-size: 27px;
-    font-weight: 400;
-    width: 80px;
-    height: 80px;
-  }
-
   .cnt-glance-details {
     gap: 20px;
     font-size: 36px;
@@ -496,8 +490,6 @@
   .cnt-glance-initials {
     font-size: 21px;
     font-weight: 400;
-    width: 60px;
-    height: 60px;
   }
 }
 

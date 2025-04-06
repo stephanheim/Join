@@ -63,20 +63,28 @@
 }
 
 .add-icon-pers {
-  width: 55.6px;
-  height: 66.48px;
+  width: 64px;
+  height: 64px;
   top: 154px;
 }
 
 .add-form-circle {
-  width: 120px;
-  height: 120px;
-  background-color: #d1d1d1;
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 120px;
+  height: 120px;
+  border: solid 3px #FFFFFF;
+  background-color: #d1d1d1;
+  border-radius: 50%;
   flex-shrink: 0;
+}
+
+.edit-form-circle {
+  color: white;
+  font-size: 46px;
+  font-weight: 500;
+  line-height: 120%;
 }
 
 .right-wrap {
@@ -182,7 +190,8 @@
   cursor: pointer;
 }
 
-.add-btn-cancel:hover {
+.add-btn-cancel:hover,
+.edit-btn-delete:hover {
   border-width: 2px;
   border-color: #29abe2;
   color: #29abe2;
@@ -191,6 +200,23 @@
 
 .add-btn-cancel:hover .img-btn-close {
   content: url("../../assets/icons/close-blue.svg");
+}
+
+.edit-btn-delete {
+  background-color: white;
+  border: 1px solid;
+  border-radius: 8px;
+  padding: 16px;
+  color: #2a3647;
+  width: 112px;
+  height: 56px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .add-btn-create {
@@ -211,10 +237,29 @@
   cursor: pointer;
 }
 
-.add-btn-create:hover {
+.add-btn-create:hover,
+.edit-btn-save:hover {
   border-color: #29abe2;
   background-color: #29abe2;
   box-shadow: 0 4px 6px #d1d1d1;
+}
+
+.edit-btn-save {
+  background-color: #2a3647;
+  border: 1px solid;
+  border-radius: 8px;
+  padding: 16px;
+  gap: 4px;
+  color: white;
+  width: 112px;
+  height: 56px;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 120%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .img-btn-close {
@@ -378,6 +423,22 @@ slideOut {
 
   .add-btn-cancel {
     display: none;
+  }
+
+  .add-btn-div {
+    max-width: 200px;
+    width: 100%;
+    gap: 20px;
+  }
+
+  .edit-btn-delete {
+    width: 82px;
+    height: 50px;
+  }
+
+  .edit-btn-save {
+    width: 100px;
+    height: 50px;
   }
 }
 
