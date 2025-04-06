@@ -85,3 +85,51 @@
     max-height: 0;
   }
 }
+
+@keyframes cntSlideIn {
+  from {
+    transform: translateX(150%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes cntSlideOut {
+  from {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(150%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInVertical {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutVertical {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+  to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}

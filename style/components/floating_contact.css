@@ -223,7 +223,6 @@
   background-color: #2a3647;
   border: 1px solid;
   border-radius: 10px;
-  padding: 16px;
   gap: 4px;
   color: white;
   width: 214px;
@@ -302,14 +301,6 @@
   height: 24px;
 }
 
-.slideIn {
-  animation: slideIn 0.2s ease-in-out forwards;
-}
-
-.slideOut {
-  animation: slideOut 0.2s ease-in-out backwards;
-}
-
 .addCntOverlay {
   position: fixed;
   top: 0;
@@ -324,12 +315,20 @@
   transition: background-color 0.2s ease-in-out;
 }
 
-slideIn {
-  animation: slideIn 0.5s ease-in-out forwards;
+.slideIn {
+  animation: slideIn 0.2s ease-in-out forwards;
 }
 
-slideOut {
-  animation: slideOut 0.5s ease-in-out forwards;
+.slideOut {
+  animation: slideOut 0.2s ease-in-out backwards;
+}
+
+.slideInVertical {
+  animation: slideInVertical 0.2s ease-in-out forwards;
+}
+
+.slideOutVertical {
+  animation: slideOutVertical 0.2s ease-in-out backwards;
 }
 
 @media screen and (max-width:1200px) {

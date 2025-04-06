@@ -1,19 +1,47 @@
-let preTaskCards = [];
+/**
+ * A map storing task data by task ID for quick access and rendering.
+ * @type {Object.<string, Object>}
+ */
 let taskDataMap = {};
+
+/**
+ * The ID of the task currently being dragged.
+ * Used for drag-and-drop operations.
+ * @type {string|undefined}
+ */
+let currentDraggedTaskId;
+
+/**
+ * The target status used when adding a new task to the board.
+ * This determines which column the task should appear in.
+ * @type {string|undefined}
+ */
+let addTaskStatusTarget;
+
+/**
+ * Contains information about each board column and the corresponding empty state element ID.
+ * @type {{id: string, emptyId: string}[]}
+ */
 let boardContainers = [
   { id: 'toDo', emptyId: 'noTaskToDo' },
   { id: 'inProgress', emptyId: 'noTaskInProgress' },
   { id: 'awaitFeedback', emptyId: 'noTaskAwaitFeedback' },
   { id: 'done', emptyId: 'noTaskDone' },
 ];
-let currentDraggedTaskId;
-let addTaskStatusTarget;
 
+/**
+ * Initializes the task board.
+ * Loads tasks from Firebase into localStorage and renders them on the board.
+ * Optionally, default tasks can be uploaded to Firebase if needed.
+ *
+ * @returns {Promise<void>}
+ */
 async function initBoard() {
   await syncTasksFromDBToLocalStorage();
-  // await uploadDefaultTasks();
+  // await uploadDefaultTasks(); - only for loading default tasks on db
   renderTasks();
 }
+
 
 function progressSubtasks(task) {
   let totalSubtasks = task.subtasks?.length || 0;

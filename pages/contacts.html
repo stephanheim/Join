@@ -17,7 +17,7 @@
     <div id="floater"></div>
     <div class="cnt-list" id="cnt-list-div">
       <div class="cnt-btn-div">
-        <button onclick="addNewContact()" class="cnt-btn-add-new">Add new contact<img
+        <button onclick="showAnimateContact()" class="cnt-btn-add-new">Add new contact<img
             src="../assets/icons/person_add.svg" /></button>
       </div>
       <div class="cnt-rander-div" id="contacts-div">
@@ -34,12 +34,12 @@
           <img src="../assets/icons/arrow-left-line.svg" class="b-btn" onclick="backToList()">
         </div>
       </div>
-      <!-- Ab hier wieder dynamisch rendern -->
+      <!-- Render dynamically again from here -->
       <div class="cnt-glance" id="cnt-glance-contact">
       </div>
     </div>
-    <div class="resp-btn" id="resp-cmd">
-      <img id="resp-cmd-img" src="../assets/icons/add-contact-mobile.svg" onclick="addNewContact()">
+    <div class="resp-btn" id="resp-cmd" onclick="showAnimateContact()">
+      <img id="resp-cmd-img" src="../assets/icons/add-contact-mobile.svg">
     </div>
   </div>
   <script src="../js/pages/contacts.js"></script>
@@ -49,4 +49,3 @@
 </body>
 
 </html>
-

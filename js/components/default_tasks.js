@@ -1,71 +1,132 @@
 const DEFAULT_TASKS = [
   {
-    id: 'task-1743532919041-467',
+    id: 'task-1743532919041-101',
     isDefault: true,
-    title: 'Test Task zum Editieren',
-    description: 'Dies ist eine vordefinierte Aufgabe zum Bearbeiten.',
-    date: '01/01/2025',
-    category: 'User Story',
-    priority: 'Low',
-    status: 'toDo',
-    contacts: [],
-    subtasks: [
-      { text: 'ausprobiert', completed: false },
-      { text: 'es geht', completed: false }
-    ]
-  },
-  {
-    id: 'task-1743532919041-560',
-    isDefault: true,
-    title: 'Meeting vorbereiten',
-    description: 'Folien und Agenda für das Teammeeting erstellen.',
-    date: '05/01/2025',
-    category: 'User Story',
+    title: 'Projekt Kick-off Meeting',
+    description: 'Erstes Meeting zur Besprechung der Projektziele und des Entwicklungsplans für die Chat-App.',
+    date: '01/02/2025',
+    category: 'Meeting',
     priority: 'Medium',
     status: 'inProgress',
     contacts: [],
     subtasks: [
-      { text: 'Agenda schreiben', completed: false },
-      { text: 'Slides gestalten', completed: false },
-      { text: 'Meetingroom buchen', completed: false }
+      { text: 'Agenda erstellen', completed: false },
+      { text: 'Einladungen versenden', completed: false },
+      { text: 'Protokoll vorbereiten', completed: false }
     ]
   },
   {
-    id: 'task-1743532919041-921',
+    id: 'task-1743532919041-102',
     isDefault: true,
-    title: 'Code Review durchführen',
-    description: 'PR #45 im Repository durchsehen.',
-    date: '06/01/2025',
-    category: 'Technical Task',
-    priority: 'Urgent',
-    status: 'awaitFeedback',
+    title: 'UI/UX Design entwerfen',
+    description: 'Erstellung eines ansprechenden und benutzerfreundlichen Interface Designs für die Chat-App.',
+    date: '03/02/2025',
+    category: 'Design',
+    priority: 'Medium',
+    status: 'toDo',
     contacts: [],
     subtasks: [
-      { text: 'Review starten', completed: true },
-      { text: 'Kommentare schreiben', completed: false }
+      { text: 'Wireframes erstellen', completed: false },
+      { text: 'Mockups entwerfen', completed: false },
+      { text: 'Feedback einholen', completed: false }
+    ]
+  },
+  {
+    id: 'task-1743532919041-103',
+    isDefault: true,
+    title: 'Backend-Server einrichten',
+    description: 'Aufbau der Server-Infrastruktur für die Echtzeit-Kommunikation in der Chat-App.',
+    date: '05/02/2025',
+    category: 'Technical Task',
+    priority: 'Urgent',
+    status: 'toDo',
+    contacts: [],
+    subtasks: [
+      { text: 'Server konfigurieren', completed: false },
+      { text: 'Datenbank einrichten', completed: false },
+      { text: 'API Endpoints implementieren', completed: false }
+    ]
+  },
+  {
+    id: 'task-1743532919041-104',
+    isDefault: true,
+    title: 'Chat-Funktionalität entwickeln',
+    description: 'Implementierung der Kernfunktion zum Senden und Empfangen von Nachrichten in der App.',
+    date: '10/02/2025',
+    category: 'User Story',
+    priority: 'Urgent',
+    status: 'inProgress',
+    contacts: [],
+    subtasks: [
+      { text: 'Nachrichten Senden', completed: false },
+      { text: 'Nachrichten Empfangen', completed: false },
+      { text: 'Nachrichten Status anzeigen', completed: false }
+    ]
+  },
+  {
+    id: 'task-1743532919041-105',
+    isDefault: true,
+    title: 'App Test und Bugfixing',
+    description: 'Durchführung von Tests und Behebung von Fehlern in der Chat-App vor der Markteinführung.',
+    date: '15/02/2025',
+    category: 'Testing',
+    priority: 'Medium',
+    status: 'toDo',
+    contacts: [],
+    subtasks: [
+      { text: 'Unit Tests erstellen', completed: false },
+      { text: 'Integrationstests durchführen', completed: false },
+      { text: 'Fehlerberichte analysieren', completed: false },
+      { text: 'Bugfixes implementieren', completed: false }
     ]
   }
 ];
 
-
+/**
+ * Uploads all predefined tasks (`DEFAULT_TASKS`) asynchronously to Firebase.
+ * Each task is assigned a unique ID beforehand if none is available.
+ * Uses `prepareAndUploadTask()` for processing each task.
+ *
+ * @returns {Promise<void>}
+ */
 async function uploadDefaultTasks() {
   for (let task of DEFAULT_TASKS) {
-    if (!task.id) {
-      task.id = generateUniqueId();
-    }
-    const postUrl = BASE_URL + '/board/default.json';
-    const response = await fetchData(postUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(task),
-    });
-    if (response?.name) {
-      task.firebaseId = response.name;
-      await fetchData(`${BASE_URL}/board/default/${response.name}.json`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ firebaseId: response.name }),
-      });
-    }
+    await prepareAndUploadTask(task);
   }
+}
+
+/**
+ * Prepares a task and uploads it to Firebase.
+ * Adds a unique ID to the task if none exists.
+ * Stores the ID returned by Firebase (`firebaseId`) in the task.
+ *
+ * @param {Object} task - The task to be uploaded.
+ * @param {string} [task.id] - Optional local ID of the task.
+ * @returns {Promise<void>}
+ */
+async function prepareAndUploadTask(task) {
+  if (!task.id) {
+    task.id = generateUniqueId();
+  }
+  const firebaseId = await postTaskToFirebase(task);
+  if (firebaseId) {
+    task.firebaseId = firebaseId;
+  }
+}
+
+/**
+ * Sends a task in JSON format to Firebase via POST request.
+ * Returns the ID (`name`) generated by Firebase.
+ *
+ * @param {Object} task - The task to be sent.
+ * @returns {Promise<string|undefined>} - The Firebase ID or ‘undefined’ for errors.
+ */
+async function postTaskToFirebase(task) {
+  const url = BASE_URL + '/board/default.json';
+  const response = await fetchData(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(task),
+  });
+  return response?.name;
 }

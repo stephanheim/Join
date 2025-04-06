@@ -87,30 +87,36 @@ function renderContacts(groupedContacts) {
   }
 }
 
-// Neuen Kontakt erstellen, auf Firebase schreiben
-
-function addNewContact() {
-  let addContact = document.getElementById('addContactOverlay');
-  addContact.innerHTML = generateFloaterHTML();
-  document.body.style.overflow = 'hidden';
-  addContact.classList.remove('slideOut');
-  addContact.classList.add('slideIn');
-  addContact.classList.remove('d-none');
-  setTimeout(() => {
-    addContact.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
-  }, 200);
+function showAnimateContact() {
+  let overlay = document.getElementById('addContactOverlay');
+  if (overlay.classList === 'slideOut') {
+    overlay.classList.remove('slideOut');
+  } else {
+    overlay.classList.remove('slideOutVertical');
+  }
+  if (window.innerWidth >= 1200) {
+    animateContactDesktop();
+  } else {
+    animateContactMobile()
+  }
 }
 
-function closeNewContact() {
-  let closeFloater = document.getElementById('addContactOverlay');
-  closeFloater.classList.remove('slideIn');
-  closeFloater.classList.add('slideOut');
-  closeFloater.style.backgroundColor = 'rgba(0, 0, 0, 0)';
-  setTimeout(() => {
-    closeFloater.classList.add('d-none');
-    closeFloater.innerHTML = '';
-    document.body.style.overflow = '';
-  }, 100);
+function showAnimateContact() {
+  let overlay = document.getElementById('addContactOverlay');
+  overlay.classList.remove('slideOut', 'slideOutVertical');
+  if (window.innerWidth >= 1200) {
+    animateContactDesktop();
+  } else {
+    animateContactMobile()
+  }
+}
+
+function animateCloseContact() {
+  if (window.innerWidth >= 1200) {
+    animateCloseContactDesktop();
+  } else {
+    animateCloseContactMobile();
+  }
 }
 
 async function createNewContact(name, email, phone) {
@@ -124,7 +130,7 @@ async function processNewContact(contactId) {
   await loadContactsFromFirebase();
   getGroupedContacts();
   document.getElementById('contactForm').reset();
-  closeNewContact();
+  animateCloseContact();
   setTimeout(() => {
     highlightContact(contactId);
     showContactInfo(contactId);
@@ -183,7 +189,6 @@ function isCntPhoneValid(phone) {
   return /^\+?\d{7,15}$/.test(phone);
 }
 
-
 async function postToFirebase(contact) {
   try {
     let response = await fetch(BASE_URL + '/contacts.json', {
@@ -230,7 +235,7 @@ function updateRespCmd(windowWidthOptions, contactId) {
   } else {
     respCmdImg.src = "../assets/icons/add-contact-mobile.svg";
     respCmdImg.onclick = function () {
-      addNewContact();
+      showAnimateContact();
     };
   }
 }
@@ -304,6 +309,7 @@ async function deleteContact(contactId) {
   } catch (error) {
     console.error('Fehler beim Löschen des Kontakts:', error);
   }
+  backToList();
 }
 
 

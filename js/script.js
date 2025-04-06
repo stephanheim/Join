@@ -104,7 +104,7 @@ function setActiveNav(clickedNav) {
 function overlayClick(event) {
   let overlayContent = document.getElementById('contactFloater');
   if (!overlayContent.contains(event.target)) {
-    closeNewContact();
+    animateCloseContact();
   }
 }
 

@@ -9,7 +9,7 @@ function generateFloaterHTML() {
           <span class="add-subtitle">Tasks are better with a team!</span>
         </div>
         <div class="add-seperator"></div>
-        <div onclick="closeNewContact()" class="add-close-div-white d-none">
+        <div onclick="animateCloseContact()" class="add-close-div-white d-none">
           <img src="../assets/icons/close_white.svg" class="add-close-btn-white" />
         </div>
       </div>
@@ -18,7 +18,7 @@ function generateFloaterHTML() {
           <img src="../assets/icons/person-cnt.svg" class="add-icon-pers" />
         </div>
         <div class="right-wrap">
-          <div onclick="closeNewContact()" class="add-close-div-dark">
+          <div onclick="animateCloseContact()" class="add-close-div-dark">
             <img src="../assets/icons/close.svg" class="add-close-btn-dark" />
           </div>
           <div class="add-fields">
@@ -37,7 +37,7 @@ function generateFloaterHTML() {
             </div>
           </div>
           <div class="add-btn-div">
-            <button type="button" onclick="closeNewContact()" class="add-btn-cancel">
+            <button type="button" onclick="animateCloseContact()" class="add-btn-cancel">
               Cancel
               <div class="btn-icons">
                 <img src="../assets/icons/close.svg" class="img-btn-close" />
@@ -126,7 +126,7 @@ function generateContactsEditFloaterHTML(contact) {
           <span class="add-title">Edit contact</span>
         </div>
         <div class="add-seperator"></div>
-        <div onclick="closeNewContact()" class="add-close-div-white d-none">
+        <div onclick="animateCloseContact()" class="add-close-div-white d-none">
           <img src="../assets/icons/close_white.svg" class="add-close-btn-white" />
         </div>
       </div>
@@ -135,7 +135,7 @@ function generateContactsEditFloaterHTML(contact) {
             ${getInitials(contact.name)}  
         </div>
         <div class="right-wrap">
-          <div onclick="closeNewContact()" class="add-close-div-dark">
+          <div onclick="animateCloseContact()" class="add-close-div-dark">
             <img src="../assets/icons/close.svg"  class="add-close-btn-dark" />
           </div>
           <div class="add-fields">

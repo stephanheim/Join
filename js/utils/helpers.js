@@ -201,3 +201,49 @@ if (joinLogoMobile && window.innerWidth <= 600) {
     joinLogoMobile.src = './assets/img/join_login.svg';
   }, 800);
 }
+
+function animateContactDesktop() {
+  let addContact = document.getElementById('addContactOverlay');
+  addContact.innerHTML = generateFloaterHTML();
+  document.body.style.overflow = 'hidden';
+  addContact.classList.remove('d-none');
+  addContact.classList.add('slideIn');
+  setTimeout(() => {
+    addContact.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
+  }, 100);
+}
+
+function animateContactMobile() {
+  let addContact = document.getElementById('addContactOverlay');
+  addContact.innerHTML = generateFloaterHTML();
+  document.body.style.overflow = 'hidden';
+  addContact.classList.remove('d-none');
+  addContact.classList.add('slideInVertical');
+  setTimeout(() => {
+    addContact.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
+  }, 100);
+}
+
+function animateCloseContactDesktop() {
+  let closeFloater = document.getElementById('addContactOverlay');
+  closeFloater.classList.remove('slideIn');
+  closeFloater.classList.add('slideOut');
+  closeFloater.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+  setTimeout(() => {
+    closeFloater.classList.add('d-none');
+    closeFloater.innerHTML = '';
+    document.body.style.overflow = '';
+  }, 100);
+}
+
+function animateCloseContactMobile() {
+  let closeFloater = document.getElementById('addContactOverlay');
+  closeFloater.classList.remove('slideInVertical');
+  closeFloater.classList.add('slideOutVertical');
+  closeFloater.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+  setTimeout(() => {
+    closeFloater.classList.add('d-none');
+    closeFloater.innerHTML = '';
+    document.body.style.overflow = '';
+  }, 100);
+}
