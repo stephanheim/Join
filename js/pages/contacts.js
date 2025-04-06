@@ -251,15 +251,15 @@ function showMoreOptions(contactId) {
     }, 20);
     setTimeout(() => {
       document.addEventListener("click", handleOutsideClick);
-    }, 50); 
-  } 
+    }, 50);
+  }
 }
 
 function handleOutsideClick(event) {
   const floater = document.getElementById("respFloater");
   if (floater && !floater.contains(event.target)) {
     closeRespEditFloater();
-    document.removeEventListener("click", handleOutsideClick); 
+    document.removeEventListener("click", handleOutsideClick);
   }
 }
 
@@ -275,7 +275,7 @@ function closeRespEditFloater() {
       floater.remove();
       let img = document.getElementById("resp-cmd-img");
       if (img) img.classList.remove("d-none");
-    }, 300); 
+    }, 300);
   }
 }
 
@@ -308,25 +308,18 @@ async function deleteContact(contactId) {
 
 
 async function updateAssignedContactsDB(deletedContactId) {
-  // Definiere die beiden Endpunkte, die du aktualisieren möchtest
-  const endpoints = ['/board/newTasks', '/board/default'];
-
-  for (const endpoint of endpoints) {
-    const url = `${BASE_URL}${endpoint}.json`;
+  let tasksPaths = ['/board/newTasks', '/board/default'];
+  for (const paths of tasksPaths) {
+    const url = `${BASE_URL}${paths}.json`;
     try {
-      // Hole alle Tasks aus dem aktuellen Endpunkt
       const tasksData = await fetchData(url, { method: 'GET' });
       if (tasksData) {
-        // Iteriere über alle Tasks
         for (const taskKey in tasksData) {
-          const task = tasksData[taskKey];
-          // Falls der Task ein contacts-Array enthält
+          let task = tasksData[taskKey];
           if (task.contacts && Array.isArray(task.contacts)) {
-            // Filtere den gelöschten Kontakt raus
-            const filteredContacts = task.contacts.filter(contact => contact.id !== deletedContactId);
-            // Wenn sich das Array geändert hat, update den Task in Firebase
+            let filteredContacts = task.contacts.filter(contact => contact.id !== deletedContactId);
             if (filteredContacts.length !== task.contacts.length) {
-              const updateUrl = `${BASE_URL}${endpoint}/${taskKey}/contacts.json`;
+              const updateUrl = `${BASE_URL}${paths}/${taskKey}/contacts.json`;
               await fetch(updateUrl, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
@@ -337,7 +330,7 @@ async function updateAssignedContactsDB(deletedContactId) {
         }
       }
     } catch (error) {
-      console.error(`Fehler beim Aktualisieren der Aufgaben im ${endpoint}:`, error);
+      console.error(`Error when updating the tasks in the ${endpoint}:`, error);
     }
   }
 }
