@@ -5,8 +5,8 @@
 }
 
 .main-floater {
-  height: 100%;
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: row;
   background-color: white;
@@ -27,16 +27,21 @@
 }
 
 .add-text {
+  max-width: 350px;
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
 
 .add-form {
+  max-width: 745px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 78px;
+  padding-left: 78px;
 }
 
 .add-title {
@@ -66,7 +71,6 @@
 .add-form-circle {
   width: 120px;
   height: 120px;
-  margin-left: 83px;
   background-color: #d1d1d1;
   border-radius: 50%;
   display: flex;
@@ -83,28 +87,26 @@
   gap: 40px;
   width: 100%;
   height: 100%;
-  margin-left: 80px;
   position: relative;
 }
 
 .add-fields {
+  max-width: 422px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 32px;
   cursor: pointer;
+  margin-right: 48px;
 }
 
 .add-input {
-  width: 422px;
-  height: 50px;
-  border: 1px solid #d1d1d1;
-  border-radius: 10px;
+  width: 100%;
   font-size: 20px;
   font-weight: 400;
   line-height: 24px;
-  padding: 13px 21px 13px 21px;
-  gap: 10px;
   cursor: pointer;
+  border: none;
 }
 
 .add-input:focus {
@@ -112,7 +114,7 @@
   outline: none;
 }
 
-.add-close-div {
+.add-close-div-dark {
   align-self: flex-end;
   display: flex;
   justify-content: center;
@@ -123,20 +125,37 @@
   width: 28px;
   height: 28px;
   margin-top: 48px;
-  margin-bottom: 48px;
+  margin: 48px;
 }
 
-.add-close-btn {
+.add-close-div-white {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 28px;
+  height: 28px;
+  justify-content: center;
+  align-items: center;
+  margin: 32px;
+  border-radius: 56px;
+  cursor: pointer;
+}
+
+.add-close-btn-dark {
   width: 13.5px;
   height: 13.5px;
   z-index: 1;
 }
 
-.add-close-div:hover {
+.add-close-div-dark:hover {
   background-color: #ebebeb;
 }
 
-.add-close-btn:hover {
+.add-close-div-white:hover {
+  background-color: #29ABE2;
+}
+
+.add-close-btn-dark:hover {
   color: #2a3647;
 }
 
@@ -216,31 +235,21 @@
 }
 
 .input-div {
-  position: relative;
+  max-width: 422px;
+  width: 100%;
+  height: 50px;
+  border: solid 1px #D1D1D1;
+  border-radius: 10px;
+  padding: 12px 21px 12px 21px;
   display: flex;
+  justify-content: space-between;
+  gap: 10px;
   align-items: center;
-  width: 422px;
 }
 
-.input-img-person {
-  position: absolute;
-  left: 360px;
-  height: 16px;
-  width: 16px;
-}
-
-.input-img-mail {
-  position: absolute;
-  left: 358px;
-  height: 16px;
-  width: 20px;
-}
-
-.input-img-call {
-  position: absolute;
-  left: 359px;
-  height: 18px;
-  width: 18px;
+.input-img {
+  height: 24px;
+  width: 24px;
 }
 
 .btn-icons {
@@ -278,4 +287,102 @@ slideOut {
   animation: slideOut 0.5s ease-in-out forwards;
 }
 
-@media screen and (max-width:) {}
+@media screen and (max-width:1200px) {
+  .form-floater {
+    max-width: 396px;
+    width: 100%;
+    height: 760px;
+  }
+
+  .main-floater {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    border-radius: 30px 30px 30px 30px;
+    position: relative;
+  }
+
+  .add-contact {
+    max-width: 396px;
+    width: 100%;
+    height: 352px;
+    gap: 16px;
+    padding: unset;
+    padding: 66px 24px 66px 24px;
+    border-radius: 30px 30px 0 0;
+  }
+
+  .add-icon {
+    display: none;
+  }
+
+  .add-text {
+    max-width: 350px;
+    width: 100%;
+  }
+
+  .add-title {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 120%;
+  }
+
+  .add-subtitle {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 120%;
+  }
+
+  .add-form-circle {
+    position: absolute;
+    top: 290px;
+  }
+
+  .add-form {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    padding: 92px 16px 0 16px;
+  }
+
+  .add-close-div-white {
+    display: flex !important;
+  }
+
+  .add-close-div-dark {
+    display: none;
+  }
+
+  .right-wrap {
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .add-fields {
+    margin-right: unset;
+    gap: 16px;
+  }
+
+  .input-div {
+    max-width: 364px;
+    width: 100%;
+    height: 40px;
+  }
+
+  .input-img {
+    height: 24px;
+    width: 24px;
+  }
+
+  .add-btn-cancel {
+    display: none;
+  }
+}
+
+@media screen and (max-width:428px) {
+  .form-floater {
+    padding: 0 16px;
+  }
+}

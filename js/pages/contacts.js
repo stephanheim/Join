@@ -307,6 +307,41 @@ async function deleteContact(contactId) {
 }
 
 
+async function updateAssignedContactsDB(deletedContactId) {
+  // Definiere die beiden Endpunkte, die du aktualisieren möchtest
+  const endpoints = ['/board/newTasks', '/board/default'];
+
+  for (const endpoint of endpoints) {
+    const url = `${BASE_URL}${endpoint}.json`;
+    try {
+      // Hole alle Tasks aus dem aktuellen Endpunkt
+      const tasksData = await fetchData(url, { method: 'GET' });
+      if (tasksData) {
+        // Iteriere über alle Tasks
+        for (const taskKey in tasksData) {
+          const task = tasksData[taskKey];
+          // Falls der Task ein contacts-Array enthält
+          if (task.contacts && Array.isArray(task.contacts)) {
+            // Filtere den gelöschten Kontakt raus
+            const filteredContacts = task.contacts.filter(contact => contact.id !== deletedContactId);
+            // Wenn sich das Array geändert hat, update den Task in Firebase
+            if (filteredContacts.length !== task.contacts.length) {
+              const updateUrl = `${BASE_URL}${endpoint}/${taskKey}/contacts.json`;
+              await fetch(updateUrl, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(filteredContacts)
+              });
+            }
+          }
+        }
+      }
+    } catch (error) {
+      console.error(`Fehler beim Aktualisieren der Aufgaben im ${endpoint}:`, error);
+    }
+  }
+}
+
 
 async function updateContact(contactId) {
   try {
