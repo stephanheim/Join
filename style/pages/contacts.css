@@ -342,6 +342,19 @@
   display: none;
 }
 
+.edit-floater.preSlideIn {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.edit-floater.slideIn {
+  animation: cntSlideIn 0.3s ease-in-out forwards;
+}
+
+.edit-floater.slideOut {
+  animation: cntSlideOut 0.3s ease-in-out forwards;
+}
+
 /* Media Queries */
 
 
@@ -465,12 +478,10 @@
   padding: 24px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   position: absolute;
-  top: -18px;
-  left: 0;
+  bottom: -24px;
+  right: -40px;
   z-index: 10;
 }
-
-
 }
 
 @media screen and (max-width:428px) {

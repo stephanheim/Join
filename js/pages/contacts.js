@@ -237,21 +237,46 @@ function updateRespCmd(windowWidthOptions, contactId) {
 
 
 function showMoreOptions(contactId) {
-  let respCmdContainer = document.getElementById('resp-cmd');
+  let respCmdContainer = document.getElementById("resp-cmd");
   let editFloaterHTML = generateRespEditFloaterHTML(contactId);
   respCmdContainer.innerHTML += editFloaterHTML;
-  respCmdContainer.classList.remove("slideOut");
-  respCmdContainer.classList.add("slideIn");
+  let img = document.getElementById("resp-cmd-img");
+  if (img) img.classList.add("d-none");
+  let floater = document.getElementById("respFloater");
+  if (floater) {
+    floater.classList.add("preSlideIn");
+    setTimeout(() => {
+      floater.classList.remove("preSlideIn");
+      floater.classList.add("slideIn");
+    }, 20);
+    setTimeout(() => {
+      document.addEventListener("click", handleOutsideClick);
+    }, 50); 
+  } 
+}
+
+function handleOutsideClick(event) {
+  const floater = document.getElementById("respFloater");
+  if (floater && !floater.contains(event.target)) {
+    closeRespEditFloater();
+    document.removeEventListener("click", handleOutsideClick); 
+  }
 }
 
 
 function closeRespEditFloater() {
-  let respCmdContainer = document.getElementById('resp-cmd');
-  let respEditFloater = document.getElementById('respFloater');
-  respEditFloater.classList.remove("slideIn");
-  respEditFloater.classList.add("slideOut");
-  respCmdContainer.classList.remove("slideIn");
-  respCmdContainer.innerHTML = '';
+  let respCmdContainer = document.getElementById("resp-cmd");
+  let floater = document.getElementById("respFloater");
+  if (floater) {
+    floater.classList.remove("slideIn");
+    floater.classList.add("slideOut");
+
+    setTimeout(() => {
+      floater.remove();
+      let img = document.getElementById("resp-cmd-img");
+      if (img) img.classList.remove("d-none");
+    }, 300); 
+  }
 }
 
 

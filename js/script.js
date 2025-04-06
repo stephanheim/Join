@@ -116,3 +116,16 @@ function getUserInitials() {
   let initial = firstInitial + lastInitial;
   document.getElementById('userInitial').innerText = initial;
 }
+
+function openHelpPage() {
+  sessionStorage.setItem('previousPage', currentPage);
+  loadPageContentPath('help');
+}
+
+function arrowBackToPreviousPage() {
+  const previousPage = sessionStorage.getItem('previousPage');
+  if (previousPage) {
+    loadPageContentPath(previousPage);
+    sessionStorage.removeItem('previousPage');
+  }
+}
