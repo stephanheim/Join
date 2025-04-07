@@ -43,8 +43,6 @@ function boardCardTemplate(task, subtaskHTML, namesHTML) {
             <div class="subtask-content">
               ${subtaskHTML}
             </div>
-   
-
             <div class="delete-edit-section">
               <div class="edit" onclick="deleteTask('${task.firebaseId}','${task.id}')">
                 <svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
