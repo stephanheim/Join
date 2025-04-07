@@ -44,29 +44,45 @@ function getTaskFieldValues() {
   return { title, date, category };
 }
 
-function showFieldErrors() {
-  const messages = document.getElementsByClassName('error-message');
-  const requirements = [document.getElementById('addTaskTitle'), document.getElementById('inputDate'), document.getElementById('categoryDropDown')];
-  for (const message of messages) {
-    message.innerText = 'This field is required';
-    message.style.display = 'block';
-  }
-  for (const required of requirements) {
-    required.style.borderColor = '#FF001F';
-  }
+function clearAddTask() {
+  document.getElementById('addTaskTitle').value = '';
+  document.getElementById('addTaskDescription').value = '';
+  document.getElementById('addTaskDate').value = '';
+  resetSelectCategory();
+  resetContactsSelection();
+  resetSubtask();
+  resetSelectedPriority();
 }
 
-function clearFieldErrors() {
-  const messages = document.getElementsByClassName('error-message');
-  const requirements = [document.getElementById('addTaskTitle'), document.getElementById('inputDate'), document.getElementById('categoryDropDown')];
-  for (const message of messages) {
-    message.innerText = '';
-    message.style.display = 'none';
-  }
-  for (const required of requirements) {
-    required.style.borderColor = '';
-  }
+function openAddTaskFloating(status) {
+  let addTask = document.getElementById('floatingAddTask');
+  addTask.innerHTML = addTaskTemplate();
+  setTimeout(() => {
+    preventFormSubmitOnEnter();
+  }, 100);
+  document.body.style.overflow = 'hidden';
+  addTask.classList.remove('slideOut', 'd-none');
+  addTask.classList.add('slideIn');
+  setTimeout(() => {
+    addTask.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
+  }, 200);
+  addTaskStatusTarget = status;
 }
+
+function closeAddTaskFloating() {
+  let floatingTask = document.getElementById('floatingAddTask');
+  floatingTask.classList.remove('slideIn');
+  floatingTask.classList.add('slideOut');
+  floatingTask.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+  setTimeout(() => {
+    floatingTask.classList.add('d-none');
+    floatingTask.innerHTML = '';
+    document.body.style.overflow = '';
+  }, 100);
+}
+
+
+/* --- Auslagern unterehalb --- */
 
 
 async function createNewTask(status) {
@@ -90,49 +106,6 @@ function initTaskWithStatus(status) {
   return task;
 }
 
-
-async function saveTaskToDB(task) {
-  const response = await postNewTaskToDB(task);
-  task.firebaseId = response.name;
-  await setFirebaseIdInDB(response.name);
-}
-
-
-function addTaskToLocalStorage(task) {
-  let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-  tasks.push(task);
-  localStorage.setItem('tasks', JSON.stringify(tasks));
-}
-
-
-function showBoardAfterDelay() {
-  setTimeout(() => {
-    loadPageContentPath('board');
-    setActiveNavBoard();
-  }, 1300);
-}
-
-
-async function postNewTaskToDB(newTask) {
-  const url = BASE_URL + '/board/newTasks.json';
-  const options = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(newTask),
-  };
-  return await fetchData(url, options);
-}
-
-async function setFirebaseIdInDB(firebaseId) {
-  const url = BASE_URL + `/board/newTasks/${firebaseId}/firebaseId.json`;
-  const options = {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(firebaseId),
-  };
-  await fetchData(url, options);
-}
-
 async function deleteTask(firebaseId, taskId) {
   let success = await deleteTaskInDB(firebaseId);
   if (!success) {
@@ -140,25 +113,6 @@ async function deleteTask(firebaseId, taskId) {
     delete taskDataMap[taskId]
     loadPageContentPath('board');
   }
-}
-
-async function deleteTaskInDB(firebaseId) {
-  const url = BASE_URL + `/board/newTasks/${firebaseId}.json`;
-  const options = {
-    method: 'DELETE',
-  };
-  const response = await fetchData(url, options);
-  if (!response) return;
-}
-
-function deleteTaskInLocalStorage(firebaseId) {
-  let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-  tasks = tasks.filter((task) => task.firebaseId !== firebaseId);
-  localStorage.setItem('tasks', JSON.stringify(tasks));
-}
-
-function updatedTaskDataMapArray() {
-
 }
 
 function selectedPriority(prio, element) {
@@ -184,45 +138,6 @@ function resetSelectedPriority() {
     defaultButton.classList.add('isSelected');
   }
   selectedPriorityValue = '';
-}
-
-function openDropdownAssigned() {
-  const dropDownMenu = document.getElementById('dropDownMenuAssigned');
-  const inputField = document.getElementById('addTaskAssigned');
-  const arrow = document.getElementById('arrowAssigned');
-  updateUIElements(inputField, arrow, dropDownMenu);
-  toggleDropdown(dropDownMenu);
-  initialsShowOnAssinged(dropDownMenu);
-  assignedBorderColor(dropDownMenu);
-}
-
-function toggleDropdown(dropDownMenu) {
-  const isHidden = dropDownMenu.classList.contains('drop-down-hide');
-  getContacts(dropDownMenu);
-  isHidden ? showDropdown(dropDownMenu) : hideDropdown(dropDownMenu);
-}
-
-function updateUIElements(inputField, arrow, dropDownMenu) {
-  const isHidden = dropDownMenu.classList.contains('drop-down-hide');
-  toggleArrowRotation(arrow, isHidden);
-  updatePlaceholder(inputField, isHidden);
-}
-
-function assignedBorderColor(dropDownMenu) {
-  const borderColor = document.getElementById('assignedInputBorderColor');
-  const isHidden = dropDownMenu.classList.contains('drop-down-hide');
-  if (isHidden) {
-    borderColor.style.border = '1px solid rgba(209, 209, 209, 1)';
-  } else {
-    borderColor.style.border = '1px solid rgba(41, 171, 226, 1)';
-  }
-}
-
-function renderDropdownUser(dropDownMenu, contacts) {
-  contacts = contacts || formattedContactsArray;
-  dropDownMenu.innerHTML = '';
-  addedContacts(dropDownMenu, contacts);
-  applySelectionStyles(contacts);
 }
 
 function addedContacts(dropDownMenu, contacts) {
@@ -254,86 +169,12 @@ function getContacts(dropDownMenu) {
   renderDropdownUser(dropDownMenu);
 }
 
-function updatePlaceholder(inputField, isHidden) {
-  if (inputField) {
-    inputField.placeholder = !isHidden ? '' : 'Select contacts to assign';
-    inputField.value = isHidden ? '' : inputField.value;
-  }
-}
-
-function toggleArrowRotation(arrow, isHidden) {
-  if (arrow) {
-    arrow.classList.toggle('rotate-arrow', isHidden);
-    arrow.classList.toggle('rotate-arrow-0', !isHidden);
-  }
-}
-
-function openDropdownCategory() {
-  const dropDownMenu = document.getElementById('dropDownMenuCategory');
-  const arrow = document.getElementById('arrowCategory');
-  const isHidden = dropDownMenu.classList.contains('drop-down-hide');
-  toggleArrowRotation(arrow, isHidden);
-  renderDropdownMenuCategory(dropDownMenu);
-  if (isHidden) {
-    showDropdown(dropDownMenu);
-  } else {
-    hideDropdown(dropDownMenu);
-  }
-}
-
-
-function renderDropdownMenuCategory(dropDownMenu) {
-  if (!dropDownMenu.innerHTML.trim()) {
-    dropDownMenu.innerHTML = categoryTemplate();
-  }
-}
-
-
-function selectCategory(category, event) {
-  if (event) {
-    event.stopPropagation();
-  }
-  const dropDownMenu = document.getElementById('dropDownMenuCategory');
-  const selectedCategory = document.getElementById('selectedCategory');
-  const arrow = document.getElementById('arrowCategory');
-  const isHidden = dropDownMenu.classList.contains('drop-down-hide');
-  hideDropdown(dropDownMenu);
-  toggleArrowRotation(arrow, isHidden);
-  if (selectedCategory) {
-    selectedCategory.innerText = category;
-  }
-  selectedCategoryValue = category;
-}
-
-
 function resetSelectCategory() {
   const selectedCategory = document.getElementById('selectedCategory');
   if (selectedCategory) {
     selectedCategory.innerText = 'Select task category';
     selectedCategoryValue = '';
   }
-}
-
-function openSubtaskInput() {
-  let inputField = document.getElementById('addTaskSubtasks');
-  let plusIcon = document.getElementById('plusIcon');
-  let otherIcons = document.getElementById('otherIcons');
-  let container = document.getElementById('inputContainer');
-  container.classList.add('active');
-  plusIcon.classList.add('d-none');
-  otherIcons.classList.remove('d-none');
-  inputField.placeholder = '';
-}
-
-function closeSubtaskInput(event) {
-  event.stopPropagation();
-  const inputField = document.getElementById('addTaskSubtasks');
-  const plusIcon = document.getElementById('plusIcon');
-  const otherIcons = document.getElementById('otherIcons');
-  plusIcon.classList.remove('d-none');
-  otherIcons.classList.add('d-none');
-  inputField.placeholder = 'Add new subtask';
-  resetSubtaskInput(event);
 }
 
 function renderSubtask(subtask) {
@@ -461,22 +302,4 @@ function renderSelectedInitials() {
   }
 }
 
-function initialsShowOnAssinged(dropDownMenu) {
-  const initialCircle = document.getElementById('selectedInitials');
-  const isHidden = dropDownMenu.classList.contains('drop-down-hide');
-  if (isHidden) {
-    initialCircle.classList.remove('d-none');
-  } else {
-    initialCircle.classList.add('d-none');
-  }
-}
 
-function clearAddTask() {
-  document.getElementById('addTaskTitle').value = '';
-  document.getElementById('addTaskDescription').value = '';
-  document.getElementById('addTaskDate').value = '';
-  resetSelectCategory();
-  resetContactsSelection();
-  resetSubtask();
-  resetSelectedPriority();
-}

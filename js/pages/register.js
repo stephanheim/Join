@@ -3,7 +3,6 @@ function checkForm() {
   return allFieldsValid();
 }
 
-
 function getUserInput() {
   let name = document.getElementById('registNewName');
   let email = document.getElementById('registNewEmail');
@@ -16,7 +15,6 @@ function getUserInput() {
   };
   return { newUser, confirmPassword: confirmPassword.value.trim() };
 }
-
 
 async function submitNewUser() {
   if (!checkForm()) return;
@@ -33,13 +31,11 @@ async function submitNewUser() {
   }
 }
 
-
 function emailAlreadyRegistered() {
   const message = document.getElementById('emailMessage');
   message.innerText = "This e-mail address is already registered";
   message.style.display = "block";
 }
-
 
 async function postUser(newUser) {
   const url = BASE_URL + "/register/users.json";
@@ -54,7 +50,6 @@ async function postUser(newUser) {
   registrationComplete();
 }
 
-
 function registrationComplete() {
   const message = document.getElementById('overlaySuccsessful');
   message.style.display = "block";
@@ -63,23 +58,6 @@ function registrationComplete() {
     window.location.href = '../index.html';
   }, 1500);
 }
-
-
-function isNameValid() {
-  let name = document.getElementById('registNewName').value.trim();
-  if (name === "") return false;
-  const parts = name.split(/\s+/);
-  return parts.length >= 2;
-}
-
-
-function isEmailValid() {
-  let email = document.getElementById('registNewEmail').value.trim();
-  if (email === "") return false;
-  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return regex.test(email);
-}
-
 
 async function isThisEmailAvailable(email) {
   const url = BASE_URL + "register/users.json";
@@ -95,20 +73,6 @@ async function isThisEmailAvailable(email) {
   }
 }
 
-
-function isPasswordFieldValid() {
-  let password = document.getElementById('registNewPassword').value.trim();
-  return password.length >= 8;
-}
-
-
-function confirmPasswords() {
-  let password = document.getElementById('registNewPassword').value.trim();
-  let confirmPassword = document.getElementById('registConfirmPassword').value.trim();
-  return password === confirmPassword;
-}
-
-
 function allRequiredFieldsAreFilledIn() {
   let { newUser, confirmPassword } = getUserInput();
   return (
@@ -118,7 +82,6 @@ function allRequiredFieldsAreFilledIn() {
     confirmPassword !== ""
   );
 }
-
 
 function allFieldsValid() {
   return (
@@ -131,7 +94,6 @@ function allFieldsValid() {
   );
 }
 
-
 function renderNameMessage() {
   const message = document.getElementById('nameMessage');
   if (!isNameValid()) {
@@ -142,7 +104,6 @@ function renderNameMessage() {
     message.style.display = "none";
   }
 }
-
 
 function renderEmailMessage() {
   const message = document.getElementById('emailMessage');
@@ -155,7 +116,6 @@ function renderEmailMessage() {
   }
 }
 
-
 function renderPasswordMessage() {
   const message = document.getElementById('passwordMessage');
   if (!isPasswordFieldValid()) {
@@ -166,7 +126,6 @@ function renderPasswordMessage() {
     message.style.display = "none";
   }
 }
-
 
 function renderComparePasswordMessage() {
   const message = document.getElementById('comparePasswordMessage');
@@ -182,7 +141,6 @@ function renderComparePasswordMessage() {
   }
 }
 
-
 function renderCheckboxMessage(type) {
   const message = document.getElementById('checkboxMessage');
   if (!isCheckboxChecked(type)) {
@@ -193,7 +151,6 @@ function renderCheckboxMessage(type) {
     message.style.display = "none";
   }
 }
-
 
 function checkPasswordIcon() {
   let passwordInput = document.getElementById('registNewPassword');
@@ -208,7 +165,6 @@ function checkPasswordIcon() {
   }
 }
 
-
 function checkConfirmIcon() {
   let passwordInput = document.getElementById('registConfirmPassword');
   let visibilityIcon = document.getElementById('visibilityConfirmSignup');
@@ -221,7 +177,6 @@ function checkConfirmIcon() {
     visibilityIcon.style.pointerEvents = 'none';
   }
 }
-
 
 function toggleConfirmVisibility() {
   let passwordInput = document.getElementById('registConfirmPassword');

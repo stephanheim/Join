@@ -1,11 +1,7 @@
-const BASE_URL = 'https://join-418-default-rtdb.europe-west1.firebasedatabase.app/';
-
-let contactOpen = false;
-
 let currentPage = '';
 
 const pageTitles = {
-  add_task: 'Add Task',
+  addTask: 'Add Task',
   summary: 'Summary User',
   board: 'Board',
   contacts: 'Contacts',
@@ -19,7 +15,7 @@ async function initPages(page) {
   toggleNavPrivacyByPage(page);
   if (page === 'summary') {
     initSummary();
-  } else if (page === 'add_task') {
+  } else if (page === 'addTask') {
     initAddTask();
   } else if (page === 'board') {
     initBoard();
@@ -27,19 +23,6 @@ async function initPages(page) {
     initContacts();
   }
 }
-
-function toggleNavPrivacyByPage(page) {
-  const nav = document.getElementById('navPrivacy');
-  if (!nav) return;
-  const isDashboardPage = ['summary', 'add_task', 'board', 'contacts'].includes(page);
-  const isSmallScreen = window.innerWidth < 1200;
-  if (isDashboardPage && isSmallScreen) {
-    nav.classList.add('d-none');
-  } else {
-    nav.classList.remove('d-none');
-  }
-}
-window.onresize = () => toggleNavPrivacyByPage(currentPage);
 
 async function loadPageContentPath(page) {
   let contentPages = document.getElementById('content');
@@ -62,27 +45,29 @@ async function fetchContent(page) {
   }
 }
 
+window.onresize = () => toggleNavPrivacyByPage(currentPage);
+
+function toggleNavPrivacyByPage(page) {
+  const nav = document.getElementById('navPrivacy');
+  if (!nav) return;
+  const isDashboardPage = ['summary', 'addTask', 'board', 'contacts'].includes(page);
+  const isSmallScreen = window.innerWidth < 1200;
+  if (isDashboardPage && isSmallScreen) {
+    nav.classList.add('d-none');
+  } else {
+    nav.classList.remove('d-none');
+  }
+}
+
 function changePageTitles(page) {
   let changeTitles = pageTitles[page];
   document.title = changeTitles;
 }
 
-function showUserWelcome() {
-  let userData = JSON.parse(localStorage.getItem('loggedInUser'));
-  let nameUser = document.getElementById('welcomeUser');
-  let welcomeUser = document.getElementById('welcomeMessage');
-  nameUser.innerText = `${userData.name}`;
-  welcomeUser.innerText = showDaytimeGreeting();
-}
-
-function showDaytimeGreeting() {
-  let hour = new Date().getHours();
-  if (hour >= 5 && hour < 12) {
-    return 'Good Morning';
-  } else if (hour >= 12 && hour < 18) {
-    return 'Good afternoon';
-  } else {
-    return 'Good evening';
+function setActiveNavBoard() {
+  let boardNav = document.getElementById('sumToBoard');
+  if (boardNav) {
+    setActiveNav(boardNav);
   }
 }
 
@@ -106,15 +91,6 @@ function overlayClick(event) {
   if (!overlayContent.contains(event.target)) {
     animateCloseContact();
   }
-}
-
-function getUserInitials() {
-  let userData = JSON.parse(localStorage.getItem('loggedInUser'));
-  let nameParts = userData.name.split(' ');
-  let firstInitial = nameParts[0][0].toUpperCase();
-  let lastInitial = nameParts.length > 1 ? nameParts[1][0].toUpperCase() : '';
-  let initial = firstInitial + lastInitial;
-  document.getElementById('userInitial').innerText = initial;
 }
 
 function openHelpPage() {

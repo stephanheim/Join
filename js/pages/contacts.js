@@ -1,8 +1,5 @@
 let contactsArray = [];
-
 const contactColors = ['#ff7a01', '#9327ff', '#6e52ff', '#fc71ff', '#ffbb2c', '#20d7c2', '#462f8a', '#ff4646'];
-
-// Kontakte ab Firebase holen, rendern, sortieren, Farben zuordnen
 
 function initContacts() {
   checkAndAddCurrentUser();
@@ -20,13 +17,6 @@ async function loadContactsFromFirebase() {
   } catch (error) {
     console.error('Fehler beim Laden der Kontakte', error);
   }
-}
-
-function getGroupedContacts() {
-  let groupedContacts = sortContacts();
-  assignColorsToContacts(groupedContacts);
-  prepareFormattedContacts();
-  renderContacts(groupedContacts);
 }
 
 async function getAllContacts() {
@@ -73,6 +63,24 @@ function getInitials(name) {
   return nameParts[0].charAt(0).toUpperCase() + nameParts[1].charAt(0).toUpperCase();
 }
 
+function assignColorsToContacts(groupedContacts) {
+  let colorizeIndex = 0;
+  for (let i = 0; i < groupedContacts.length; i++) {
+    let group = groupedContacts[i];
+    for (let j = 0; j < group.contacts.length; j++) {
+      group.contacts[j].color = contactColors[colorizeIndex % contactColors.length];
+      colorizeIndex++;
+    }
+  }
+}
+
+function getGroupedContacts() {
+  let groupedContacts = sortContacts();
+  assignColorsToContacts(groupedContacts);
+  prepareFormattedContacts();
+  renderContacts(groupedContacts);
+}
+
 function renderContacts(groupedContacts) {
   let contactList = document.getElementById('contacts-div');
   contactList.innerHTML = '';
@@ -84,38 +92,6 @@ function renderContacts(groupedContacts) {
       let initials = getInitials(contact.name);
       contactList.innerHTML += generateContactsHTML(contact, initials);
     }
-  }
-}
-
-function showAnimateContact() {
-  let overlay = document.getElementById('addContactOverlay');
-  if (overlay.classList === 'slideOut') {
-    overlay.classList.remove('slideOut');
-  } else {
-    overlay.classList.remove('slideOutVertical');
-  }
-  if (window.innerWidth >= 1200) {
-    animateContactDesktop();
-  } else {
-    animateContactMobile()
-  }
-}
-
-function showAnimateContact() {
-  let overlay = document.getElementById('addContactOverlay');
-  overlay.classList.remove('slideOut', 'slideOutVertical');
-  if (window.innerWidth >= 1200) {
-    animateContactDesktop();
-  } else {
-    animateContactMobile()
-  }
-}
-
-function animateCloseContact() {
-  if (window.innerWidth >= 1200) {
-    animateCloseContactDesktop();
-  } else {
-    animateCloseContactMobile();
   }
 }
 
@@ -146,16 +122,6 @@ function scrollToContact(contactId) {
   }
 }
 
-function validateForm(event) {
-  event.preventDefault();
-  let { name, email, phone } = getFormValues();
-  if (!isFormValid(name, email, phone)) {
-    return false;
-  }
-  createNewContact(name, email, phone);
-  return false;
-}
-
 function getFormValues() {
   return {
     name: document.getElementById('addContName').value.trim(),
@@ -164,46 +130,9 @@ function getFormValues() {
   };
 }
 
-function isFormValid(name, email, phone) {
-  if (!name || !email || !phone) return showValidationError('Alle Felder müssen ausgefüllt sein.');
-  if (!isCntNameValid(name)) return showValidationError('Bitte Vor- und Nachnamen eingeben.');
-  if (!isCntEmailValid(email)) return showValidationError('Bitte gültige E-Mail-Adresse eingeben.');
-  if (!isCntPhoneValid(phone)) return showValidationError('Bitte gültige Telefonnummer eingeben.');
-  return true;
-}
-
 function showValidationError(message) {
   alert(message);
   return false;
-}
-
-function isCntNameValid(name) {
-  return name.includes(' ');
-}
-
-function isCntEmailValid(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-function isCntPhoneValid(phone) {
-  return /^\+?\d{7,15}$/.test(phone);
-}
-
-async function postToFirebase(contact) {
-  try {
-    let response = await fetch(BASE_URL + '/contacts.json', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(contact),
-    });
-    if (response.ok) {
-      let data = await response.json();
-      return { id: data.name, ...contact };
-    }
-  } catch (error) {
-    console.error('Network error:', error);
-    return null;
-  }
 }
 
 function showContactInfo(contactId) {
@@ -240,51 +169,6 @@ function updateRespCmd(windowWidthOptions, contactId) {
   }
 }
 
-
-function showMoreOptions(contactId) {
-  let respCmdContainer = document.getElementById("resp-cmd");
-  let editFloaterHTML = generateRespEditFloaterHTML(contactId);
-  respCmdContainer.innerHTML += editFloaterHTML;
-  let img = document.getElementById("resp-cmd-img");
-  if (img) img.classList.add("d-none");
-  let floater = document.getElementById("respFloater");
-  if (floater) {
-    floater.classList.add("preSlideIn");
-    setTimeout(() => {
-      floater.classList.remove("preSlideIn");
-      floater.classList.add("slideIn");
-    }, 20);
-    setTimeout(() => {
-      document.addEventListener("click", handleOutsideClick);
-    }, 50);
-  }
-}
-
-function handleOutsideClick(event) {
-  const floater = document.getElementById("respFloater");
-  if (floater && !floater.contains(event.target)) {
-    closeRespEditFloater();
-    document.removeEventListener("click", handleOutsideClick);
-  }
-}
-
-
-function closeRespEditFloater() {
-  let respCmdContainer = document.getElementById("resp-cmd");
-  let floater = document.getElementById("respFloater");
-  if (floater) {
-    floater.classList.remove("slideIn");
-    floater.classList.add("slideOut");
-
-    setTimeout(() => {
-      floater.remove();
-      let img = document.getElementById("resp-cmd-img");
-      if (img) img.classList.remove("d-none");
-    }, 300);
-  }
-}
-
-
 function clearHighlightContact() {
   for (let contact of contactsArray) {
     let contactElement = document.getElementById(`contact-${contact.id}`);
@@ -312,35 +196,78 @@ async function deleteContact(contactId) {
   backToList();
 }
 
-
+/**
+ * Updates all tasks in Firebase by removing a deleted contact from each.
+ * Iterates over predefined task paths.
+ *
+ * @param {string} deletedContactId - The ID of the contact to remove from all tasks.
+ * @returns {Promise<void>}
+ */
 async function updateAssignedContactsDB(deletedContactId) {
-  let tasksPaths = ['/board/newTasks', '/board/default'];
-  for (const paths of tasksPaths) {
-    const url = `${BASE_URL}${paths}.json`;
-    try {
-      const tasksData = await fetchData(url, { method: 'GET' });
-      if (tasksData) {
-        for (const taskKey in tasksData) {
-          let task = tasksData[taskKey];
-          if (task.contacts && Array.isArray(task.contacts)) {
-            let filteredContacts = task.contacts.filter(contact => contact.id !== deletedContactId);
-            if (filteredContacts.length !== task.contacts.length) {
-              const updateUrl = `${BASE_URL}${paths}/${taskKey}/contacts.json`;
-              await fetch(updateUrl, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(filteredContacts)
-              });
-            }
-          }
-        }
-      }
-    } catch (error) {
-      console.error(`Error when updating the tasks in the ${endpoint}:`, error);
-    }
+  let taskPaths = ['/board/newTasks', '/board/default'];
+  for (let path of taskPaths) {
+    await updateTasksInPath(path, deletedContactId);
   }
 }
 
+/**
+ * Handles fetching and updating all tasks within a specific Firebase path.
+ *
+ * @param {string} path - Firebase path (e.g., '/board/newTasks').
+ * @param {string} deletedContactId - The ID of the contact to remove.
+ * @returns {Promise<void>}
+ */
+async function updateTasksInPath(path, deletedContactId) {
+  try {
+    let tasksData = await fetchTasksFromPath(path);
+    if (!tasksData) return;
+    for (let taskKey in tasksData) {
+      await updateTaskIfContactRemoved(path, taskKey, tasksData[taskKey], deletedContactId);
+    }
+  } catch (error) {
+    console.error(`Error updating path ${path}:`, error);
+  }
+}
+
+/**
+ * Processes a single task by removing the deleted contact if present.
+ * Updates the task in Firebase if changes occurred.
+ *
+ * @param {string} path - Firebase path where the task is stored.
+ * @param {string} key - Task key (Firebase ID).
+ * @param {Object} task - The task object.
+ * @param {string} deletedContactId - ID of the contact to remove.
+ * @returns {Promise<void>}
+ */
+async function updateTaskIfContactRemoved(path, key, task, deletedContactId) {
+  if (!Array.isArray(task.contacts)) return;
+  let updatedContacts = filterDeletedContact(task.contacts, deletedContactId);
+  if (!contactsChanged(task.contacts, updatedContacts)) return;
+  task.contacts = updatedContacts;
+  await updateTaskInFirebase(path, key, task);
+}
+
+/**
+ * Returns a filtered contact list without the deleted contact.
+ *
+ * @param {Object[]} contacts - Original list of contact objects.
+ * @param {string} deletedId - ID of the contact to remove.
+ * @returns {Object[]} - Filtered list of contacts.
+ */
+function filterDeletedContact(contacts, deletedId) {
+  return contacts.filter(contact => contact.id !== deletedId);
+}
+
+/**
+ * Checks whether the contact list has changed after filtering.
+ *
+ * @param {Object[]} original - Original contact list.
+ * @param {Object[]} filtered - Filtered contact list.
+ * @returns {boolean} - True if list length differs (i.e., contact was removed).
+ */
+function contactsChanged(original, filtered) {
+  return original.length !== filtered.length;
+}
 
 async function updateContact(contactId) {
   try {
@@ -367,42 +294,8 @@ function getUpdatedContact() {
   };
 }
 
-async function sendUpdateToFirebase(contactId, updatedContact) {
-  const response = await fetch(`${BASE_URL}/contacts/${contactId}.json`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(updatedContact),
-  });
-}
-
 function updateContactInArray(contactId, updatedContact) {
   contactsArray = contactsArray.map((contact) => (contact.id === contactId ? { id: contactId, ...updatedContact } : contact));
-}
-
-function addEditContact(contactId) {
-  let contact = contactsArray.find((c) => c.id === contactId);
-  if (!contact) return;
-  let editContact = document.getElementById('addContactOverlay');
-  editContact.innerHTML = generateContactsEditFloaterHTML(contact);
-  document.body.style.overflow = 'hidden';
-  editContact.classList.remove('slideOut');
-  editContact.classList.add('slideIn');
-  editContact.classList.remove('d-none');
-  setTimeout(() => {
-    editContact.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
-  }, 200);
-}
-
-function closeEditFloater() {
-  let closeEditFloater = document.getElementById('addContactOverlay');
-  closeEditFloater.classList.remove('slideIn');
-  closeEditFloater.classList.add('slideOut');
-  closeEditFloater.style.backgroundColor = 'rgba(0, 0, 0, 0)';
-  setTimeout(() => {
-    closeEditFloater.classList.add('d-none');
-    closeEditFloater.innerHTML = '';
-    document.body.style.overflow = '';
-  }, 100);
 }
 
 function showSuccessMessage() {
@@ -412,19 +305,6 @@ function showSuccessMessage() {
   document.getElementById('cnt-main-div').appendChild(successMessageContainer);
   successMessageContainer.innerHTML = successFloaterHTML;
   animateSuccessMessage(successMessageContainer);
-}
-
-function animateSuccessMessage(successMessageContainer) {
-  let successFloater = document.getElementById('successMessage');
-  successFloater.classList.remove('cnt-hide');
-  successFloater.classList.add('cnt-show');
-  setTimeout(() => {
-    successFloater.classList.remove('cnt-show');
-    successFloater.classList.add('cnt-hide');
-    setTimeout(() => {
-      successMessageContainer.parentNode.removeChild(successMessageContainer);
-    }, 500);
-  }, 3000);
 }
 
 async function checkAndAddCurrentUser() {

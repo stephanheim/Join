@@ -124,3 +124,8 @@ function rememberMe() {
   }
 }
 
+function logout() {
+  localStorage.removeItem('loggedInUser');
+  localStorage.removeItem('loggedInGuest');
+  window.location.href = '../index.html';
+}

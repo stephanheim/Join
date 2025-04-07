@@ -1,19 +1,5 @@
-/**
- * Fetches data from the specified URL
- *
- * @param {string} url - The URL from which to fetch the data
- * @param {object} options - Options for the fetch request (method, headers, body)
- * @return {Promise<object|undefined>} - A promise that resolves to a JSON object on success or `undefined` on failure
- */
-async function fetchData(url, options) {
-  try {
-    const response = await fetch(url, options);
-    if (!response.ok) throw new Error(`Server Error: ${response.status}`);
-    return await response.json();
-  } catch (error) {
-    console.error('Fetch Error:', error);
-    return undefined;
-  }
+function generateUniqueId() {
+  return 'task-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
 }
 
 function isCheckboxChecked(type) {
@@ -22,6 +8,35 @@ function isCheckboxChecked(type) {
   }
   if (type === 'remember') {
     return document.getElementById('rememberMe').checked;
+  }
+}
+
+function toggleArrowRotation(arrow, isHidden) {
+  if (arrow) {
+    arrow.classList.toggle('rotate-arrow', isHidden);
+    arrow.classList.toggle('rotate-arrow-0', !isHidden);
+  }
+}
+
+function updatePlaceholder(inputField, isHidden) {
+  if (inputField) {
+    inputField.placeholder = !isHidden ? '' : 'Select contacts to assign';
+    inputField.value = isHidden ? '' : inputField.value;
+  }
+}
+
+function preventFormSubmitOnEnter() {
+  let form = document.getElementById('addTaskForm');
+  if (!form) {
+    return;
+  }
+  let inputs = form.getElementsByTagName('input');
+  for (let i = 0; i < inputs.length; i++) {
+    inputs[i].addEventListener('keydown', function (event) {
+      if (event.key === 'Enter' && inputs[i].type !== 'submit') {
+        event.preventDefault();
+      }
+    });
   }
 }
 
@@ -39,14 +54,6 @@ function toggleRequiredInput(inputElement, isFocused) {
   }
 }
 
-function toggleSubmitButton() {
-  if (allFieldsValid()) {
-    activateButton();
-  } else {
-    deactivateButton();
-  }
-}
-
 function deactivateButton() {
   const button = document.getElementById('buttonSignup');
   button.disabled = true;
@@ -59,6 +66,14 @@ function activateButton() {
   return button;
 }
 
+function toggleSubmitButton() {
+  if (allFieldsValid()) {
+    activateButton();
+  } else {
+    deactivateButton();
+  }
+}
+
 function resetFormRegister() {
   const form = document.getElementById('formRegister');
   return form.reset();
@@ -69,12 +84,6 @@ function showSubMenu() {
   submenu.classList.toggle('d-none');
 }
 
-function logout() {
-  localStorage.removeItem('loggedInUser');
-  localStorage.removeItem('loggedInGuest');
-  window.location.href = '../index.html';
-}
-
 function showDropdown(dropDownMenu) {
   dropDownMenu.classList.remove('d-none', 'drop-down-hide');
   dropDownMenu.classList.add('drop-down-show');
@@ -83,30 +92,6 @@ function showDropdown(dropDownMenu) {
 function hideDropdown(dropDownMenu) {
   dropDownMenu.classList.remove('drop-down-show');
   dropDownMenu.classList.add('drop-down-hide');
-}
-
-function assignColorsToContacts(groupedContacts) {
-  let colorizeIndex = 0;
-  for (let i = 0; i < groupedContacts.length; i++) {
-    let group = groupedContacts[i];
-    for (let j = 0; j < group.contacts.length; j++) {
-      group.contacts[j].color = contactColors[colorizeIndex % contactColors.length];
-      colorizeIndex++;
-    }
-  }
-}
-
-function prepareFormattedContacts() {
-  formattedContactsArray = contactsArray.map((contact, index) => ({
-    id: contact.id,
-    name: contact.name,
-    initials: getInitials(contact.name),
-    color: contact.color,
-  }));
-}
-
-function generateUniqueId() {
-  return 'task-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
 }
 
 function getPriorityIcon(priority) {
@@ -131,119 +116,36 @@ function getCategoryColor(category) {
   }
 }
 
-function loadTaskFromStorage() {
-  return JSON.parse(localStorage.getItem('tasks')) || [];
-}
-
-async function loadTaskFromDB() {
-  let data = await fetchData(BASE_URL + '/board/newTasks.json');
-  if (!data) return [];
-  return Object.values(data);
-}
-
-async function loadDefaultTaskFromDB() {
-  let data = await fetchData(BASE_URL + '/board/default.json');
-  if (!data) return [];
-  return Object.values(data);
-}
-
-async function syncTasksFromDBToLocalStorage() {
-  let userTasks = await loadTaskFromDB();
-  let defaultTasks = await loadDefaultTaskFromDB();
-  let allTasks = defaultTasks.concat(userTasks);
-  localStorage.setItem('tasks', JSON.stringify(allTasks));
-}
-
-function setActiveNavBoard() {
-  let boardNav = document.getElementById('sumToBoard');
-  if (boardNav) {
-    setActiveNav(boardNav);
+function handleOutsideClick(event) {
+  const floater = document.getElementById("respFloater");
+  if (floater && !floater.contains(event.target)) {
+    closeRespEditFloater();
+    document.removeEventListener("click", handleOutsideClick);
   }
 }
 
-function messageTaskAdded() {
-  let msg = document.getElementById('overlayTaskAdded');
-  if (!msg) return;
-  msg.style.display = 'block';
+function prepareFormattedContacts() {
+  formattedContactsArray = contactsArray.map((contact, index) => ({
+    id: contact.id,
+    name: contact.name,
+    initials: getInitials(contact.name),
+    color: contact.color,
+  }));
+}
+
+function showBoardAfterDelay() {
   setTimeout(() => {
-    msg.style.display = 'none';
+    loadPageContentPath('board');
+    setActiveNavBoard();
   }, 1300);
 }
 
-function messageTaskAdded() {
-  let msg = document.getElementById('overlayTaskAdded');
-  if (!msg) return;
-  msg.style.display = 'block';
-  setTimeout(() => {
-    msg.style.display = 'none';
-  }, 1300);
-}
-
-function preventFormSubmitOnEnter() {
-  let form = document.getElementById('addTaskForm');
-  if (!form) {
-    return;
+function assignedBorderColor(dropDownMenu) {
+  const borderColor = document.getElementById('assignedInputBorderColor');
+  const isHidden = dropDownMenu.classList.contains('drop-down-hide');
+  if (isHidden) {
+    borderColor.style.border = '1px solid rgba(209, 209, 209, 1)';
+  } else {
+    borderColor.style.border = '1px solid rgba(41, 171, 226, 1)';
   }
-  let inputs = form.getElementsByTagName('input');
-  for (let i = 0; i < inputs.length; i++) {
-    inputs[i].addEventListener('keydown', function (event) {
-      if (event.key === 'Enter' && inputs[i].type !== 'submit') {
-        event.preventDefault();
-      }
-    });
-  }
-}
-
-const joinLogoMobile = document.querySelector('.start-join-logo img');
-if (joinLogoMobile && window.innerWidth <= 600) {
-  joinLogoMobile.src = './assets/img/join.svg';
-  setTimeout(() => {
-    joinLogoMobile.src = './assets/img/join_login.svg';
-  }, 800);
-}
-
-function animateContactDesktop() {
-  let addContact = document.getElementById('addContactOverlay');
-  addContact.innerHTML = generateFloaterHTML();
-  document.body.style.overflow = 'hidden';
-  addContact.classList.remove('d-none');
-  addContact.classList.add('slideIn');
-  setTimeout(() => {
-    addContact.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
-  }, 100);
-}
-
-function animateContactMobile() {
-  let addContact = document.getElementById('addContactOverlay');
-  addContact.innerHTML = generateFloaterHTML();
-  document.body.style.overflow = 'hidden';
-  addContact.classList.remove('d-none');
-  addContact.classList.add('slideInVertical');
-  setTimeout(() => {
-    addContact.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
-  }, 100);
-}
-
-function animateCloseContactDesktop() {
-  let closeFloater = document.getElementById('addContactOverlay');
-  closeFloater.classList.remove('slideIn');
-  closeFloater.classList.add('slideOut');
-  closeFloater.style.backgroundColor = 'rgba(0, 0, 0, 0)';
-  setTimeout(() => {
-    closeFloater.classList.add('d-none');
-    closeFloater.innerHTML = '';
-    document.body.style.overflow = '';
-  }, 100);
-}
-
-function animateCloseContactMobile() {
-  let closeFloater = document.getElementById('addContactOverlay');
-  closeFloater.classList.remove('slideInVertical');
-  closeFloater.classList.add('slideOutVertical');
-  closeFloater.style.backgroundColor = 'rgba(0, 0, 0, 0)';
-  setTimeout(() => {
-    closeFloater.classList.add('d-none');
-    closeFloater.innerHTML = '';
-    document.body.style.overflow = '';
-  }, 100);
 }

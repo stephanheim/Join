@@ -3,6 +3,18 @@ function initSummary() {
   loadContactsFromFirebase();
 }
 
+function getSummaryData() {
+  let tasks = loadTaskFromStorage();
+  let noTasks = document.getElementById('summaryContainer');
+  if (tasks && tasks.length > 0) {
+    let taskCounts = countTasksForSummary(tasks);
+    renderSummary(taskCounts);
+  } else {
+    console.log("Keine Aufgaben gefunden.");
+    noTasks.innerHTML += generateSummaryNoTasksHTML();
+  }
+}
+
 function countTasksForSummary(tasks) {
   return {
     total: countTotal(tasks),
@@ -36,18 +48,6 @@ function countTotal(tasks) {
 
 function countUrgent(tasks) {
   return tasks.filter((task) => task.priority && task.priority.toLowerCase() === 'urgent').length;
-}
-
-function getSummaryData() {
-  let tasks = loadTaskFromStorage();
-  let noTasks = document.getElementById('summaryContainer');
-  if (tasks && tasks.length > 0) {
-    let taskCounts = countTasksForSummary(tasks);
-    renderSummary(taskCounts);
-  } else {
-    console.log("Keine Aufgaben gefunden.");
-    noTasks.innerHTML += generateSummaryNoTasksHTML();
-  }
 }
 
 function renderSummary(taskCounts) {
