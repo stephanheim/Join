@@ -81,10 +81,6 @@ function closeAddTaskFloating() {
   }, 100);
 }
 
-
-/* --- Auslagern unterehalb --- */
-
-
 async function createNewTask(status) {
   if (!areTaskFieldsFilled()) return;
   let currentStatus = getTaskStatus(status);
@@ -192,20 +188,6 @@ function addSubtaksFromInput(event) {
     renderSubtask(newSubtask);
     resetSubtaskInput(event);
   }
-}
-
-function editSubtask(i) {
-  let subtaskRef = document.getElementById(`subtask-${i}`);
-  if (subtaskRef) {
-    subtaskRef.outerHTML = editSubtaskTemplate(i, addSubtask[i]);
-  }
-}
-
-function saveEditedSubtask(i) {
-  let inputRef = document.getElementById(`editSubtask-${i}`);
-  addSubtask[i].text = inputRef.value;
-  let container = inputRef.closest('.input-container-edit');
-  container.outerHTML = subtaskTemplate(i, addSubtask[i]);
 }
 
 function resetSubtaskInput(event) {

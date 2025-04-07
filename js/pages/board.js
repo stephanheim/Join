@@ -181,15 +181,6 @@ function loadAddTaskPage(status, navElement) {
   });
 }
 
-function changeBoardCardTemplate(id) {
-  const { task } = taskDataMap[id];
-  const subtasks = task.subtasks || [];
-  const subtaskHTML = subtasks.map((subtasks, i) => subtaskTemplate(i, subtasks)).join('');
-  const namesHTML = getNamesTaskCardTemp(task, true);
-  const boardCard = document.getElementById('boardCardLarge');
-  boardCard.innerHTML = editBoardCardTemplate(task, subtaskHTML, namesHTML);
-}
-
 function defaultBoardCardTemplate() {
   let boardCard = document.getElementById('boardCardLarge');
   boardCard.innerHTML = boardCardTemplate();

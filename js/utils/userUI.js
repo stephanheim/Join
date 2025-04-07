@@ -79,18 +79,3 @@ function renderDropdownMenuCategory(dropDownMenu) {
     dropDownMenu.innerHTML = categoryTemplate();
   }
 }
-
-function closeRespEditFloater() {
-  let respCmdContainer = document.getElementById("resp-cmd");
-  let floater = document.getElementById("respFloater");
-  if (floater) {
-    floater.classList.remove("slideIn");
-    floater.classList.add("slideOut");
-
-    setTimeout(() => {
-      floater.remove();
-      let img = document.getElementById("resp-cmd-img");
-      if (img) img.classList.remove("d-none");
-    }, 300);
-  }
-}
