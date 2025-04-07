@@ -38,13 +38,15 @@ async function setFirebaseIdInDB(firebaseId) {
   await fetchData(url, options);
 }
 
-async function deleteTaskInDB(firebaseId) {
-  const url = BASE_URL + `/board/newTasks/${firebaseId}.json`;
+async function deleteTaskInDB(firebaseId, isDefault) {
+  const taskType = isDefault ? 'default' : 'newTasks';
+  const url = `${BASE_URL}/board/${taskType}/${firebaseId}.json`;
   const options = {
     method: 'DELETE',
   };
   const response = await fetchData(url, options);
-  if (!response) return;
+  if (!response) return false;
+  return true;
 }
 
 /**
@@ -140,17 +142,32 @@ async function sendUpdateToFirebase(contactId, updatedContact) {
 async function loadTaskFromDB() {
   let data = await fetchData(BASE_URL + '/board/newTasks.json');
   if (!data) return [];
-  return Object.values(data);
+  return Object.entries(data).map(([firebaseId, task]) => {
+    task.firebaseId = firebaseId;
+    return task;
+  });
 }
 
 async function loadDefaultTaskFromDB() {
   let data = await fetchData(BASE_URL + '/board/default.json');
   if (!data) return [];
-  return Object.values(data);
+  return Object.entries(data).map(([firebaseId, task]) => {
+    task.firebaseId = firebaseId;
+    return task;
+  });
 }
 
 async function saveTaskToDB(task) {
   const response = await postNewTaskToDB(task);
   task.firebaseId = response.name;
   await setFirebaseIdInDB(response.name);
+}
+
+async function uploadMissingDefaultTasks() {
+  const defaultTasks = await loadDefaultTaskFromDB();
+  const defaultTaskIds = defaultTasks.map(t => t.id);
+  const missingTasks = DEFAULT_TASKS.filter(task => !defaultTaskIds.includes(task.id));
+  for (let task of missingTasks) {
+    await prepareAndUploadTask(task);
+  }
 }

@@ -20,6 +20,7 @@ async function submitLogin() {
     let user = await findUserFromDB(email);
     localStorage.setItem("loggedInUser", JSON.stringify(user));
     setRememberMe();
+    await uploadMissingDefaultTasks();
     window.location.href = "./pages/dashboard.html";
   } catch (error) {
     console.error("Login failed:", error);

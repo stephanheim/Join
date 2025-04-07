@@ -71,13 +71,14 @@ function openAddTaskFloating(status) {
 
 function closeAddTaskFloating() {
   let floatingTask = document.getElementById('floatingAddTask');
+  if (!floatingTask) return;
+  document.body.style.overflow = '';
   floatingTask.classList.remove('slideIn');
   floatingTask.classList.add('slideOut');
   floatingTask.style.backgroundColor = 'rgba(0, 0, 0, 0)';
   setTimeout(() => {
     floatingTask.classList.add('d-none');
     floatingTask.innerHTML = '';
-    document.body.style.overflow = '';
   }, 100);
 }
 
@@ -103,13 +104,18 @@ function initTaskWithStatus(status) {
 }
 
 async function deleteTask(firebaseId, taskId) {
-  let success = await deleteTaskInDB(firebaseId);
+  let taskEntry = taskDataMap[taskId];
+  if (!taskEntry || !taskEntry.task) return;
+  let task = taskEntry.task;
+  let success = await deleteTaskInDB(firebaseId, task.isDefault);
   if (!success) {
     deleteTaskInLocalStorage(firebaseId);
-    delete taskDataMap[taskId]
-    loadPageContentPath('board');
+    delete taskDataMap[taskId];
+    closeBoardCard();
+    renderTasks();
   }
 }
+
 
 function selectedPriority(prio, element) {
   buttonsColorSwitch(element);
