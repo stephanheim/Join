@@ -148,10 +148,10 @@ function showContactInfo(contactId) {
   if (window.innerWidth < 1200) {
     document.getElementById('cnt-list-div').classList.add('hidden');
     document.getElementById('cnt-list-div').style.display = 'none';
-    document.getElementById('cnt-main-div').style.display = 'block';
+    document.getElementById('cnt-main-div').style.display = 'flex';
     updateRespCmd(contactId);
   } else {
-    document.getElementById('cnt-main-div').style.display = 'block';
+    document.getElementById('cnt-main-div').style.display = 'flex';
   }
 }
 
@@ -186,7 +186,7 @@ function backToList() {
   let respCmdImg = document.getElementById("resp-cmd-img");
   document.getElementById("cnt-list-div").classList.remove("hidden");
   document.getElementById('cnt-main-div').style.display = 'none';
-  document.getElementById('cnt-list-div').style.display = 'block';
+  document.getElementById('cnt-list-div').style.display = 'flex';
   respCmdImg.src = "../assets/icons/add-contact-mobile.svg";
   onclickShowAnimateContact();
 }
