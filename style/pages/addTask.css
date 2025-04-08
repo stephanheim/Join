@@ -391,8 +391,9 @@
   .content {
     padding: 0 16px;
   }
+
   .add-task-form {
-max-width: 1016px;
+    max-width: 1016px;
   }
 }
 

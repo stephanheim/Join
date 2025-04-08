@@ -243,14 +243,14 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    /* justify-content: space-between; */
+    justify-content: space-between;
   }
 
   .navbar-section-change {
     max-width: 196px;
     width: 100%;
     flex-direction: row-reverse;
-    /* justify-content: space-between; */
+    justify-content: space-between;
   }
 
   .navbar-section-bottom {
