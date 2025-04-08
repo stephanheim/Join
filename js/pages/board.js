@@ -181,11 +181,6 @@ function loadAddTaskPage(status, navElement) {
   });
 }
 
-function defaultBoardCardTemplate() {
-  let boardCard = document.getElementById('boardCardLarge');
-  boardCard.innerHTML = boardCardTemplate();
-}
-
 async function updateTaskDB(task) {
   if (!task.firebaseId) return;
   let path = task.isDefault ? '/board/default' : '/board/newTasks';

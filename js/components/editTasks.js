@@ -21,3 +21,50 @@ function saveEditedSubtask(i) {
   container.outerHTML = subtaskTemplate(i, addSubtask[i]);
 }
 
+function saveEditedTask(id) {
+  let task = taskDataMap[id].task;
+
+  let newTitle = document.getElementById('editTitle').value;
+  let newDescription = document.getElementById('editDescription').value;
+  let newDate = document.getElementById('addTaskDate').value;
+  let newPriority = selectedPriorityValue;
+
+  task.title = newTitle;
+  task.description = newDescription;
+  task.date = newDate;
+  task.priority = newPriority;
+  task.assigned = assignedContacts.slice();
+  task.subtasks = addSubtask.slice();
+
+  updateTaskDB(task);
+  renderTasks();
+  closeEditGoToBoardCard();
+  messageTaskAdded();
+}
+
+function closeEditGoToBoardCard() {
+  let boardCard = document.getElementById('boardCardLarge');
+  boardCard.classList.remove('slideIn');
+  boardCard.classList.add('slideOut');
+  boardCard.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+  setTimeout(() => {
+    boardCard.classList.add('d-none');
+    boardCard.innerHTML = '';
+    document.body.style.overflow = '';
+  }, 100);
+  selectedPriorityValue = '';
+}
+
+function closeEditBoardCard() {
+  let boardCard = document.getElementById('boardCardLarge');
+  boardCard.classList.remove('slideIn');
+  boardCard.classList.add('slideOut');
+  boardCard.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+  setTimeout(() => {
+    boardCard.classList.add('d-none');
+    boardCard.innerHTML = '';
+    document.body.style.overflow = '';
+  }, 100);
+  selectedPriorityValue = '';
+}
+
