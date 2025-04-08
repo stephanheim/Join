@@ -332,8 +332,8 @@
   animation: cntSlideOut 0.3s ease-in-out forwards;
 }
 
-/* Media Queries */
 
+/* Media Queries */
 
 @media screen and (max-width: 1200px) {
   .cnt-main {
