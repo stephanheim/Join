@@ -16,7 +16,7 @@ function generateSummaryHTML(taskCounts) {
           </div>
         </div>
         <div onclick="setActiveNavBoard(); loadPageContentPath('board')" class="row-middle hoverable box-shadow">
-          <div class="todone-div">
+          <div class="urgent-div">
             <img src="../assets/img/urgent.svg" class="img-urgent no-invert">
             <div class="numbers-div">
               <span class="number">${taskCounts.urgent}</span>

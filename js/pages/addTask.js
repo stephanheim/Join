@@ -6,7 +6,7 @@ let addNewTask = [];
 
 function initAddTask() {
   preventFormSubmitOnEnter();
-  resetSelectCategory();
+  clearAddTask();
 }
 
 function getAddTaskValue() {
@@ -72,7 +72,7 @@ function openAddTaskFloating(status) {
 function closeAddTaskFloating() {
   let floatingTask = document.getElementById('floatingAddTask');
   if (!floatingTask) return;
-  document.body.style.overflow = '';
+  document.body.style.overflow = 'auto';
   floatingTask.classList.remove('slideIn');
   floatingTask.classList.add('slideOut');
   floatingTask.style.backgroundColor = 'rgba(0, 0, 0, 0)';
@@ -82,19 +82,20 @@ function closeAddTaskFloating() {
   }, 100);
 }
 
-async function createNewTask(status) {
+async function createNewTask() {
   if (!areTaskFieldsFilled()) return;
-  let currentStatus = getTaskStatus(status);
+  let currentStatus = getTaskStatus();
   let newTask = initTaskWithStatus(currentStatus);
   await saveTaskToDB(newTask);
   addTaskToLocalStorage(newTask);
   clearAddTask();
   messageTaskAdded();
   showBoardAfterDelay();
+  document.body.style.overflow = 'auto';
 }
 
-function getTaskStatus(status) {
-  return status || addTaskStatusTarget || 'toDo';
+function getTaskStatus() {
+  return addTaskStatusTarget || 'toDo';
 }
 
 function initTaskWithStatus(status) {

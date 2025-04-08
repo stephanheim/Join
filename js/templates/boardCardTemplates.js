@@ -76,7 +76,7 @@ function editBoardCardTemplate(task, subtaskHTML, namesHTML) {
   return `      <div class="user-story-card">
         <div class="inner-card">
           <div class="headline-story-user-edit">
-            <div class="img-close-div" onclick="closeBoardCard()">
+            <div class="img-close-div" onclick="closeEditBoardCard('${task.id}')">
               <img src="../assets/icons/close.svg" alt="" />
             </div>
           </div>
@@ -88,7 +88,7 @@ function editBoardCardTemplate(task, subtaskHTML, namesHTML) {
               <h2>Title</h2>
             </div>
             <div>
-              <input class="input_at" type="text" placeholder="Enter a title" value="${task.title}" />
+              <input id="editTitle" class="input_at" type="text" placeholder="Enter a title" value="${task.title}" />
             </div>
           </div>
           <div class="add-task-single">
@@ -96,7 +96,7 @@ function editBoardCardTemplate(task, subtaskHTML, namesHTML) {
               <h2>Description</h2>
             </div>
             <div>
-              <textarea class="textarea-add-task" name="" id="" placeholder="Enter a Description">${task.description}</textarea>
+              <textarea id="editDescription" class="textarea-add-task" name="" id="" placeholder="Enter a Description">${task.description}</textarea>
             </div>
           </div>
                 <div class="add-task-single">
@@ -160,14 +160,14 @@ function editBoardCardTemplate(task, subtaskHTML, namesHTML) {
                   </div>
                 </div>
               </div>
-              <div class="subtask-content" id="addedSubtaks">
+              <div class="subtask-content" id="addedSubtask">
               ${subtaskHTML}
               </div>
             </div>
         </div>
         </form>
         <div class="btn-section">
-          <button class="bt-board-card-edit" onclick="defaultBoardCardTemplate()">
+          <button class="bt-board-card-edit" onclick="saveEditedTask('${task.id}')">
             Ok
             <img src="../assets/icons/check.svg" alt="" />
           </button>

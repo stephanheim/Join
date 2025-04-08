@@ -21,3 +21,59 @@ function saveEditedSubtask(i) {
   container.outerHTML = subtaskTemplate(i, addSubtask[i]);
 }
 
+function saveEditedTask(id) {
+  let task = taskDataMap[id].task;
+
+  let newTitle = document.getElementById('editTitle').value;
+  let newDescription = document.getElementById('editDescription').value;
+  let newDate = document.getElementById('addTaskDate').value;
+  let newPriority = selectedPriorityValue;
+
+  task.title = newTitle;
+  task.description = newDescription;
+  task.date = newDate;
+  task.priority = newPriority;
+  task.assigned = Array.from(selectedContacts);
+  task.subtasks = Array.from(addSubtask);
+
+  updateEditTaskDB(task);
+  renderTasks();
+  closeEditGoToBoardCard();
+  messageTaskAdded();
+}
+
+async function updateEditTaskDB(task) {
+  if (!task.firebaseId) return;
+  let path = task.isDefault ? '/board/default' : '/board/newTasks';
+  await updateTaskInFirebase(path, task.firebaseId, task);
+  if (task.subtasks) {
+    await updateTaskSubtasksDB(path, task);
+  }
+}
+
+function closeEditGoToBoardCard() {
+  let boardCard = document.getElementById('boardCardLarge');
+  boardCard.classList.remove('slideIn');
+  boardCard.classList.add('slideOut');
+  boardCard.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+  setTimeout(() => {
+    boardCard.classList.add('d-none');
+    boardCard.innerHTML = '';
+    document.body.style.overflow = 'auto';
+  }, 100);
+  selectedPriorityValue = '';
+}
+
+function closeEditBoardCard() {
+  let boardCard = document.getElementById('boardCardLarge');
+  boardCard.classList.remove('slideIn');
+  boardCard.classList.add('slideOut');
+  boardCard.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+  setTimeout(() => {
+    boardCard.classList.add('d-none');
+    boardCard.innerHTML = '';
+    document.body.style.overflow = 'auto';
+  }, 100);
+  selectedPriorityValue = '';
+}
+

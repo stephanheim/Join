@@ -20,7 +20,7 @@ function closeEditFloater() {
   setTimeout(() => {
     closeEditFloater.classList.add('d-none');
     closeEditFloater.innerHTML = '';
-    document.body.style.overflow = '';
+    document.body.style.overflow = 'auto';
   }, 100);
 }
 

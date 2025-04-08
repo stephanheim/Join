@@ -52,7 +52,7 @@ function animateCloseContactDesktop() {
   setTimeout(() => {
     closeFloater.classList.add('d-none');
     closeFloater.innerHTML = '';
-    document.body.style.overflow = '';
+    document.body.style.overflow = 'auto';
   }, 100);
 }
 
@@ -64,7 +64,7 @@ function animateCloseContactMobile() {
   setTimeout(() => {
     closeFloater.classList.add('d-none');
     closeFloater.innerHTML = '';
-    document.body.style.overflow = '';
+    document.body.style.overflow = 'auto';
   }, 100);
 }
 
@@ -87,15 +87,6 @@ function animateSuccessMessage(successMessageContainer) {
       successMessageContainer.parentNode.removeChild(successMessageContainer);
     }, 500);
   }, 3000);
-}
-
-function messageTaskAdded() {
-  let msg = document.getElementById('overlayTaskAdded');
-  if (!msg) return;
-  msg.style.display = 'block';
-  setTimeout(() => {
-    msg.style.display = 'none';
-  }, 1300);
 }
 
 function messageTaskAdded() {
@@ -221,7 +212,7 @@ function closeBoardCard() {
   setTimeout(() => {
     boardCard.classList.add('d-none');
     boardCard.innerHTML = '';
-    document.body.style.overflow = '';
+    document.body.style.overflow = 'auto';
   }, 100);
   selectedPriorityValue = '';
 }
