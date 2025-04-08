@@ -160,7 +160,7 @@ function editBoardCardTemplate(task, subtaskHTML, namesHTML) {
                   </div>
                 </div>
               </div>
-              <div class="subtask-content" id="addedSubtaks">
+              <div class="subtask-content" id="addedSubtask">
               ${subtaskHTML}
               </div>
             </div>

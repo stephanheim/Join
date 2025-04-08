@@ -33,13 +33,22 @@ function saveEditedTask(id) {
   task.description = newDescription;
   task.date = newDate;
   task.priority = newPriority;
-  task.assigned = assignedContacts.slice();
-  task.subtasks = addSubtask.slice();
+  task.assigned = Array.from(selectedContacts);
+  task.subtasks = Array.from(addSubtask);
 
-  updateTaskDB(task);
+  updateEditTaskDB(task);
   renderTasks();
   closeEditGoToBoardCard();
   messageTaskAdded();
+}
+
+async function updateEditTaskDB(task) {
+  if (!task.firebaseId) return;
+  let path = task.isDefault ? '/board/default' : '/board/newTasks';
+  await updateTaskInFirebase(path, task.firebaseId, task);
+  if (task.subtasks) {
+    await updateTaskSubtasksDB(path, task);
+  }
 }
 
 function closeEditGoToBoardCard() {
@@ -50,7 +59,7 @@ function closeEditGoToBoardCard() {
   setTimeout(() => {
     boardCard.classList.add('d-none');
     boardCard.innerHTML = '';
-    document.body.style.overflow = '';
+    document.body.style.overflow = 'auto';
   }, 100);
   selectedPriorityValue = '';
 }
@@ -63,7 +72,7 @@ function closeEditBoardCard() {
   setTimeout(() => {
     boardCard.classList.add('d-none');
     boardCard.innerHTML = '';
-    document.body.style.overflow = '';
+    document.body.style.overflow = 'auto';
   }, 100);
   selectedPriorityValue = '';
 }
