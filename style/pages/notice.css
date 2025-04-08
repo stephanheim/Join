@@ -31,8 +31,23 @@ h1 {
   gap: 30px;
 }
 
-@media (max-width: 640px) {
+.join-logo-responsive {
+  width: 32px;
+  height: 39px;
+  display: none;
+}
 
+@media (max-width: 1200px) {
+  .join-logo-responsive {
+    display: block;
+  }
+
+  .Kanban-response {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
   .notice-wrap,
   .help-wrap {
     padding: 110px 9px 80px 9px;

@@ -50,7 +50,7 @@ window.onresize = () => toggleNavPrivacyByPage(currentPage);
 function toggleNavPrivacyByPage(page) {
   const nav = document.getElementById('navPrivacy');
   if (!nav) return;
-  const isDashboardPage = ['summary', 'addTask', 'board', 'contacts'].includes(page);
+  const isDashboardPage = ['summary', 'addTask', 'board', 'contacts', 'legal_notice', 'privacy_policy'].includes(page);
   const isSmallScreen = window.innerWidth < 1200;
   if (isDashboardPage && isSmallScreen) {
     nav.classList.add('d-none');
