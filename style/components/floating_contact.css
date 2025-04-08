@@ -2,6 +2,7 @@
   max-width: 1212px;
   width: 100%;
   height: 592px;
+  margin: 0 16px;
 }
 
 .main-floater {
@@ -336,6 +337,7 @@
     max-width: 396px;
     width: 100%;
     height: 760px;
+    margin: unset;
   }
 
   .main-floater {

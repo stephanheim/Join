@@ -1,21 +1,9 @@
-// function showAnimateContact() {
-//   let overlay = document.getElementById('addContactOverlay');
-//   if (overlay.classList === 'slideOut') {
-//     overlay.classList.remove('slideOut');
-//   } else {
-//     overlay.classList.remove('slideOutVertical');
-//   }
-//   if (window.innerWidth >= 1200) {
-//     animateContactDesktop();
-//   } else {
-//     animateContactMobile()
-//   }
-// }
-
 function showAnimateContact() {
   let overlay = document.getElementById('addContactOverlay');
   overlay.classList.remove('slideOut', 'slideOutVertical');
-  if (window.innerWidth >= 1200) {
+  windowWidthOption = window.innerWidth >= 1200;
+
+  if (windowWidthOption) {
     animateContactDesktop();
   } else {
     animateContactMobile()

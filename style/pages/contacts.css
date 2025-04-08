@@ -338,6 +338,7 @@
 
 @media screen and (max-width: 1200px) {
   .cnt-main {
+    max-width: 428px;
     width: 100%;
     display: none;
   }
@@ -452,6 +453,9 @@
   }
 
   .contact-wrapper {
+    width: 100%;
+    padding: 0 16px;
+    justify-content: center;
     padding: 0 16px 0 16px;
   }
 
@@ -474,9 +478,11 @@
 }
 
 @media screen and (max-width:428px) {
-  .contact-wrapper {
-    padding: 0 16px;
+  .cnt-main {
+    width: 100%;
   }
+
+  .contact-wrapper {}
 
   .cnt-glance-details {
     max-width: 100%;
@@ -485,6 +491,9 @@
   .cnt-glance-initials {
     font-size: 21px;
     font-weight: 400;
+  }
+  .cnt-details{
+    word-break: break-word;
   }
 }
 

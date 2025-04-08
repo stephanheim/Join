@@ -4,6 +4,7 @@ const contactColors = ['#ff7a01', '#9327ff', '#6e52ff', '#fc71ff', '#ffbb2c', '#
 function initContacts() {
   checkAndAddCurrentUser();
   getGroupedContacts();
+  onclickShowAnimateContact();
 }
 
 async function loadContactsFromFirebase() {
@@ -146,27 +147,48 @@ function showContactInfo(contactId) {
   glanceWindow.style.display = 'block';
   if (window.innerWidth < 1200) {
     document.getElementById('cnt-list-div').classList.add('hidden');
+    document.getElementById('cnt-list-div').style.display = 'none';
     document.getElementById('cnt-main-div').style.display = 'block';
-    updateRespCmd(window.innerWidth < 1200, contactId);
+    updateRespCmd(contactId);
   } else {
     document.getElementById('cnt-main-div').style.display = 'block';
   }
-  // updateRespCmd(true, contactId);
 }
 
-function updateRespCmd(windowWidthOptions, contactId) {
+function updateRespCmd(contactId) {
   let respCmdImg = document.getElementById("resp-cmd-img");
-  if (windowWidthOptions) {
+  windowWidthMobiel = window.innerWidth < 1200;
+  respCmdImg.onclick = null;
+  if (windowWidthMobiel) {
     respCmdImg.src = "../assets/icons/more-resp-contact.svg";
-    respCmdImg.onclick = function () {
-      showMoreOptions(contactId);
-    };
+    onclickShowMoreOptions(contactId);
   } else {
     respCmdImg.src = "../assets/icons/add-contact-mobile.svg";
-    respCmdImg.onclick = function () {
-      showAnimateContact();
-    };
+    onclickShowAnimateContact(contactId);
   }
+}
+
+function onclickShowMoreOptions(contactId) {
+  let respCmd = document.getElementById("resp-cmd");
+  respCmd.onclick = function () {
+    showMoreOptions(contactId);
+  };
+}
+
+function onclickShowAnimateContact(contactId) {
+  let respCmd = document.getElementById("resp-cmd");
+  respCmd.onclick = function () {
+    showAnimateContact(contactId);
+  };
+}
+
+function backToList() {
+  let respCmdImg = document.getElementById("resp-cmd-img");
+  document.getElementById("cnt-list-div").classList.remove("hidden");
+  document.getElementById('cnt-main-div').style.display = 'none';
+  document.getElementById('cnt-list-div').style.display = 'block';
+  respCmdImg.src = "../assets/icons/add-contact-mobile.svg";
+  onclickShowAnimateContact();
 }
 
 function clearHighlightContact() {
@@ -332,15 +354,5 @@ async function addCurrentUserToContacts(user) {
     await loadContactsFromFirebase();
     getGroupedContacts();
   }
-}
-
-function backToList() {
-  document.getElementById("cnt-list-div").classList.remove("hidden");
-  document.getElementById('cnt-main-div').style.display = 'none';
-  resetRespCmd(false);
-}
-
-function resetRespCmd() {
-  updateRespCmd(false);
 }
 
