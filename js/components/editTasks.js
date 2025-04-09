@@ -28,16 +28,22 @@ function saveEditedTask(id) {
   let newDescription = document.getElementById('editDescription').value;
   let newDate = document.getElementById('addTaskDate').value;
   let newPriority = selectedPriorityValue;
+  let prio = task.priority;
 
   task.title = newTitle;
   task.description = newDescription;
   task.date = newDate;
-  task.priority = newPriority;
-  task.assigned = Array.from(selectedContacts);
+  if (newPriority === '') {
+    task.priority = prio;
+  } else {
+    task.priority = newPriority;
+  }
+  task.contacts = Array.from(selectedContacts);
   task.subtasks = Array.from(addSubtask);
 
   updateEditTaskDB(task);
-  renderTasks();
+  prepareTaskData(task);
+  updateSubTaskTaskCard(task.id)
   closeEditGoToBoardCard();
   messageTaskAdded();
 }
