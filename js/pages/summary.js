@@ -27,47 +27,19 @@ function countTasksForSummary(tasks) {
   };
 }
 
-function hideOverlayWithAnimation() {
-  const overlay = document.getElementById('welcomeOverlay');
-  if (!overlay) return;
-  overlay.classList.add('fade-smart-out');
-  setTimeout(() => {
-    overlay.classList.add('d-none');
-  }, 3000);
-}
-
-function showOverlay() {
-  const overlay = document.getElementById('welcomeOverlay');
-  if (!overlay) return;
-  overlay.classList.remove('fade-smart-out');
-  overlay.classList.remove('d-none');
-}
-
 function welcomeOverlayOnStart() {
+  const overlay = document.getElementById('welcomeOverlay');
   if (window.innerWidth <= 1200) {
-    hideOverlayWithAnimation();
-  } else {
-    showOverlay();
+    overlay.classList.add('fade-smart-out');
+    setTimeout(() => {
+      overlay.classList.add('d-none');
+    }, 3000);
+  }
+  if (window.innerWidth > 1200) {
+    overlay.classList.remove('fade-smart-out');
+    overlay.classList.remove('d-none');
   }
 }
-
-let overlayHasBeenHidden = false;
-
-function handleOverlayOnResize() {
-  const isSmall = window.innerWidth <= 1200;
-  const isLarge = window.innerWidth > 1200;
-  if (isSmall && !overlayHasBeenHidden) {
-    hideOverlayWithAnimation();
-    overlayHasBeenHidden = true;
-  }
-  if (isLarge) {
-    showOverlay();
-    overlayHasBeenHidden = false;
-  }
-}
-
-window.addEventListener('DOMContentLoaded', welcomeOverlayOnStart);
-window.addEventListener('resize', handleOverlayOnResize);
 
 function countToDo(tasks) {
   return tasks.filter((task) => task.status && task.status.toLowerCase() === 'todo').length;
