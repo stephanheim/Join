@@ -207,13 +207,29 @@ function closeBoardCard() {
 
 function welcomeOverlayOnStart() {
   const overlay = document.getElementById('welcomeOverlay');
-  if (window.innerWidth <= 1200) {
+  if (window.innerWidth < 1200) {
+    overlay.style.display = 'flex';
     overlay.classList.add('fade-smart-out');
     setTimeout(() => {
-      overlay.classList.add('d-none');
+      overlay.style.display = 'none';
     }, 3000);
-  } else {
-    overlay.classList.remove('fade-smart-out');
-    overlay.classList.remove('d-none');
   }
 }
+
+function checkLoginWelcome() {
+  if (sessionStorage.getItem('showWelcome') === 'true') {
+    sessionStorage.removeItem('showWelcome');
+    welcomeOverlayOnStart();
+  }
+}
+
+window.addEventListener('resize', () => {
+  const welcomeDiv = document.getElementById('welcomeOverlay');
+  if (window.innerWidth >= 1200) {
+    if (welcomeDiv) welcomeDiv.style.display = 'flex';
+  }
+  if (window.innerWidth < 1200) {
+    if (welcomeDiv) welcomeDiv.style.display = 'none';
+  }
+});
+

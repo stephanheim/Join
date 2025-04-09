@@ -1,7 +1,7 @@
 function initSummary() {
-  welcomeOverlayOnStart();
   getSummaryData();
   loadContactsFromFirebase();
+  checkLoginWelcome();
 }
 
 function getSummaryData() {

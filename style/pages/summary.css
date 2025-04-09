@@ -240,9 +240,8 @@
   }
 
   .welcome-div {
+    display: none;
     position: fixed;
-    display: flex;
-    justify-content: center;
     align-items: center;
     left: 0;
     top: 0;
@@ -251,20 +250,6 @@
     font-size: 36px;
     background-color: rgba(246, 247, 248, 1);
     transition: background-color 1s ease;
-  }
-
-  @keyframes smartFadeShrinkOut {
-    0% {
-      opacity: 1;
-      transform: scale(1);
-      background-color: rgba(246, 247, 248, 0.2);
-    }
-
-    100% {
-      opacity: 0;
-      transform: scale(0.5);
-      background-color: rgba(246, 247, 248, 0);
-    }
   }
 
   .fade-smart-out {

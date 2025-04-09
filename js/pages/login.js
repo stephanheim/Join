@@ -15,14 +15,19 @@ async function submitLogin() {
       renderLoginMessage();
       return;
     }
-    let user = await findUserFromDB(email);
-    localStorage.setItem('loggedInUser', JSON.stringify(user));
+    setLoggedInUserWithWelcome(email)
     setRememberMe();
     await uploadMissingDefaultTasks();
     window.location.href = './pages/dashboard.html';
   } catch (error) {
     console.error('Login failed:', error);
   }
+}
+
+async function setLoggedInUserWithWelcome(email) {
+  let user = await findUserFromDB(email);
+  localStorage.setItem('loggedInUser', JSON.stringify(user));
+  sessionStorage.setItem('showWelcome', 'true')
 }
 
 async function isLoginValid(email, password) {
@@ -78,6 +83,7 @@ function renderLoginMessage() {
 function guestLogin() {
   let guestUser = { name: 'Guest' };
   localStorage.setItem('loggedInUser', JSON.stringify(guestUser));
+  sessionStorage.setItem('showWelcome', 'true')
   window.location.href = './pages/dashboard.html';
 }
 

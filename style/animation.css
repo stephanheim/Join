@@ -133,3 +133,17 @@
     opacity: 0;
   }
 }
+
+@keyframes smartFadeShrinkOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    background-color: rgba(246, 247, 248, 0.2);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+    background-color: rgba(246, 247, 248, 0);
+  }
+}
