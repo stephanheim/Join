@@ -1,3 +1,21 @@
+/**
+ * Default task list used to prepopulate the application.
+ * Each task contains metadata such as title, description, due date, priority, status, and subtasks.
+ *
+ * Properties:
+ * - id {string} Unique identifier for the task
+ * - isDefault {boolean} Indicates this is a predefined task
+ * - title {string} Title of the task
+ * - description {string} Detailed explanation of the task
+ * - date {string} Due date of the task (format: DD/MM/YYYY)
+ * - category {string} Category of the task (e.g., Meeting, Design)
+ * - priority {string} Priority level (e.g., Medium, Urgent)
+ * - status {string} Current status of the task (e.g., toDo, inProgress)
+ * - contacts {Array} List of assigned contact objects (empty by default)
+ * - subtasks {Array<Object>} List of subtasks with text and completion status
+ *
+ * @type {Array<Object>}
+ */
 const DEFAULT_TASKS = [
   {
     id: 'task-1743532919041-101',
@@ -12,8 +30,8 @@ const DEFAULT_TASKS = [
     subtasks: [
       { text: 'Agenda erstellen', completed: false },
       { text: 'Einladungen versenden', completed: false },
-      { text: 'Protokoll vorbereiten', completed: false }
-    ]
+      { text: 'Protokoll vorbereiten', completed: false },
+    ],
   },
   {
     id: 'task-1743532919041-102',
@@ -28,8 +46,8 @@ const DEFAULT_TASKS = [
     subtasks: [
       { text: 'Wireframes erstellen', completed: false },
       { text: 'Mockups entwerfen', completed: false },
-      { text: 'Feedback einholen', completed: false }
-    ]
+      { text: 'Feedback einholen', completed: false },
+    ],
   },
   {
     id: 'task-1743532919041-103',
@@ -44,8 +62,8 @@ const DEFAULT_TASKS = [
     subtasks: [
       { text: 'Server konfigurieren', completed: false },
       { text: 'Datenbank einrichten', completed: false },
-      { text: 'API Endpoints implementieren', completed: false }
-    ]
+      { text: 'API Endpoints implementieren', completed: false },
+    ],
   },
   {
     id: 'task-1743532919041-104',
@@ -60,8 +78,8 @@ const DEFAULT_TASKS = [
     subtasks: [
       { text: 'Nachrichten Senden', completed: false },
       { text: 'Nachrichten Empfangen', completed: false },
-      { text: 'Nachrichten Status anzeigen', completed: false }
-    ]
+      { text: 'Nachrichten Status anzeigen', completed: false },
+    ],
   },
   {
     id: 'task-1743532919041-105',
@@ -77,9 +95,9 @@ const DEFAULT_TASKS = [
       { text: 'Unit Tests erstellen', completed: false },
       { text: 'Integrationstests durchführen', completed: false },
       { text: 'Fehlerberichte analysieren', completed: false },
-      { text: 'Bugfixes implementieren', completed: false }
-    ]
-  }
+      { text: 'Bugfixes implementieren', completed: false },
+    ],
+  },
 ];
 
 /**
