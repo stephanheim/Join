@@ -1,12 +1,28 @@
+/**
+ * Tracks whether the user has entered a password.
+ * Used to control visibility icon state.
+ * @type {boolean}
+ */
 let isPasswordEntered = false;
 
+/**
+ * Retrieves and trims the email and password from login input fields.
+ *
+ * @returns {{email: string, password: string}} Login credentials.
+ */
 function getLoginInput() {
   let email = document.getElementById('loginEmail').value.trim();
   let password = document.getElementById('loginPassword').value.trim();
-  let login = { email, password };
-  return login;
+  return { email, password };
 }
 
+/**
+ * Handles the login process:
+ * - Validates credentials
+ * - Sets session and localStorage
+ * - Loads missing tasks
+ * - Redirects to dashboard
+ */
 async function submitLogin() {
   let { email, password } = getLoginInput();
   try {
@@ -15,7 +31,7 @@ async function submitLogin() {
       renderLoginMessage();
       return;
     }
-    setLoggedInUserWithWelcome(email)
+    setLoggedInUserWithWelcome(email);
     setRememberMe();
     await uploadMissingDefaultTasks();
     window.location.href = './pages/dashboard.html';
@@ -24,17 +40,35 @@ async function submitLogin() {
   }
 }
 
+/**
+ * Sets the logged-in user in localStorage and shows welcome on dashboard.
+ *
+ * @param {string} email - The email of the logged-in user.
+ */
 async function setLoggedInUserWithWelcome(email) {
   let user = await findUserFromDB(email);
   localStorage.setItem('loggedInUser', JSON.stringify(user));
-  sessionStorage.setItem('showWelcome', 'true')
+  sessionStorage.setItem('showWelcome', 'true');
 }
 
+/**
+ * Validates login credentials by comparing to Firebase user data.
+ *
+ * @param {string} email - Entered email.
+ * @param {string} password - Entered password.
+ * @returns {Promise<boolean>} True if credentials match, false otherwise.
+ */
 async function isLoginValid(email, password) {
   let user = await findUserFromDB(email);
   return user ? user.password === password : false;
 }
 
+/**
+ * Fetches all registered users from Firebase and returns the one matching the email.
+ *
+ * @param {string} email - Email to search for.
+ * @returns {Promise<Object|null>} Matching user object or null.
+ */
 async function findUserFromDB(email) {
   const url = `${BASE_URL}/register/users.json`;
   try {
@@ -49,6 +83,9 @@ async function findUserFromDB(email) {
   }
 }
 
+/**
+ * Updates the password visibility icon and interaction based on input state.
+ */
 function checkPasswordIcon() {
   let passwordInput = document.getElementById('loginPassword');
   let visibilityIcon = document.getElementById('visibilityLogin');
@@ -62,14 +99,22 @@ function checkPasswordIcon() {
   }
 }
 
+/**
+ * Toggles the visibility of the password input field and updates the icon accordingly.
+ */
 function togglePasswordVisibility() {
   let passwordInput = document.getElementById('loginPassword');
   let visibilityIcon = document.getElementById('visibilityLogin');
   let isPasswordVisible = passwordInput.type === 'text';
   passwordInput.type = isPasswordVisible ? 'password' : 'text';
-  visibilityIcon.src = isPasswordVisible ? './assets/icons/visibility_off.svg' : './assets/icons/visibility.svg';
+  visibilityIcon.src = isPasswordVisible
+    ? './assets/icons/visibility_off.svg'
+    : './assets/icons/visibility.svg';
 }
 
+/**
+ * Displays a login error message and highlights input fields with a red border.
+ */
 function renderLoginMessage() {
   const message = document.getElementById('loginMessage');
   const borders = document.getElementsByClassName('outside-input');
@@ -80,13 +125,19 @@ function renderLoginMessage() {
   }
 }
 
+/**
+ * Logs in as a guest and redirects directly to the dashboard.
+ */
 function guestLogin() {
   let guestUser = { name: 'Guest' };
   localStorage.setItem('loggedInUser', JSON.stringify(guestUser));
-  sessionStorage.setItem('showWelcome', 'true')
+  sessionStorage.setItem('showWelcome', 'true');
   window.location.href = './pages/dashboard.html';
 }
 
+/**
+ * Saves or removes login credentials from localStorage based on the "Remember Me" checkbox.
+ */
 function setRememberMe() {
   let rememberMeCheckbox = isCheckboxChecked('remember');
   let { email, password } = getLoginInput();
@@ -96,11 +147,14 @@ function setRememberMe() {
     localStorage.setItem('rememberedPassword', password);
   } else {
     localStorage.removeItem('rememberMe');
-    localStorage.removeItem('rememberedEmail', email);
-    localStorage.removeItem('rememberedPassword', password);
+    localStorage.removeItem('rememberedEmail');
+    localStorage.removeItem('rememberedPassword');
   }
 }
 
+/**
+ * Loads remembered login credentials from localStorage and fills the login form.
+ */
 function loadRememberMe() {
   let rememberMe = localStorage.getItem('rememberMe') === 'true';
   let email = localStorage.getItem('rememberedEmail') || '';
@@ -110,6 +164,9 @@ function loadRememberMe() {
   document.getElementById('loginPassword').value = password;
 }
 
+/**
+ * If user is remembered, skips login and redirects to dashboard.
+ */
 function rememberMe() {
   let user = localStorage.getItem('loggedInUser');
   let rememberMe = localStorage.getItem('rememberMe') === 'true';
@@ -118,6 +175,10 @@ function rememberMe() {
   }
 }
 
+/**
+ * Logs out the user and redirects to the login page.
+ * Clears all user-related data from localStorage.
+ */
 function logout() {
   localStorage.removeItem('loggedInUser');
   localStorage.removeItem('loggedInGuest');

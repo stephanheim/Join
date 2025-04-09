@@ -1,14 +1,50 @@
+/** 
+ * Stores the currently selected priority for a task (e.g. 'urgent', 'medium', 'low').
+ * Used when creating or editing a task.
+ * @type {string}
+ */
 let selectedPriorityValue = '';
+
+/**
+ * Stores all currently selected contacts for the task being created or edited.
+ * Each contact is an object with at least an `id`, `name`, `initials`, and `color`.
+ * @type {Array<Object>}
+ */
 let selectedContacts = [];
+
+/**
+ * Stores the selected category value for the current task.
+ * @type {string}
+ */
 let selectedCategoryValue = '';
+
+/**
+ * Stores the list of subtasks currently added to the task.
+ * Each subtask is an object with `text` and `completed` properties.
+ * @type {Array<{text: string, completed: boolean}>}
+ */
 let addSubtask = [];
+
+/**
+ * Stores all newly created tasks locally before they are synced or used.
+ * @type {Array<Object>}
+ */
 let addNewTask = [];
 
+
+/**
+ * Initializes the add task form by preventing enter key form submission and clearing all fields.
+ */
 function initAddTask() {
   preventFormSubmitOnEnter();
   clearAddTask();
 }
 
+/**
+ * Collects all task input values and returns a new task object.
+ *
+ * @returns {Object} The created task object.
+ */
 function getAddTaskValue() {
   let title = document.getElementById('addTaskTitle').value.trim();
   let description = document.getElementById('addTaskDescription').value.trim();
@@ -27,6 +63,11 @@ function getAddTaskValue() {
   return newTask;
 }
 
+/**
+ * Checks if required fields (title, date, category) are filled before creating a task.
+ *
+ * @returns {boolean} True if fields are filled, false otherwise.
+ */
 function areTaskFieldsFilled() {
   let { title, date, category } = getTaskFieldValues();
   if (!title || !date || !category) {
@@ -37,6 +78,11 @@ function areTaskFieldsFilled() {
   return true;
 }
 
+/**
+ * Retrieves the values of the task form fields.
+ *
+ * @returns {{title: string, date: string, category: string}} The field values.
+ */
 function getTaskFieldValues() {
   let title = document.getElementById('addTaskTitle').value.trim();
   let date = document.getElementById('addTaskDate').value.trim();
@@ -44,6 +90,9 @@ function getTaskFieldValues() {
   return { title, date, category };
 }
 
+/**
+ * Clears all inputs and selections in the add task form.
+ */
 function clearAddTask() {
   document.getElementById('addTaskTitle').value = '';
   document.getElementById('addTaskDescription').value = '';
@@ -54,6 +103,11 @@ function clearAddTask() {
   resetSelectedPriority();
 }
 
+/**
+ * Opens the floating task creation form and sets the target status for the new task.
+ *
+ * @param {string} status - The task status to assign (e.g. 'toDo', 'inProgress').
+ */
 function openAddTaskFloating(status) {
   let addTask = document.getElementById('floatingAddTask');
   addTask.innerHTML = addTaskTemplate();
@@ -69,6 +123,9 @@ function openAddTaskFloating(status) {
   addTaskStatusTarget = status;
 }
 
+/**
+ * Closes the floating add task form and resets the body scroll behavior.
+ */
 function closeAddTaskFloating() {
   let floatingTask = document.getElementById('floatingAddTask');
   if (!floatingTask) return;
@@ -82,6 +139,10 @@ function closeAddTaskFloating() {
   }, 100);
 }
 
+/**
+ * Creates and saves a new task if form inputs are valid.
+ * Updates DB, local storage and UI accordingly.
+ */
 async function createNewTask() {
   if (!areTaskFieldsFilled()) return;
   let currentStatus = getTaskStatus();
@@ -94,16 +155,33 @@ async function createNewTask() {
   document.body.style.overflow = 'auto';
 }
 
+/**
+ * Returns the status for the task based on the current form context.
+ *
+ * @returns {string} The task status (default: 'toDo').
+ */
 function getTaskStatus() {
   return addTaskStatusTarget || 'toDo';
 }
 
+/**
+ * Initializes a task with the given status and input field values.
+ *
+ * @param {string} status - The task status to assign.
+ * @returns {Object} The initialized task object.
+ */
 function initTaskWithStatus(status) {
   let task = getAddTaskValue();
   task.status = status;
   return task;
 }
 
+/**
+ * Deletes a task from DB and localStorage if necessary, and updates the UI.
+ *
+ * @param {string} firebaseId - Firebase ID of the task.
+ * @param {string} taskId - Local task ID.
+ */
 async function deleteTask(firebaseId, taskId) {
   let taskEntry = taskDataMap[taskId];
   if (!taskEntry || !taskEntry.task) return;
@@ -117,12 +195,22 @@ async function deleteTask(firebaseId, taskId) {
   }
 }
 
-
+/**
+ * Handles priority selection for a task and updates the UI state.
+ *
+ * @param {string} prio - The selected priority value.
+ * @param {HTMLElement} element - The clicked button element.
+ */
 function selectedPriority(prio, element) {
   buttonsColorSwitch(element);
   selectedPriorityValue = prio;
 }
 
+/**
+ * Switches the visual state of priority buttons.
+ *
+ * @param {HTMLElement} activeButton - The currently selected button.
+ */
 function buttonsColorSwitch(activeButton) {
   let buttons = activeButton.parentElement.getElementsByTagName('button');
   for (let i = 0; i < buttons.length; i++) {
@@ -131,6 +219,9 @@ function buttonsColorSwitch(activeButton) {
   activeButton.classList.add('isSelected');
 }
 
+/**
+ * Resets the priority selection and restores the default button state.
+ */
 function resetSelectedPriority() {
   let buttons = document.getElementsByClassName('button-prio');
   for (let i = 0; i < buttons.length; i++) {
@@ -143,6 +234,12 @@ function resetSelectedPriority() {
   selectedPriorityValue = '';
 }
 
+/**
+ * Renders all available contacts inside the dropdown menu with their current selection status.
+ *
+ * @param {HTMLElement} dropDownMenu - The dropdown menu element.
+ * @param {Array<Object>} contacts - The array of contact objects to render.
+ */
 function addedContacts(dropDownMenu, contacts) {
   contacts.forEach((contact, i) => {
     let { name, color, initials } = contact;
@@ -151,20 +248,42 @@ function addedContacts(dropDownMenu, contacts) {
   });
 }
 
+/**
+ * Applies selection styles to all contacts in the dropdown based on checkbox state.
+ *
+ * @param {Array<Object>} contacts - Array of contact objects.
+ */
 function applySelectionStyles(contacts) {
-  contacts.forEach((_, i) => updateSelectedStyle(document.getElementById(`innerDropmenu-${i}`), document.getElementById(`checkbox-${i}`)?.checked));
+  contacts.forEach((_, i) => {
+    updateSelectedStyle(
+      document.getElementById(`innerDropmenu-${i}`),
+      document.getElementById(`checkbox-${i}`)?.checked
+    );
+  });
 }
 
+/**
+ * Filters and renders contacts matching the search term or all contacts if input is too short.
+ *
+ * @param {string} searchTerm - The string to filter contacts by name.
+ */
 function searchContacts(searchTerm) {
   const dropDownMenu = document.getElementById('dropDownMenuAssigned');
   if (searchTerm.length < 2) {
     renderDropdownUser(dropDownMenu, formattedContactsArray);
     return;
   }
-  let searchContacts = formattedContactsArray.filter((contact) => contact.name.toLowerCase().startsWith(searchTerm.toLowerCase()));
+  let searchContacts = formattedContactsArray.filter((contact) =>
+    contact.name.toLowerCase().startsWith(searchTerm.toLowerCase())
+  );
   renderDropdownUser(dropDownMenu, searchContacts);
 }
 
+/**
+ * Prepares, formats and renders the contact list in the dropdown.
+ *
+ * @param {HTMLElement} dropDownMenu - The dropdown menu element.
+ */
 function getContacts(dropDownMenu) {
   let groupedContacts = sortContacts();
   assignColorsToContacts(groupedContacts);
@@ -172,6 +291,9 @@ function getContacts(dropDownMenu) {
   renderDropdownUser(dropDownMenu);
 }
 
+/**
+ * Resets the selected category value and updates the UI label.
+ */
 function resetSelectCategory() {
   const selectedCategory = document.getElementById('selectedCategory');
   if (selectedCategory) {
@@ -180,12 +302,22 @@ function resetSelectCategory() {
   }
 }
 
+/**
+ * Renders a single subtask in the subtask list container.
+ *
+ * @param {Object} subtask - The subtask object to render.
+ */
 function renderSubtask(subtask) {
   let subtaskRef = document.getElementById('addedSubtask');
   let i = addSubtask.length - 1;
   subtaskRef.innerHTML += subtaskTemplate(i, subtask);
 }
 
+/**
+ * Adds a new subtask from the input field if the input is not empty.
+ *
+ * @param {Event} event - The input event from pressing enter or clicking the add button.
+ */
 function addSubtaksFromInput(event) {
   let subtaskInputRef = document.getElementById('addTaskSubtasks');
   let subtaskNote = subtaskInputRef.value;
@@ -197,6 +329,11 @@ function addSubtaksFromInput(event) {
   }
 }
 
+/**
+ * Clears and resets the subtask input field and hides additional icons.
+ *
+ * @param {Event} event - The event that triggered the reset (e.g. click or keypress).
+ */
 function resetSubtaskInput(event) {
   event.stopPropagation();
   const inputField = document.getElementById('addTaskSubtasks');
@@ -212,6 +349,9 @@ function resetSubtaskInput(event) {
   }
 }
 
+/**
+ * Renders all current subtasks in the container, refreshing the entire list.
+ */
 function renderAllSubtasks() {
   let subtaskRef = document.getElementById('addedSubtask');
   subtaskRef.innerHTML = '';
@@ -220,17 +360,31 @@ function renderAllSubtasks() {
   });
 }
 
+/**
+ * Deletes a subtask by index and re-renders the subtask list.
+ *
+ * @param {number} i - Index of the subtask to delete.
+ */
 function deleteSubtask(i) {
   addSubtask.splice(i, 1);
   renderAllSubtasks();
 }
 
+/**
+ * Clears all subtasks and resets the subtask list in the UI.
+ */
 function resetSubtask() {
   let subtaskRef = document.getElementById('addedSubtask');
   subtaskRef.innerHTML = '';
   addSubtask.length = [];
 }
 
+/**
+ * Formats a numeric date input into the format DD/MM/YYYY as the user types.
+ * Non-digit characters are removed automatically.
+ *
+ * @param {HTMLInputElement} input - The input element containing the date string.
+ */
 function formatDate(input) {
   let value = input.value.replace(/\D/g, '');
   let formattedValue = '';
@@ -245,6 +399,12 @@ function formatDate(input) {
   return;
 }
 
+/**
+ * Toggles the selection of a contact and updates its visual state.
+ *
+ * @param {Event} event - The event triggered by the user interaction.
+ * @param {number} index - The index of the contact in the formattedContactsArray.
+ */
 function toggleContactsSelection(event, index) {
   const checkbox = document.getElementById(`checkbox-${index}`);
   const container = document.getElementById(`innerDropmenu-${index}`);
@@ -259,6 +419,9 @@ function toggleContactsSelection(event, index) {
   updateSelectedStyle(container, checked);
 }
 
+/**
+ * Clears all selected contacts and resets the initials display area.
+ */
 function resetContactsSelection() {
   let initialContainer = document.getElementById('selectedInitials');
   initialContainer.innerHTML = '';
@@ -276,11 +439,20 @@ function updateSelectedContacts(index, isChecked) {
   renderSelectedInitials();
 }
 
+/**
+ * Updates the visual style of a contact item based on selection state.
+ *
+ * @param {HTMLElement} element - The container element of the contact item.
+ * @param {boolean} isChecked - Whether the contact is selected.
+ */
 function updateSelectedStyle(element, isChecked) {
   element.classList.toggle('inner-dropmenu', !isChecked);
   element.classList.toggle('inner-dropmenu-checked', isChecked);
 }
 
+/**
+ * Renders the initials of all selected contacts in the initials display container.
+ */
 function renderSelectedInitials() {
   const initialsRef = document.getElementById('selectedInitials');
   initialsRef.innerHTML = '';
