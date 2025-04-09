@@ -23,3 +23,26 @@ ul {
   color: #29abe2;
   text-decoration: none;
 }
+
+@media (max-width: 640px) {
+  .privacy-wrap {
+    padding: 110px 9px 80px 9px;
+  }
+
+  h1 {
+    font-size: 47px;
+  }
+}
+
+@media (max-width: 380px) {
+  .policy-content {
+    width: 100%;
+    padding: 12px 4px;
+    text-align: center;
+    position: relative;
+  }
+
+  .policy-content.active {
+    text-align: center;
+  }
+}

@@ -1,35 +1,49 @@
 .contact-wrapper {
+  height: auto;
   background-color: #f6f7f8;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  flex-wrap: wrap;
+  align-items: flex-start;
   margin-top: 4px;
+  overflow: hidden;
+}
+
+.cnt-rander-div {
+  max-width: 450px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .cnt-main {
-  height: 928px;
+  max-width: 594px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding-top: 114px;
 }
 
-.cnt-title h1 {
+.cnt-title-font {
   font-size: 61px;
   font-weight: 700;
 }
 
 .cnt-list {
+  max-width: 450px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 450px;
-  height: 928px;
+  height: 100vh;
   background-color: #ffffff;
   overflow-y: auto;
-  cursor: pointer;
   box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.1)
+}
+
+.cnt-resp-back-btn {
+  cursor: pointer;
 }
 
 .cnt-title {
@@ -44,7 +58,6 @@
 .cnt-subline {
   font-size: 27px;
   font-weight: 400;
-  line-height: 32.4px;
 }
 
 .cnt-seperator {
@@ -90,7 +103,8 @@
 }
 
 .cnt-letter-div {
-  width: 352px;
+  max-width: 352px;
+  width: 100%;
   height: 58px;
   padding: 17px 36px 17px 36px;
   gap: 8px;
@@ -105,7 +119,8 @@
 .cnt-list-seperator {
   min-height: 1px;
   height: 1px;
-  width: 352px;
+  max-width: 352px;
+  width: 100%;
   border-radius: 10px;
   background-color: #d1d1d1;
   gap: 10px;
@@ -113,14 +128,16 @@
 }
 
 .cnt-name {
+  max-width: 352px;
+  width: 100%;
+  height: 78px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 352px;
-  height: 78px;
   padding: 15px 24px 15px 24px;
   gap: 35px;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .cnt-name:hover {
@@ -180,13 +197,14 @@
   align-items: center;
   background-color: #ff7a00;
   color: white;
-  border: 3px solid white;
-  border-radius: 70px;
+  border: solid 3px #FFFFFF;
+  border-radius: 50%;
   gap: 10px;
   width: 120px;
   height: 120px;
-  font-size: 47px;
+  font-size: 46px;
   font-weight: 500;
+  line-height: 120%;
 }
 
 .cnt-glance-icon-div {
@@ -200,6 +218,7 @@
   width: 159px;
   gap: 13px;
   cursor: pointer;
+  margin-top: 8px;
 }
 
 .cnt-spacer {
@@ -246,15 +265,11 @@
   pointer-events: none;
 }
 
-/* Test Success message */
-
-
-
 .cnt-success-msg {
   position: absolute;
-  bottom: 20px;
-  left: 93vh;
-  transform: translateX(150%);
+  bottom: 32px;
+  margin-left: 40px;
+  transform: none;
   background-color: #2a3647;
   color: white;
   width: 326px;
@@ -262,7 +277,7 @@
   border-radius: 10px;
   font-size: 20px;
   font-weight: 400;
-  z-index: 1000;
+  z-index: 999;
   opacity: 0;
   display: flex;
   justify-content: center;
@@ -277,26 +292,221 @@
   animation: cntSlideOut 0.4s ease-in-out forwards;
 }
 
-@keyframes cntSlideIn {
-  from {
-    transform: translateX(150%);
-    opacity: 0;
+.clickable {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.clickable:hover {
+  font-weight: 600;
+  color: #29aae1;
+}
+
+.clickable:hover img {
+  filter: invert(52%) sepia(91%) saturate(414%) hue-rotate(160deg) brightness(99%) contrast(92%);
+}
+
+.resp-btn {
+  display: none;
+}
+
+.b-btn {
+  display: none;
+}
+
+.d-none {
+  display: none;
+}
+
+.edit-floater.preSlideIn {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.edit-floater.slideIn {
+  animation: cntSlideIn 0.3s ease-in-out forwards;
+}
+
+.edit-floater.slideOut {
+  animation: cntSlideOut 0.3s ease-in-out forwards;
+}
+
+
+/* Media Queries */
+
+@media screen and (max-width: 1200px) {
+  .cnt-main {
+    max-width: 428px;
+    width: 100%;
+    display: none;
   }
 
-  to {
-    transform: translateX(-50%);
-    opacity: 1;
+  .cnt-info {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .cnt-list {
+    max-width: unset;
+    width: 100%;
+    max-height: calc(100vh - 100px);
+    padding-bottom: 108px;
+    z-index: unset;
+    padding: 0 16px;
+  }
+
+  .cnt-btn-div {
+    display: none;
+  }
+
+  .resp-btn {
+    height: 56px;
+    width: 56px;
+    border-radius: 50%;
+    background-color: #2A3647;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 112px;
+    right: 16px;
+    cursor: pointer;
+    box-shadow: 0px 4px 4px 0px #00000040;
+  }
+
+  .resp-btn img {
+    height: 32px;
+    width: 32px;
+  }
+
+  .resp-btn:hover {
+    background-color: #29aae1;
+    box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2);
+    transform: translateX(-1px);
+  }
+
+  .cnt-glance {
+    animation: none;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cnt-seperator {
+    width: 59px;
+    height: 3px;
+    background-color: #28abe2;
+    order: 3;
+  }
+
+  .cnt-title {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 48px;
+    margin-left: 0;
+  }
+
+  .cnt-title-font {
+    font-size: 47px;
+    font-weight: 700;
+  }
+
+  .cnt-subline {
+    font-size: 20px;
+  }
+
+  .cnt-glance-icon-div {
+    display: none;
+  }
+
+  .cnt-glance-details {
+    gap: 20px;
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .cnt-glance {
+    margin: 0;
+  }
+
+  .cnt-contact-info {
+    padding-top: 32px;
+  }
+
+  .b-btn {
+    display: block;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .contact-wrapper {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .edit-floater {
+    background-color: white;
+    border-radius: 20px 20px 0 20px;
+    width: 116px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+    padding: 24px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    position: absolute;
+    bottom: -12px;
+    right: -8px;
+    z-index: 10;
   }
 }
 
-@keyframes cntSlideOut {
-  from {
-    transform: translateX(-50%);
-    opacity: 1;
+@media screen and (max-width:428px) {
+  .cnt-main {
+    width: 100%;
   }
 
-  to {
-    transform: translateX(150%);
-    opacity: 0;
+  .cnt-glance-details {
+    max-width: 100%;
   }
+
+  .cnt-glance-initials {
+    font-size: 21px;
+    font-weight: 400;
+  }
+
+  .cnt-details {
+    word-break: break-word;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .cnt-resp-name {
+    font-size: 28px;
+  }
+
+  .cnt-contact-info {
+    font-size: 16px;
+  }
+
+  .cnt-info-title,
+  .cnt-info-mail,
+  .cnt-info-phone {
+    font-size: 14px;
+  }
+
 }

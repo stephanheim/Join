@@ -5,31 +5,48 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Join - Contacts</title>
+  <!-- <link rel="stylesheet" href="../style/global.css" />
+  <link rel="stylesheet" href="../style/typography.css" />
+  <link rel="stylesheet" href="../style/variables.css" />
+  <link rel="stylesheet" href="../style/components/floating_contact.css" />
+  <link rel="stylesheet" href="../style/animation.css" /> -->
 </head>
 
 <body onload="initContacts()">
   <div class="contact-wrapper">
     <div id="floater"></div>
-    <div class="cnt-list">
+    <div class="cnt-list" id="cnt-list-div">
       <div class="cnt-btn-div">
-        <button onclick="addNewContact()" class="cnt-btn-add-new">Add new contact<img
+        <button onclick="showAnimateContact()" class="cnt-btn-add-new">Add new contact<img
             src="../assets/icons/person_add.svg" /></button>
       </div>
-      <div id="contacts-div">
+      <div class="cnt-rander-div" id="contacts-div">
       </div>
     </div>
     <div class="cnt-main" id="cnt-main-div">
-      <div class="cnt-title">
-        <h1>Contacts</h1>
-        <div class="cnt-seperator"></div>
-        <div class="cnt-subline">Better with a team</div>
+      <div class="cnt-info">
+        <div class="cnt-title">
+          <span class="cnt-title-font">Contacts</span>
+          <div class="cnt-seperator"></div>
+          <div class="cnt-subline">Better with a team</div>
+        </div>
+        <div class="cnt-resp-back-btn">
+          <img src="../assets/icons/arrow-left-line.svg" class="b-btn" onclick="backToList()">
+        </div>
       </div>
-      <!-- Ab hier wieder dynamisch rendern -->
       <div class="cnt-glance" id="cnt-glance-contact">
       </div>
+    </div>
+    <div class="resp-btn" id="resp-cmd">
+      <img id="resp-cmd-img" src="../assets/icons/add-contact-mobile.svg" class="cnt-resp-btn-img">
     </div>
   </div>
   <script src="../js/pages/contacts.js"></script>
   <script src="../js/script.js"></script>
+  <script src="../js/templates/contactTemplates.js"></script>
+  <script src="../js/utils/helpers.js"></script>
+  <script src="../js/utils/animation.js"></script>
+  <script src="../js/components/editContacts.js"></script>
 </body>
+
 </html>

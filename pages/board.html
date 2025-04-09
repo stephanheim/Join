@@ -5,99 +5,132 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Board</title>
-  <link rel="shortcut icon" href="../assets/img/join.svg" type="image/x-icon" />
+  <!-- <link rel="shortcut icon" href="../assets/img/join.svg" type="image/x-icon" />
   <link rel="stylesheet" href="../style/global.css" />
   <link rel="stylesheet" href="../style/typography.css" />
   <link rel="stylesheet" href="../style/variables.css" />
   <link rel="stylesheet" href="../style/pages/board.css" />
-  <link rel="stylesheet" href="../style/pages/add_task.css" />
-  <link rel="stylesheet" href="../style/components/floating_add_task.css" />
+  <link rel="stylesheet" href="../style/pages/addTask.css" />
+  <link rel="stylesheet" href="../style/components/floating_addTask.css" />
   <link rel="stylesheet" href="../style/animation.css" />
+  <link rel="stylesheet" href="../style/components/taskCard.css" /> -->
 </head>
 
 <body onload="initBoard()">
+  <div id="overlayTaskAdded" class="overlay-task-added-board">
+    <div class="message-task-added">
+      <span>Task added to board</span>
+      <img class="img_menu" src="../assets/icons/board_icon.svg" alt="board" />
+    </div>
+  </div>
   <main id="floatingAddTask" class="floating-main slideIn d-none"></main>
-  <!--big board-card overlay-->
   <main class="user-story-main slideIn d-none" id="boardCardLarge"></main>
-  <!-------------------------->
   <header class="board-header">
     <div class="board-header-content">
       <div class="board-headline">
         <h1>Board</h1>
       </div>
-      <div class="find-add-task-content">
+      <div class="container-find-task">
         <label class="outside-find-task">
-          <input required class="ft-inside-input" id="taskSearch" minlength="3" type="search" placeholder="Find Task"
-            aria-label="Search Tasks" />
-          <img src="../assets/icons/seperaor_horicentral.svg" alt="Strich" />
-          <img src="../assets/icons/search_magnifier.svg" alt="Such Icon" />
+          <input required class="ft-inside-input" id="searchTask" minlength="3" type="search" placeholder="Find Task"
+            oninput="searchTask(event)" aria-label="Search Tasks" />
+          <div class="ft-inside-icon">
+            <img src="../assets/icons/seperaor_horicentral.svg" alt="Strich" />
+            <img src="../assets/icons/search_magnifier.svg" alt="Such Icon" />
+          </div>
+          <div id="emptyId" class="error-message no-search-found">No results found</div>
         </label>
-        <button class="bt-add-task" onclick="openAddFloatingTask()"><span>Add Task</span><img
-            src="../assets/icons/cross_add.svg" alt="" /></button>
       </div>
+      <button class="bt-add-task" onclick=" handleClickFloatingTask('toDo', this)">
+        <span>Add Task</span>
+        <img src="../assets/icons/cross_add.svg" alt="" />
+      </button>
     </div>
   </header>
   <main class="board-main">
-    <div class="board-task">
-      <div class="board-task">
-        <div class="nav-add-task">
-          <span>To do</span><svg onclick="openAddFloatingTask()" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <rect x="1" y="1" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2" />
-            <path d="M12 8V16" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
-            <path d="M16 12.0754L8 12.0754" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
-          </svg>
-        </div>
-        <div class="no-task" id="noTaskToDo">
-          <span>No Tasks To do</span>
-        </div>
-        <div id="toDo"></div>
+    <div class="board-task" ondrop="moveTo('toDo')" ondragover="allowDrop(event, 'toDo')"
+      ondragleave="clearDropHighlight('toDo')">
+      <div class="nav-add-task">
+        <span>To do</span><svg onclick="handleClickFloatingTask('toDo', this)" width="24" height="24"
+          viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2" />
+          <path d="M12 8V16" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
+          <path d="M16 12.0754L8 12.0754" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </div>
+      <div class="no-task" id="noTaskToDo">
+        <span>No Tasks To do</span>
+      </div>
+      <div class="task-render-outside">
+        <div class="task-render-container" id="toDo"></div>
       </div>
     </div>
-    <div class="board-task">
-      <div class="board-task">
-        <div class="nav-add-task">
-          <span>In progress</span><svg onclick="openAddFloatingTask()" width="24" height="24" viewBox="0 0 24 24"
-            fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="1" y="1" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2" />
-            <path d="M12 8V16" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
-            <path d="M16 12.0754L8 12.0754" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
-          </svg>
-        </div>
-        <div class="no-task d-none" id="noTaskInProgress"><span>No Tasks In progress</span></div>
-        <div id="inProgress"></div>
+    <div class="board-task" ondrop="moveTo('inProgress')" ondragover="allowDrop(event, 'inProgress')"
+      ondragleave="clearDropHighlight('inProgress')">
+      <div class="nav-add-task">
+        <span>In progress</span><svg onclick=" handleClickFloatingTask('inProgress', this)" width="24" height="24"
+          viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2" />
+          <path d="M12 8V16" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
+          <path d="M16 12.0754L8 12.0754" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
+        </svg>
       </div>
-    </div>
-    </div>
-    <div class="board-task">
-      <div class="board-task">
-        <div class="nav-add-task" id="noTaskAwaitFeedback">
-          <span>Await feedback</span><svg onclick="openAddFloatingTask()" width="24" height="24" viewBox="0 0 24 24"
-            fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="1" y="1" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2" />
-            <path d="M12 8V16" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
-            <path d="M16 12.0754L8 12.0754" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
-          </svg>
-        </div>
-        <div class="no-task"><span>No Tasks Await feedback</span></div>
-        <div id="awaitFeedback"></div>
+      <div class="no-task" id="noTaskInProgress">
+        <span>No Tasks In progress</span>
+      </div>
+      <div class="task-render-outside">
+        <div class="task-render-container" id="inProgress"></div>
       </div>
     </div>
     </div>
+    <div class="board-task" ondrop="moveTo('awaitFeedback')" ondragover="allowDrop(event, 'awaitFeedback')"
+      ondragleave="clearDropHighlight('awaitFeedback')">
+      <div class="nav-add-task">
+        <span>Await feedback</span><svg onclick=" handleClickFloatingTask('awaitFeedback', this)" width="24" height="24"
+          viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2" />
+          <path d="M12 8V16" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
+          <path d="M16 12.0754L8 12.0754" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </div>
+      <div class="no-task" id="noTaskAwaitFeedback">
+        <span>No Tasks Await feedback</span>
+      </div>
+      <div class="task-render-outside">
+        <div class="task-render-container" id="awaitFeedback"></div>
+      </div>
     </div>
-    <div class="board-task">
-      <div class="board-task">
-        <div class="nav-add-task"><span>Done</span></div>
-        <div class="no-task" id="noTaskDone"><span>No Tasks Done</span></div>
-        <div id="done"></div>
+    </div>
+    </div>
+    <div class="board-task" ondrop="moveTo('done')" ondragover="allowDrop(event, 'done')"
+      ondragleave="clearDropHighlight('done')">
+      <div class="nav-add-task">
+        <span>Done</span>
+      </div>
+      <div class="no-task" id="noTaskDone">
+        <span>No Tasks Done</span>
+      </div>
+      <div class="task-render-outside">
+        <div class="task-render-container" id="done"></div>
       </div>
     </div>
     </div>
   </main>
-  <script src="../js/components/add_task_temp.js"></script>
+  <script src="../js/templates/addTaskTemplates.js"></script>
   <script src="../js/script.js"></script>
+  <script src="../js/templates/taskCardTemplate.js"></script>
   <script src="../js/pages/board.js"></script>
-  <script src="../js/components/taskCardTemplate.js"></script>
+  <script src="../js/utils/defaultTaskUploader.js"></script>
+  <script src="../js/pages/addTask.js"></script>
+  <script src="../js/utils/helpers.js"></script>
+  <script src="../js/utils/firebase.js"></script>
+  <script src="../js/utils/storage.js"></script>
+  <script src="../js/utils/validation.js"></script>
+  <script src="../js/utils/userUI.js"></script>
+  <script src="../js/utils/animation.js"></script>
+  <script src="../js/utils/dragAndDrop.js"></script>
+  <script src="../js/templates/boardCardTemplates.js"></script>
+  <script src="../js/components/editTasks.js"></script>
 </body>
 
 </html>

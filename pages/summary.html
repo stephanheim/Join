@@ -4,8 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Summary
-  </title>
+  <title>Summary</title>
   <!-- <link rel="stylesheet" href="../style/global.css" />
   <link rel="stylesheet" href="../style/typography.css" />
   <link rel="stylesheet" href="../style/pages/summary.css" />
@@ -15,73 +14,30 @@
 <body>
   <div id="header"></div>
   <div id="sideBar"></div>
-  <div class="wrapper">
-    <div class="title-div">
-      <div>
+  <main class="main-summary">
+    <div class="wrapper">
+      <div class="title-div">
         <h1>Join 360</h1>
-      </div>
-      <div class="seperator"></div>
-      <div>Key Metrics at a glance</div>
-    </div>
-    <div class="main-div">
-      <div class="metrics-div">
-        <div class="row-top">
-          <div onclick="setActiveToBoard(); loadPageContentPath('board')" class="todone-div hoverable box-shadow">
-            <img src="../assets/img/pencil.svg" class="imgs-todo">
-            <div class="numbers-div">
-              <span class="number">1</span><span class="text-todo">To-do</span>
-            </div>
-          </div>
-          <div onclick="setActiveToBoard(); loadPageContentPath('board')" class="todone-div hoverable box-shadow">
-            <img src="../assets/img/done.svg" class="imgs-todo">
-            <div class="numbers-div">
-              <span class="number">1</span>
-              <span class="text-todo">Done</span>
-            </div>
-          </div>
-        </div>
-        <div onclick="setActiveToBoard(); loadPageContentPath('board')" class="row-middle hoverable box-shadow">
-          <div class="todone-div">
-            <img src="../assets/img/urgent.svg" class="img-urgent no-invert">
-            <div class="numbers-div">
-              <span class="number">1</span>
-              <span class="text-urgent">Urgent</span>
-            </div>
-          </div>
-          <div class="middle-sep"></div>
-          <div class="date-div"><span class="text-date">October 16, 2026</span> <span class="text-urgent">Upcoming
-              Deadline</div>
-        </div>
-        <div class="row-bottom">
-          <div onclick="setActiveToBoard(); loadPageContentPath('board')" class="numbers-div tasks hoverable">
-            <div class="numbers-toDo">
-              <span class="number">5</span>
-              <span class="text-todo">Tasks in Board</span>
-            </div>
-          </div>
-          <div onclick="setActiveToBoard(); loadPageContentPath('board')" class="numbers-div tasks hoverable">
-            <div class="numbers-toDo">
-              <span class="number">2</span>
-              <span class="text-todo">Tasks in Progress</span>
-            </div>
-          </div>
-          <div onclick="setActiveToBoard(); loadPageContentPath('board')" class="numbers-div tasks hoverable">
-            <div class="numbers-toDo">
-              <span class="number">2</span>
-              <span class="text-todo">Awaiting Feedback</span>
-            </div>
-
-          </div>
+        <div class="seperator-subtitle-div">
+          <div class="seperator"></div>
+          <div>Key Metrics at a Glance</div>
         </div>
       </div>
-      <div class="welcome-div">
-        <span id="welcomeMessage">Good morning,</span>
-        <span id="welcomeUser" class="name"></span>
+      <div class="main-div">
+        <div class="metrics-div" id="summaryContainer"></div>
+        <div id="welcomeOverlay" class="welcome-div">
+          <span id="welcomeMessage">Good morning,</span>
+          <span id="welcomeUser" class="name"></span>
+        </div>
       </div>
     </div>
-  </div>
+  </main>
+  <script src="./js/utils/animation.js"></script>
+  <script src="../js/templates/summaryTemplates.js"></script>
+  <script src="../js/utils/helpers.js"></script>
   <script src="../js/script.js"></script>
   <script src="../js/pages/summary.js"></script>
+  <script src="../js/pages/login.js"></script>
 </body>
 
 </html>

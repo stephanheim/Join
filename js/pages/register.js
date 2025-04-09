@@ -1,30 +1,18 @@
 /**
- * Fetches data from the specified URL
+ * Validates the registration form and toggles submit button accordingly.
  *
- * @param {string} url - The URL from which to fetch the data
- * @param {object} options - Options for the fetch request (method, headers, body)
- * @return {Promise<object|undefined>} - A promise that resolves to a JSON object on success or `undefined` on failure
+ * @returns {boolean} True if all fields are valid.
  */
-async function fetchData(url, options) {
-  try {
-    const response = await fetch(url, options);
-    if (!response.ok) throw new Error(`Server Error: ${response.status}`);
-    return await response.json();
-  } catch (error) {
-    console.error("Fetch Error:", error);
-    return undefined;
-  } finally {
-    activateButton()
-  }
-}
-
-
 function checkForm() {
   toggleSubmitButton();
   return allFieldsValid();
 }
 
-
+/**
+ * Retrieves and sanitizes the input from the registration form.
+ *
+ * @returns {{newUser: {name: string, email: string, password: string}, confirmPassword: string}} User data.
+ */
 function getUserInput() {
   let name = document.getElementById('registNewName');
   let email = document.getElementById('registNewEmail');
@@ -38,7 +26,9 @@ function getUserInput() {
   return { newUser, confirmPassword: confirmPassword.value.trim() };
 }
 
-
+/**
+ * Submits a new user to Firebase if all validations pass and email is available.
+ */
 async function submitNewUser() {
   if (!checkForm()) return;
   let { newUser } = getUserInput();
@@ -54,14 +44,20 @@ async function submitNewUser() {
   }
 }
 
-
+/**
+ * Displays an error message if the email is already registered.
+ */
 function emailAlreadyRegistered() {
   const message = document.getElementById('emailMessage');
   message.innerText = "This e-mail address is already registered";
   message.style.display = "block";
 }
 
-
+/**
+ * Posts a new user to Firebase and shows registration success if successful.
+ *
+ * @param {Object} newUser - New user data to register.
+ */
 async function postUser(newUser) {
   const url = BASE_URL + "/register/users.json";
   const options = {
@@ -75,7 +71,9 @@ async function postUser(newUser) {
   registrationComplete();
 }
 
-
+/**
+ * Displays a success message after registration and redirects to login page.
+ */
 function registrationComplete() {
   const message = document.getElementById('overlaySuccsessful');
   message.style.display = "block";
@@ -85,25 +83,14 @@ function registrationComplete() {
   }, 1500);
 }
 
-
-function isNameValid() {
-  let name = document.getElementById('registNewName').value.trim();
-  if (name === "") return false;
-  const parts = name.split(/\s+/);
-  return parts.length >= 2;
-}
-
-
-function isEmailValid() {
-  let email = document.getElementById('registNewEmail').value.trim();
-  if (email === "") return false;
-  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return regex.test(email);
-}
-
-
+/**
+ * Checks if the provided email is already registered in Firebase.
+ *
+ * @param {string} email - The email to check.
+ * @returns {Promise<boolean>} True if email is available.
+ */
 async function isThisEmailAvailable(email) {
-  const url = BASE_URL + "/register/users.json";
+  const url = BASE_URL + "register/users.json";
   try {
     const response = await fetch(url);
     if (!response.ok) throw new Error(`Server Error: ${response.status}`);
@@ -116,20 +103,11 @@ async function isThisEmailAvailable(email) {
   }
 }
 
-
-function isPasswordFieldValid() {
-  let password = document.getElementById('registNewPassword').value.trim();
-  return password.length >= 8;
-}
-
-
-function confirmPasswords() {
-  let password = document.getElementById('registNewPassword').value.trim();
-  let confirmPassword = document.getElementById('registConfirmPassword').value.trim();
-  return password === confirmPassword;
-}
-
-
+/**
+ * Checks whether all required registration fields are filled in.
+ *
+ * @returns {boolean} True if all fields have a value.
+ */
 function allRequiredFieldsAreFilledIn() {
   let { newUser, confirmPassword } = getUserInput();
   return (
@@ -140,7 +118,11 @@ function allRequiredFieldsAreFilledIn() {
   );
 }
 
-
+/**
+ * Runs all field validations including checkbox and matching passwords.
+ *
+ * @returns {boolean} True if form is fully valid.
+ */
 function allFieldsValid() {
   return (
     allRequiredFieldsAreFilledIn() &&
@@ -152,7 +134,9 @@ function allFieldsValid() {
   );
 }
 
-
+/**
+ * Renders a validation message for the name field.
+ */
 function renderNameMessage() {
   const message = document.getElementById('nameMessage');
   if (!isNameValid()) {
@@ -164,7 +148,9 @@ function renderNameMessage() {
   }
 }
 
-
+/**
+ * Renders a validation message for the email field.
+ */
 function renderEmailMessage() {
   const message = document.getElementById('emailMessage');
   if (!isEmailValid()) {
@@ -176,7 +162,9 @@ function renderEmailMessage() {
   }
 }
 
-
+/**
+ * Renders a validation message for the password field.
+ */
 function renderPasswordMessage() {
   const message = document.getElementById('passwordMessage');
   if (!isPasswordFieldValid()) {
@@ -188,7 +176,9 @@ function renderPasswordMessage() {
   }
 }
 
-
+/**
+ * Renders a message if the password and confirm password do not match.
+ */
 function renderComparePasswordMessage() {
   const message = document.getElementById('comparePasswordMessage');
   const border = document.getElementById('borderConfirm');
@@ -203,7 +193,11 @@ function renderComparePasswordMessage() {
   }
 }
 
-
+/**
+ * Renders a message if the privacy checkbox is not checked.
+ *
+ * @param {string} type - The ID of the checkbox.
+ */
 function renderCheckboxMessage(type) {
   const message = document.getElementById('checkboxMessage');
   if (!isCheckboxChecked(type)) {
@@ -215,7 +209,9 @@ function renderCheckboxMessage(type) {
   }
 }
 
-
+/**
+ * Updates the visibility icon state for the password field.
+ */
 function checkPasswordIcon() {
   let passwordInput = document.getElementById('registNewPassword');
   let visibilityIcon = document.getElementById('visibilityPwSignup');
@@ -229,7 +225,9 @@ function checkPasswordIcon() {
   }
 }
 
-
+/**
+ * Updates the visibility icon state for the confirm password field.
+ */
 function checkConfirmIcon() {
   let passwordInput = document.getElementById('registConfirmPassword');
   let visibilityIcon = document.getElementById('visibilityConfirmSignup');
@@ -243,7 +241,9 @@ function checkConfirmIcon() {
   }
 }
 
-
+/**
+ * Toggles the visibility of the confirm password input field.
+ */
 function toggleConfirmVisibility() {
   let passwordInput = document.getElementById('registConfirmPassword');
   let visibilityIcon = document.getElementById('visibilityConfirmSignup');
@@ -251,5 +251,5 @@ function toggleConfirmVisibility() {
   passwordInput.type = isPasswordVisible ? 'password' : 'text';
   visibilityIcon.src = isPasswordVisible
     ? '../assets/icons/visibility_off.svg'
-    : '../assets/icons/visibility.svg'
+    : '../assets/icons/visibility.svg';
 }

@@ -31,7 +31,8 @@
   0% {
     transform: translate(-50%, 100vh);
   }
-  100%{
+
+  100% {
     transform: translate(-50%, -50%);
   }
 }
@@ -40,7 +41,8 @@
   0% {
     opacity: 0.5;
   }
-  100%{
+
+  100% {
     opacity: 1;
   }
 }
@@ -62,8 +64,91 @@
     transform: translateX(0);
     opacity: 1;
   }
+
   to {
     transform: translateX(100%);
     opacity: 0;
+  }
+}
+
+@keyframes expand {
+  from {
+    max-height: 0;
+  }
+
+  to {
+    max-height: 338px;
+  }
+}
+
+@keyframes collapse {
+  from {
+    max-height: 338px;
+  }
+
+  to {
+    max-height: 0;
+  }
+}
+
+@keyframes cntSlideIn {
+  from {
+    transform: translateX(150%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes cntSlideOut {
+  from {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(150%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInVertical {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutVertical {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes smartFadeShrinkOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    background-color: rgba(246, 247, 248, 0.2);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+    background-color: rgba(246, 247, 248, 0);
   }
 }
