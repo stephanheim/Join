@@ -31,6 +31,7 @@
   0% {
     transform: translate(-50%, 100vh);
   }
+
   100% {
     transform: translate(-50%, -50%);
   }
@@ -40,6 +41,7 @@
   0% {
     opacity: 0.5;
   }
+
   100% {
     opacity: 1;
   }
@@ -62,6 +64,7 @@
     transform: translateX(0);
     opacity: 1;
   }
+
   to {
     transform: translateX(100%);
     opacity: 0;
@@ -72,6 +75,7 @@
   from {
     max-height: 0;
   }
+
   to {
     max-height: 338px;
   }
@@ -81,6 +85,7 @@
   from {
     max-height: 338px;
   }
+
   to {
     max-height: 0;
   }
@@ -127,7 +132,7 @@
     transform: translateY(0);
     opacity: 1;
   }
-  
+
   to {
     transform: translateY(100%);
     opacity: 0;

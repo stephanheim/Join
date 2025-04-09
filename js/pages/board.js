@@ -42,6 +42,10 @@ async function initBoard() {
   renderTasks();
 }
 
+/**
+ * Renders all tasks from localStorage into the respective board columns (ToDo, InProgress, etc.).
+ * Clears containers before re-rendering and updates empty-state visibility.
+ */
 function renderTasks() {
   let tasks = loadTaskFromStorage();
   boardContainers.forEach(({ id }) => {
@@ -55,6 +59,12 @@ function renderTasks() {
   noTaskVisibility();
 }
 
+/**
+ * Prepares a task by generating and storing reusable HTML fragments and progress values.
+ * Stores the prepared data in taskDataMap for efficient access.
+ *
+ * @param {Object} task - The task object to prepare.
+ */
 function prepareTaskData(task) {
   let initialsHTML = getInitialsTaskCard(task);
   let namesHTML = getNamesTaskCardTemp(task);
@@ -73,6 +83,9 @@ function prepareTaskData(task) {
   };
 }
 
+/**
+ * Toggles visibility of "no tasks" messages in each board column.
+ */
 function noTaskVisibility() {
   boardContainers.forEach(({ id, emptyId }) => {
     let container = document.getElementById(id);
@@ -85,6 +98,12 @@ function noTaskVisibility() {
   });
 }
 
+/**
+ * Calculates subtask progress details for a task.
+ *
+ * @param {Object} task - The task containing subtasks.
+ * @returns {Object} Progress data including total, completed, percent, color and visibility.
+ */
 function progressSubtasks(task) {
   let totalSubtasks = task.subtasks?.length || 0;
   let completedSubtasks = task.subtasks?.filter((s) => s.completed).length || 0;
@@ -94,6 +113,12 @@ function progressSubtasks(task) {
   return { totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar };
 }
 
+/**
+ * Generates HTML string with contact initials for a task card.
+ *
+ * @param {Object} task - The task object with contacts.
+ * @returns {string} HTML string of initials badges.
+ */
 function getInitialsTaskCard(task) {
   let html = '';
   let contacts = task.contacts || [];
@@ -107,6 +132,13 @@ function getInitialsTaskCard(task) {
   return html;
 }
 
+/**
+ * Generates the contact section HTML for a task card (optionally without names).
+ *
+ * @param {Object} task - The task with contacts.
+ * @param {boolean} [hideNames=false] - Whether to hide contact names.
+ * @returns {string} HTML string.
+ */
 function getNamesTaskCardTemp(task, hideNames = false) {
   let html = '';
   let contacts = task.contacts || [];
@@ -125,6 +157,12 @@ function getNamesTaskCardTemp(task, hideNames = false) {
   return html;
 }
 
+/**
+ * Creates HTML for all subtasks of a task, including checkbox state.
+ *
+ * @param {Object} task - The task object with subtasks.
+ * @returns {string} HTML string for subtasks.
+ */
 function getSubtaskCardTemp(task) {
   let html = '';
   let subtasks = task.subtasks || [];
@@ -142,6 +180,13 @@ function getSubtaskCardTemp(task) {
   return html;
 }
 
+/**
+ * Toggles a subtask's completion status, updates DB, localStorage and task card UI.
+ *
+ * @param {string} taskId - ID of the task.
+ * @param {number} subtaskIndex - Index of the subtask.
+ * @param {boolean} isChecked - New completion state.
+ */
 async function toggleSubtaskCompleted(taskId, subtaskIndex, isChecked) {
   let data = taskDataMap[taskId];
   if (!data) return;
@@ -151,6 +196,11 @@ async function toggleSubtaskCompleted(taskId, subtaskIndex, isChecked) {
   updateSubTaskTaskCard(taskId);
 }
 
+/**
+ * Updates a single task card in the DOM after a subtask change.
+ *
+ * @param {string} taskId - ID of the task to update.
+ */
 function updateSubTaskTaskCard(taskId) {
   let oldCard = document.getElementById(taskId);
   if (!oldCard) return;
@@ -159,6 +209,12 @@ function updateSubTaskTaskCard(taskId) {
   oldCard.outerHTML = newCardHTML;
 }
 
+/**
+ * Handles click on "Add Task" depending on screen size.
+ * On mobile, loads a new page. On desktop, opens floating overlay.
+ *
+ * @param {string} status - The status to set for the new task.
+ */
 function handleClickFloatingTask(status) {
   const addTaskNav = findNavLinkByText('Add Task');
   if (window.innerWidth <= 1200) {
@@ -168,10 +224,22 @@ function handleClickFloatingTask(status) {
   }
 }
 
+/**
+ * Finds a navigation element that contains specific text.
+ *
+ * @param {string} text - Text to search for in nav links.
+ * @returns {HTMLElement|undefined} The matching nav link.
+ */
 function findNavLinkByText(text) {
   return Array.from(document.querySelectorAll('.nav')).find((link) => link.textContent.trim().includes(text));
 }
 
+/**
+ * Loads the add task page dynamically and sets the current task status.
+ *
+ * @param {string} status - The task status to assign.
+ * @param {HTMLElement} navElement - The nav element to highlight.
+ */
 function loadAddTaskPage(status, navElement) {
   loadPageContentPath('addTask').then(() => {
     addTaskStatusTarget = status;
@@ -181,6 +249,11 @@ function loadAddTaskPage(status, navElement) {
   });
 }
 
+/**
+ * Updates a task and its subtasks in Firebase, depending on whether it's default or new.
+ *
+ * @param {Object} task - The task to update.
+ */
 async function updateTaskDB(task) {
   if (!task.firebaseId) return;
   let path = task.isDefault ? '/board/default' : '/board/newTasks';
@@ -190,6 +263,11 @@ async function updateTaskDB(task) {
   }
 }
 
+/**
+ * Filters all tasks based on search input and re-renders the board.
+ *
+ * @param {Event} inputEvent - The input event from the search field.
+ */
 function searchTask(inputEvent) {
   let query = inputEvent.target.value.toLowerCase().trim();
   if (query) {
@@ -200,16 +278,34 @@ function searchTask(inputEvent) {
   }
 }
 
+/**
+ * Converts the taskDataMap object into an array of task entries.
+ *
+ * @returns {Array<Object>} Array of task data entries.
+ */
 function taskMapToArray() {
   return Object.values(taskDataMap);
 }
 
+/**
+ * Checks if a task entry matches the given search query based on title or description.
+ *
+ * @param {Object} entry - A single entry from taskDataMap.
+ * @param {string} query - The lowercase search string.
+ * @returns {boolean} True if title or description contains the query.
+ */
 function matchesSearch(entry, query) {
   let title = entry.task.title?.toLowerCase() || '';
   let description = entry.task.description?.toLowerCase() || '';
   return title.includes(query) || description.includes(query);
 }
 
+/**
+ * Renders only the tasks from the given filtered list into the board.
+ * Also handles visibility of the empty state message.
+ *
+ * @param {Array<Object>} filteredTasks - Array of filtered task entries to render.
+ */
 function renderFilteredTasks(filteredTasks) {
   boardContainers.forEach(({ id }) => {
     document.getElementById(id).innerHTML = '';

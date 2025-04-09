@@ -115,7 +115,6 @@ function generateContactsInfoHTML(contact) {
   `;
 }
 
-
 function generateContactsEditFloaterHTML(contact) {
   return `
   <form id="contactForm" class="form-floater">
