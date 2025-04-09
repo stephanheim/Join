@@ -148,7 +148,7 @@ async function deleteContact(contactId) {
     document.getElementById('cnt-glance-contact').style.display = 'none';
     await loadContactsFromFirebase();
     getGroupedContacts();
-    await updateAssignedContactsDB(contactId)
+    await updateAssignedContactsDB(contactId);
   } catch (error) {
     console.error('Fehler beim Löschen des Kontakts:', error);
   }
@@ -214,7 +214,7 @@ async function updateTaskIfContactRemoved(path, key, task, deletedContactId) {
  * @returns {Object[]} - Filtered list of contacts.
  */
 function filterDeletedContact(contacts, deletedId) {
-  return contacts.filter(contact => contact.id !== deletedId);
+  return contacts.filter((contact) => contact.id !== deletedId);
 }
 
 /**
@@ -295,8 +295,12 @@ async function addCurrentUserToContacts(user) {
 
 window.addEventListener('resize', () => {
   if (window.innerWidth >= 1200) {
-    document.getElementById('cnt-main-div').style.display = 'none';
-    document.getElementById('cnt-list-div').classList.remove('hidden');
-    document.getElementById('cnt-list-div').style.display = 'flex';
+    const mainDiv = document.getElementById('cnt-main-div');
+    const listDiv = document.getElementById('cnt-list-div');
+    if (mainDiv) mainDiv.style.display = 'none';
+    if (listDiv) {
+      listDiv.classList.remove('hidden', 'd-none');
+      listDiv.style.display = 'flex';
+    }
   }
-})
+});

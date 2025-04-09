@@ -1,43 +1,40 @@
 <!DOCTYPE html>
 <html lang="de">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Summary
-  </title>
-  <!-- <link rel="stylesheet" href="../style/global.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Summary</title>
+    <!-- <link rel="stylesheet" href="../style/global.css" />
   <link rel="stylesheet" href="../style/typography.css" />
   <link rel="stylesheet" href="../style/pages/summary.css" />
   <link rel="stylesheet" href="../style/variables.css" /> -->
-</head>
+  </head>
 
-<body>
-  <div id="header"></div>
-  <div id="sideBar"></div>
-  <main class="main-summary">
-    <div class="wrapper">
-      <div class="title-div">
-        <h1>Join 360</h1>
-        <div class="seperator-subtitle-div">
-          <div class="seperator"></div>
-        <div>Key Metrics at a Glance</div>
+  <body>
+    <div id="header"></div>
+    <div id="sideBar"></div>
+    <main class="main-summary">
+      <div class="wrapper">
+        <div class="title-div">
+          <h1>Join 360</h1>
+          <div class="seperator-subtitle-div">
+            <div class="seperator"></div>
+            <div>Key Metrics at a Glance</div>
+          </div>
+        </div>
+        <div class="main-div">
+          <div class="metrics-div" id="summaryContainer"></div>
+          <div id="welcomeOverlay" class="welcome-div">
+            <span id="welcomeMessage">Good morning,</span>
+            <span id="welcomeUser" class="name"></span>
+          </div>
         </div>
       </div>
-      <div class="main-div">
-        <div class="metrics-div" id="summaryContainer">
-        </div>
-        <div class="welcome-div">
-          <span id="welcomeMessage">Good morning,</span>
-          <span id="welcomeUser" class="name"></span>
-        </div>
-      </div>
-    </div>
-  </main>
-  <script src="../js/templates/summaryTemplates.js"></script>
-  <script src="../js/utils/helpers.js"></script>
-  <script src="../js/script.js"></script>
-  <script src="../js/pages/summary.js"></script>
-</body>
-
+    </main>
+    <script src="./js/utils/animation.js"></script>
+    <script src="../js/templates/summaryTemplates.js"></script>
+    <script src="../js/utils/helpers.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/pages/summary.js"></script>
+  </body>
 </html>
