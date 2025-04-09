@@ -339,6 +339,7 @@
 }
 
 .drop-down-hide {
+  width: 100%;
   overflow: hidden;
   animation: collapse 0.3s ease-out forwards;
 }
