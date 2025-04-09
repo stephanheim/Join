@@ -23,29 +23,34 @@ function saveEditedSubtask(i) {
 
 function saveEditedTask(id) {
   let task = taskDataMap[id].task;
-
-  let newTitle = document.getElementById('editTitle').value;
-  let newDescription = document.getElementById('editDescription').value;
-  let newDate = document.getElementById('addTaskDate').value;
-  let newPriority = selectedPriorityValue;
-  let prio = task.priority;
-
-  task.title = newTitle;
-  task.description = newDescription;
-  task.date = newDate;
-  if (newPriority === '') {
-    task.priority = prio;
-  } else {
-    task.priority = newPriority;
-  }
-  task.contacts = Array.from(selectedContacts);
-  task.subtasks = Array.from(addSubtask);
-
+  setTaskChanges(task)
   updateEditTaskDB(task);
   prepareTaskData(task);
   updateSubTaskTaskCard(task.id)
   closeEditGoToBoardCard();
   messageTaskAdded();
+}
+
+function setTaskChanges(task) {
+  let newTitle = document.getElementById('editTitle').value;
+  let newDescription = document.getElementById('editDescription').value;
+  let newDate = document.getElementById('addTaskDate').value;
+  task.title = newTitle;
+  task.description = newDescription;
+  task.date = newDate;
+  ifNewOrOldPrio(task)
+  task.contacts = Array.from(selectedContacts);
+  task.subtasks = Array.from(addSubtask);
+}
+
+function ifNewOrOldPrio(task) {
+  let newPriority = selectedPriorityValue;
+  let prio = task.priority;
+  if (newPriority === '') {
+    task.priority = prio;
+  } else {
+    task.priority = newPriority;
+  }
 }
 
 async function updateEditTaskDB(task) {
