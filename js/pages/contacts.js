@@ -131,76 +131,13 @@ function getFormValues() {
   };
 }
 
-function showValidationError(message) {
-  alert(message);
-  return false;
-}
-
 function showContactInfo(contactId) {
   let contact = contactsArray.find((c) => c.id === contactId);
   if (!contact) return;
   clearHighlightContact();
   highlightContact(contactId);
-  let glanceWindow = document.getElementById('cnt-glance-contact');
-  glanceWindow.style.display = 'none';
-  glanceWindow.innerHTML = generateContactsInfoHTML(contact);
-  glanceWindow.style.display = 'flex';
-  if (window.innerWidth < 1200) {
-    document.getElementById('cnt-list-div').classList.add('hidden');
-    document.getElementById('cnt-list-div').style.display = 'none';
-    document.getElementById('cnt-main-div').style.display = 'flex';
-    updateRespCmd(contactId);
-  } else {
-    document.getElementById('cnt-main-div').style.display = 'flex';
-  }
-}
-
-function updateRespCmd(contactId) {
-  let respCmdImg = document.getElementById("resp-cmd-img");
-  windowWidthMobiel = window.innerWidth < 1200;
-  respCmdImg.onclick = null;
-  if (windowWidthMobiel) {
-    respCmdImg.src = "../assets/icons/more-resp-contact.svg";
-    onclickShowMoreOptions(contactId);
-  } else {
-    respCmdImg.src = "../assets/icons/add-contact-mobile.svg";
-    onclickShowAnimateContact(contactId);
-  }
-}
-
-function onclickShowMoreOptions(contactId) {
-  let respCmd = document.getElementById("resp-cmd");
-  respCmd.onclick = function () {
-    showMoreOptions(contactId);
-  };
-}
-
-function onclickShowAnimateContact(contactId) {
-  let respCmd = document.getElementById("resp-cmd");
-  respCmd.onclick = function () {
-    showAnimateContact(contactId);
-  };
-}
-
-function backToList() {
-  let respCmdImg = document.getElementById("resp-cmd-img");
-  document.getElementById("cnt-list-div").classList.remove("hidden");
-  document.getElementById('cnt-main-div').style.display = 'none';
-  document.getElementById('cnt-list-div').style.display = 'flex';
-  respCmdImg.src = "../assets/icons/add-contact-mobile.svg";
-  onclickShowAnimateContact();
-}
-
-function clearHighlightContact() {
-  for (let contact of contactsArray) {
-    let contactElement = document.getElementById(`contact-${contact.id}`);
-    if (contactElement) contactElement.classList.remove('cnt-name-highlight');
-  }
-}
-
-function highlightContact(contactId) {
-  let contactElement = document.getElementById(`contact-${contactId}`);
-  contactElement.classList.toggle('cnt-name-highlight');
+  showGlanceWindow(contact);
+  showResponsiveLayout(contactId);
 }
 
 async function deleteContact(contactId) {
@@ -356,3 +293,10 @@ async function addCurrentUserToContacts(user) {
   }
 }
 
+window.addEventListener('resize', () => {
+  if (window.innerWidth >= 1200) {
+    document.getElementById('cnt-main-div').style.display = 'none';
+    document.getElementById('cnt-list-div').classList.remove('hidden');
+    document.getElementById('cnt-list-div').style.display = 'flex';
+  }
+})

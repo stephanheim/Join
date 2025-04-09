@@ -52,3 +52,8 @@ function isFormValid(name, email, phone) {
   if (!isCntPhoneValid(phone)) return showValidationError('Bitte gültige Telefonnummer eingeben.');
   return true;
 }
+
+function showValidationError(message) {
+  alert(message);
+  return false;
+}
