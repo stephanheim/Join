@@ -1,5 +1,4 @@
 function initSummary() {
-  welcomeOverlayOnStart();
   getSummaryData();
   loadContactsFromFirebase();
 }
@@ -25,20 +24,6 @@ function countTasksForSummary(tasks) {
     awaitingFeedback: countAwaitingFeedback(tasks),
     urgent: countUrgent(tasks),
   };
-}
-
-function welcomeOverlayOnStart() {
-  const overlay = document.getElementById('welcomeOverlay');
-  if (window.innerWidth <= 1200) {
-    overlay.classList.add('fade-smart-out');
-    setTimeout(() => {
-      overlay.classList.add('d-none');
-    }, 3000);
-  }
-  if (window.innerWidth > 1200) {
-    overlay.classList.remove('fade-smart-out');
-    overlay.classList.remove('d-none');
-  }
 }
 
 function countToDo(tasks) {

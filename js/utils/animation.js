@@ -204,3 +204,16 @@ function closeBoardCard() {
   }, 100);
   selectedPriorityValue = '';
 }
+
+function welcomeOverlayOnStart() {
+  const overlay = document.getElementById('welcomeOverlay');
+  if (window.innerWidth <= 1200) {
+    overlay.classList.add('fade-smart-out');
+    setTimeout(() => {
+      overlay.classList.add('d-none');
+    }, 3000);
+  } else {
+    overlay.classList.remove('fade-smart-out');
+    overlay.classList.remove('d-none');
+  }
+}
