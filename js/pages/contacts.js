@@ -144,7 +144,7 @@ function showContactInfo(contactId) {
   let glanceWindow = document.getElementById('cnt-glance-contact');
   glanceWindow.style.display = 'none';
   glanceWindow.innerHTML = generateContactsInfoHTML(contact);
-  glanceWindow.style.display = 'block';
+  glanceWindow.style.display = 'flex';
   if (window.innerWidth < 1200) {
     document.getElementById('cnt-list-div').classList.add('hidden');
     document.getElementById('cnt-list-div').style.display = 'none';
