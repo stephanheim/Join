@@ -1,4 +1,5 @@
 function initSummary() {
+  welcomeOverlayOnStart();
   getSummaryData();
   loadContactsFromFirebase();
 }

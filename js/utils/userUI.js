@@ -27,20 +27,20 @@ function getUserInitials() {
 }
 
 function showMoreOptions(contactId) {
-  let respCmdContainer = document.getElementById("resp-cmd");
+  let respCmdContainer = document.getElementById('resp-cmd');
   let editFloaterHTML = generateRespEditFloaterHTML(contactId);
   respCmdContainer.innerHTML += editFloaterHTML;
-  let img = document.getElementById("resp-cmd-img");
-  if (img) img.classList.add("d-none");
-  let floater = document.getElementById("respFloater");
+  let img = document.getElementById('resp-cmd-img');
+  if (img) img.classList.add('d-none');
+  let floater = document.getElementById('respFloater');
   if (floater) {
-    floater.classList.add("preSlideIn");
+    floater.classList.add('preSlideIn');
     setTimeout(() => {
-      floater.classList.remove("preSlideIn");
-      floater.classList.add("slideIn");
+      floater.classList.remove('preSlideIn');
+      floater.classList.add('slideIn');
     }, 20);
     setTimeout(() => {
-      document.addEventListener("click", handleOutsideClick);
+      document.addEventListener('click', handleOutsideClick);
     }, 50);
   }
 }
@@ -110,44 +110,44 @@ function showResponsiveLayout(contactId) {
 }
 
 function updateRespCmd(contactId) {
-  let respCmdImg = document.getElementById("resp-cmd-img");
+  let respCmdImg = document.getElementById('resp-cmd-img');
   windowWidthMobiel = window.innerWidth < 1200;
   respCmdImg.onclick = null;
   if (windowWidthMobiel) {
-    respCmdImg.src = "../assets/icons/more-resp-contact.svg";
+    respCmdImg.src = '../assets/icons/more-resp-contact.svg';
     onclickShowMoreOptions(contactId);
   } else {
-    respCmdImg.src = "../assets/icons/add-contact-mobile.svg";
+    respCmdImg.src = '../assets/icons/add-contact-mobile.svg';
     onclickShowAnimateContact(contactId);
   }
 }
 
 function onclickShowMoreOptions(contactId) {
-  let respCmd = document.getElementById("resp-cmd");
+  let respCmd = document.getElementById('resp-cmd');
   respCmd.onclick = function () {
     showMoreOptions(contactId);
   };
 }
 
 function onclickShowAnimateContact(contactId) {
-  let respCmd = document.getElementById("resp-cmd");
+  let respCmd = document.getElementById('resp-cmd');
   respCmd.onclick = function () {
     showAnimateContact(contactId);
   };
 }
 
 function backToList() {
-  let respCmdImg = document.getElementById("resp-cmd-img");
+  let respCmdImg = document.getElementById('resp-cmd-img');
   if (window.innerWidth >= 1200) {
     document.getElementById('cnt-main-div').style.display = 'none';
-    document.getElementById("cnt-list-div").classList.remove("hidden");
+    document.getElementById('cnt-list-div').classList.remove('hidden');
     document.getElementById('cnt-list-div').style.display = 'flex';
   } else {
     document.getElementById('cnt-main-div').style.display = 'none';
     document.getElementById('cnt-list-div').classList.remove('hidden');
     document.getElementById('cnt-list-div').style.display = 'flex';
   }
-  respCmdImg.src = "../assets/icons/add-contact-mobile.svg";
+  respCmdImg.src = '../assets/icons/add-contact-mobile.svg';
   onclickShowAnimateContact();
 }
 
