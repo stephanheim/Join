@@ -6,7 +6,7 @@ function showAnimateContact() {
   if (windowWidthOption) {
     animateContactDesktop();
   } else {
-    animateContactMobile()
+    animateContactMobile();
   }
 }
 
@@ -91,7 +91,7 @@ if (joinLogoMobile && window.innerWidth <= 600) {
   joinLogoMobile.src = './assets/img/join.svg';
   setTimeout(() => {
     joinLogoMobile.src = './assets/img/join_login.svg';
-  }, 800);
+  }, 700);
 }
 
 function showFieldErrors() {
