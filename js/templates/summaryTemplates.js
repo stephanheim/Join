@@ -50,7 +50,6 @@ function generateSummaryHTML(taskCounts) {
 `;
 }
 
-
 function generateSummaryNoTasksHTML() {
   return `
   <div class="row-top">

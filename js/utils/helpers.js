@@ -68,7 +68,7 @@ function preventFormSubmitOnEnter() {
   let inputs = form.getElementsByTagName('input');
   for (let i = 0; i < inputs.length; i++) {
     inputs[i].addEventListener('keydown', function (event) {
-      if (event.key === 'Enter' && inputs[i].type !== 'submit') {
+      if (event.key === 'Enter' && inputs[i].type !== 'submit') {a
         event.preventDefault();
       }
     });

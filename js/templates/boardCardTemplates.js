@@ -1,5 +1,5 @@
 function boardCardTemplate(task, subtaskHTML, namesHTML) {
-  return `      <div class="user-story-card">
+  return `<div class="user-story-card">
         <div class="inner-card">
           <header class="headline-story-user">
             <div class="user-headline">

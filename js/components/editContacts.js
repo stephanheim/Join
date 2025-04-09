@@ -1,3 +1,9 @@
+/**
+ * Opens the contact edit overlay for the given contact ID.
+ * Renders the edit form with contact details and shows the overlay with animation.
+ *
+ * @param {string} contactId - The ID of the contact to be edited.
+ */
 function addEditContact(contactId) {
   let contact = contactsArray.find((c) => c.id === contactId);
   if (!contact) return;
@@ -12,6 +18,10 @@ function addEditContact(contactId) {
   }, 200);
 }
 
+/**
+ * Closes the contact edit overlay.
+ * Hides the overlay with animation and resets the page scroll behavior.
+ */
 function closeEditFloater() {
   let closeEditFloater = document.getElementById('addContactOverlay');
   closeEditFloater.classList.remove('slideIn');
@@ -24,6 +34,10 @@ function closeEditFloater() {
   }, 100);
 }
 
+/**
+ * Closes the responsive contact floater if it exists.
+ * Removes the floater from the DOM and shows the responsive command image.
+ */
 function closeRespEditFloater() {
   let floater = document.getElementById("respFloater");
   if (floater) {

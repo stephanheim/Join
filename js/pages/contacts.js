@@ -1,12 +1,36 @@
+/**
+ * Stores all available contacts loaded from Firebase.
+ * Each contact is expected to have the following structure:
+ * @type {Array<Object>}
+ */
 let contactsArray = [];
+
+/**
+ * Predefined color palette used to assign background colors to contacts.
+ * Useful for distinguishing contact badges or initials visually.
+ * @type {string[]}
+ */
 const contactColors = ['#ff7a01', '#9327ff', '#6e52ff', '#fc71ff', '#ffbb2c', '#20d7c2', '#462f8a', '#ff4646'];
 
+
+/**
+ * Initializes the contact view and logic.
+ * - Ensures current user is included in the contact list.
+ * - Groups contacts alphabetically or by criteria.
+ * - Sets up UI animation for the contact overlay.
+ */
 function initContacts() {
   checkAndAddCurrentUser();
   getGroupedContacts();
   onclickShowAnimateContact();
 }
 
+/**
+ * Loads all contacts from Firebase and populates the `contactsArray`.
+ * Handles errors and delegates detail extraction to `getDetailInfo`.
+ *
+ * @returns {Promise<void>}
+ */
 async function loadContactsFromFirebase() {
   try {
     let contactsResponse = await getAllContacts();
@@ -20,17 +44,27 @@ async function loadContactsFromFirebase() {
   }
 }
 
+/**
+ * Fetches all contact data from Firebase as raw JSON.
+ *
+ * @returns {Promise<Object>} The parsed JSON response from Firebase.
+ */
 async function getAllContacts() {
   let response = await fetch(`${BASE_URL}.json`);
   return await response.json();
 }
 
+/**
+ * Extracts and pushes individual contact details into `contactsArray`.
+ *
+ * @param {Object} contacts - Object containing all contacts keyed by user ID.
+ * @returns {Promise<void>}
+ */
 async function getDetailInfo(contacts) {
   let userIds = Object.keys(contacts);
   for (let i = 0; i < userIds.length; i++) {
     let contactId = userIds[i];
     let contact = contacts[contactId];
-
     contactsArray.push({
       id: contactId,
       name: contact.name,
@@ -40,11 +74,23 @@ async function getDetailInfo(contacts) {
   }
 }
 
+/**
+ * Sorts the global contacts array alphabetically by name
+ * and returns the grouped result by first letter.
+ *
+ * @returns {Array<{group: string, contacts: Object[]}>} Alphabetically grouped contacts.
+ */
 function sortContacts() {
   contactsArray.sort((a, b) => a.name.localeCompare(b.name));
   return groupContactsByLetter();
 }
 
+/**
+ * Groups the global contacts array by the first letter of each contact's name.
+ * Assumes contacts are already sorted alphabetically.
+ *
+ * @returns {Array<{group: string, contacts: Object[]}>} Grouped contact objects.
+ */
 function groupContactsByLetter() {
   let groupedByLetter = [];
   let letterGroup = null;
@@ -59,11 +105,23 @@ function groupContactsByLetter() {
   return groupedByLetter;
 }
 
+/**
+ * Extracts initials from a full name (first and last name).
+ *
+ * @param {string} name - Full name string (e.g. "John Doe").
+ * @returns {string} The initials in uppercase (e.g. "JD").
+ */
 function getInitials(name) {
   let nameParts = name.split(' ');
   return nameParts[0].charAt(0).toUpperCase() + nameParts[1].charAt(0).toUpperCase();
 }
 
+/**
+ * Assigns a color from the predefined contactColors array to each contact,
+ * cycling through the color list as needed.
+ *
+ * @param {Array<{group: string, contacts: Object[]}>} groupedContacts - Grouped contacts to colorize.
+ */
 function assignColorsToContacts(groupedContacts) {
   let colorizeIndex = 0;
   for (let i = 0; i < groupedContacts.length; i++) {
@@ -75,6 +133,10 @@ function assignColorsToContacts(groupedContacts) {
   }
 }
 
+/**
+ * Sorts, groups and prepares contacts for display.
+ * Assigns colors and renders them into the DOM.
+ */
 function getGroupedContacts() {
   let groupedContacts = sortContacts();
   assignColorsToContacts(groupedContacts);
@@ -82,6 +144,12 @@ function getGroupedContacts() {
   renderContacts(groupedContacts);
 }
 
+/**
+ * Renders grouped contacts into the contact list container.
+ * Each group gets a heading and its contacts rendered with initials.
+ *
+ * @param {Array<{group: string, contacts: Object[]}>} groupedContacts - Alphabetically grouped contact objects.
+ */
 function renderContacts(groupedContacts) {
   let contactList = document.getElementById('contacts-div');
   contactList.innerHTML = '';
@@ -96,6 +164,14 @@ function renderContacts(groupedContacts) {
   }
 }
 
+/**
+ * Creates a new contact, posts it to Firebase and handles UI updates.
+ *
+ * @param {string} name - Contact's full name.
+ * @param {string} email - Contact's email address.
+ * @param {string} phone - Contact's phone number.
+ * @returns {Promise<void>}
+ */
 async function createNewContact(name, email, phone) {
   let newContact = { name, email, phone };
   let response = await postToFirebase(newContact);
@@ -103,6 +179,12 @@ async function createNewContact(name, email, phone) {
   await processNewContact(response.id);
 }
 
+/**
+ * Reloads contacts after adding a new one and shows it in the UI.
+ *
+ * @param {string} contactId - The Firebase ID of the newly created contact.
+ * @returns {Promise<void>}
+ */
 async function processNewContact(contactId) {
   await loadContactsFromFirebase();
   getGroupedContacts();
@@ -116,6 +198,11 @@ async function processNewContact(contactId) {
   showSuccessMessage();
 }
 
+/**
+ * Scrolls to a contact element in the list and centers it in the viewport.
+ *
+ * @param {string} contactId - The ID of the contact to scroll to.
+ */
 function scrollToContact(contactId) {
   let contactElement = document.getElementById(`contact-${contactId}`);
   if (contactElement) {
@@ -123,6 +210,11 @@ function scrollToContact(contactId) {
   }
 }
 
+/**
+ * Retrieves trimmed values from the contact form input fields.
+ *
+ * @returns {{name: string, email: string, phone: string}} Form values.
+ */
 function getFormValues() {
   return {
     name: document.getElementById('addContName').value.trim(),
@@ -131,6 +223,12 @@ function getFormValues() {
   };
 }
 
+/**
+ * Displays contact information in the UI if the contact exists.
+ * Highlights and renders both glance and responsive views.
+ *
+ * @param {string} contactId - The ID of the contact to show.
+ */
 function showContactInfo(contactId) {
   let contact = contactsArray.find((c) => c.id === contactId);
   if (!contact) return;
@@ -140,6 +238,13 @@ function showContactInfo(contactId) {
   showResponsiveLayout(contactId);
 }
 
+/**
+ * Deletes a contact from Firebase and updates the local UI and contact list.
+ * Also updates assigned tasks and removes the contact from `contactsArray`.
+ *
+ * @param {string} contactId - The ID of the contact to delete.
+ * @returns {Promise<void>}
+ */
 async function deleteContact(contactId) {
   try {
     await fetch(`${BASE_URL}/contacts/${contactId}.json`, { method: 'DELETE' });
@@ -154,6 +259,7 @@ async function deleteContact(contactId) {
   }
   backToList();
 }
+
 
 /**
  * Updates all tasks in Firebase by removing a deleted contact from each.
@@ -228,6 +334,13 @@ function contactsChanged(original, filtered) {
   return original.length !== filtered.length;
 }
 
+/**
+ * Updates a contact in Firebase and in the local contact array.
+ * Refreshes the UI and shows updated info if visible.
+ *
+ * @param {string} contactId - The ID of the contact to update.
+ * @returns {Promise<void>}
+ */
 async function updateContact(contactId) {
   try {
     let updatedContact = getUpdatedContact();
@@ -245,6 +358,11 @@ async function updateContact(contactId) {
   }
 }
 
+/**
+ * Gets updated contact data from the form inputs.
+ *
+ * @returns {{name: string, email: string, phone: string}} The updated contact object.
+ */
 function getUpdatedContact() {
   return {
     name: document.getElementById('addContName').value,
@@ -253,10 +371,21 @@ function getUpdatedContact() {
   };
 }
 
+/**
+ * Updates a contact inside the `contactsArray` by matching its ID.
+ *
+ * @param {string} contactId - The ID of the contact to update.
+ * @param {Object} updatedContact - The updated contact data.
+ */
 function updateContactInArray(contactId, updatedContact) {
-  contactsArray = contactsArray.map((contact) => (contact.id === contactId ? { id: contactId, ...updatedContact } : contact));
+  contactsArray = contactsArray.map((contact) =>
+    contact.id === contactId ? { id: contactId, ...updatedContact } : contact
+  );
 }
 
+/**
+ * Shows a floating success message using a generated HTML template.
+ */
 function showSuccessMessage() {
   let successFloaterHTML = generateSuccessFloaterHTML();
   let successMessageContainer = document.createElement('div');
@@ -266,19 +395,36 @@ function showSuccessMessage() {
   animateSuccessMessage(successMessageContainer);
 }
 
+/**
+ * Checks if the currently logged-in user is in the contact list.
+ * If not, adds them as a contact.
+ *
+ * @returns {Promise<void>}
+ */
 async function checkAndAddCurrentUser() {
   let currentUser = JSON.parse(localStorage.getItem('loggedInUser'));
   if (!currentUser || currentUser.name === 'Guest') return;
-
   if (!isUserInContacts(currentUser.email)) {
     await addCurrentUserToContacts(currentUser);
   }
 }
 
+/**
+ * Checks whether a user with the given email is already in the contact list.
+ *
+ * @param {string} email - The email to check for.
+ * @returns {boolean} True if the contact exists, false otherwise.
+ */
 function isUserInContacts(email) {
   return contactsArray.some((contact) => contact.email === email);
 }
 
+/**
+ * Adds the currently logged-in user to the contact list and updates the UI.
+ *
+ * @param {{name: string, email: string, phone?: string}} user - The user to add as a contact.
+ * @returns {Promise<void>}
+ */
 async function addCurrentUserToContacts(user) {
   let newContact = {
     name: user.name,
@@ -293,6 +439,10 @@ async function addCurrentUserToContacts(user) {
   }
 }
 
+/**
+ * Handles layout changes of the contacts view depending on window width.
+ * Shows or hides main/list containers based on screen size.
+ */
 window.addEventListener('resize', () => {
   const mainDiv = document.getElementById('cnt-main-div');
   const listDiv = document.getElementById('cnt-list-div');
