@@ -294,13 +294,18 @@ async function addCurrentUserToContacts(user) {
 }
 
 window.addEventListener('resize', () => {
+  const mainDiv = document.getElementById('cnt-main-div');
+  const listDiv = document.getElementById('cnt-list-div');
   if (window.innerWidth >= 1200) {
-    const mainDiv = document.getElementById('cnt-main-div');
-    const listDiv = document.getElementById('cnt-list-div');
-    if (mainDiv) mainDiv.style.display = 'none';
+    if (mainDiv) mainDiv.style.display = 'flex';
     if (listDiv) {
       listDiv.classList.remove('hidden', 'd-none');
       listDiv.style.display = 'flex';
     }
   }
+  if (window.innerWidth < 1200) {
+    if (mainDiv) mainDiv.style.display = 'none';
+  }
 });
+
+

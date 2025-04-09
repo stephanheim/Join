@@ -2,7 +2,6 @@ function showAnimateContact() {
   let overlay = document.getElementById('addContactOverlay');
   overlay.classList.remove('slideOut', 'slideOutVertical');
   windowWidthOption = window.innerWidth >= 1200;
-
   if (windowWidthOption) {
     animateContactDesktop();
   } else {
