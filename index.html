@@ -1,96 +1,93 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Join - Login</title>
-    <link rel="shortcut icon" href="./assets/img/join.svg" type="image/x-icon" />
-    <link rel="stylesheet" href="./style/global.css" />
-    <link rel="stylesheet" href="./style/typography.css" />
-    <link rel="stylesheet" href="./style/components/alerts.css" />
-    <link rel="stylesheet" href="./style/animation.css" />
-    <link rel="stylesheet" href="./style/pages/login.css" />
-    <link rel="stylesheet" href="./style/components/forms.css" />
-    <link rel="stylesheet" href="./style/variables.css" />
-  </head>
 
-  <body onload="rememberMe(); loadRememberMe();">
-    <div class="landscape-warning">
-      <span>Please turn your device into portrait format!</span>
-    </div>
-    <div class="overlay-join-logo bg-white"></div>
-    <div class="start-join-logo">
-      <img src="./assets/img/join_login.svg" alt="" />
-    </div>
-    <main class="bg-white">
-      <div class="content-wrapper">
-        <div class="login-content">
-          <div class="outside-form-content">
-            <form id="formLogin" class="form-content" onsubmit="submitLogin();return false;">
-              <div class="headline">
-                <h1>Log in</h1>
-                <hr class="devider-hr" />
-              </div>
-              <div class="input-content">
-                <div class="login">
-                  <div class="outside-input">
-                    <div class="inside-input">
-                      <input required id="loginEmail" type="email" placeholder="Email" aria-label="Email" autocomplete="email" />
-                      <img src="./assets/icons/login_mail_letter.svg" alt="Brief" />
-                    </div>
-                  </div>
-                  <div id="requiredInput" class="outside-input">
-                    <div class="inside-input">
-                      <input
-                        onfocus="toggleRequiredInput(this, true)"
-                        onblur="toggleRequiredInput(this, false)"
-                        oninput="checkPasswordIcon()"
-                        required
-                        id="loginPassword"
-                        type="password"
-                        placeholder="Password"
-                        aria-label="Password"
-                        autocomplete="current-password"
-                      />
-                      <img id="visibilityLogin" class="pointer" onclick="togglePasswordVisibility()" src="./assets/icons/login_pw_lock.svg" alt="Schloss" />
-                    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join - Login</title>
+  <link rel="shortcut icon" href="./assets/img/join.svg" type="image/x-icon" />
+  <link rel="stylesheet" href="./style/global.css" />
+  <link rel="stylesheet" href="./style/typography.css" />
+  <link rel="stylesheet" href="./style/components/alerts.css" />
+  <link rel="stylesheet" href="./style/animation.css" />
+  <link rel="stylesheet" href="./style/pages/login.css" />
+  <link rel="stylesheet" href="./style/components/forms.css" />
+  <link rel="stylesheet" href="./style/variables.css" />
+</head>
+
+<body onload="rememberMe(); loadRememberMe();">
+  <div class="landscape-warning">
+    <span>Please turn your device into portrait format!</span>
+  </div>
+  <div class="overlay-join-logo bg-white"></div>
+  <div class="start-join-logo">
+    <img src="./assets/img/join_login.svg" alt="" />
+  </div>
+  <main class="bg-white">
+    <div class="content-wrapper">
+      <div class="login-content">
+        <div class="outside-form-content">
+          <form id="formLogin" class="form-content" onsubmit="submitLogin();return false;">
+            <div class="headline">
+              <h1>Log in</h1>
+              <hr class="devider-hr" />
+            </div>
+            <div class="input-content">
+              <div class="login">
+                <div class="outside-input">
+                  <div class="inside-input">
+                    <input id="loginEmail" type="text" placeholder="Email" aria-label="Email" autocomplete="email" />
+                    <img src="./assets/icons/login_mail_letter.svg" alt="Brief" />
                   </div>
                 </div>
-                <span id="loginMessage" class="error-message"></span>
-                <div class="checkbox-content">
-                  <input id="rememberMe" type="checkbox" oninput="isCheckboxChecked()" />
-                  <label for="rememberMe"></label>
-                  <span class="checkbox-login-span">Remember me</span>
+                <div class="outside-input">
+                  <div class="inside-input">
+                    <input onfocus="toggleRequiredInput(this, true)" onblur="toggleRequiredInput(this, false)"
+                      oninput="checkPasswordIcon()" id="loginPassword" type="password" placeholder="Password"
+                      aria-label="Password" autocomplete="current-password" />
+                    <img id="visibilityLogin" class="pointer" onclick="togglePasswordVisibility()"
+                      src="./assets/icons/login_pw_lock.svg" alt="Schloss" />
+                  </div>
                 </div>
               </div>
-              <div class="bt-login-content">
-                <button class="bt-login" type="submit">Log in</button>
-                <button class="bt-guest-login" type="submit" onclick="guestLogin()">Guest Log in</button>
+              <span id="loginMessage" class="error-message"></span>
+              <div class="checkbox-content">
+                <input id="rememberMe" type="checkbox" oninput="isCheckboxChecked()" />
+                <label for="rememberMe"></label>
+                <span class="checkbox-login-span">Remember me</span>
               </div>
-            </form>
-          </div>
-          <div class="login-signup-right">
-            <p>Not a Join user?</p>
-            <a href="./pages/signup.html" class="bt-signup">Sign Up</a>
-          </div>
+            </div>
+            <div class="bt-login-content">
+              <button class="bt-login" type="submit">Log in</button>
+              <button class="bt-guest-login" type="submit" onclick="guestLogin()">Guest Log in</button>
+            </div>
+          </form>
+        </div>
+        <div class="login-signup-right">
+          <p>Not a Join user?</p>
+          <a href="./pages/signup.html" class="bt-signup">Sign Up</a>
         </div>
       </div>
-    </main>
-    <footer class="bg-white">
-      <div class="legal-information-content">
-        <a href="./pages/privacy_policy_login.html">Privacy Policy</a>
-        <a href="./pages/legal_notice_login.html">Legal notice</a>
-      </div>
-    </footer>
-    <script src="./js/utils/animation.js"></script>
-    <script src="./js/script.js"></script>
-    <script src="./js/pages/register.js"></script>
-    <script src="./js/pages/login.js"></script>
-    <script src="./js/utils/helpers.js"></script>
-    <script src="./js/utils/firebase.js"></script>
-    <script src="./js/utils/defaultTaskUploader.js"></script>
-    <script src="./js/utils/storage.js"></script>
-    <script src="./js/utils/validation.js"></script>
-    <script src="./js/utils/userUI.js"></script>
-  </body>
+    </div>
+  </main>
+  <footer class="bg-white">
+    <div class="legal-information-content">
+      <a href="./pages/privacy_policy_login.html">Privacy Policy</a>
+      <a href="./pages/legal_notice_login.html">Legal notice</a>
+    </div>
+  </footer>
+  <script src="./js/utils/animation.js"></script>
+  <script src="./js/script.js"></script>
+  <script src="./js/pages/register.js"></script>
+  <script src="./js/pages/login.js"></script>
+  <script src="./js/utils/helpers.js"></script>
+  <script src="./js/utils/firebase.js"></script>
+  <script src="./js/utils/defaultTaskUploader.js"></script>
+  <script src="./js/utils/storage.js"></script>
+  <script src="./js/utils/validation.js"></script>
+  <script src="./js/utils/userUI.js"></script>
+  <script src="./js/components/message.js"></script>
+</body>
+
 </html>
+

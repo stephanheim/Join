@@ -297,3 +297,15 @@ window.addEventListener('resize', () => {
     if (welcomeDiv) welcomeDiv.style.display = 'none';
   }
 });
+
+/**
+ * Shows a floating success message using a generated HTML template.
+ */
+function showSuccessMessage() {
+  let successFloaterHTML = generateSuccessFloaterHTML();
+  let successMessageContainer = document.createElement('div');
+  successMessageContainer.id = 'successMessageContainer';
+  document.getElementById('cnt-main-div').appendChild(successMessageContainer);
+  successMessageContainer.innerHTML = successFloaterHTML;
+  animateSuccessMessage(successMessageContainer);
+}

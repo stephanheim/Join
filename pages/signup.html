@@ -43,16 +43,16 @@
             <div class="input-content">
               <div class="outside-input-confirm flex-column">
                 <div class="flex-space-between">
-                  <input required class="inside-input" id="registNewName" type="text" placeholder="Name"
-                    aria-label="text" autocomplete="name" oninput="renderNameMessage(); toggleSubmitButton()" />
+                  <input class="inside-input" id="registNewName" type="text" placeholder="Name" aria-label="text"
+                    autocomplete="name" oninput="renderNameMessage(); toggleSubmitButton()" />
                   <img src="../assets/icons/signup_name_person.svg" alt="Person" />
                 </div>
                 <span id="nameMessage" class="error-message"></span>
               </div>
               <div class="outside-input-confirm flex-column">
                 <div class="flex-space-between">
-                  <input required class="inside-input" id="registNewEmail" type="email" placeholder="Email"
-                    aria-label="Email" autocomplete="email" oninput="renderEmailMessage(); toggleSubmitButton()" />
+                  <input class="inside-input" id="registNewEmail" type="text" placeholder="Email" aria-label="Email"
+                    autocomplete="email" oninput="renderEmailMessage(); toggleSubmitButton()" />
                   <img src="../assets/icons/login_mail_letter.svg" alt="Brief" />
                 </div>
                 <span id="emailMessage" class="error-message"></span>
@@ -60,21 +60,32 @@
               <div id="borderPassword" class="outside-input-confirm flex-column">
                 <div class="flex-space-between">
                   <input onfocus="toggleRequiredInput(this, true)" onblur="toggleRequiredInput(this, false)"
-                    oninput="renderPasswordMessage(); checkPasswordIcon() ; toggleSubmitButton()" required
-                    class="inside-input" id="registNewPassword" type="password" placeholder="Password"
-                    aria-label="password" autocomplete="current-password" />
+                    oninput="renderPasswordMessage(); checkPasswordIcon() ; toggleSubmitButton()" class="inside-input"
+                    id="registNewPassword" type="text" placeholder="Password" aria-label="password"
+                    autocomplete="current-password" />
                   <img id="visibilityPwSignup" src="../assets/icons/login_pw_lock.svg" alt="Schloss" />
                 </div>
                 <span id="passwordMessage" class="error-message"></span>
               </div>
               <div id="borderConfirm" class="outside-input-confirm flex-column">
                 <div class="flex-space-between">
-                  <input onfocus="toggleRequiredInput(this, true)" onblur="toggleRequiredInput(this, false)"
-                    oninput="renderComparePasswordMessage();checkConfirmIcon(); toggleSubmitButton()" required
-                    class="inside-input" id="registConfirmPassword" type="password" placeholder="Confirm Password"
-                    aria-label="Password" autocomplete="off" />
-                  <img id="visibilityConfirmSignup" class="pointer" onclick="toggleConfirmVisibility()"
-                    src="../assets/icons/login_pw_lock.svg" alt="Schloss" />
+                  <input 
+                  onfocus="toggleRequiredInput(this, true)" 
+                  onblur="toggleRequiredInput(this, false)" 
+                  oninput="renderComparePasswordMessage();checkConfirmIcon(); 
+                  toggleSubmitButton()" 
+                  class="inside-input" 
+                  id="registConfirmPassword" 
+                  type="text"
+                  placeholder="Confirm Password" 
+                  aria-label="Password" 
+                  autocomplete="off" />
+
+                  <img 
+                  id="visibilityConfirmSignup" 
+                  class="pointer" 
+                  onclick="toggleConfirmVisibility()"
+                  src="../assets/icons/login_pw_lock.svg" alt="Schloss" />
                 </div>
                 <span id="comparePasswordMessage" class="error-message"></span>
               </div>
@@ -107,6 +118,7 @@
   <script src="../js/utils/storage.js"></script>
   <script src="../js/utils/validation.js"></script>
   <script src="../js/utils/userUI.js"></script>
+  <script src="../js/components/message.js"></script>
 </body>
 
 </html>

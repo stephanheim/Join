@@ -113,19 +113,6 @@ function togglePasswordVisibility() {
 }
 
 /**
- * Displays a login error message and highlights input fields with a red border.
- */
-function renderLoginMessage() {
-  const message = document.getElementById('loginMessage');
-  const borders = document.getElementsByClassName('outside-input');
-  message.innerText = 'Check your email and password. Please try again!';
-  message.style.display = 'block';
-  for (const border of borders) {
-    border.style.borderColor = '#FF001F';
-  }
-}
-
-/**
  * Logs in as a guest and redirects directly to the dashboard.
  */
 function guestLogin() {

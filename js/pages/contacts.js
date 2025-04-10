@@ -384,18 +384,6 @@ function updateContactInArray(contactId, updatedContact) {
 }
 
 /**
- * Shows a floating success message using a generated HTML template.
- */
-function showSuccessMessage() {
-  let successFloaterHTML = generateSuccessFloaterHTML();
-  let successMessageContainer = document.createElement('div');
-  successMessageContainer.id = 'successMessageContainer';
-  document.getElementById('cnt-main-div').appendChild(successMessageContainer);
-  successMessageContainer.innerHTML = successFloaterHTML;
-  animateSuccessMessage(successMessageContainer);
-}
-
-/**
  * Checks if the currently logged-in user is in the contact list.
  * If not, adds them as a contact.
  *

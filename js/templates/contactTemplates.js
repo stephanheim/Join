@@ -1,6 +1,6 @@
 function generateFloaterHTML() {
   return `
-  <form id="contactForm" class="form-floater" onsubmit="validateForm(event)">
+  <form id="contactForm" class="form-floater" onsubmit="validateForm(event);return false;">
     <div id="contactFloater" class="main-floater">
       <div class="add-contact">
         <img src="../assets/img/join.svg" class="add-icon" />
@@ -22,18 +22,29 @@ function generateFloaterHTML() {
             <img src="../assets/icons/close.svg" class="add-close-btn-dark" />
           </div>
           <div class="add-fields">
-            <div class="input-div">
-              <input type="text" placeholder="Name" class="add-input" id="addContName" minlength="2" maxlength="50"
-                required />
-                <img src="../assets/icons/person_input.svg" class="input-img"/>
+            <div class="input-border">
+              <div class="input-div">
+                <input onfocus="toggleRequiredInputContact(this, true)" onblur="toggleRequiredInputContact(this, false)" oninput="" type="text" placeholder="Name"
+                  class="add-input" id="addContName" minlength="2" maxlength="50" aria-label="text" />
+                <img src="../assets/icons/person_input.svg" class="input-img" />
+              </div>
+              <span id="nameMessage" class="error-message">hier steht was</span>
             </div>
-            <div class="input-div">
-              <input type="email" placeholder="Email" class="add-input" id="addContMail" required />
+            <div class="input-border">
+              <div class="input-div">
+                <input onfocus="toggleRequiredInputContact(this, true)" onblur="toggleRequiredInputContact(this, false)" oninput="" type="text" placeholder="Email"
+                  class="add-input" id="addContMail" aria-label="Email" />
                 <img src="../assets/icons/mail.svg" class="input-img" />
+              </div>
+              <span id="nameMessage" class="error-message">hier steht was</span>
             </div>
-            <div class="input-div">
-              <input type="tel" placeholder="Phone" class="add-input" id="addContPhone" required />
+            <div class="input-border">
+              <div class="input-div">
+                <input onfocus="toggleRequiredInputContact(this, true)" onblur="toggleRequiredInputContact(this, false)" oninput="" type="text" placeholder="Phone"
+                  class="add-input" id="addContPhone" aria-label="Phone" />
                 <img src="../assets/icons/call.svg" class="input-img" />
+              </div>
+              <span id="nameMessage" class="error-message">hier steht was</span>
             </div>
           </div>
           <div class="add-btn-div">
@@ -131,39 +142,47 @@ function generateContactsEditFloaterHTML(contact) {
       </div>
       <div class="add-form">
         <div class="add-form-circle edit-form-circle" style="background-color: ${contact.color}">
-            ${getInitials(contact.name)}  
+          ${getInitials(contact.name)}
         </div>
         <div class="right-wrap">
           <div onclick="animateCloseContact()" class="add-close-div-dark">
-            <img src="../assets/icons/close.svg"  class="add-close-btn-dark" />
+            <img src="../assets/icons/close.svg" class="add-close-btn-dark" />
           </div>
           <div class="add-fields">
-            <div class="input-div">
-              <input type="text" class="add-input" id="addContName" value="${contact.name}" />
-              <img src="../assets/icons/person_input.svg" class="input-img-person" />
+            <div class="input-border">
+              <div class="input-div">
+                <input onfocus="toggleRequiredInputContact(this, true)" onblur="toggleRequiredInputContact(this, false)" type="text" class="add-input" id="addContName" value="${contact.name}" />
+                <img src="../assets/icons/person_input.svg" class="input-img-person" />
+              </div>
+              <span id="nameMessage" class="error-message">hier steht was</span>
             </div>
-            <div class="input-div">
-              <input type="email" class="add-input" id="addContMail" value="${contact.email}" />
-              <img src="../assets/icons/mail.svg" class="input-img-mail" />
+            <div class="input-border">
+              <div class="input-div">
+                <input onfocus="toggleRequiredInputContact(this, true)" onblur="toggleRequiredInputContact(this, false)" type="text" class="add-input" id="addContMail" value="${contact.email}" />
+                <img src="../assets/icons/mail.svg" class="input-img-mail" />
+              </div>
+              <span id="nameMessage" class="error-message">hier steht was</span>
             </div>
-            <div class="input-div">
-              <input type="tel" class="add-input" id="addContPhone" value="${contact.phone}" />
-              <img src="../assets/icons/call.svg" class="input-img-call" />
+            <div class="input-border">
+              <div class="input-div">
+                <input onfocus="toggleRequiredInputContact(this, true)" onblur="toggleRequiredInputContact(this, false)" type="text" class="add-input" id="addContPhone" value="${contact.phone}" />
+                <img src="../assets/icons/call.svg" class="input-img-call" />
+              </div>
+              <span id="nameMessage" class="error-message">hier steht was</span>
             </div>
           </div>
           <div class="add-btn-div">
             <button type="button" onclick="deleteContact('${contact.id}')" class="edit-btn-delete">
               Delete
             </button>
-            <button type="submit" onclick="updateContact('${contact.id}')" 
-            class="edit-btn-save">
+            <button type="submit" onclick="updateContact('${contact.id}')" class="edit-btn-save">
               Save
-              <img src="../assets/icons/check.svg" class="img-btn-check btn-icons" />                
-              </div>
-            </button>
+              <img src="../assets/icons/check.svg" class="img-btn-check btn-icons" />
           </div>
+          </button>
         </div>
       </div>
+    </div>
     </div>
   </form>
   `;

@@ -68,7 +68,8 @@ function preventFormSubmitOnEnter() {
   let inputs = form.getElementsByTagName('input');
   for (let i = 0; i < inputs.length; i++) {
     inputs[i].addEventListener('keydown', function (event) {
-      if (event.key === 'Enter' && inputs[i].type !== 'submit') {a
+      if (event.key === 'Enter' && inputs[i].type !== 'submit') {
+        a
         event.preventDefault();
       }
     });
@@ -76,26 +77,12 @@ function preventFormSubmitOnEnter() {
 }
 
 /**
- * Toggles the visual focus state of a required input field.
+ * Toggles the `input-focus` class on the grandparent container of the given input element.
+ * 
+ * This is typically used for input fields wrapped inside an additional outer container,
+ * like in password inputs with a `.input-border` wrapper.
  *
- * Adds or removes the `input-focus` class on the element with ID `requiredInput`
- * depending on whether the input is focused or blurred.
- *
- * @param {boolean} isFocused - `true` if the input is focused, `false` if blurred.
- */
-function toggleRequiredInput(isFocused) {
-  let border = document.getElementById('requiredInput');
-  if (border) {
-    border.classList.toggle('input-focus', isFocused);
-  }
-}
-
-/**
- * Toggles the `input-focus` class on the grandparent container of a given input element.
- *
- * This is typically used to visually highlight required input fields when focused or blurred.
- *
- * @param {HTMLElement} inputElement - The input element triggering the focus/blur event.
+ * @param {HTMLElement} inputElement - The input element triggering the focus or blur event.
  * @param {boolean} isFocused - `true` if the input is focused, `false` if blurred.
  */
 function toggleRequiredInput(inputElement, isFocused) {
@@ -104,6 +91,23 @@ function toggleRequiredInput(inputElement, isFocused) {
     border.classList.toggle('input-focus', isFocused);
   }
 }
+
+/**
+ * Toggles the `input-focus` class on the direct parent container of the given input element.
+ * 
+ * This is used for simpler input structures where no additional wrapper exists,
+ * like contact inputs directly inside `.input-div`.
+ *
+ * @param {HTMLElement} inputElement - The input element triggering the focus or blur event.
+ * @param {boolean} isFocused - `true` if the input is focused, `false` if blurred.
+ */
+function toggleRequiredInputContact(inputElement, isFocused) {
+  let border = inputElement.parentElement;
+  if (border) {
+    border.classList.toggle('input-focus', isFocused);
+  }
+}
+
 
 /**
  * Disables the signup button and returns the button element.
