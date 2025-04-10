@@ -415,7 +415,6 @@
   .right-wrap {
     justify-content: center;
     align-items: center;
-    gap: 32px;
   }
 
   .add-fields {

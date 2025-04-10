@@ -5,7 +5,7 @@
  */
 function checkForm() {
   toggleSubmitButton();
-  return allFieldsValid();
+  return allSignupFieldsValid();
 }
 
 /**
@@ -99,29 +99,13 @@ async function isThisEmailAvailable(email) {
  *
  * @returns {boolean} True if all fields have a value.
  */
-function allRequiredFieldsAreFilledIn() {
+function allSignupFieldsAreFilledIn() {
   let { newUser, confirmPassword } = getUserInput();
   return (
     newUser.name !== "" &&
     newUser.email !== "" &&
     newUser.password !== "" &&
     confirmPassword !== ""
-  );
-}
-
-/**
- * Runs all field validations including checkbox and matching passwords.
- *
- * @returns {boolean} True if form is fully valid.
- */
-function allFieldsValid() {
-  return (
-    allRequiredFieldsAreFilledIn() &&
-    isNameValid() &&
-    isEmailValid() &&
-    isPasswordFieldValid() &&
-    confirmPasswords() &&
-    isCheckboxChecked('signup')
   );
 }
 

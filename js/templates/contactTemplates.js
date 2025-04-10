@@ -1,6 +1,6 @@
 function generateFloaterHTML() {
   return `
-  <form id="contactForm" class="form-floater" onsubmit="validateForm(event);return false;">
+  <form id="contactForm" class="form-floater" onsubmit="submitAddContact();return false;">
     <div id="contactFloater" class="main-floater">
       <div class="add-contact">
         <img src="../assets/img/join.svg" class="add-icon" />
@@ -24,27 +24,30 @@ function generateFloaterHTML() {
           <div class="add-fields">
             <div class="input-border">
               <div class="input-div">
-                <input onfocus="toggleRequiredInputContact(this, true)" onblur="toggleRequiredInputContact(this, false)" oninput="" type="text" placeholder="Name"
-                  class="add-input" id="addContName" minlength="2" maxlength="50" aria-label="text" />
+                <input onfocus="toggleRequiredInputContact(this, true)" onblur="toggleRequiredInputContact(this, false)"
+                  oninput="renderContactNameMessage()" type="text" placeholder="Name" class="add-input" id="addContName"
+                  minlength="2" maxlength="50" aria-label="text" />
                 <img src="../assets/icons/person_input.svg" class="input-img" />
               </div>
-              <span id="nameMessage" class="error-message">hier steht was</span>
+              <span id="nameMessage" class="error-message"></span>
             </div>
             <div class="input-border">
               <div class="input-div">
-                <input onfocus="toggleRequiredInputContact(this, true)" onblur="toggleRequiredInputContact(this, false)" oninput="" type="text" placeholder="Email"
-                  class="add-input" id="addContMail" aria-label="Email" />
+                <input onfocus="toggleRequiredInputContact(this, true)" onblur="toggleRequiredInputContact(this, false)"
+                  oninput="renderContactEmailMessage()" type="text" placeholder="Email" class="add-input" id="addContMail"
+                  aria-label="Email" />
                 <img src="../assets/icons/mail.svg" class="input-img" />
               </div>
-              <span id="nameMessage" class="error-message">hier steht was</span>
+              <span id="emailMessage" class="error-message"></span>
             </div>
             <div class="input-border">
               <div class="input-div">
-                <input onfocus="toggleRequiredInputContact(this, true)" onblur="toggleRequiredInputContact(this, false)" oninput="" type="text" placeholder="Phone"
-                  class="add-input" id="addContPhone" aria-label="Phone" />
+                <input onfocus="toggleRequiredInputContact(this, true)" onblur="toggleRequiredInputContact(this, false)"
+                  oninput="renderContactPhoneMessage()" type="text" placeholder="Phone" class="add-input"
+                  id="addContPhone" aria-label="Phone" />
                 <img src="../assets/icons/call.svg" class="input-img" />
               </div>
-              <span id="nameMessage" class="error-message">hier steht was</span>
+              <span id="phoneMessage" class="error-message"></span>
             </div>
           </div>
           <div class="add-btn-div">
@@ -97,7 +100,7 @@ function generateContactsHTML(contact, initials) {
 
 function generateContactsInfoHTML(contact) {
   return `
-  <div class="cnt-glance" onsubmit="validateForm(event)">
+  <div class="cnt-glance" onsubmit="submitAddContact()">
     <div class="cnt-glance-details">
       <div class="cnt-glance-initials" style="background-color: ${contact.color}">
         ${getInitials(contact.name)}
@@ -128,7 +131,7 @@ function generateContactsInfoHTML(contact) {
 
 function generateContactsEditFloaterHTML(contact) {
   return `
-  <form id="contactForm" class="form-floater">
+  <form id="contactForm" class="form-floater" onsubmit="updateContact('${contact.id}');return false;">
     <div id="contactFloater" class="main-floater">
       <div class="add-contact">
         <img src="../assets/img/join.svg" class="add-icon" />
@@ -151,31 +154,37 @@ function generateContactsEditFloaterHTML(contact) {
           <div class="add-fields">
             <div class="input-border">
               <div class="input-div">
-                <input onfocus="toggleRequiredInputContact(this, true)" onblur="toggleRequiredInputContact(this, false)" type="text" class="add-input" id="addContName" value="${contact.name}" />
+                <input onfocus="toggleRequiredInputContact(this, true)" onblur="toggleRequiredInputContact(this, false)"
+                  oninput="renderContactNameMessage()" type="text" class="add-input" id="addContName"
+                  value="${contact.name}" />
                 <img src="../assets/icons/person_input.svg" class="input-img-person" />
               </div>
               <span id="nameMessage" class="error-message">hier steht was</span>
             </div>
             <div class="input-border">
               <div class="input-div">
-                <input onfocus="toggleRequiredInputContact(this, true)" onblur="toggleRequiredInputContact(this, false)" type="text" class="add-input" id="addContMail" value="${contact.email}" />
+                <input onfocus="toggleRequiredInputContact(this, true)" onblur="toggleRequiredInputContact(this, false)"
+                  oninput="renderContactEmailMessage()" type="text" class="add-input" id="addContMail"
+                  value="${contact.email}" />
                 <img src="../assets/icons/mail.svg" class="input-img-mail" />
               </div>
-              <span id="nameMessage" class="error-message">hier steht was</span>
+              <span id="emailMessage" class="error-message">hier steht was</span>
             </div>
             <div class="input-border">
               <div class="input-div">
-                <input onfocus="toggleRequiredInputContact(this, true)" onblur="toggleRequiredInputContact(this, false)" type="text" class="add-input" id="addContPhone" value="${contact.phone}" />
+                <input onfocus="toggleRequiredInputContact(this, true)" onblur="toggleRequiredInputContact(this, false)"
+                  oninput="renderContactPhoneMessage()" type="text" class="add-input" id="addContPhone"
+                  value="${contact.phone}" />
                 <img src="../assets/icons/call.svg" class="input-img-call" />
               </div>
-              <span id="nameMessage" class="error-message">hier steht was</span>
+              <span id="phoneMessage" class="error-message">hier steht was</span>
             </div>
           </div>
           <div class="add-btn-div">
             <button type="button" onclick="deleteContact('${contact.id}')" class="edit-btn-delete">
               Delete
             </button>
-            <button type="submit" onclick="updateContact('${contact.id}')" class="edit-btn-save">
+            <button type="submit" class="edit-btn-save">
               Save
               <img src="../assets/icons/check.svg" class="img-btn-check btn-icons" />
           </div>

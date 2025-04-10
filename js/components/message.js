@@ -8,7 +8,7 @@ function emailAlreadyRegistered() {
 }
 
 /**
- * Renders a validation message for the name field.
+ * Renders a validation message for the sign up name field.
  */
 function renderNameMessage() {
   const message = document.getElementById('nameMessage');
@@ -22,7 +22,27 @@ function renderNameMessage() {
 }
 
 /**
- * Renders a validation message for the email field.
+ * Renders a validation message for the add contact name field.
+ * 
+ * If the name is invalid, an error message is shown and the border is highlighted in red.
+ * If valid, the message is hidden and the border color is reset.
+ */
+function renderContactNameMessage() {
+  const message = document.getElementById('nameMessage');
+  const inputName = document.getElementById('addContName');
+  if (!isContactNameValid()) {
+    message.innerText = "First and last name are required";
+    message.style.display = "block";
+    borderColorRed(inputName);
+  } else {
+    message.innerText = "";
+    message.style.display = "none";
+    resetBorderColor(inputName);
+  }
+}
+
+/**
+ * Renders a validation message for the sign up email field.
  */
 function renderEmailMessage() {
   const message = document.getElementById('emailMessage');
@@ -32,6 +52,46 @@ function renderEmailMessage() {
   } else {
     message.innerText = "";
     message.style.display = "none";
+  }
+}
+
+/**
+ * Renders a validation message for the add contact email field.
+ * 
+ * Displays an error message and highlights the border if the email is invalid.
+ * Hides the message and resets the border if the email is valid.
+ */
+function renderContactEmailMessage() {
+  const message = document.getElementById('emailMessage');
+  const inputEmail = document.getElementById('addContMail');
+  if (!isContactEmailValid()) {
+    message.innerText = "Email is required";
+    message.style.display = "block";
+    borderColorRed(inputEmail);
+  } else {
+    message.innerText = "";
+    message.style.display = "none";
+    resetBorderColor(inputEmail);
+  }
+}
+
+/**
+ * Renders a validation message for the contact phone input field.
+ * 
+ * Displays an error message and highlights the border if the phone number is invalid.
+ * Hides the message and resets the border if the phone number is valid.
+ */
+function renderContactPhoneMessage() {
+  const message = document.getElementById('phoneMessage');
+  const inputPhone = document.getElementById('addContPhone');
+  if (!isContactPhoneValid()) {
+    message.innerText = "Number is required";
+    message.style.display = "block";
+    borderColorRed(inputPhone);
+  } else {
+    message.innerText = "";
+    message.style.display = "none";
+    resetBorderColor(inputPhone);
   }
 }
 

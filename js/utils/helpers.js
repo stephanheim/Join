@@ -140,11 +140,11 @@ function activateButton() {
 /**
  * Toggles the signup button's enabled state based on form validation.
  *
- * If all form fields are valid (`allFieldsValid()` returns true), the button is enabled.
+ * If all form fields are valid (`allSignupFieldsValid()` returns true), the button is enabled.
  * Otherwise, the button is disabled.
  */
 function toggleSubmitButton() {
-  if (allFieldsValid()) {
+  if (allSignupFieldsValid()) {
     activateButton();
   } else {
     deactivateButton();
@@ -298,5 +298,31 @@ function assignedBorderColor(dropDownMenu) {
     borderColor.style.border = '1px solid rgba(209, 209, 209, 1)';
   } else {
     borderColor.style.border = '1px solid rgba(41, 171, 226, 1)';
+  }
+}
+
+/**
+ * Sets the border color of the given input field's parent container to a red tone
+ * to indicate a validation error.
+ *
+ * @param {HTMLElement} input - The input element whose border should be highlighted.
+ */
+function borderColorRed(input) {
+  const border = input?.parentElement;
+  if (border) {
+    border.style.borderColor = "#FF8190";
+  }
+}
+
+/**
+ * Resets the border color of the given input field's parent container
+ * to its default state, removing any error styling.
+ *
+ * @param {HTMLElement} input - The input element whose border should be reset.
+ */
+function resetBorderColor(input) {
+  const border = input?.parentElement;
+  if (border) {
+    border.style.borderColor = "";
   }
 }

@@ -165,17 +165,16 @@ function renderContacts(groupedContacts) {
 }
 
 /**
- * Creates a new contact, posts it to Firebase and handles UI updates.
+ * Creates a new contact by sending data to Firebase and processing the response.
  *
- * @param {string} name - Contact's full name.
- * @param {string} email - Contact's email address.
- * @param {string} phone - Contact's phone number.
- * @returns {Promise<void>}
+ * @param {string} name - The contact's name.
+ * @param {string} email - The contact's email address.
+ * @param {string} phone - The contact's phone number.
  */
 async function createNewContact(name, email, phone) {
   let newContact = { name, email, phone };
   let response = await postToFirebase(newContact);
-  if (!response) return console.error('Fehler beim Hinzufügen des Kontakts');
+  if (!response) return console.error('Error when adding the contact');
   await processNewContact(response.id);
 }
 
@@ -215,12 +214,52 @@ function scrollToContact(contactId) {
  *
  * @returns {{name: string, email: string, phone: string}} Form values.
  */
-function getFormValues() {
+function getContactinput() {
   return {
     name: document.getElementById('addContName').value.trim(),
     email: document.getElementById('addContMail').value.trim(),
     phone: document.getElementById('addContPhone').value.trim(),
   };
+}
+
+/**
+ * Checks whether all contact form fields have been filled in (non-empty).
+ *
+ * @returns {boolean} `true` if all fields are filled, otherwise `false`.
+ */
+function allContactFieldsAreFilledIn() {
+  let { name, email, phone } = getContactinput();
+  return name !== "" && email !== "" && phone !== "";
+}
+
+/**
+ * Handles submission of the contact form with validation and user feedback.
+ *
+ * @returns {boolean} Always returns false to prevent default form submission.
+ */
+async function submitAddContact() {
+  const { name, email, phone } = getContactinput();
+  renderEmptyFieldMessages(name, email, phone);
+  if (!allContactFieldsAreFilledIn()) return false;
+  try {
+    await createNewContact(name, email, phone);
+  } catch (error) {
+    console.error('Error when adding the contact:', error);
+  }
+  return false;
+}
+
+/**
+ * Shows validation messages for fields that are empty.
+ *
+ * @param {string} name - Name value.
+ * @param {string} email - Email value.
+ * @param {string} phone - Phone value.
+ */
+function renderEmptyFieldMessages(name, email, phone) {
+  if (name === "") renderContactNameMessage();
+  if (email === "") renderContactEmailMessage();
+  if (phone === "") renderContactPhoneMessage();
 }
 
 /**

@@ -69,23 +69,11 @@
               </div>
               <div id="borderConfirm" class="outside-input-confirm flex-column">
                 <div class="flex-space-between">
-                  <input 
-                  onfocus="toggleRequiredInput(this, true)" 
-                  onblur="toggleRequiredInput(this, false)" 
-                  oninput="renderComparePasswordMessage();checkConfirmIcon(); 
-                  toggleSubmitButton()" 
-                  class="inside-input" 
-                  id="registConfirmPassword" 
-                  type="text"
-                  placeholder="Confirm Password" 
-                  aria-label="Password" 
-                  autocomplete="off" />
-
-                  <img 
-                  id="visibilityConfirmSignup" 
-                  class="pointer" 
-                  onclick="toggleConfirmVisibility()"
-                  src="../assets/icons/login_pw_lock.svg" alt="Schloss" />
+                  <input onfocus="toggleRequiredInput(this, true)" onblur="toggleRequiredInput(this, false)" oninput="renderComparePasswordMessage();checkConfirmIcon(); 
+                  toggleSubmitButton()" class="inside-input" id="registConfirmPassword" type="text"
+                    placeholder="Confirm Password" aria-label="Password" autocomplete="off" />
+                  <img id="visibilityConfirmSignup" class="pointer" onclick="toggleConfirmVisibility()"
+                    src="../assets/icons/login_pw_lock.svg" alt="Schloss" />
                 </div>
                 <span id="comparePasswordMessage" class="error-message"></span>
               </div>
