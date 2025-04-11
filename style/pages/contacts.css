@@ -480,6 +480,8 @@
 @media screen and (max-width:428px) {
   .cnt-main {
     width: 100%;
+    height: auto;
+    padding: 8px;
   }
 
   .cnt-glance-details {
@@ -489,12 +491,17 @@
   .cnt-glance-initials {
     font-size: 21px;
     font-weight: 400;
+    aspect-ratio: 1 / 1;
+    width: auto;
+    height: auto;
+    padding: 10%;
   }
 
   .cnt-details {
     word-break: break-word;
   }
 }
+
 
 @media screen and (max-width: 350px) {
   .cnt-resp-name {
