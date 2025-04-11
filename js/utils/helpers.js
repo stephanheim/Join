@@ -326,3 +326,42 @@ function resetBorderColor(input) {
     border.style.borderColor = "";
   }
 }
+
+/**
+ * Sorts the global contacts array alphabetically by name
+ * and returns the grouped result by first letter.
+ *
+ * @returns {Array<{group: string, contacts: Object[]}>} Alphabetically grouped contacts.
+ */
+function sortContacts() {
+  contactsArray.sort((a, b) => a.name.localeCompare(b.name));
+  return groupContactsByLetter();
+}
+
+/**
+ * Extracts initials from a full name (first and last name).
+ *
+ * @param {string} name - Full name string (e.g. "John Doe").
+ * @returns {string} The initials in uppercase (e.g. "JD").
+ */
+function getInitials(name) {
+  let nameParts = name.split(' ');
+  return nameParts[0].charAt(0).toUpperCase() + nameParts[1].charAt(0).toUpperCase();
+}
+
+/**
+ * Assigns a color from the predefined contactColors array to each contact,
+ * cycling through the color list as needed.
+ *
+ * @param {Array<{group: string, contacts: Object[]}>} groupedContacts - Grouped contacts to colorize.
+ */
+function assignColorsToContacts(groupedContacts) {
+  let colorizeIndex = 0;
+  for (let i = 0; i < groupedContacts.length; i++) {
+    let group = groupedContacts[i];
+    for (let j = 0; j < group.contacts.length; j++) {
+      group.contacts[j].color = contactColors[colorizeIndex % contactColors.length];
+      colorizeIndex++;
+    }
+  }
+}

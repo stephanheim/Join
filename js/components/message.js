@@ -154,3 +154,16 @@ function renderLoginMessage() {
     border.style.borderColor = '#FF001F';
   }
 }
+
+/**
+ * Shows validation messages for fields that are empty.
+ *
+ * @param {string} name - Name value.
+ * @param {string} email - Email value.
+ * @param {string} phone - Phone value.
+ */
+function renderEmptyFieldMessages(name, email, phone) {
+  if (name === "") renderContactNameMessage();
+  if (email === "") renderContactEmailMessage();
+  if (phone === "") renderContactPhoneMessage();
+}

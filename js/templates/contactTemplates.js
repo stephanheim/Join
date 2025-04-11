@@ -131,7 +131,7 @@ function generateContactsInfoHTML(contact) {
 
 function generateContactsEditFloaterHTML(contact) {
   return `
-  <form id="contactForm" class="form-floater" onsubmit="updateContact('${contact.id}');return false;">
+  <form id="contactForm" class="form-floater" onsubmit="updateEditContact('${contact.id}');return false;">
     <div id="contactFloater" class="main-floater">
       <div class="add-contact">
         <img src="../assets/img/join.svg" class="add-icon" />
@@ -216,4 +216,21 @@ function generateRespEditFloaterHTML(contactId) {
     </div>
   </div>
   `;
+}
+
+/**
+ * Handles submission of the contact form with validation and user feedback.
+ *
+ * @returns {boolean} Always returns false to prevent default form submission.
+ */
+async function submitAddContact() {
+  const { name, email, phone } = getContactinput();
+  renderEmptyFieldMessages(name, email, phone);
+  if (!allContactFieldsAreFilledIn()) return false;
+  try {
+    await createNewContact(name, email, phone);
+  } catch (error) {
+    console.error('Error when adding the contact:', error);
+  }
+  return false;
 }

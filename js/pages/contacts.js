@@ -75,17 +75,6 @@ async function getDetailInfo(contacts) {
 }
 
 /**
- * Sorts the global contacts array alphabetically by name
- * and returns the grouped result by first letter.
- *
- * @returns {Array<{group: string, contacts: Object[]}>} Alphabetically grouped contacts.
- */
-function sortContacts() {
-  contactsArray.sort((a, b) => a.name.localeCompare(b.name));
-  return groupContactsByLetter();
-}
-
-/**
  * Groups the global contacts array by the first letter of each contact's name.
  * Assumes contacts are already sorted alphabetically.
  *
@@ -103,34 +92,6 @@ function groupContactsByLetter() {
     groupedByLetter[groupedByLetter.length - 1].contacts.push(contact);
   });
   return groupedByLetter;
-}
-
-/**
- * Extracts initials from a full name (first and last name).
- *
- * @param {string} name - Full name string (e.g. "John Doe").
- * @returns {string} The initials in uppercase (e.g. "JD").
- */
-function getInitials(name) {
-  let nameParts = name.split(' ');
-  return nameParts[0].charAt(0).toUpperCase() + nameParts[1].charAt(0).toUpperCase();
-}
-
-/**
- * Assigns a color from the predefined contactColors array to each contact,
- * cycling through the color list as needed.
- *
- * @param {Array<{group: string, contacts: Object[]}>} groupedContacts - Grouped contacts to colorize.
- */
-function assignColorsToContacts(groupedContacts) {
-  let colorizeIndex = 0;
-  for (let i = 0; i < groupedContacts.length; i++) {
-    let group = groupedContacts[i];
-    for (let j = 0; j < group.contacts.length; j++) {
-      group.contacts[j].color = contactColors[colorizeIndex % contactColors.length];
-      colorizeIndex++;
-    }
-  }
 }
 
 /**
@@ -250,19 +211,6 @@ async function submitAddContact() {
 }
 
 /**
- * Shows validation messages for fields that are empty.
- *
- * @param {string} name - Name value.
- * @param {string} email - Email value.
- * @param {string} phone - Phone value.
- */
-function renderEmptyFieldMessages(name, email, phone) {
-  if (name === "") renderContactNameMessage();
-  if (email === "") renderContactEmailMessage();
-  if (phone === "") renderContactPhoneMessage();
-}
-
-/**
  * Displays contact information in the UI if the contact exists.
  * Highlights and renders both glance and responsive views.
  *
@@ -298,7 +246,6 @@ async function deleteContact(contactId) {
   }
   backToList();
 }
-
 
 /**
  * Updates all tasks in Firebase by removing a deleted contact from each.
@@ -374,55 +321,6 @@ function contactsChanged(original, filtered) {
 }
 
 /**
- * Updates a contact in Firebase and in the local contact array.
- * Refreshes the UI and shows updated info if visible.
- *
- * @param {string} contactId - The ID of the contact to update.
- * @returns {Promise<void>}
- */
-async function updateContact(contactId) {
-  try {
-    let updatedContact = getUpdatedContact();
-    await sendUpdateToFirebase(contactId, updatedContact);
-    updateContactInArray(contactId, updatedContact);
-    await loadContactsFromFirebase();
-    let glanceWindow = document.getElementById('cnt-glance-contact');
-    if (glanceWindow && glanceWindow.style.display !== 'none') {
-      showContactInfo(contactId);
-    }
-    getGroupedContacts();
-    closeEditFloater();
-  } catch (error) {
-    console.error('Fehler:', error);
-  }
-}
-
-/**
- * Gets updated contact data from the form inputs.
- *
- * @returns {{name: string, email: string, phone: string}} The updated contact object.
- */
-function getUpdatedContact() {
-  return {
-    name: document.getElementById('addContName').value,
-    email: document.getElementById('addContMail').value,
-    phone: document.getElementById('addContPhone').value,
-  };
-}
-
-/**
- * Updates a contact inside the `contactsArray` by matching its ID.
- *
- * @param {string} contactId - The ID of the contact to update.
- * @param {Object} updatedContact - The updated contact data.
- */
-function updateContactInArray(contactId, updatedContact) {
-  contactsArray = contactsArray.map((contact) =>
-    contact.id === contactId ? { id: contactId, ...updatedContact } : contact
-  );
-}
-
-/**
  * Checks if the currently logged-in user is in the contact list.
  * If not, adds them as a contact.
  *
@@ -434,16 +332,6 @@ async function checkAndAddCurrentUser() {
   if (!isUserInContacts(currentUser.email)) {
     await addCurrentUserToContacts(currentUser);
   }
-}
-
-/**
- * Checks whether a user with the given email is already in the contact list.
- *
- * @param {string} email - The email to check for.
- * @returns {boolean} True if the contact exists, false otherwise.
- */
-function isUserInContacts(email) {
-  return contactsArray.some((contact) => contact.email === email);
 }
 
 /**

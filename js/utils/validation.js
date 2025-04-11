@@ -116,4 +116,13 @@ function confirmPasswords() {
   return password === confirmPassword;
 }
 
+/**
+ * Checks whether a user with the given email is already in the contact list.
+ *
+ * @param {string} email - The email to check for.
+ * @returns {boolean} True if the contact exists, false otherwise.
+ */
+function isUserInContacts(email) {
+  return contactsArray.some((contact) => contact.email === email);
+}
 

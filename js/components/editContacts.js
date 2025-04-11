@@ -50,3 +50,40 @@ function closeRespEditFloater() {
     }, 300);
   }
 }
+
+/**
+ * Updates a contact in Firebase and in the local contact array.
+ * Refreshes the UI and shows updated info if visible.
+ *
+ * @param {string} contactId - The ID of the contact to update.
+ * @returns {Promise<void>}
+ */
+async function updateEditContact(contactId) {
+  if (!allContactFieldsAreFilledIn()) return false;
+  try {
+    let updatedContact = getContactinput();
+    await sendUpdateToFirebase(contactId, updatedContact);
+    updateContactInArray(contactId, updatedContact);
+    await loadContactsFromFirebase();
+    let glanceWindow = document.getElementById('cnt-glance-contact');
+    if (glanceWindow && glanceWindow.style.display !== 'none') {
+      showContactInfo(contactId);
+    }
+    getGroupedContacts();
+    closeEditFloater();
+  } catch (error) {
+    console.error('Fehler:', error);
+  }
+}
+
+/**
+ * Updates a contact inside the `contactsArray` by matching its ID.
+ *
+ * @param {string} contactId - The ID of the contact to update.
+ * @param {Object} updatedContact - The updated contact data.
+ */
+function updateContactInArray(contactId, updatedContact) {
+  contactsArray = contactsArray.map((contact) =>
+    contact.id === contactId ? { id: contactId, ...updatedContact } : contact
+  );
+}
