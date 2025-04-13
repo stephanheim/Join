@@ -82,23 +82,6 @@ function animateCloseContact() {
 }
 
 /**
- * Animates the success message container by fading it in and out.
- * @param {HTMLElement} successMessageContainer - The element containing the success message.
- */
-function animateSuccessMessage(successMessageContainer) {
-  let successFloater = document.getElementById('successMessage');
-  successFloater.classList.remove('cnt-hide');
-  successFloater.classList.add('cnt-show');
-  setTimeout(() => {
-    successFloater.classList.remove('cnt-show');
-    successFloater.classList.add('cnt-hide');
-    setTimeout(() => {
-      successMessageContainer.parentNode.removeChild(successMessageContainer);
-    }, 500);
-  }, 3000);
-}
-
-/**
  * Displays a temporary "Task Added" message.
  */
 function messageTaskAdded() {
@@ -299,13 +282,30 @@ window.addEventListener('resize', () => {
 });
 
 /**
- * Shows a floating success message using a generated HTML template.
+ * Animates the success message container by fading it in and out.
+ * @param {HTMLElement} successMessageContainer - The element containing the success message.
+ */
+function animateSuccessMessage(successMessageContainer) {
+  let successFloater = document.getElementById('successMessage');
+  successFloater.classList.remove('cnt-hide');
+  successFloater.classList.add('cnt-show');
+  setTimeout(() => {
+    successFloater.classList.remove('cnt-show');
+    successFloater.classList.add('cnt-hide');
+    setTimeout(() => {
+      successMessageContainer.parentNode.removeChild(successMessageContainer);
+    }, 500);
+  }, 3000);
+}
+
+/**
+ * Shows the success message inside the contact content area.
  */
 function showSuccessMessage() {
   let successFloaterHTML = generateSuccessFloaterHTML();
   let successMessageContainer = document.createElement('div');
   successMessageContainer.id = 'successMessageContainer';
-  document.getElementById('cnt-main-div').appendChild(successMessageContainer);
+  document.getElementById('contactContent').appendChild(successMessageContainer);
   successMessageContainer.innerHTML = successFloaterHTML;
   animateSuccessMessage(successMessageContainer);
 }

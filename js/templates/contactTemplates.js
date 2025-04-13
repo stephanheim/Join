@@ -197,11 +197,15 @@ function generateContactsEditFloaterHTML(contact) {
   `;
 }
 
+/**
+ * Generates the HTML for the success message.
+ * @returns {string} The HTML string of the success message.
+ */
 function generateSuccessFloaterHTML() {
   return `
-  <div id="successMessageContainer">
-    <div id="successMessage" class="cnt-success-msg">Contact successfully created</div>
-  </div>
+    <div id="successMessage" class="cnt-success-msg cnt-hide">
+      Contact successfully created
+    </div>
   `;
 }
 
@@ -216,21 +220,4 @@ function generateRespEditFloaterHTML(contactId) {
     </div>
   </div>
   `;
-}
-
-/**
- * Handles submission of the contact form with validation and user feedback.
- *
- * @returns {boolean} Always returns false to prevent default form submission.
- */
-async function submitAddContact() {
-  const { name, email, phone } = getContactinput();
-  renderEmptyFieldMessages(name, email, phone);
-  if (!allContactFieldsAreFilledIn()) return false;
-  try {
-    await createNewContact(name, email, phone);
-  } catch (error) {
-    console.error("Error when adding the contact:", error);
-  }
-  return false;
 }

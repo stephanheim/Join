@@ -6,6 +6,7 @@
   align-items: flex-start;
   margin-top: 4px;
   overflow: hidden;
+  position: relative;
 }
 
 .cnt-rander-div {
@@ -273,7 +274,8 @@
 
 .cnt-success-msg {
   position: absolute;
-  bottom: 32px;
+  left: 458px;
+  bottom: 160px;
   margin-left: 40px;
   transform: none;
   background-color: #2a3647;

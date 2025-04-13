@@ -162,7 +162,6 @@ async function processNewContact(contactId) {
   animateCloseContact();
   setTimeout(() => {
     highlightContact(contactId);
-    showContactInfo(contactId);
     scrollToContact(contactId);
   }, 100);
   showSuccessMessage();
