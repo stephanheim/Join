@@ -221,8 +221,8 @@ function showContactInfo(contactId) {
   if (!contact) return;
   clearHighlightContact();
   highlightContact(contactId);
-  showGlanceWindow(contact);
-  showResponsiveLayout(contactId);
+  showGlanceWindow(contact); 
+  showResponsiveLayout(contactId); 
 }
 
 /**

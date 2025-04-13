@@ -7,6 +7,7 @@
  *
  * Relies on a `showDaytimeGreeting()` function to determine the greeting text.
  */
+
 function showUserWelcome() {
   let userData = JSON.parse(localStorage.getItem('loggedInUser'));
   let nameUser = document.getElementById('welcomeUser');
@@ -168,10 +169,12 @@ function renderDropdownMenuCategory(dropDownMenu) {
  * Displays the contact information window and fills it with the specified contact.
  * @param {Object} contact - The contact object with the information.
  */
+
 function showGlanceWindow(contact) {
   let glanceWindow = document.getElementById('cnt-glance-contact');
-  glanceWindow.style.display = 'flex';
   glanceWindow.innerHTML = generateContactsInfoHTML(contact);
+  glanceWindow.style.display = "flex";
+
 }
 
 /**
@@ -285,5 +288,5 @@ function clearHighlightContact() {
  */
 function highlightContact(contactId) {
   let contactElement = document.getElementById(`contact-${contactId}`);
-  contactElement.classList.toggle('cnt-name-highlight');
+  contactElement.classList.add('cnt-name-highlight');
 }

@@ -230,7 +230,7 @@ async function submitAddContact() {
   try {
     await createNewContact(name, email, phone);
   } catch (error) {
-    console.error('Error when adding the contact:', error);
+    console.error("Error when adding the contact:", error);
   }
   return false;
 }
