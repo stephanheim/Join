@@ -264,7 +264,11 @@
 .cnt-name-highlight {
   background-color: #2a3647;
   color: white;
-  pointer-events: none;
+}
+
+.cnt-name-highlight:hover {
+  background-color: #2a3647;
+  color: white;
 }
 
 .cnt-success-msg {

@@ -12,6 +12,16 @@ let contactsArray = [];
  */
 const contactColors = ['#ff7a01', '#9327ff', '#6e52ff', '#fc71ff', '#ffbb2c', '#20d7c2', '#462f8a', '#ff4646'];
 
+/**
+ * Stores the ID of the currently selected contact.
+ * 
+ * Used to prevent reloading the same contact on desktop view.
+ * Resets when the contact view is closed or another contact is selected.
+ * 
+ * @type {string|null}
+ */
+let activeContactId = null;
+
 
 /**
  * Initializes the contact view and logic.
@@ -211,18 +221,29 @@ async function submitAddContact() {
 }
 
 /**
- * Displays contact information in the UI if the contact exists.
- * Highlights and renders both glance and responsive views.
+ * Displays the detailed view for the selected contact.
  *
- * @param {string} contactId - The ID of the contact to show.
+ * If the same contact is already active and the viewport is desktop-sized (≥1200px),
+ * the function does nothing to prevent unnecessary re-rendering.
+ * On smaller viewports (<1200px), the view is always updated for responsive layout handling.
+ *
+ * Updates the active contact ID, highlights the selected contact, 
+ * and triggers UI updates for the contact details and layout.
+ *
+ * @param {string} contactId - The ID of the contact to display.
  */
 function showContactInfo(contactId) {
   let contact = contactsArray.find((c) => c.id === contactId);
   if (!contact) return;
+  let isMobile = window.innerWidth < 1200;
+  if (activeContactId === contactId && !isMobile) {
+    return;
+  }
+  activeContactId = contactId;
   clearHighlightContact();
   highlightContact(contactId);
-  showGlanceWindow(contact); 
-  showResponsiveLayout(contactId); 
+  showGlanceWindow(contact);
+  showResponsiveLayout(contactId);
 }
 
 /**
