@@ -1,4 +1,4 @@
-/** 
+/**
  * Stores the currently selected priority for a task (e.g. 'urgent', 'medium', 'low').
  * Used when creating or editing a task.
  * @type {string}
@@ -30,7 +30,6 @@ let addSubtask = [];
  * @type {Array<Object>}
  */
 let addNewTask = [];
-
 
 /**
  * Initializes the add task form by preventing enter key form submission and clearing all fields.
@@ -97,6 +96,7 @@ function clearAddTask() {
   document.getElementById('addTaskTitle').value = '';
   document.getElementById('addTaskDescription').value = '';
   document.getElementById('addTaskDate').value = '';
+  clearFieldErrors();
   resetSelectCategory();
   resetContactsSelection();
   resetSubtask();
@@ -255,10 +255,7 @@ function addedContacts(dropDownMenu, contacts) {
  */
 function applySelectionStyles(contacts) {
   contacts.forEach((_, i) => {
-    updateSelectedStyle(
-      document.getElementById(`innerDropmenu-${i}`),
-      document.getElementById(`checkbox-${i}`)?.checked
-    );
+    updateSelectedStyle(document.getElementById(`innerDropmenu-${i}`), document.getElementById(`checkbox-${i}`)?.checked);
   });
 }
 
@@ -273,9 +270,7 @@ function searchContacts(searchTerm) {
     renderDropdownUser(dropDownMenu, formattedContactsArray);
     return;
   }
-  let searchContacts = formattedContactsArray.filter((contact) =>
-    contact.name.toLowerCase().startsWith(searchTerm.toLowerCase())
-  );
+  let searchContacts = formattedContactsArray.filter((contact) => contact.name.toLowerCase().startsWith(searchTerm.toLowerCase()));
   renderDropdownUser(dropDownMenu, searchContacts);
 }
 
@@ -462,5 +457,3 @@ function renderSelectedInitials() {
     initialsRef.innerHTML += initialsTemplate(initials, initialsColor);
   }
 }
-
-
