@@ -63,7 +63,7 @@ function generateFloaterHTML() {
                 <img src="../assets/icons/close.svg" class="img-btn-close" />
               </div>
             </button>
-            <button type="submit" class="add-btn-create">
+            <button type="submit" class="add-btn-create" disabled>
               Create contact
               <div class="btn-icons">
                 <img src="../assets/icons/check.svg" class="img-btn-check" />

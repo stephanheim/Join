@@ -37,6 +37,7 @@ let addNewTask = [];
 function initAddTask() {
   preventFormSubmitOnEnter();
   clearAddTask();
+  toggleResponsiveRequired();
 }
 
 /**

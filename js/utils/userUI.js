@@ -289,3 +289,25 @@ function highlightContact(contactId) {
   let contactElement = document.getElementById(`contact-${contactId}`);
   contactElement.classList.add('cnt-name-highlight');
 }
+
+/**
+ * Toggles the visibility of responsive elements based on window width.
+ *
+ * - Shows the desktop-specific content (`#requiredDesktop`) when width ≥ 970px.
+ * - Shows the mobile-specific content (`#requiredMobil`) when width < 970px.
+ * - Called on window resize and initial page load.
+ */
+function toggleResponsiveRequired() {
+  const desktop = document.getElementById('requiredDesktop');
+  const mobil = document.getElementById('requiredMobil');
+  if (window.innerWidth >= 970) {
+    if (desktop) desktop.classList.remove('d-none');
+    if (mobil) mobil.classList.add('d-none');
+  } else {
+    if (mobil) mobil.classList.remove('d-none');
+    if (desktop) desktop.classList.add('d-none');
+  }
+}
+
+window.addEventListener('resize', toggleResponsiveRequired);
+window.addEventListener('load', toggleResponsiveRequired);

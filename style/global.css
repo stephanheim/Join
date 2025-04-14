@@ -25,3 +25,9 @@ h2 {
   font-size: 20px;
   font-weight: 400;
 }
+
+@media screen and (max-width: 428px) {
+  h2 {
+    font-size: 16px;
+  }
+}

@@ -265,6 +265,18 @@
 }
 
 @media screen and (max-width: 428px) {
+  .board-header {
+    padding: 0px 16px 24px 16px;
+  }
+
+  .board-headline h1 {
+    font-size: 47px;
+  }
+
+  .board-header-content {
+    height: 124px;
+  }
+
   .bt-add-task {
     width: 40px;
     height: 40px;
