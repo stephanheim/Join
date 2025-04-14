@@ -114,7 +114,7 @@
                 <h2>Subtasks</h2>
               </label>
               <div id="inputContainer" class="input-container-subtask" onclick="openSubtaskInput()">
-                <input type="text" name="category" id="addTaskSubtasks" placeholder="Add new subtask" />
+                <input type="text" name="category" id="addTaskSubtasks" placeholder="Add new subtask" onkeydown="handleSubtaskEnter(event)" />
                 <div class="container-arrow-img-dropdown" id="plusIcon">
                   <img src="../assets/icons/add_plus.svg" />
                 </div>

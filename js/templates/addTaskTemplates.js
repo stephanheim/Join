@@ -1,7 +1,7 @@
 /**
  * Returns the HTML template string for the "Add Task" floating form.
  * This includes input fields for title, description, due date, priority, assignees, category, and subtasks.
- * 
+ *
  * @returns {string} HTML string for the "Add Task" form.
  */
 function addTaskTemplate() {
@@ -108,7 +108,7 @@ function addTaskTemplate() {
               <h2>Subtasks</h2>
             </label>
             <div id="inputContainer" class="input-container-subtask" onclick="openSubtaskInput()">
-              <input type="text" name="category" id="addTaskSubtasks" placeholder="Add new subtask" />
+              <input type="text" name="category" id="addTaskSubtasks" placeholder="Add new subtask" onkeydown="handleSubtaskEnter(event)" />
               <div class="container-arrow-img-dropdown" id="plusIcon">
                 <img src="../assets/icons/add_plus.svg" />
               </div>
@@ -231,7 +231,7 @@ function subtaskTemplate(i, subtask) {
 function editSubtaskTemplate(i, subtask) {
   return `
     <div class="input-container-edit">
-      <input type="text" name="category" id="editSubtask-${i}" value="${subtask.text}"/>
+      <input type="text" name="category" id="editSubtask-${i}" value="${subtask.text}" onkeydown="handleSubtaskEnter(event)"/>
       <div class="input-other-icons">
         <div class="container-icons" onclick="deleteSubtask()">
           <img src="../assets/icons/delete.svg" alt="delete-icon" />

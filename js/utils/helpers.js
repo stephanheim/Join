@@ -69,7 +69,6 @@ function preventFormSubmitOnEnter() {
   for (let i = 0; i < inputs.length; i++) {
     inputs[i].addEventListener('keydown', function (event) {
       if (event.key === 'Enter' && inputs[i].type !== 'submit') {
-        a
         event.preventDefault();
       }
     });
@@ -78,7 +77,7 @@ function preventFormSubmitOnEnter() {
 
 /**
  * Toggles the `input-focus` class on the grandparent container of the given input element.
- * 
+ *
  * This is typically used for input fields wrapped inside an additional outer container,
  * like in password inputs with a `.input-border` wrapper.
  *
@@ -94,7 +93,7 @@ function toggleRequiredInput(inputElement, isFocused) {
 
 /**
  * Toggles the `input-focus` class on the direct parent container of the given input element.
- * 
+ *
  * This is used for simpler input structures where no additional wrapper exists,
  * like contact inputs directly inside `.input-div`.
  *
@@ -107,7 +106,6 @@ function toggleRequiredInputContact(inputElement, isFocused) {
     border.classList.toggle('input-focus', isFocused);
   }
 }
-
 
 /**
  * Disables the signup button and returns the button element.
@@ -255,7 +253,7 @@ function handleOutsideClick(event) {
 
 /**
  * Handles the click on the "Edit" option inside the responsive floater.
- * 
+ *
  * Stops the event from bubbling up to the document, then opens the contact edit overlay.
  *
  * @param {MouseEvent} event - The click event.
@@ -268,7 +266,7 @@ function handleEditClick(event, contactId) {
 
 /**
  * Handles the click on the "Delete" option inside the responsive floater.
- * 
+ *
  * Stops the event from bubbling up to the document, then triggers the contact deletion.
  *
  * @param {MouseEvent} event - The click event.
@@ -336,7 +334,7 @@ function assignedBorderColor(dropDownMenu) {
 function borderColorRed(input) {
   const border = input?.parentElement;
   if (border) {
-    border.style.borderColor = "#FF8190";
+    border.style.borderColor = '#FF8190';
   }
 }
 
@@ -349,7 +347,7 @@ function borderColorRed(input) {
 function resetBorderColor(input) {
   const border = input?.parentElement;
   if (border) {
-    border.style.borderColor = "";
+    border.style.borderColor = '';
   }
 }
 

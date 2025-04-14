@@ -325,6 +325,19 @@ function addSubtaksFromInput(event) {
   }
 }
 
+function handleSubtaskEnter(event) {
+  if (event.key === 'Enter') {
+    let editInput = document.querySelector('.input-container-edit input');
+    if (editInput) {
+      let id = editInput.id;
+      let index = parseInt(id.split('-')[1]);
+      saveEditedSubtask(index);
+    } else {
+      addSubtaksFromInput(event);
+    }
+  }
+}
+
 /**
  * Clears and resets the subtask input field and hides additional icons.
  *
