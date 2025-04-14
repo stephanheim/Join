@@ -524,6 +524,19 @@
   }
 }
 
+  .cnt-title {
+    margin-bottom: 24px;
+  }
+
+  .cnt-glance-contact {
+    gap: 8px;
+  }
+
+  .resp-btn img {
+  height: 20px;
+  width: 20px;
+  }
+
 
 @media screen and (max-width: 350px) {
   .cnt-resp-name {

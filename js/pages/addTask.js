@@ -326,6 +326,28 @@ function addSubtaksFromInput(event) {
 }
 
 /**
+ * Handles the Enter key press within a subtask input field.
+ *
+ * This function detects whether the user is currently editing an existing subtask
+ * or entering a new one. If an editable subtask input is found, it saves the edited
+ * subtask using its index. Otherwise, it adds a new subtask from the input field.
+ *
+ * @param {KeyboardEvent} event - The keyboard event triggered by key press.
+ */
+function handleSubtaskEnter(event) {
+  if (event.key === 'Enter') {
+    let editInput = document.querySelector('.input-container-edit input');
+    if (editInput) {
+      let id = editInput.id;
+      let index = parseInt(id.split('-')[1]);
+      saveEditedSubtask(index);
+    } else {
+      addSubtaksFromInput(event);
+    }
+  }
+}
+
+/**
  * Clears and resets the subtask input field and hides additional icons.
  *
  * @param {Event} event - The event that triggered the reset (e.g. click or keypress).

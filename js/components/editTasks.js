@@ -31,7 +31,12 @@ function editSubtask(i) {
  */
 function saveEditedSubtask(i) {
   let inputRef = document.getElementById(`editSubtask-${i}`);
-  addSubtask[i].text = inputRef.value;
+  let newText = inputRef.value.trim();
+  if (newText === '') {
+    deleteSubtask();
+    return;
+  }
+  addSubtask[i].text = newText;
   let container = inputRef.closest('.input-container-edit');
   container.outerHTML = subtaskTemplate(i, addSubtask[i]);
 }
