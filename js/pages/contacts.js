@@ -50,7 +50,7 @@ async function loadContactsFromFirebase() {
       await getDetailInfo(contacts);
     }
   } catch (error) {
-    console.error('Fehler beim Laden der Kontakte', error);
+    console.error('Error when loading the contacts:', error);
   }
 }
 
@@ -236,6 +236,8 @@ function showContactInfo(contactId) {
   if (!contact) return;
   let isMobile = window.innerWidth < 1200;
   if (activeContactId === contactId && !isMobile) {
+    clearHighlightContact();
+    highlightContact(contactId);
     return;
   }
   activeContactId = contactId;
@@ -257,12 +259,13 @@ async function deleteContact(contactId) {
     await fetch(`${BASE_URL}/contacts/${contactId}.json`, { method: 'DELETE' });
     contactsArray = contactsArray.filter((contact) => contact.id !== contactId);
     closeEditFloater();
-    document.getElementById('cnt-glance-contact').style.display = 'none';
+    const glance = document.getElementById('cnt-glance-contact');
+    if (glance) glance.style.display = 'none';
     await loadContactsFromFirebase();
     getGroupedContacts();
     await updateAssignedContactsDB(contactId);
   } catch (error) {
-    console.error('Fehler beim Löschen des Kontakts:', error);
+    console.error('Error when deleting the contact:', error);
   }
   backToList();
 }

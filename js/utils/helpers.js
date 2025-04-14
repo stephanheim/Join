@@ -254,6 +254,32 @@ function handleOutsideClick(event) {
 }
 
 /**
+ * Handles the click on the "Edit" option inside the responsive floater.
+ * 
+ * Stops the event from bubbling up to the document, then opens the contact edit overlay.
+ *
+ * @param {MouseEvent} event - The click event.
+ * @param {string} contactId - The ID of the contact to edit.
+ */
+function handleEditClick(event, contactId) {
+  event.stopPropagation();
+  addEditContact(contactId);
+}
+
+/**
+ * Handles the click on the "Delete" option inside the responsive floater.
+ * 
+ * Stops the event from bubbling up to the document, then triggers the contact deletion.
+ *
+ * @param {MouseEvent} event - The click event.
+ * @param {string} contactId - The ID of the contact to delete.
+ */
+function handleDeleteClick(event, contactId) {
+  event.stopPropagation();
+  deleteContact(contactId);
+}
+
+/**
  * Prepares a formatted version of the contacts by mapping each contact
  * to a simplified object containing `id`, `name`, `initials`, and `color`.
  *

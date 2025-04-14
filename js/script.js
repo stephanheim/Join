@@ -61,7 +61,7 @@ async function fetchContent(page) {
     const response = await fetch(`../pages/${page}`);
     return await response.text();
   } catch (error) {
-    console.error("Fehler beim Abrufen");
+    console.error("Error during retrieval");
   }
 }
 

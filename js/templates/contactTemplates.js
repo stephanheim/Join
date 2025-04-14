@@ -212,10 +212,10 @@ function generateSuccessFloaterHTML() {
 function generateRespEditFloaterHTML(contactId) {
   return `
   <div id="respFloater" class="edit-floater">
-    <div class="clickable" onclick="addEditContact('${contactId}')">
+    <div class="clickable" onclick="handleEditClick(event, '${contactId}')">
       <img src="../assets/icons/edit.svg" /><span>Edit</span>
     </div>
-    <div class="clickable" onclick="deleteContact('${contactId}')">
+    <div class="clickable" onclick="handleDeleteClick(event, '${contactId}')">
       <img src="../assets/icons/delete.svg" /><span>Delete</span>
     </div>
   </div>

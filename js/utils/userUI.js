@@ -260,6 +260,7 @@ function backToList() {
   document.getElementById('cnt-list-div').classList.remove('hidden');
   document.getElementById('cnt-list-div').style.display = 'flex';
   respCmdImg.src = '../assets/icons/add-contact-mobile.svg';
+  closeRespEditFloater();
   onclickShowAnimateContact();
 }
 

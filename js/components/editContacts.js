@@ -40,39 +40,57 @@ function closeEditFloater() {
  */
 function closeRespEditFloater() {
   let floater = document.getElementById("respFloater");
-  if (floater) {
-    floater.classList.remove("slideIn");
-    floater.classList.add("slideOut");
-    setTimeout(() => {
-      floater.remove();
-      let img = document.getElementById("resp-cmd-img");
-      if (img) img.classList.remove("d-none");
-    }, 300);
+  if (!floater) return;
+  floater.classList.remove("slideIn");
+  floater.classList.add("slideOut");
+  setTimeout(() => {
+    floater.remove();
+    let img = document.getElementById("resp-cmd-img");
+    if (img) img.classList.remove("d-none");
+  }, 300);
+}
+
+/**
+ * Handles updating a contact after editing.
+ * Validates input, updates Firebase and UI.
+ *
+ * @param {string} contactId - The ID of the contact to update.
+ */
+async function updateEditContact(contactId) {
+  const { name, email, phone } = getContactinput();
+  renderEmptyFieldMessages(name, email, phone);
+  if (!allContactFieldsValid()) return false;
+  try {
+    await saveUpdatedContact(contactId);
+    await reloadAndRenderContacts(contactId);
+    closeEditFloater();
+  } catch (error) {
+    console.error('Error:', error);
   }
 }
 
 /**
- * Updates a contact in Firebase and in the local contact array.
- * Refreshes the UI and shows updated info if visible.
+ * Sends updated contact data to Firebase and updates the local contact array.
  *
  * @param {string} contactId - The ID of the contact to update.
- * @returns {Promise<void>}
  */
-async function updateEditContact(contactId) {
-  if (!allContactFieldsAreFilledIn()) return false;
-  try {
-    let updatedContact = getContactinput();
-    await sendUpdateToFirebase(contactId, updatedContact);
-    updateContactInArray(contactId, updatedContact);
-    await loadContactsFromFirebase();
-    let glanceWindow = document.getElementById('cnt-glance-contact');
-    if (glanceWindow && glanceWindow.style.display !== 'none') {
-      showContactInfo(contactId);
-    }
-    getGroupedContacts();
-    closeEditFloater();
-  } catch (error) {
-    console.error('Fehler:', error);
+async function saveUpdatedContact(contactId) {
+  let updatedContact = getContactinput();
+  await sendUpdateToFirebase(contactId, updatedContact);
+  updateContactInArray(contactId, updatedContact);
+}
+
+/**
+ * Reloads contacts from Firebase and updates the UI if the detail view is open.
+ *
+ * @param {string} contactId - The ID of the contact to refresh in the view.
+ */
+async function reloadAndRenderContacts(contactId) {
+  await loadContactsFromFirebase();
+  getGroupedContacts();
+  let glanceWindow = document.getElementById('cnt-glance-contact');
+  if (glanceWindow && glanceWindow.style.display !== 'none') {
+    showContactInfo(contactId);
   }
 }
 
