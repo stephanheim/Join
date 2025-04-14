@@ -281,7 +281,7 @@ footer {
     width: 100%;
     flex-direction: column;
     align-items: center;
-    gap: 21px;
+    gap: 12px;
   }
 
   .bt-login {
@@ -291,6 +291,7 @@ footer {
   .outside-form-content {
     max-width: 396px;
     padding: 0 16px;
+    height: 360px;
   }
 
   .outside-input {
@@ -299,6 +300,7 @@ footer {
 
   .form-content {
     width: 100%;
+    gap: 8px;
   }
 
   .inside-input input {
@@ -307,5 +309,31 @@ footer {
 
   .headline h1 {
     font-size: 47px;
+  }
+
+  .login-signup-right {
+    padding-top: 50px;
+  }
+
+  .login {
+    gap: 12px;
+  }
+
+  @keyframes shrinkLogo {
+    0% {
+      width: 100px;
+      height: 122px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    100% {
+      width: 44px;
+      height: 58px;
+      top: 30px;
+      left: 30px;
+      transform: translate(0, 0);
+    }
   }
 }
