@@ -300,6 +300,14 @@
   animation: cntSlideOut 0.4s ease-in-out forwards;
 }
 
+.slide-in-Vertical {
+  animation: slideInVertical 0.2s ease-in-out forwards;
+}
+
+.slide-out-vertical {
+  animation: slideOutVertical 0.2s ease-in-out backwards;
+}
+
 .clickable {
   display: flex;
   align-items: center;
@@ -480,6 +488,14 @@
     bottom: -12px;
     right: -8px;
     z-index: 10;
+  }
+
+  .cnt-success-msg {
+    left: 0;
+    right: 0;
+    margin-left: unset;
+    max-width: 326px;
+    width: 100%;
   }
 }
 

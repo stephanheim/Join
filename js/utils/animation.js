@@ -286,12 +286,33 @@ window.addEventListener('resize', () => {
  * @param {HTMLElement} successMessageContainer - The element containing the success message.
  */
 function animateSuccessMessage(successMessageContainer) {
+  if (window.innerWidth >= 1200) {
+    cntDesktopSuccessMessage(successMessageContainer);
+  } else {
+    cntMobilSuccessMessage(successMessageContainer);
+  }
+}
+
+function cntDesktopSuccessMessage(successMessageContainer) {
   let successFloater = document.getElementById('successMessage');
   successFloater.classList.remove('cnt-hide');
   successFloater.classList.add('cnt-show');
   setTimeout(() => {
     successFloater.classList.remove('cnt-show');
     successFloater.classList.add('cnt-hide');
+    setTimeout(() => {
+      successMessageContainer.parentNode.removeChild(successMessageContainer);
+    }, 500);
+  }, 3000);
+}
+
+function cntMobilSuccessMessage(successMessageContainer) {
+  let successFloater = document.getElementById('successMessage');
+  successFloater.classList.remove('cnt-hide');
+  successFloater.classList.add('slide-in-Vertical');
+  setTimeout(() => {
+    successFloater.classList.remove('slide-in-Vertical');
+    successFloater.classList.add('slide-out-vertical');
     setTimeout(() => {
       successMessageContainer.parentNode.removeChild(successMessageContainer);
     }, 500);
