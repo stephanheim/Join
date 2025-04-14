@@ -57,9 +57,9 @@ function closeRespEditFloater() {
  * @param {string} contactId - The ID of the contact to update.
  */
 async function updateEditContact(contactId) {
+  if (!allContactFieldsValid()) return;
   const { name, email, phone } = getContactinput();
   renderEmptyFieldMessages(name, email, phone);
-  if (!allContactFieldsValid()) return false;
   try {
     await saveUpdatedContact(contactId);
     await reloadAndRenderContacts(contactId);

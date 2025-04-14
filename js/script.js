@@ -44,11 +44,11 @@ async function loadPageContentPath(page) {
   let content = await fetchContent(`${page}.html`);
   contentPages.innerHTML = content;
   initPages(page);
-  toggleNavPrivacyByPage(page);
   changePageTitles(page);
   if (page === "summary") {
     showUserWelcome();
   }
+  setFormModeIfContactsPage(page);
 }
 
 /**

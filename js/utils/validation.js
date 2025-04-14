@@ -15,6 +15,16 @@ function allSignupFieldsValid() {
 }
 
 /**
+ * Checks whether all contact form fields have been filled in (non-empty).
+ *
+ * @returns {boolean} `true` if all fields are filled, otherwise `false`.
+ */
+function allContactFieldsAreFilledIn() {
+  let { name, email, phone } = getContactinput();
+  return name !== "" && email !== "" && phone !== "";
+}
+
+/**
  * Checks whether all contact form fields are both filled in and valid.
  *
  * @returns {boolean} `true` if all fields are filled and valid, otherwise `false`.
@@ -26,6 +36,25 @@ function allContactFieldsValid() {
     isContactEmailValid() &&
     isContactPhoneValid()
   );
+}
+
+/**
+ * Toggles the submit button's enabled state based on the current form mode and its validation status.
+ *
+ * - If `currentFormMode` is `'signup'` and `allSignupFieldsValid()` returns `true`, the button is enabled.
+ * - If `currentFormMode` is `'contact'` and `allContactFieldsValid()` returns `true`, the button is enabled.
+ * - Otherwise, the button is disabled.
+ *
+ * Uses `activateButton()` or `deactivateButton()` depending on validation.
+ */
+function toggleSubmitButton() {
+  if (currentFormMode === 'signup' && allSignupFieldsValid()) {
+    activateButton();
+  } else if (currentFormMode === 'contact' && allContactFieldsValid()) {
+    activateButton();
+  } else {
+    deactivateButton();
+  }
 }
 
 /**

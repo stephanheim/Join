@@ -1,4 +1,28 @@
 /**
+ * Indicates which form is currently active: 'signup' or 'contact'.
+ * Set automatically on page load.
+ * @type {string}
+ */
+let currentFormMode = '';
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.location.pathname.includes('signup')) {
+    currentFormMode = 'signup';
+  }
+  console.log(currentFormMode);
+});
+
+/**
+ * Sets the form mode to 'contact' if the given page is 'contacts'.
+ * @param {string} page - The identifier of the currently loaded page.
+ */
+function setFormModeIfContactsPage(page){
+  if (page === 'contacts') {
+    currentFormMode = 'contact';
+  }
+}
+
+/**
  * Generates a unique task ID using the current timestamp and a random number.
  * Format: "task-{timestamp}-{randomNumber}"
  *
@@ -21,7 +45,7 @@ function isCheckboxChecked(type) {
   if (type === 'remember') {
     return document.getElementById('rememberMe').checked;
   }
-}
+};
 
 /**
  * Toggles the arrow rotation based on dropdown visibility.
@@ -36,7 +60,7 @@ function toggleArrowRotation(arrow, isHidden) {
     arrow.classList.toggle('rotate-arrow', isHidden);
     arrow.classList.toggle('rotate-arrow-0', !isHidden);
   }
-}
+};
 
 /**
  * Updates the placeholder and value of an input field based on visibility state.
@@ -108,47 +132,28 @@ function toggleRequiredInputContact(inputElement, isFocused) {
   }
 }
 
-
 /**
- * Disables the signup button and returns the button element.
+ * Disables the active submit button (signup or contact),
+ * depending on the current form mode (`currentFormMode`).
  *
- * Targets the button with ID `buttonSignup`, sets `disabled` to `true`,
- * and returns the DOM element for further use if needed.
- *
- * @returns {HTMLButtonElement|null} - The disabled button element, or `null` if not found.
+ * Targets the button with the ID `buttonSignup` or `buttonContact`,
+ * and disables it by setting `disabled = true`.
  */
 function deactivateButton() {
-  const button = document.getElementById('buttonSignup');
+  const button = document.getElementById(currentFormMode === 'signup' ? 'buttonSignup' : 'buttonContact');
   button.disabled = true;
-  return button;
 }
 
 /**
- * Enables the signup button and returns the button element.
+ * Enables the active submit button (signup or contact),
+ * depending on the current form mode (`currentFormMode`).
  *
- * Targets the button with ID `buttonSignup`, sets `disabled` to `false`,
- * and returns the DOM element for further use if needed.
- *
- * @returns {HTMLButtonElement|null} - The enabled button element, or `null` if not found.
+ * Targets the button with the ID `buttonSignup` or `buttonContact`,
+ * and enables it by setting `disabled = false`.
  */
 function activateButton() {
-  const button = document.getElementById('buttonSignup');
+  const button = document.getElementById(currentFormMode === 'signup' ? 'buttonSignup' : 'buttonContact');
   button.disabled = false;
-  return button;
-}
-
-/**
- * Toggles the signup button's enabled state based on form validation.
- *
- * If all form fields are valid (`allSignupFieldsValid()` returns true), the button is enabled.
- * Otherwise, the button is disabled.
- */
-function toggleSubmitButton() {
-  if (allSignupFieldsValid()) {
-    activateButton();
-  } else {
-    deactivateButton();
-  }
 }
 
 /**

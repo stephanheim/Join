@@ -3,7 +3,7 @@
  *
  * @returns {boolean} True if all fields are valid.
  */
-function checkForm() {
+function checkSignupForm() {
   toggleSubmitButton();
   return allSignupFieldsValid();
 }
@@ -30,7 +30,7 @@ function getUserInput() {
  * Submits a new user to Firebase if all validations pass and email is available.
  */
 async function submitNewUser() {
-  if (!checkForm()) return;
+  if (!checkSignupForm()) return;
   let { newUser } = getUserInput();
   try {
     let isAvailable = await isThisEmailAvailable(newUser.email);

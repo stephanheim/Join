@@ -193,30 +193,30 @@ function getContactinput() {
 }
 
 /**
- * Checks whether all contact form fields have been filled in (non-empty).
- *
- * @returns {boolean} `true` if all fields are filled, otherwise `false`.
- */
-function allContactFieldsAreFilledIn() {
-  let { name, email, phone } = getContactinput();
-  return name !== "" && email !== "" && phone !== "";
-}
-
-/**
  * Handles submission of the contact form with validation and user feedback.
  *
  * @returns {boolean} Always returns false to prevent default form submission.
  */
 async function submitAddContact() {
+  if (!checkContactForm()) return;
   const { name, email, phone } = getContactinput();
   renderEmptyFieldMessages(name, email, phone);
-  if (!allContactFieldsAreFilledIn()) return false;
   try {
     await createNewContact(name, email, phone);
   } catch (error) {
     console.error('Error when adding the contact:', error);
   }
   return false;
+}
+
+/**
+ * Validates the registration form and toggles submit button accordingly.
+ *
+ * @returns {boolean} True if all fields are valid.
+ */
+function checkContactForm() {
+  toggleSubmitButton();
+  return allContactFieldsValid();
 }
 
 /**

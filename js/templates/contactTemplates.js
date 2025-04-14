@@ -31,7 +31,7 @@ function generateFloaterHTML() {
             <div class="input-border">
               <div class="input-div">
                 <input onfocus="toggleRequiredInputContact(this, true)" onblur="toggleRequiredInputContact(this, false)"
-                  oninput="renderContactNameMessage()" type="text" placeholder="Name" class="add-input" id="addContName"
+                  oninput="renderContactNameMessage();toggleSubmitButton()" type="text" placeholder="Name" class="add-input" id="addContName"
                   minlength="2" maxlength="50" aria-label="text" />
                 <img src="../assets/icons/person_input.svg" class="input-img" />
               </div>
@@ -40,7 +40,7 @@ function generateFloaterHTML() {
             <div class="input-border">
               <div class="input-div">
                 <input onfocus="toggleRequiredInputContact(this, true)" onblur="toggleRequiredInputContact(this, false)"
-                  oninput="renderContactEmailMessage()" type="text" placeholder="Email" class="add-input" id="addContMail"
+                  oninput="renderContactEmailMessage();toggleSubmitButton()" type="text" placeholder="Email" class="add-input" id="addContMail"
                   aria-label="Email" />
                 <img src="../assets/icons/mail.svg" class="input-img" />
               </div>
@@ -49,7 +49,7 @@ function generateFloaterHTML() {
             <div class="input-border">
               <div class="input-div">
                 <input onfocus="toggleRequiredInputContact(this, true)" onblur="toggleRequiredInputContact(this, false)"
-                  oninput="renderContactPhoneMessage()" type="text" placeholder="Phone" class="add-input"
+                  oninput="renderContactPhoneMessage();toggleSubmitButton()" type="text" placeholder="Phone" class="add-input"
                   id="addContPhone" aria-label="Phone" />
                 <img src="../assets/icons/call.svg" class="input-img" />
               </div>
@@ -63,7 +63,7 @@ function generateFloaterHTML() {
                 <img src="../assets/icons/close.svg" class="img-btn-close" />
               </div>
             </button>
-            <button type="submit" class="add-btn-create" disabled>
+            <button id="buttonContact" type="submit" class="add-btn-create" disabled>
               Create contact
               <div class="btn-icons">
                 <img src="../assets/icons/check.svg" class="img-btn-check" />
