@@ -347,8 +347,8 @@
 @media screen and (max-width:1200px) {
   .form-floater {
     max-width: 396px;
-    width: 100%;
-    height: 760px;
+    max-height: 760px;
+    height: 100%;
     margin: unset;
   }
 
@@ -368,6 +368,7 @@
     padding: unset;
     padding: 66px 24px 66px 24px;
     border-radius: 30px 30px 0 0;
+    position: relative;
   }
 
   .add-icon {
@@ -391,17 +392,14 @@
     line-height: 120%;
   }
 
-  .add-form-circle {
-    position: absolute;
-    top: 290px;
-  }
-
   .add-form {
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 32px;
-    padding: 92px 16px 0 16px;
+    padding: 0px 16px 0 16px;
+    position: absolute;
+    top: calc(750px - 457px);
   }
 
   .add-close-div-white {
@@ -457,6 +455,25 @@
 
 @media screen and (max-width:428px) {
   .form-floater {
-    padding: 0 16px;
+    padding: 8px;
+  }
+
+  .add-contact {
+    height: 300px;
+    padding: 56px 16px 58px 16px;
+}
+
+  .add-form {
+    height: 276px;
+    gap: 16px;
+  }
+
+  .add-fields {
+    height: 170px;
+    gap: 16px;
+  }
+
+  .right-wrap {
+    gap: 20px;
   }
 }
