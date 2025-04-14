@@ -221,7 +221,7 @@ footer {
     position: relative;
     max-width: 396px;
     padding: 0 16px;
-    height: 595px;
+    height: 460px;
   }
 
   .headline h1 {
@@ -231,5 +231,24 @@ footer {
   .arrow-login-back {
     right: 175px;
     top: 10px;
+  }
+
+  .form-content {
+    gap: 0;
+  }
+
+  .login-logo-left {
+    top: 30px;
+    left: 30px;
+  }
+
+  .login-logo-left img {
+    width: 44px;
+    height: 58px;
+  }
+
+  .input-content {
+    justify-content: center;
+    gap: 8px;
   }
 }
