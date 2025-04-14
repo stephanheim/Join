@@ -76,6 +76,7 @@
 .category-container {
   width: 100%;
   background-color: #ffffff;
+  border-radius: 10px;
 }
 
 .drop-down-field-category {
