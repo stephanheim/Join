@@ -1,3 +1,13 @@
+/**
+ * Returns the HTML template for a detailed board task card.
+ * Displays task information including title, description, due date, priority, assignees, and subtasks.
+ * Also includes action buttons to delete or edit the task.
+ *
+ * @param {Object} task - The task object containing all task details.
+ * @param {string} subtaskHTML - Rendered HTML of the subtasks.
+ * @param {string} namesHTML - Rendered HTML of the assigned contacts.
+ * @returns {string} HTML string for the board card view of the task.
+ */
 function boardCardTemplate(task, subtaskHTML, namesHTML) {
   return `<div class="user-story-card">
         <div class="inner-card">
@@ -68,6 +78,15 @@ function boardCardTemplate(task, subtaskHTML, namesHTML) {
       `;
 }
 
+/**
+ * Returns the HTML template for editing a task directly within the board card.
+ * Provides editable input fields for task details such as title, description, due date, priority, assignees, and subtasks.
+ *
+ * @param {Object} task - The task object with current task values.
+ * @param {string} subtaskHTML - Rendered HTML of the subtasks.
+ * @param {string} namesHTML - Rendered HTML of the assigned contacts.
+ * @returns {string} HTML string for the editable version of the board card.
+ */
 function editBoardCardTemplate(task, subtaskHTML, namesHTML) {
   const prio = task.priority;
   const isUrgent = prio === 'Urgent' ? 'isSelected' : '';

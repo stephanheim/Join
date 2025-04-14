@@ -1,3 +1,9 @@
+/**
+ * Returns the HTML template string for the "Add Task" floating form.
+ * This includes input fields for title, description, due date, priority, assignees, category, and subtasks.
+ * 
+ * @returns {string} HTML string for the "Add Task" form.
+ */
 function addTaskTemplate() {
   return `
   <div class="floating-content">
@@ -143,6 +149,16 @@ function addTaskTemplate() {
   `;
 }
 
+/**
+ * Returns the HTML for a single contact item in the "Assigned to" dropdown menu.
+ *
+ * @param {string} name - Full name of the contact.
+ * @param {string} color - Background color of the contact's circle.
+ * @param {string} initials - Initials of the contact.
+ * @param {number} i - Index of the contact in the list.
+ * @param {boolean} isChecked - Whether the contact is currently selected.
+ * @returns {string} HTML string for a contact dropdown item.
+ */
 function assignedToTemplate(name, color, initials, i, isChecked) {
   return `
   <div id="innerDropmenu-${i}" class="inner-dropmenu" onclick="toggleContactsSelection(event, ${i})">
@@ -160,6 +176,12 @@ function assignedToTemplate(name, color, initials, i, isChecked) {
   </div>`;
 }
 
+/**
+ * Returns the HTML template for the category selection dropdown.
+ * Includes two static category options: "Technical Task" and "User Story".
+ *
+ * @returns {string} HTML string for the category dropdown menu.
+ */
 function categoryTemplate() {
   return `
   <div>
@@ -173,6 +195,13 @@ function categoryTemplate() {
   `;
 }
 
+/**
+ * Returns the HTML string for a single subtask element with edit and delete icons.
+ *
+ * @param {number} i - Index of the subtask in the list.
+ * @param {{ text: string }} subtask - Subtask object containing the text.
+ * @returns {string} HTML string for a subtask item.
+ */
 function subtaskTemplate(i, subtask) {
   return `
     <div class="add-subtask" id="subtask-${i}">
@@ -191,6 +220,14 @@ function subtaskTemplate(i, subtask) {
     </div>`;
 }
 
+/**
+ * Returns the HTML string for an editable subtask input field.
+ * Includes save and delete icons for user interaction.
+ *
+ * @param {number} i - Index of the subtask in the list.
+ * @param {{ text: string }} subtask - Subtask object containing the text to edit.
+ * @returns {string} HTML string for the editable subtask input.
+ */
 function editSubtaskTemplate(i, subtask) {
   return `
     <div class="input-container-edit">
@@ -207,6 +244,13 @@ function editSubtaskTemplate(i, subtask) {
     </div>`;
 }
 
+/**
+ * Returns the HTML for showing selected contact initials with a colored background.
+ *
+ * @param {string} initials - Initials of the contact.
+ * @param {string} initialsColor - Background color for the initials circle.
+ * @returns {string} HTML string for the initials circle.
+ */
 function initialsTemplate(initials, initialsColor) {
   return `   
     <div class="circle-color-checked-assigned" style="background-color: ${initialsColor}">

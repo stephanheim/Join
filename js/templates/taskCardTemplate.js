@@ -1,3 +1,18 @@
+/**
+ * Generates the HTML string for a draggable task card used on the board.
+ * Includes category, title, description, progress bar (if applicable), assigned contacts, and priority icon.
+ *
+ * @param {Object} task - The task object containing task data (id, title, description, category, priority).
+ * @returns {string} HTML string for the rendered task card.
+ *
+ * Required external data from taskDataMap[task.id]:
+ * - initialsHTML {string} - HTML with the assigned users' initials.
+ * - totalSubtasks {number} - Total number of subtasks.
+ * - completedSubtasks {number} - Number of completed subtasks.
+ * - progressPercent {number} - Progress in percent (0–100).
+ * - progressColor {string} - Color of the progress bar.
+ * - hideProgressBar {string} - Inline style string to hide/show the progress bar.
+ */
 function createTaskCard(task) {
   let { initialsHTML, totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar } = taskDataMap[task.id];
   return `<div id="${task.id}" draggable="true" ondragstart="startDragging('${task.id}')" ondragend="globalDragEnd()" onclick="openBoardCard('${task.id}')"

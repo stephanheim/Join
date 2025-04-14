@@ -1,3 +1,16 @@
+/**
+ * Generates the HTML for the summary dashboard with actual task statistics.
+ * Includes sections for to-do, done, urgent, upcoming deadline, total tasks, in progress, and awaiting feedback.
+ *
+ * @param {Object} taskCounts - Object containing task counts for various categories.
+ * @param {number} taskCounts.toDo - Number of tasks in "To-do".
+ * @param {number} taskCounts.done - Number of tasks in "Done".
+ * @param {number} taskCounts.urgent - Number of "Urgent" tasks.
+ * @param {number} taskCounts.total - Total number of tasks.
+ * @param {number} taskCounts.inProgress - Number of tasks "In Progress".
+ * @param {number} taskCounts.awaitingFeedback - Number of tasks "Awaiting Feedback".
+ * @returns {string} HTML string for the summary dashboard.
+ */
 function generateSummaryHTML(taskCounts) {
   return `
 <div class="row-top">
@@ -50,6 +63,12 @@ function generateSummaryHTML(taskCounts) {
 `;
 }
 
+/**
+ * Generates the HTML for the summary dashboard when no tasks exist.
+ * All values are displayed as 0 with the same layout as the populated summary.
+ *
+ * @returns {string} HTML string for the empty summary dashboard.
+ */
 function generateSummaryNoTasksHTML() {
   return `
   <div class="row-top">
