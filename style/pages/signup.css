@@ -220,8 +220,8 @@ footer {
   .outside-form-content {
     position: relative;
     max-width: 396px;
-    padding: 0 16px;
-    height: 460px;
+    padding: 16px;
+    height: 486px;
   }
 
   .headline h1 {
@@ -238,7 +238,7 @@ footer {
   }
 
   .login-logo-left {
-    top: 30px;
+    top: 24px;
     left: 30px;
   }
 

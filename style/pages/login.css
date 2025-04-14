@@ -290,8 +290,8 @@ footer {
 
   .outside-form-content {
     max-width: 396px;
-    padding: 0 16px;
-    height: 360px;
+    padding: 16px;
+    height: 382px;
   }
 
   .outside-input {
@@ -331,7 +331,7 @@ footer {
     100% {
       width: 44px;
       height: 58px;
-      top: 30px;
+      top: 24px;
       left: 30px;
       transform: translate(0, 0);
     }
