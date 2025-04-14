@@ -222,12 +222,10 @@ async function submitAddContact() {
 /**
  * Displays the detailed view for the selected contact.
  *
- * If the same contact is already active and the viewport is desktop-sized (≥1200px),
- * the function does nothing to prevent unnecessary re-rendering.
- * On smaller viewports (<1200px), the view is always updated for responsive layout handling.
+ * If the contact is already active and the viewport is desktop-sized (≥1200px),
+ * the function avoids redundant UI updates.
  *
- * Updates the active contact ID, highlights the selected contact, 
- * and triggers UI updates for the contact details and layout.
+ * Otherwise, it updates the active contact, highlights it, and shows the details.
  *
  * @param {string} contactId - The ID of the contact to display.
  */
@@ -236,11 +234,21 @@ function showContactInfo(contactId) {
   if (!contact) return;
   let isMobile = window.innerWidth < 1200;
   if (activeContactId === contactId && !isMobile) {
-    clearHighlightContact();
-    highlightContact(contactId);
+    handleContactClick(contact, contactId);
     return;
   }
   activeContactId = contactId;
+  handleContactClick(contact, contactId);
+}
+
+/**
+ * Handles UI updates for a selected contact.
+ * Highlights the contact, displays the glance view and adapts layout responsively.
+ *
+ * @param {Object} contact - The contact object to display.
+ * @param {string} contactId - The ID of the contact to highlight and manage.
+ */
+function handleContactClick(contact, contactId){
   clearHighlightContact();
   highlightContact(contactId);
   showGlanceWindow(contact);
