@@ -72,6 +72,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  z-index: 1;
 }
 
 .title-and-star {
@@ -424,7 +425,7 @@
 
   .required-section-content {
     justify-content: flex-end;
-    padding-bottom: 0;
+    padding-bottom: 8px;
   }
 
   .add-task-form {
@@ -468,7 +469,7 @@
 
   .headline-add-task {
     width: 396px;
-    padding: 0;
+    padding: 8px 0 0 0;
   }
 
   .header-profil-name {
@@ -521,11 +522,11 @@
     font-size: 14px;
   }
 
-  .required-field-mobil {
+  .required-field-mobil{
     display: flex;
   }
 
-  .required-field-desctop {
+  .required-field-desctop{
     display: none;
   }
 }
