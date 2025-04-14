@@ -121,7 +121,7 @@
 .numbers-toDo {
   max-width: 88px;
   width: 100%;
-  height: 128px;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -239,7 +239,7 @@
     flex-direction: column;
   }
 
-  .wrapper{
+  .wrapper {
     height: calc(100% - 100px);
     align-items: center;
     padding-left: unset;
@@ -310,7 +310,7 @@
   }
 
   .row-bottom {
-    gap: 24px;
+    gap: 16px;
   }
 }
 
@@ -318,23 +318,28 @@
   .wrapper {
     max-width: 560px;
     width: 100%;
+    padding: 8px 16px 0 16px;
+  }
+
+  .main-div {
+    margin-top: 20px;
   }
 
   .metrics-div {
     max-width: 396px;
     width: 100%;
-    height: 384px;
+    height: auto;
     margin: unset;
   }
 
   .row-top {
-    margin-bottom: 30px;
-    gap: 24px;
+    gap: 16px;
+    margin-bottom: 16px;
   }
 
   .row-middle {
     height: 110px;
-    margin-bottom: 18px;
+    margin-bottom: 8px;
     gap: unset;
     justify-content: space-around;
   }
@@ -361,7 +366,7 @@
 
   .todone-div {
     width: 186px;
-    height: 110px;
+    height: 86px;
     gap: 18px;
   }
 
@@ -371,7 +376,7 @@
   }
 
   .number {
-    font-size: 48px;
+    font-size: 40px;
     font-weight: 600;
     line-height: 120%;
   }
@@ -383,7 +388,7 @@
 
   .tasks {
     width: 116px;
-    height: 116px;
+    height: 96px;
     padding: unset;
   }
 }
