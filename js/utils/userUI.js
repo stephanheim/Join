@@ -144,11 +144,12 @@ function updateUIElements(inputField, arrow, dropDownMenu) {
  * @param {HTMLElement} dropDownMenu - The dropdown menu element to render into.
  * @param {Array<Object>} [contacts=formattedContactsArray] - An optional array of contact objects to display.
  */
+
 function renderDropdownUser(dropDownMenu, contacts) {
   contacts = contacts || formattedContactsArray;
-  dropDownMenu.innerHTML = '';
-  addedContacts(dropDownMenu, contacts);
-  applySelectionStyles(contacts);
+  dropDownMenu.innerHTML = "";
+  const renderedContacts = addedContacts(dropDownMenu, contacts); 
+  applySelectionStyles(renderedContacts);
 }
 
 /**

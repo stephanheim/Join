@@ -257,3 +257,12 @@ function initialsTemplate(initials, initialsColor) {
       <span>${initials}</span>
     </div>`;
 }
+
+function moreContactsTemplate(dropDownMenuId, remaining) {
+  return `
+    <div class="more-contacts" onclick="showAllContacts('${dropDownMenuId}')">
+      +${remaining} more
+    </div>
+  `;
+}
+

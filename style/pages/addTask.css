@@ -529,3 +529,15 @@
     display: none;
   }
 }
+
+.more-contacts {
+  padding: 10px;
+  text-align: center;
+  color: #29abe2;
+  cursor: pointer;
+  font-weight: 400;
+}
+
+.more-contacts:hover {
+font-weight: 700;
+}

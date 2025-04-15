@@ -241,12 +241,28 @@ function resetSelectedPriority() {
  * @param {HTMLElement} dropDownMenu - The dropdown menu element.
  * @param {Array<Object>} contacts - The array of contact objects to render.
  */
-function addedContacts(dropDownMenu, contacts) {
-  contacts.forEach((contact, i) => {
-    let { name, color, initials } = contact;
-    let isChecked = selectedContacts.some((c) => c.id === contact.id);
+
+function addedContacts(dropDownMenu, contacts, showAll = false) {
+  const maxVisible = 6;
+  const limit = showAll ? contacts.length : maxVisible;
+  const visibleContacts = contacts.slice(0, limit);
+  visibleContacts.forEach((contact, i) => {
+    const { name, color, initials, isChecked } = contact;
     dropDownMenu.innerHTML += assignedToTemplate(name, color, initials, i, isChecked);
   });
+  if (!showAll && contacts.length > maxVisible) {
+    const remaining = contacts.length - maxVisible;
+    dropDownMenu.innerHTML += moreContactsTemplate(dropDownMenu.id, remaining);
+  }
+  return visibleContacts;
+}
+
+
+function showAllContacts(dropDownMenuId) {
+  const dropDownMenu = document.getElementById(dropDownMenuId);
+  dropDownMenu.innerHTML = "";
+  const renderedContacts = addedContacts(dropDownMenu, formattedContactsArray, true);
+  applySelectionStyles(renderedContacts);
 }
 
 /**
