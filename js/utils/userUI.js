@@ -102,18 +102,97 @@ function openDropdownAssigned() {
 }
 
 /**
- * Toggles the visibility of a dropdown menu and loads its content.
+ * Toggles the visibility of the dropdown menu for assigning contacts.
  *
- * Checks if the dropdown is currently hidden by inspecting the `drop-down-hide` class.
- * If hidden, it shows the dropdown using `showDropdown`; otherwise, it hides it using `hideDropdown`.
- * Also calls `getContacts` to ensure the dropdown is populated before showing.
+ * If the dropdown is currently hidden, it fetches the list of contacts,
+ * shows the dropdown, and enables the ability to close it by clicking outside.
+ * If the dropdown is already visible, it hides the dropdown and sets a
+ * placeholder message if no contact was selected.
  *
  * @param {HTMLElement} dropDownMenu - The dropdown menu element to toggle.
  */
 function toggleDropdown(dropDownMenu) {
   const isHidden = dropDownMenu.classList.contains('drop-down-hide');
-  getContacts(dropDownMenu);
-  isHidden ? showDropdown(dropDownMenu) : hideDropdown(dropDownMenu);
+  const inputField = document.getElementById('addTaskAssigned');
+  if (isHidden) {
+    getContacts(dropDownMenu);
+    showDropdown(dropDownMenu);
+    closeOnClickOutsideAssigned('dropDownMenuAssigned', 'addTaskAssigned');
+  } else {
+    hideDropdown(dropDownMenu);
+    if (inputField.value.trim() === '') {
+      inputField.placeholder = 'Select contacts to assign';
+    }
+  }
+}
+
+/**
+ * Closes the assigned contacts dropdown when a click occurs outside of it.
+ *
+ * Attaches a click listener to the window that checks if the user clicked
+ * outside of the dropdown or the trigger input. If so, and the dropdown is
+ * currently visible, it closes the dropdown and resets the arrow icon and input field as needed.
+ *
+ * @param {string} dropdownId - The ID of the dropdown menu element.
+ * @param {string} triggerId - The ID of the input field that triggers the dropdown.
+ */
+function closeOnClickOutsideAssigned(dropdownId, triggerId) {
+  window.onclick = function (event) {
+    const dropDownMenu = document.getElementById(dropdownId);
+    const inputField = document.getElementById(triggerId);
+    const arrow = document.getElementById('arrowAssigned');
+
+    if (!dropDownMenu || !inputField || !arrow) return;
+    if (!isDropdownVisible(dropDownMenu)) return;
+    if (shouldCloseAssignedDropdown(event, dropDownMenu, inputField)) {
+      handleAssignedDropdownClose(inputField, arrow, dropDownMenu);
+      assignedBorderColor(dropDownMenu);
+    }
+  };
+}
+
+/**
+ * Checks if a dropdown element is currently visible.
+ *
+ * Determines visibility based on the absence of the 'drop-down-hide' CSS class.
+ *
+ * @param {HTMLElement} dropdownElement - The dropdown element to check.
+ * @returns {boolean} True if the dropdown is visible, false otherwise.
+ */
+function isDropdownVisible(dropdownElement) {
+  return !dropdownElement.classList.contains('drop-down-hide');
+}
+
+/**
+ * Determines whether the assigned dropdown should be closed based on a click event.
+ *
+ * Returns true if the click occurred outside both the dropdown element and the input element.
+ *
+ * @param {MouseEvent} event - The click event to evaluate.
+ * @param {HTMLElement} dropdownElement - The dropdown menu element.
+ * @param {HTMLElement} inputElement - The input field that triggers the dropdown.
+ * @returns {boolean} True if the dropdown should be closed, false otherwise.
+ */
+function shouldCloseAssignedDropdown(event, dropdownElement, inputElement) {
+  return !dropdownElement.contains(event.target) && !inputElement.contains(event.target);
+}
+
+/**
+ * Handles the closing behavior of the assigned contacts dropdown.
+ *
+ * Updates the UI elements (e.g. arrow icon, input field), hides the dropdown menu,
+ * and sets a placeholder message if the input field is empty.
+ *
+ * @param {HTMLElement} inputField - The input field for assigning contacts.
+ * @param {HTMLElement} arrow - The arrow icon element related to the dropdown.
+ * @param {HTMLElement} dropDownMenu - The dropdown menu element to hide.
+ */
+function handleAssignedDropdownClose(inputField, arrow, dropDownMenu) {
+  updateUIElements(inputField, arrow, dropDownMenu);
+  hideDropdown(dropDownMenu);
+  if (inputField.value.trim() === '') {
+    inputField.placeholder = 'Select contacts to assign';
+  }
 }
 
 /**
@@ -147,8 +226,8 @@ function updateUIElements(inputField, arrow, dropDownMenu) {
 
 function renderDropdownUser(dropDownMenu, contacts) {
   contacts = contacts || formattedContactsArray;
-  dropDownMenu.innerHTML = "";
-  const renderedContacts = addedContacts(dropDownMenu, contacts); 
+  dropDownMenu.innerHTML = '';
+  const renderedContacts = addedContacts(dropDownMenu, contacts);
   applySelectionStyles(renderedContacts);
 }
 
@@ -174,8 +253,7 @@ function renderDropdownMenuCategory(dropDownMenu) {
 function showGlanceWindow(contact) {
   let glanceWindow = document.getElementById('cnt-glance-contact');
   glanceWindow.innerHTML = generateContactsInfoHTML(contact);
-  glanceWindow.style.display = "flex";
-
+  glanceWindow.style.display = 'flex';
 }
 
 /**
