@@ -51,14 +51,19 @@ function closeRespEditFloater() {
 }
 
 /**
- * Handles updating a contact after editing.
- * Validates input, updates Firebase and UI.
+ * Handles submitting the "Edit Contact" form.
+ *
+ * - Validates all fields using `checkContactForm('edit')`.
+ * - If valid, retrieves the updated values and applies them via `saveUpdatedContact()`.
+ * - Then reloads and re-renders the contact list and closes the edit floater.
+ * - Logs any errors that occur during the update process.
  *
  * @param {string} contactId - The ID of the contact to update.
+ * @returns {Promise<void>}
  */
 async function updateEditContact(contactId) {
-  if (!allContactFieldsValid()) return;
-  const { name, email, phone } = getContactinput();
+  if (!checkContactForm('edit')) return;
+  const { name, email, phone } = getContactinput('edit');
   renderEmptyFieldMessages(name, email, phone);
   try {
     await saveUpdatedContact(contactId);
@@ -70,12 +75,16 @@ async function updateEditContact(contactId) {
 }
 
 /**
- * Sends updated contact data to Firebase and updates the local contact array.
+ * Updates an existing contact with new data from the edit form.
+ * 
+ * Retrieves the updated contact input from the form (name, email, phone),
+ * sends the data to Firebase, and updates the local contact array.
  *
  * @param {string} contactId - The ID of the contact to update.
+ * @returns {Promise<void>} A promise that resolves when the update is complete.
  */
 async function saveUpdatedContact(contactId) {
-  let updatedContact = getContactinput();
+  let updatedContact = getContactinput('edit');
   await sendUpdateToFirebase(contactId, updatedContact);
   updateContactInArray(contactId, updatedContact);
 }
@@ -105,3 +114,7 @@ function updateContactInArray(contactId, updatedContact) {
     contact.id === contactId ? { id: contactId, ...updatedContact } : contact
   );
 }
+
+
+
+

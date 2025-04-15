@@ -203,6 +203,7 @@
 @media (max-width: 1200px) {
   .index-main {
     margin-left: 0;
+    padding-top: 80px;
   }
 
   .side-menu {

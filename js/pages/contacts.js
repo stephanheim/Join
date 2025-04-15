@@ -22,7 +22,6 @@ const contactColors = ['#ff7a01', '#9327ff', '#6e52ff', '#fc71ff', '#ffbb2c', '#
  */
 let activeContactId = null;
 
-
 /**
  * Initializes the contact view and logic.
  * - Ensures current user is included in the contact list.
@@ -180,25 +179,34 @@ function scrollToContact(contactId) {
 }
 
 /**
- * Retrieves trimmed values from the contact form input fields.
+ * Retrieves and trims the contact input values from the form.
  *
- * @returns {{name: string, email: string, phone: string}} Form values.
+ * - Depending on the mode, selects the correct input fields for name, email, and phone.
+ * - Trims the values to remove leading/trailing whitespace.
+ *
+ * @param {'add'|'edit'} [mode='add'] - The form mode to determine which input field IDs to use.
+ * @returns {{name: string, email: string, phone: string}} - An object containing the trimmed input values.
  */
-function getContactinput() {
+function getContactinput(mode = 'add') {
   return {
-    name: document.getElementById('addContName').value.trim(),
-    email: document.getElementById('addContMail').value.trim(),
-    phone: document.getElementById('addContPhone').value.trim(),
+    name: document.getElementById(mode === 'edit' ? 'editContName' : 'addContName').value.trim(),
+    email: document.getElementById(mode === 'edit' ? 'editContMail' : 'addContMail').value.trim(),
+    phone: document.getElementById(mode === 'edit' ? 'editContPhone' : 'addContPhone').value.trim(),
   };
 }
 
 /**
- * Handles submission of the contact form with validation and user feedback.
+ * Handles submitting the "Add Contact" form.
  *
- * @returns {boolean} Always returns false to prevent default form submission.
+ * - Validates the input fields using `checkContactForm('add')`.
+ * - If valid, extracts the input values and triggers creation of a new contact via `createNewContact()`.
+ * - Displays field-specific validation messages if needed.
+ * - Logs any errors that occur during the creation process.
+ *
+ * @returns {Promise<boolean|undefined>} `false` to prevent form submission, or `undefined` if early return.
  */
 async function submitAddContact() {
-  if (!checkContactForm()) return;
+  if (!checkContactForm('add')) return;
   const { name, email, phone } = getContactinput();
   renderEmptyFieldMessages(name, email, phone);
   try {
@@ -210,13 +218,19 @@ async function submitAddContact() {
 }
 
 /**
- * Validates the registration form and toggles submit button accordingly.
+ * Validates the contact form fields based on the given mode.
  *
- * @returns {boolean} True if all fields are valid.
+ * - If mode is `'add'`, it also toggles the submit button based on validation state.
+ * - Always checks if all contact fields are valid for the specified mode.
+ *
+ * @param {'add' | 'edit'} mode - Specifies whether to validate the "add" or "edit" contact form.
+ * @returns {boolean} `true` if all fields are valid, otherwise `false`.
  */
-function checkContactForm() {
-  toggleSubmitButton();
-  return allContactFieldsValid();
+function checkContactForm(mode) {
+  if (mode === 'add') {
+    toggleSubmitButton('add');
+  }
+  return allContactFieldsValid(mode);
 }
 
 /**

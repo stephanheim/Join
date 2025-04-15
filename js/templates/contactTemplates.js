@@ -1,9 +1,9 @@
 /**
- * Returns the HTML template for the "Add Contact" floating form.
- * Includes input fields for name, email, and phone with validation and action buttons.
- *
- * @returns {string} HTML string for the contact creation floater.
- */
+* Returns the HTML template for the "Add Contact" floating form.
+* Includes input fields for name, email, and phone with validation and action buttons.
+*
+* @returns {string} HTML string for the contact creation floater.
+*/
 function generateFloaterHTML() {
   return `
   <form id="contactForm" class="form-floater" onsubmit="submitAddContact();return false;">
@@ -29,28 +29,31 @@ function generateFloaterHTML() {
           </div>
           <div class="add-fields">
             <div class="input-border">
-              <div class="input-div">
-                <input onfocus="toggleRequiredInputContact(this, true)" onblur="toggleRequiredInputContact(this, false)"
-                  oninput="renderContactNameMessage();toggleSubmitButton()" type="text" placeholder="Name" class="add-input" id="addContName"
-                  minlength="2" maxlength="50" aria-label="text" />
+              <div id="borderNameContact" class="input-div">
+                <input onfocus="toggleRequiredInputContact(this, true)"
+                  onblur="touchedMessageField = true;toggleRequiredInputContact(this, false);renderContactNameMessage('add')"
+                  oninput="toggleSubmitButton();renderContactNameMessage('add')" type="text" placeholder="Name"
+                  class="add-input" id="addContName" minlength="2" maxlength="50" aria-label="text" />
                 <img src="../assets/icons/person_input.svg" class="input-img" />
               </div>
               <span id="nameMessage" class="error-message"></span>
             </div>
             <div class="input-border">
-              <div class="input-div">
-                <input onfocus="toggleRequiredInputContact(this, true)" onblur="toggleRequiredInputContact(this, false)"
-                  oninput="renderContactEmailMessage();toggleSubmitButton()" type="text" placeholder="Email" class="add-input" id="addContMail"
-                  aria-label="Email" />
+              <div id="borderEmailContact" class="input-div">
+                <input onfocus="toggleRequiredInputContact(this, true)"
+                  onblur="touchedMessageField = true;toggleRequiredInputContact(this, false);renderContactEmailMessage('add')"
+                  oninput="toggleSubmitButton();renderContactEmailMessage('add')" type="text" placeholder="Email"
+                  class="add-input" id="addContMail" aria-label="Email" />
                 <img src="../assets/icons/mail.svg" class="input-img" />
               </div>
               <span id="emailMessage" class="error-message"></span>
             </div>
             <div class="input-border">
-              <div class="input-div">
-                <input onfocus="toggleRequiredInputContact(this, true)" onblur="toggleRequiredInputContact(this, false)"
-                  oninput="renderContactPhoneMessage();toggleSubmitButton()" type="text" placeholder="Phone" class="add-input"
-                  id="addContPhone" aria-label="Phone" />
+              <div id="borderPhoneContact" class="input-div">
+                <input onfocus="toggleRequiredInputContact(this, true)"
+                  onblur="touchedMessageField = true;toggleRequiredInputContact(this, false);renderContactPhoneMessage('add')"
+                  oninput="toggleSubmitButton();renderContactPhoneMessage('add')" type="text" placeholder="Phone"
+                  class="add-input" aria-label="Phone" id="addContPhone" />
                 <img src="../assets/icons/call.svg" class="input-img" />
               </div>
               <span id="phoneMessage" class="error-message"></span>
@@ -78,11 +81,11 @@ function generateFloaterHTML() {
 }
 
 /**
- * Returns the HTML template for rendering a group label (e.g. alphabet letter) and a separator.
- *
- * @param {string} group - The group label (usually the first letter of contact names).
- * @returns {string} HTML string for the group section.
- */
+* Returns the HTML template for rendering a group label (e.g. alphabet letter) and a separator.
+*
+* @param {string} group - The group label (usually the first letter of contact names).
+* @returns {string} HTML string for the group section.
+*/
 function generateGroupHTML(group) {
   return `
   <div class="cnt-letter-div">
@@ -93,12 +96,12 @@ function generateGroupHTML(group) {
 }
 
 /**
- * Returns the HTML for a contact entry in the contact list.
- *
- * @param {Object} contact - The contact object with id, name, email, and color.
- * @param {string} initials - The initials to display for the contact.
- * @returns {string} HTML string for the contact preview element.
- */
+* Returns the HTML for a contact entry in the contact list.
+*
+* @param {Object} contact - The contact object with id, name, email, and color.
+* @param {string} initials - The initials to display for the contact.
+* @returns {string} HTML string for the contact preview element.
+*/
 function generateContactsHTML(contact, initials) {
   return `
   <div id="contact-${contact.id}" class="cnt-name" onclick="showContactInfo('${contact.id}')">
@@ -118,11 +121,11 @@ function generateContactsHTML(contact, initials) {
 }
 
 /**
- * Returns the HTML for the detailed contact view, including edit and delete buttons.
- *
- * @param {Object} contact - The contact object with name, email, phone, color, and id.
- * @returns {string} HTML string for the contact detail view.
- */
+* Returns the HTML for the detailed contact view, including edit and delete buttons.
+*
+* @param {Object} contact - The contact object with name, email, phone, color, and id.
+* @returns {string} HTML string for the contact detail view.
+*/
 function generateContactsInfoHTML(contact) {
   return `
   <div class="cnt-glance" onsubmit="submitAddContact()">
@@ -155,15 +158,15 @@ function generateContactsInfoHTML(contact) {
 }
 
 /**
- * Returns the HTML template for editing a contact inside the floater.
- * Pre-fills the form with the contact's current data and shows save/delete buttons.
- *
- * @param {Object} contact - The contact object with name, email, phone, color, and id.
- * @returns {string} HTML string for the contact edit floater.
- */
+* Returns the HTML template for editing a contact inside the floater.
+* Pre-fills the form with the contact's current data and shows save/delete buttons.
+*
+* @param {Object} contact - The contact object with name, email, phone, color, and id.
+* @returns {string} HTML string for the contact edit floater.
+*/
 function generateContactsEditFloaterHTML(contact) {
   return `
-  <form id="contactForm" class="form-floater" onsubmit="updateEditContact('${contact.id}');return false;">
+  <form id="contactFormEdit" class="form-floater" onsubmit="updateEditContact('${contact.id}');return false;">
     <div id="contactFloater" class="main-floater">
       <div class="add-contact">
         <img src="../assets/img/join.svg" class="add-icon" />
@@ -185,31 +188,34 @@ function generateContactsEditFloaterHTML(contact) {
           </div>
           <div class="add-fields">
             <div class="input-border">
-              <div class="input-div">
-                <input onfocus="toggleRequiredInputContact(this, true)" onblur="toggleRequiredInputContact(this, false)"
-                  oninput="renderContactNameMessage()" type="text" class="add-input" id="addContName"
-                  value="${contact.name}" />
+              <div id="borderEditNameContact" class="input-div">
+                <input onfocus="toggleRequiredInputContact(this, true)"
+                  onblur="touchedMessageField = true;toggleRequiredInputContact(this, false);renderContactNameMessage('edit')"
+                  oninput="renderContactNameMessage('edit')" type="text" class="add-input"
+                  id="editContName" value="${contact.name}" />
                 <img src="../assets/icons/person_input.svg" class="input-img-person" />
               </div>
-              <span id="nameMessage" class="error-message">hier steht was</span>
+              <span id="editNameMessage" class="error-message">hier steht was</span>
             </div>
             <div class="input-border">
-              <div class="input-div">
-                <input onfocus="toggleRequiredInputContact(this, true)" onblur="toggleRequiredInputContact(this, false)"
-                  oninput="renderContactEmailMessage()" type="text" class="add-input" id="addContMail"
-                  value="${contact.email}" />
+              <div id="borderEditEmailContact" class="input-div">
+                <input onfocus="toggleRequiredInputContact(this, true)"
+                  onblur="touchedMessageField = true;toggleRequiredInputContact(this, false);renderContactEmailMessage('edit')"
+                  oninput="renderContactEmailMessage('edit')" type="text" class="add-input"
+                  id="editContMail" value="${contact.email}" />
                 <img src="../assets/icons/mail.svg" class="input-img-mail" />
               </div>
-              <span id="emailMessage" class="error-message">hier steht was</span>
+              <span id="editEmailMessage" class="error-message">hier steht was</span>
             </div>
             <div class="input-border">
-              <div class="input-div">
-                <input onfocus="toggleRequiredInputContact(this, true)" onblur="toggleRequiredInputContact(this, false)"
-                  oninput="renderContactPhoneMessage()" type="text" class="add-input" id="addContPhone"
-                  value="${contact.phone}" />
+              <div id="borderEditPhoneContact" class="input-div">
+                <input onfocus="toggleRequiredInputContact(this, true)"
+                  onblur="touchedMessageField = true;toggleRequiredInputContact(this, false);renderContactPhoneMessage('edit')"
+                  oninput="renderContactPhoneMessage('edit')" type="text" class="add-input"
+                  id="editContPhone" value="${contact.phone}" />
                 <img src="../assets/icons/call.svg" class="input-img-call" />
               </div>
-              <span id="phoneMessage" class="error-message">hier steht was</span>
+              <span id="editPhoneMessage" class="error-message">hier steht was</span>
             </div>
           </div>
           <div class="add-btn-div">
@@ -230,24 +236,24 @@ function generateContactsEditFloaterHTML(contact) {
 }
 
 /**
- * Generates the HTML for the success message.
- * @returns {string} The HTML string of the success message.
- */
+* Generates the HTML for the success message.
+* @returns {string} The HTML string of the success message.
+*/
 function generateSuccessFloaterHTML() {
   return `
-    <div id="successMessage" class="cnt-success-msg cnt-hide">
-      Contact successfully created
-    </div>
+  <div id="successMessage" class="cnt-success-msg cnt-hide">
+    Contact successfully created
+  </div>
   `;
 }
 
 /**
- * Returns the HTML for the small action menu shown on responsive view (mobile/tablet).
- * Includes edit and delete options for a specific contact.
- *
- * @param {string} contactId - The ID of the contact to edit or delete.
- * @returns {string} HTML string for the responsive edit/delete floater.
- */
+* Returns the HTML for the small action menu shown on responsive view (mobile/tablet).
+* Includes edit and delete options for a specific contact.
+*
+* @param {string} contactId - The ID of the contact to edit or delete.
+* @returns {string} HTML string for the responsive edit/delete floater.
+*/
 function generateRespEditFloaterHTML(contactId) {
   return `
   <div id="respFloater" class="edit-floater">

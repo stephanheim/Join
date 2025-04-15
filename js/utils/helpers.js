@@ -332,32 +332,6 @@ function assignedBorderColor(dropDownMenu) {
 }
 
 /**
- * Sets the border color of the given input field's parent container to a red tone
- * to indicate a validation error.
- *
- * @param {HTMLElement} input - The input element whose border should be highlighted.
- */
-function borderColorRed(input) {
-  const border = input?.parentElement;
-  if (border) {
-    border.style.borderColor = '#FF8190';
-  }
-}
-
-/**
- * Resets the border color of the given input field's parent container
- * to its default state, removing any error styling.
- *
- * @param {HTMLElement} input - The input element whose border should be reset.
- */
-function resetBorderColor(input) {
-  const border = input?.parentElement;
-  if (border) {
-    border.style.borderColor = '';
-  }
-}
-
-/**
  * Sorts the global contacts array alphabetically by name
  * and returns the grouped result by first letter.
  *

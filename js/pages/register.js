@@ -153,3 +153,13 @@ function toggleConfirmVisibility() {
     ? '../assets/icons/visibility_off.svg'
     : '../assets/icons/visibility.svg';
 }
+
+function togglePasswordVisibility() {
+  let passwordInput = document.getElementById('registNewPassword');
+  let visibilityIcon = document.getElementById('visibilityPwSignup');
+  let isPasswordVisible = passwordInput.type === 'text';
+  passwordInput.type = isPasswordVisible ? 'password' : 'text';
+  visibilityIcon.src = isPasswordVisible
+    ? '../assets/icons/visibility_off.svg'
+    : '../assets/icons/visibility.svg';
+}
