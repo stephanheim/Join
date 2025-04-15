@@ -147,6 +147,7 @@ function closeOnClickOutsideAssigned(dropdownId, triggerId) {
     if (shouldCloseAssignedDropdown(event, dropDownMenu, inputField)) {
       handleAssignedDropdownClose(inputField, arrow, dropDownMenu);
       assignedBorderColor(dropDownMenu);
+      closeOnClickOutsideCategory('dropDownMenuCategory', 'categoryDropDown');
     }
   };
 }

@@ -160,6 +160,7 @@ function closeOnClickOutsideCategory(dropdownId, triggerId) {
     if (clickedOutside) {
       updateUIElements(inputField, arrow, dropDownMenu);
       hideDropdown(dropDownMenu);
+      closeOnClickOutsideAssigned('dropDownMenuAssigned', 'addTaskAssigned');
     }
   };
 }
