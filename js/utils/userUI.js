@@ -141,7 +141,6 @@ function closeOnClickOutsideAssigned(dropdownId, triggerId) {
     const dropDownMenu = document.getElementById(dropdownId);
     const inputField = document.getElementById(triggerId);
     const arrow = document.getElementById('arrowAssigned');
-
     if (!dropDownMenu || !inputField || !arrow) return;
     if (!isDropdownVisible(dropDownMenu)) return;
     if (shouldCloseAssignedDropdown(event, dropDownMenu, inputField)) {

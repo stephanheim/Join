@@ -243,11 +243,12 @@ function resetSelectedPriority() {
  */
 
 function addedContacts(dropDownMenu, contacts, showAll = false) {
-  const maxVisible = 6;
+  const maxVisible = 5;
   const limit = showAll ? contacts.length : maxVisible;
   const visibleContacts = contacts.slice(0, limit);
   visibleContacts.forEach((contact, i) => {
-    const { name, color, initials, isChecked } = contact;
+    const { name, color, initials } = contact;
+    const isChecked = selectedContacts.some((c) => c.id === contact.id);
     dropDownMenu.innerHTML += assignedToTemplate(name, color, initials, i, isChecked);
   });
   if (!showAll && contacts.length > maxVisible) {
@@ -257,10 +258,9 @@ function addedContacts(dropDownMenu, contacts, showAll = false) {
   return visibleContacts;
 }
 
-
 function showAllContacts(dropDownMenuId) {
   const dropDownMenu = document.getElementById(dropDownMenuId);
-  dropDownMenu.innerHTML = "";
+  dropDownMenu.innerHTML = '';
   const renderedContacts = addedContacts(dropDownMenu, formattedContactsArray, true);
   applySelectionStyles(renderedContacts);
 }

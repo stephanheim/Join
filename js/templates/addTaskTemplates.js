@@ -260,9 +260,8 @@ function initialsTemplate(initials, initialsColor) {
 
 function moreContactsTemplate(dropDownMenuId, remaining) {
   return `
-    <div class="more-contacts" onclick="showAllContacts('${dropDownMenuId}')">
+    <div class="more-contacts" onclick="event.stopPropagation(); showAllContacts('${dropDownMenuId}')">
       +${remaining} more
     </div>
   `;
 }
-
