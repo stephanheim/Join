@@ -197,6 +197,11 @@
   border-color: #a8a8a8;
 }
 
+.card-badge.more-circle {
+  background-color: #2a3647;
+  color: white;
+  font-weight: bold;
+
 @media screen and (max-width: 1200px) {
   .floating-main {
     display: none !important;

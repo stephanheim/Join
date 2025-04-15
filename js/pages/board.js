@@ -115,19 +115,20 @@ function progressSubtasks(task) {
 
 /**
  * Generates HTML string with contact initials for a task card.
- *
+ * Shows not more than 5 initials, others with +x
  * @param {Object} task - The task object with contacts.
  * @returns {string} HTML string of initials badges.
  */
 function getInitialsTaskCard(task) {
-  let html = '';
+  let html = "";
   let contacts = task.contacts || [];
-  for (let contact of contacts) {
-    html += `
-    <div class="card-badge" style="background-color: ${contact.color}">
-        <span>${contact.initials}</span>
-      </div>
-    `;
+  const maxVisible = 5;
+  contacts.slice(0, maxVisible).forEach((contact) => {
+    html += contactBadgeTemplate(contact);
+  });
+  if (contacts.length > maxVisible) {
+    const remaining = contacts.length - maxVisible;
+    html += moreContactsBadgeTemplate(remaining);
   }
   return html;
 }

@@ -193,3 +193,35 @@ function editBoardCardTemplate(task, subtaskHTML, namesHTML) {
         </div>
       </div>`;
 }
+
+/**
+ * Returns an HTML template for a contact badge with the contact's initials
+ * and background color.
+ *
+ * @param {Object} contact - The contact object.
+ * @param {string} contact.initials - The initials to display.
+ * @param {string} contact.color - The background color of the badge.
+ * @returns {string} HTML string for the contact badge.
+ */
+function contactBadgeTemplate(contact) {
+  return `
+    <div class="card-badge" style="background-color: ${contact.color}">
+      <span>${contact.initials}</span>
+    </div>
+  `;
+}
+
+/**
+ * Returns an HTML template for a badge that indicates the number
+ * of additional (hidden) contacts, e.g., "+3".
+ *
+ * @param {number} count - The number of additional contacts not shown.
+ * @returns {string} HTML string for the "+x" contact badge.
+ */
+function moreContactsBadgeTemplate(count) {
+  return `
+    <div class="card-badge more-circle">
+      <span>+${count}</span>
+    </div>
+  `;
+}
