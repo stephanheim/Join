@@ -256,7 +256,7 @@ function generateSuccessFloaterHTML() {
 */
 function generateRespEditFloaterHTML(contactId) {
   return `
-  <div id="respFloater" class="edit-floater">
+  <div id="respFloater" class="edit-floater slideIn">
     <div class="clickable" onclick="handleEditClick(event, '${contactId}')">
       <img src="../assets/icons/edit.svg" /><span>Edit</span>
     </div>

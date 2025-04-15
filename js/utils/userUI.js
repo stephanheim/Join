@@ -55,13 +55,13 @@ function getUserInitials() {
 }
 
 /**
- * Displays the responsive edit floater for a specific contact.
- *
- * Generates and injects the floater HTML into the command container,
- * hides the command image (if present), and animates the floater into view.
- * Also sets up a one-time outside click listener to close the floater when clicking outside.
- *
- * @param {string} contactId - The ID of the contact for which options should be shown.
+ * Displays a responsive edit/delete options floater for a contact.
+ * 
+ * - Appends the floater HTML for the given contact to the container with ID `resp-cmd`.
+ * - Hides the image element with ID `resp-cmd-img`.
+ * - Adds a delayed click listener (`handleOutsideClick`) to close the floater when clicking outside of it.
+ * 
+ * @param {string} contactId - The ID of the contact for which the options floater is shown.
  */
 function showMoreOptions(contactId) {
   let respCmdContainer = document.getElementById('resp-cmd');
@@ -69,17 +69,9 @@ function showMoreOptions(contactId) {
   respCmdContainer.innerHTML += editFloaterHTML;
   let img = document.getElementById('resp-cmd-img');
   if (img) img.classList.add('d-none');
-  let floater = document.getElementById('respFloater');
-  if (floater) {
-    floater.classList.add('preSlideIn');
-    setTimeout(() => {
-      floater.classList.remove('preSlideIn');
-      floater.classList.add('slideIn');
-    }, 20);
-    setTimeout(() => {
-      document.addEventListener('click', handleOutsideClick);
-    }, 50);
-  }
+  setTimeout(() => {
+    document.addEventListener('click', handleOutsideClick);
+  }, 50);
 }
 
 /**
@@ -306,6 +298,7 @@ function updateRespCmd(contactId) {
 function onclickShowMoreOptions(contactId) {
   let respCmd = document.getElementById('resp-cmd');
   respCmd.onclick = function () {
+    event.stopPropagation();
     showMoreOptions(contactId);
   };
 }
