@@ -142,9 +142,27 @@ function openDropdownCategory() {
   renderDropdownMenuCategory(dropDownMenu);
   if (isHidden) {
     showDropdown(dropDownMenu);
+    closeOnClickOutsideCategory('dropDownMenuCategory', 'categoryDropDown');
   } else {
     hideDropdown(dropDownMenu);
   }
+}
+
+function closeOnClickOutsideCategory(dropdownId, triggerId) {
+  window.onclick = function (event) {
+    const dropDownMenu = document.getElementById(dropdownId);
+    const inputField = document.getElementById(triggerId);
+    const arrow = document.getElementById('arrowCategory');
+    if (!dropDownMenu || !inputField) return;
+    const isVisible = !dropDownMenu.classList.contains('drop-down-hide');
+    if (!isVisible) return;
+    const clickedOutside = !dropDownMenu.contains(event.target) && !inputField.contains(event.target);
+    if (clickedOutside) {
+      updateUIElements(inputField, arrow, dropDownMenu);
+      hideDropdown(dropDownMenu);
+      closeOnClickOutsideAssigned('dropDownMenuAssigned', 'addTaskAssigned');
+    }
+  };
 }
 
 /**
