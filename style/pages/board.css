@@ -124,7 +124,6 @@
 .board-task {
   min-height: 354px;
   width: 250px;
-  height: 69vh;
   display: flex;
   justify-content: flex-start;
   align-items: center;
