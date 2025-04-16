@@ -3,7 +3,6 @@
  */
 function initSummary() {
   getSummaryData();
-  loadContactsFromFirebase();
   checkLoginWelcome();
 }
 
@@ -18,7 +17,6 @@ function getSummaryData() {
     let taskCounts = countTasksForSummary(tasks);
     renderSummary(taskCounts);
   } else {
-    console.log('Keine Aufgaben gefunden.');
     noTasks.innerHTML += generateSummaryNoTasksHTML();
   }
 }

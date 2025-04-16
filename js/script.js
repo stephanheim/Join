@@ -18,6 +18,14 @@ const pageTitles = {
 };
 
 /**
+ * Loads the last visited page from sessionStorage or defaults to 'summary'.
+ */
+function loadLastVisitedPage() {
+  let lastPage = sessionStorage.getItem("lastPage") || "summary";
+  loadPageContentPath(lastPage);
+}
+
+/**
  * Initializes the page based on the given identifier and triggers relevant setup functions.
  * @param {string} page - The identifier for the page to initialize (e.g. 'summary', 'addTask').
  */
@@ -36,8 +44,11 @@ async function initPages(page) {
 }
 
 /**
- * Loads the content for the given page and initializes relevant functions.
- * @param {string} page - The identifier for the page (e.g. 'summary', 'addTask').
+ * Loads the HTML content for the specified page, injects it into the content container,
+ * initializes the page logic, updates the document title, sets the active navigation element,
+ * and stores the page identifier in sessionStorage.
+ *
+ * @param {string} page - The identifier of the page to load (e.g. 'summary', 'addTask').
  */
 async function loadPageContentPath(page) {
   let contentPages = document.getElementById("content");
@@ -49,6 +60,8 @@ async function loadPageContentPath(page) {
     showUserWelcome();
   }
   setFormModeIfContactsPage(page);
+  setActiveLoad(page);
+  sessionStorage.setItem("lastPage", page);
 }
 
 /**
@@ -93,6 +106,30 @@ function toggleNavPrivacyByPage(page) {
 function changePageTitles(page) {
   let changeTitles = pageTitles[page];
   document.title = changeTitles;
+}
+
+/**
+ * Sets the active navigation element based on the current page identifier.
+ * It checks both main navigation elements and policy links and applies the active state
+ * to the element whose data-page attribute matches the given page.
+ *
+ * @param {string} page - The identifier of the page to activate (e.g. 'summary', 'privacy_policy').
+ */
+function setActiveLoad(page) {
+  let navLinks = document.getElementsByClassName("nav");
+  let policyLinks = document.getElementsByClassName("policy-content");
+  for (let i = 0; i < navLinks.length; i++) {
+    if (navLinks[i].getAttribute("data-page") === page) {
+      setActiveNav(navLinks[i]);
+      break;
+    }
+  }
+  for (let i = 0; i < policyLinks.length; i++) {
+    if (policyLinks[i].getAttribute("data-page") === page) {
+      setActiveNav(policyLinks[i]);
+      break;
+    }
+  }
 }
 
 /**

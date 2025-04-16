@@ -26,7 +26,7 @@
   <link rel="stylesheet" href="../style/components/taskCard.css" />
 </head>
 
-<body onload="loadPageContentPath('summary'); getUserInitials();">
+<body onload="loadLastVisitedPage(); getUserInitials();">
   <div class="landscape-warning">
     <span>Please turn your device into portrait format!</span>
   </div>
@@ -59,31 +59,31 @@
     </div>
     <div class="side-menu-below">
       <div class="navbar-section-top">
-        <div onclick="setActiveNav(this); loadPageContentPath('summary');" id="removeActive" class="nav active">
+        <div onclick="setActiveNav(this); loadPageContentPath('summary');" id="removeActive" class="nav" data-page="summary">
           <img class="img_menu" src="../assets/icons/summary.svg" alt="summary" />
           <a href="#">Summary</a>
         </div>
         <div class="navbar-section-change">
-          <div onclick="setActiveNav(this); loadPageContentPath('addTask')" class="nav">
+          <div onclick="setActiveNav(this); loadPageContentPath('addTask')" class="nav" data-page="addTask">
             <img class="img_menu" src="../assets/icons/add_task.svg" alt="add-task" />
             <a href="#">Add Task</a>
           </div>
-          <div onclick="setActiveNav(this); loadPageContentPath('board')" id="sumToBoard" class="nav">
+          <div onclick="setActiveNav(this); loadPageContentPath('board')" id="sumToBoard" class="nav" data-page="board">
             <img class="img_menu" src="../assets/icons/board_icon.svg" alt="board" />
             <a href="#">Board</a>
           </div>
         </div>
-        <div onclick="setActiveNav(this); loadPageContentPath('contacts')" class="nav">
+        <div onclick="setActiveNav(this); loadPageContentPath('contacts')" class="nav" data-page="contacts">
           <img class="img_menu" src="../assets/icons/contacts.svg" alt="contacts" />
           <a href="#">Contacts</a>
         </div>
       </div>
       <div id="navPrivacy" class="navbar-section-bottom">
-        <div class="policy-content">
+        <div class="policy-content" data-page="privacy_policy">
           <a onclick="loadPageContentPath('privacy_policy'); setActiveNav(this.parentElement)" class="a-policy"
             href="#">Privacy Policy</a>
         </div>
-        <div class="policy-content">
+        <div class="policy-content" data-page="legal_notice">
           <a onclick="loadPageContentPath('legal_notice'); setActiveNav(this.parentElement)" class="a-policy"
             href="#">Legal notice</a>
         </div>

@@ -37,6 +37,7 @@ let boardContainers = [
  * @returns {Promise<void>}
  */
 async function initBoard() {
+  loadContactsFromFirebase();
   await syncTasksFromDBToLocalStorage();
   // await uploadDefaultTasks(); - only for loading default tasks on db
   renderTasks();

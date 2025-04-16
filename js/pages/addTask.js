@@ -35,6 +35,7 @@ let addNewTask = [];
  * Initializes the add task form by preventing enter key form submission and clearing all fields.
  */
 function initAddTask() {
+  loadContactsFromFirebase();
   preventFormSubmitOnEnter();
   clearAddTask();
   toggleResponsiveRequired();

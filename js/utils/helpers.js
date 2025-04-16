@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (window.location.pathname.includes('signup')) {
     currentFormMode = 'signup';
   }
-  console.log(currentFormMode);
 });
 
 /**
