@@ -56,11 +56,11 @@ function getUserInitials() {
 
 /**
  * Displays a responsive edit/delete options floater for a contact.
- * 
+ *
  * - Appends the floater HTML for the given contact to the container with ID `resp-cmd`.
  * - Hides the image element with ID `resp-cmd-img`.
  * - Adds a delayed click listener (`handleOutsideClick`) to close the floater when clicking outside of it.
- * 
+ *
  * @param {string} contactId - The ID of the contact for which the options floater is shown.
  */
 function showMoreOptions(contactId) {
@@ -138,6 +138,7 @@ function closeOnClickOutsideAssigned(dropdownId, triggerId) {
     if (shouldCloseAssignedDropdown(event, dropDownMenu, inputField)) {
       handleAssignedDropdownClose(inputField, arrow, dropDownMenu);
       assignedBorderColor(dropDownMenu);
+      initialsShowOnAssinged(dropDownMenu);
       closeOnClickOutsideCategory('dropDownMenuCategory', 'categoryDropDown');
     }
   };
