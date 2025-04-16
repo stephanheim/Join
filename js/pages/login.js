@@ -34,10 +34,20 @@ async function submitLogin() {
     setLoggedInUserWithWelcome(email);
     setRememberMe();
     await uploadMissingDefaultTasks();
-    window.location.href = './pages/dashboard.html';
+    window.location.href = './pages/dashboard.html?start=summary';
   } catch (error) {
     console.error('Login failed:', error);
   }
+}
+
+/**
+ * Logs in as a guest and redirects directly to the dashboard.
+ */
+function guestLogin() {
+  let guestUser = { name: 'Guest' };
+  localStorage.setItem('loggedInUser', JSON.stringify(guestUser));
+  sessionStorage.setItem('showWelcome', 'true');
+  window.location.href = './pages/dashboard.html?start=summary';
 }
 
 /**
@@ -113,16 +123,6 @@ function togglePasswordVisibility() {
 }
 
 /**
- * Logs in as a guest and redirects directly to the dashboard.
- */
-function guestLogin() {
-  let guestUser = { name: 'Guest' };
-  localStorage.setItem('loggedInUser', JSON.stringify(guestUser));
-  sessionStorage.setItem('showWelcome', 'true');
-  window.location.href = './pages/dashboard.html';
-}
-
-/**
  * Saves or removes login credentials from localStorage based on the "Remember Me" checkbox.
  */
 function setRememberMe() {
@@ -163,12 +163,17 @@ function rememberMe() {
 }
 
 /**
- * Logs out the user and redirects to the login page.
- * Clears all user-related data from localStorage.
+ * Logs out the current user by clearing user-related data from localStorage
+ * and redirecting to the login page.
+ *
+ * @function logout
+ * @returns {void}
  */
 function logout() {
   localStorage.removeItem('loggedInUser');
   localStorage.removeItem('loggedInGuest');
   localStorage.removeItem('userInContacts');
+  sessionStorage.removeItem("lastPage");
+  localStorage.removeItem("lastPagePerma");
   window.location.href = '../index.html';
 }
