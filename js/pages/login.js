@@ -169,5 +169,6 @@ function rememberMe() {
 function logout() {
   localStorage.removeItem('loggedInUser');
   localStorage.removeItem('loggedInGuest');
+  localStorage.removeItem('userInContacts');
   window.location.href = '../index.html';
 }

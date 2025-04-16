@@ -23,14 +23,19 @@ const contactColors = ['#ff7a01', '#9327ff', '#6e52ff', '#fc71ff', '#ffbb2c', '#
 let activeContactId = null;
 
 /**
- * Initializes the contact view and logic.
- * - Ensures current user is included in the contact list.
- * - Groups contacts alphabetically or by criteria.
- * - Sets up UI animation for the contact overlay.
+ * Initializes the contacts view and logic.
+ * 
+ * - Loads all contacts from Firebase.
+ * - Adds the logged-in user to the contact list if not already present (ignores guest).
+ * - Groups and renders the contacts.
+ * - Sets up contact overlay animation handlers.
+ *
+ * @returns {Promise<void>}
  */
-function initContacts() {
-  checkAndAddCurrentUser();
-  getGroupedContacts();
+async function initContacts() {
+  await loadContactsFromFirebase(); 
+  await checkGuestOrUser();
+  getGroupedContacts(); 
   onclickShowAnimateContact();
 }
 
@@ -298,16 +303,32 @@ function contactsChanged(original, filtered) {
 }
 
 /**
- * Checks if the currently logged-in user is in the contact list.
- * If not, adds them as a contact.
+ * Adds the logged-in user to the contacts list if not already present.
+ * 
+ * Skips the operation if the user has already been added (tracked via localStorage).
+ *
+ * @param {{name: string, email: string, phone?: string}} currentUser - The currently logged-in user.
+ * @returns {Promise<void>}
+ */
+async function checkAndAddCurrentUser(currentUser) {
+  let userAlreadyAdded = localStorage.getItem('userInContacts');
+  if (userAlreadyAdded === 'true') return;
+  if (!isUserInContacts(currentUser.email)) {
+    await addCurrentUserToContacts(currentUser);
+    localStorage.setItem('userInContacts', 'true');
+  }
+}
+
+/**
+ * Checks whether the current user is a guest.
+ * If not, ensures the user is added to the contact list.
  *
  * @returns {Promise<void>}
  */
-async function checkAndAddCurrentUser() {
+async function checkGuestOrUser(){
   let currentUser = JSON.parse(localStorage.getItem('loggedInUser'));
-  if (!currentUser || currentUser.name === 'Guest') return;
-  if (!isUserInContacts(currentUser.email)) {
-    await addCurrentUserToContacts(currentUser);
+  if (currentUser && currentUser.name !== 'Guest') {
+    await checkAndAddCurrentUser(currentUser); 
   }
 }
 
