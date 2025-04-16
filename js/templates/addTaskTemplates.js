@@ -1,9 +1,9 @@
 /**
-* Returns the HTML template string for the "Add Task" floating form.
-* This includes input fields for title, description, due date, priority, assignees, category, and subtasks.
-*
-* @returns {string} HTML string for the "Add Task" form.
-*/
+ * Returns the HTML template string for the "Add Task" floating form.
+ * This includes input fields for title, description, due date, priority, assignees, category, and subtasks.
+ *
+ * @returns {string} HTML string for the "Add Task" form.
+ */
 function addTaskTemplate() {
   return `
   <div class="floating-content">
@@ -14,7 +14,7 @@ function addTaskTemplate() {
       </div>
     </div>
     <form id="addTaskForm" class="add-task-form" onsubmit="createNewTask();return false;">
-      <div class="input-section">
+      <div class="input-section-floating">
         <div class="section-left">
           <div class="add-task-single">
             <label class="title-and-star" for="addTaskTitle">
@@ -126,26 +126,30 @@ function addTaskTemplate() {
               </div>
             </div>
             <div class="subtask-content" id="addedSubtask"></div>
+               <div id="requiredMobil" class="required-field-mobil">
+              <span class="span-star">*</span>
+              <p>This field is required</p>
+            </div>
           </div>
         </div>
       </div>
-      <div class="required-section-floating">
-        <div class="required-field">
-          <span class="span-star">*</span>
-          <p>This field is required</p>
-        </div>
-        <div class="bt-section">
-          <button class="bt-clear" type="reset" onclick="clearAddTask()">
-            Clear
-            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12.2496 11.9998L17.4926 17.2428M7.00659 17.2428L12.2496 11.9998L7.00659 17.2428ZM17.4926 6.75684L12.2486 11.9998L17.4926
-                        6.75684ZM12.2486 11.9998L7.00659 6.75684L12.2486 11.9998Z" stroke="#2A3647" stroke-width="2"
+      
+        <div class="required-section-content">
+          <div id="requiredDesktop" class="required-field-desctop">
+            <span class="span-star">*</span>
+            <p>This field is required</p>
+          </div>
+          <div class="bt-section">
+            <button class="bt-clear" type="reset" onclick="clearAddTask()">
+              Clear
+                <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.2496 11.9998L17.4926 17.2428M7.00659 17.2428L12.2496 11.9998L7.00659 17.2428ZM17.4926 6.75684L12.2486 11.9998L17.4926
+                6.75684ZM12.2486 11.9998L7.00659 6.75684L12.2486 11.9998Z" stroke="#2A3647" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </button>
-          <button class="bt-add-float-task" type="submit">Create Task <img src="../assets/icons/check.svg"
-              alt="Check" /></button>
-        </div>
+                </svg>
+            </button>
+            <button class="bt-create-task" type="submit">Create Task<img src="../assets/icons/check.svg" /></button>
+          </div>
       </div>
     </form>
   </div>
@@ -153,15 +157,15 @@ function addTaskTemplate() {
 }
 
 /**
-* Returns the HTML for a single contact item in the "Assigned to" dropdown menu.
-*
-* @param {string} name - Full name of the contact.
-* @param {string} color - Background color of the contact's circle.
-* @param {string} initials - Initials of the contact.
-* @param {number} i - Index of the contact in the list.
-* @param {boolean} isChecked - Whether the contact is currently selected.
-* @returns {string} HTML string for a contact dropdown item.
-*/
+ * Returns the HTML for a single contact item in the "Assigned to" dropdown menu.
+ *
+ * @param {string} name - Full name of the contact.
+ * @param {string} color - Background color of the contact's circle.
+ * @param {string} initials - Initials of the contact.
+ * @param {number} i - Index of the contact in the list.
+ * @param {boolean} isChecked - Whether the contact is currently selected.
+ * @returns {string} HTML string for a contact dropdown item.
+ */
 function assignedToTemplate(name, color, initials, i, isChecked) {
   return `
   <div id="innerDropmenu-${i}" class="inner-dropmenu" onclick="toggleContactsSelection(event, ${i})">
@@ -181,11 +185,11 @@ function assignedToTemplate(name, color, initials, i, isChecked) {
 }
 
 /**
-* Returns the HTML template for the category selection dropdown.
-* Includes two static category options: "Technical Task" and "User Story".
-*
-* @returns {string} HTML string for the category dropdown menu.
-*/
+ * Returns the HTML template for the category selection dropdown.
+ * Includes two static category options: "Technical Task" and "User Story".
+ *
+ * @returns {string} HTML string for the category dropdown menu.
+ */
 function categoryTemplate() {
   return `
   <div>
@@ -200,12 +204,12 @@ function categoryTemplate() {
 }
 
 /**
-* Returns the HTML string for a single subtask element with edit and delete icons.
-*
-* @param {number} i - Index of the subtask in the list.
-* @param {{ text: string }} subtask - Subtask object containing the text.
-* @returns {string} HTML string for a subtask item.
-*/
+ * Returns the HTML string for a single subtask element with edit and delete icons.
+ *
+ * @param {number} i - Index of the subtask in the list.
+ * @param {{ text: string }} subtask - Subtask object containing the text.
+ * @returns {string} HTML string for a subtask item.
+ */
 function subtaskTemplate(i, subtask) {
   return `
   <div class="add-subtask" id="subtask-${i}">
@@ -225,13 +229,13 @@ function subtaskTemplate(i, subtask) {
 }
 
 /**
-* Returns the HTML string for an editable subtask input field.
-* Includes save and delete icons for user interaction.
-*
-* @param {number} i - Index of the subtask in the list.
-* @param {{ text: string }} subtask - Subtask object containing the text to edit.
-* @returns {string} HTML string for the editable subtask input.
-*/
+ * Returns the HTML string for an editable subtask input field.
+ * Includes save and delete icons for user interaction.
+ *
+ * @param {number} i - Index of the subtask in the list.
+ * @param {{ text: string }} subtask - Subtask object containing the text to edit.
+ * @returns {string} HTML string for the editable subtask input.
+ */
 function editSubtaskTemplate(i, subtask) {
   return `
   <div class="input-container-edit">
@@ -250,12 +254,12 @@ function editSubtaskTemplate(i, subtask) {
 }
 
 /**
-* Returns the HTML for showing selected contact initials with a colored background.
-*
-* @param {string} initials - Initials of the contact.
-* @param {string} initialsColor - Background color for the initials circle.
-* @returns {string} HTML string for the initials circle.
-*/
+ * Returns the HTML for showing selected contact initials with a colored background.
+ *
+ * @param {string} initials - Initials of the contact.
+ * @param {string} initialsColor - Background color for the initials circle.
+ * @returns {string} HTML string for the initials circle.
+ */
 function initialsTemplate(initials, initialsColor) {
   return `
   <div class="circle-color-checked-assigned" style="background-color: ${initialsColor}">
