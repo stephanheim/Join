@@ -33,9 +33,9 @@ let activeContactId = null;
  * @returns {Promise<void>}
  */
 async function initContacts() {
-  await loadContactsFromFirebase(); 
+  await loadContactsFromFirebase();
   await checkGuestOrUser();
-  getGroupedContacts(); 
+  getGroupedContacts();
   onclickShowAnimateContact();
 }
 
@@ -325,10 +325,10 @@ async function checkAndAddCurrentUser(currentUser) {
  *
  * @returns {Promise<void>}
  */
-async function checkGuestOrUser(){
+async function checkGuestOrUser() {
   let currentUser = JSON.parse(localStorage.getItem('loggedInUser'));
   if (currentUser && currentUser.name !== 'Guest') {
-    await checkAndAddCurrentUser(currentUser); 
+    await checkAndAddCurrentUser(currentUser);
   }
 }
 

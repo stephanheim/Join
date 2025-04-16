@@ -226,6 +226,10 @@
     font-weight: 700;
   }
 
+  .main-div {
+    justify-content: center;
+  }
+
   .metrics-div {
     margin-top: 8px;
   }
@@ -243,6 +247,7 @@
     height: calc(100% - 100px);
     align-items: center;
     padding-left: unset;
+    padding-top: 80px;
   }
 
   .welcome-div {
@@ -258,6 +263,10 @@
     transition: background-color 1s ease;
   }
 
+  .metrics-div {
+    margin-right: 0;
+  }
+
   .fade-smart-out {
     animation: smartFadeShrinkOut 400ms ease-in forwards;
     animation-delay: 1500ms;
@@ -269,7 +278,6 @@
     max-width: 625px;
     width: 100%;
     height: calc(100% - 80px);
-    padding-top: 48px;
     padding: 48px 16px 0 16px;
   }
 

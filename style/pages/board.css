@@ -115,7 +115,7 @@
   height: calc(100% - 201px);
   justify-content: space-between;
   gap: 26px;
-  padding: 0px 64px 0 64px;
+  padding: 0px 64px 80px 64px;
   flex-wrap: wrap;
   overflow: auto;
   scrollbar-width: none;
@@ -203,6 +203,12 @@
   font-weight: bold;
 }
 
+@media screen and (max-width: 1200px){
+  .board-main {
+    padding: 0px 16px 116px 16px;
+  }
+}
+
 @media screen and (max-width: 856px) {
   .board-header {
     padding: 48px 64px 24px 64px;
@@ -249,10 +255,6 @@
 @media screen and (max-width: 539px) {
   .board-header {
     padding: 48px 16px 24px 16px;
-  }
-
-  .board-main {
-    padding: 0px 16px 80px 16px;
   }
 
   .container-find-task {
