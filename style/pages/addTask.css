@@ -209,7 +209,7 @@
   color: white;
 }
 
-.isSelected > img {
+.isSelected>img {
   filter: brightness(0) invert(1);
 }
 
@@ -438,7 +438,7 @@
 
   .required-section-content {
     justify-content: flex-end;
-    padding-bottom: 8px;
+    padding-bottom: 48px;
   }
 
   .add-task-form {
@@ -482,7 +482,7 @@
 
   .headline-add-task {
     width: 396px;
-    padding: 8px 0 0 0;
+    padding: 48px 0 0 0;
   }
 
   .header-profil-name {
@@ -505,6 +505,14 @@
   .content {
     align-items: flex-start;
     padding: 0 16px;
+  }
+
+  .headline-add-task {
+    padding: 8px 0 0 0;
+  }
+
+  .required-section-content {
+    padding-bottom: 8px;
   }
 
   .button-section {

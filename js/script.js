@@ -18,11 +18,31 @@ const pageTitles = {
 };
 
 /**
- * Loads the last visited page from sessionStorage or defaults to 'summary'.
+ * Loads the last visited page based on URL parameters, sessionStorage, or localStorage.
+ *
+ * @function loadLastVisitedPage
+ * @returns {void}
+ *
  */
 function loadLastVisitedPage() {
-  let lastPage = sessionStorage.getItem("lastPage") || "summary";
+  let urlParams = new URLSearchParams(window.location.search);
+  let startPage = urlParams.get('start');
+  let sessionPage = sessionStorage.getItem("lastPage");
+  let permaPage = localStorage.getItem("lastPagePerma");
+  let lastPage = startPage || sessionPage || permaPage || "summary";
   loadPageContentPath(lastPage);
+  if (startPage) {
+    removeStartURL();
+  }
+}
+
+/**
+ * Removes the 'start' parameter from the URL without reloading the page.
+ */
+function removeStartURL() {
+  let url = new URL(window.location.href);
+  url.searchParams.delete('start');
+  window.history.replaceState({}, document.title, url.pathname);
 }
 
 /**
@@ -44,11 +64,13 @@ async function initPages(page) {
 }
 
 /**
- * Loads the HTML content for the specified page, injects it into the content container,
- * initializes the page logic, updates the document title, sets the active navigation element,
- * and stores the page identifier in sessionStorage.
+ * Loads the HTML content of a given page and initializes all necessary components.
  *
- * @param {string} page - The identifier of the page to load (e.g. 'summary', 'addTask').
+ * @async
+ * @function loadPageContentPath
+ * @param {string} page - The name of the page to load (without the .html extension).
+ * @returns {Promise<void>} - Resolves when the page is fully loaded and initialized.
+ *
  */
 async function loadPageContentPath(page) {
   let contentPages = document.getElementById("content");
@@ -62,6 +84,7 @@ async function loadPageContentPath(page) {
   setFormModeIfContactsPage(page);
   setActiveLoad(page);
   sessionStorage.setItem("lastPage", page);
+  localStorage.setItem("lastPagePerma", page);
 }
 
 /**
