@@ -201,6 +201,7 @@
   background-color: #2a3647;
   color: white;
   font-weight: bold;
+}
 
 @media screen and (max-width: 1200px) {
   .floating-main {

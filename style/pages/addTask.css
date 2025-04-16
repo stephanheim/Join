@@ -105,6 +105,7 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .input-date-outside:focus-within {
@@ -133,6 +134,17 @@
 ::placeholder {
   font-size: 20px;
   color: rgba(209, 209, 209, 1);
+}
+
+.hidden-date-picker {
+  position: absolute;
+  opacity: 0;
+  top: 30px;
+  right: 233px;
+  width: 1px;
+  height: 1px;
+  z-index: -1;
+  pointer-events: auto;
 }
 
 .textarea-add-task {
@@ -195,7 +207,7 @@
   color: white;
 }
 
-.isSelected > img {
+.isSelected>img {
   filter: brightness(0) invert(1);
 }
 
@@ -539,5 +551,5 @@
 }
 
 .more-contacts:hover {
-font-weight: 700;
+  font-weight: 700;
 }

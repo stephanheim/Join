@@ -1,9 +1,9 @@
 /**
- * Returns the HTML template string for the "Add Task" floating form.
- * This includes input fields for title, description, due date, priority, assignees, category, and subtasks.
- *
- * @returns {string} HTML string for the "Add Task" form.
- */
+* Returns the HTML template string for the "Add Task" floating form.
+* This includes input fields for title, description, due date, priority, assignees, category, and subtasks.
+*
+* @returns {string} HTML string for the "Add Task" form.
+*/
 function addTaskTemplate() {
   return `
   <div class="floating-content">
@@ -41,7 +41,9 @@ function addTaskTemplate() {
             <div>
               <div id="inputDate" class="input-date-outside">
                 <input oninput="formatDate(this)" id="addTaskDate" class="input-date" name="date" type="text"
-                  placeholder="dd/mm/yyyy" /><img src="../assets/icons/date_event.svg" />
+                  placeholder="dd/mm/yyyy" />
+                <img src="../assets/icons/date_event.svg" onclick="openCalendar()" />
+                <input type="date" id="hiddenDatePicker" class="hidden-date-picker" />
               </div>
               <span id="dateMessage" class="error-message"></span>
             </div>
@@ -108,7 +110,8 @@ function addTaskTemplate() {
               <h2>Subtasks</h2>
             </label>
             <div id="inputContainer" class="input-container-subtask" onclick="openSubtaskInput()">
-              <input type="text" name="category" id="addTaskSubtasks" placeholder="Add new subtask" onkeydown="handleSubtaskEnter(event)" />
+              <input type="text" name="category" id="addTaskSubtasks" placeholder="Add new subtask"
+                onkeydown="handleSubtaskEnter(event)" />
               <div class="container-arrow-img-dropdown" id="plusIcon">
                 <img src="../assets/icons/add_plus.svg" />
               </div>
@@ -136,7 +139,7 @@ function addTaskTemplate() {
             Clear
             <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M12.2496 11.9998L17.4926 17.2428M7.00659 17.2428L12.2496 11.9998L7.00659 17.2428ZM17.4926 6.75684L12.2486 11.9998L17.4926
-                      6.75684ZM12.2486 11.9998L7.00659 6.75684L12.2486 11.9998Z" stroke="#2A3647" stroke-width="2"
+                        6.75684ZM12.2486 11.9998L7.00659 6.75684L12.2486 11.9998Z" stroke="#2A3647" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </button>
@@ -150,15 +153,15 @@ function addTaskTemplate() {
 }
 
 /**
- * Returns the HTML for a single contact item in the "Assigned to" dropdown menu.
- *
- * @param {string} name - Full name of the contact.
- * @param {string} color - Background color of the contact's circle.
- * @param {string} initials - Initials of the contact.
- * @param {number} i - Index of the contact in the list.
- * @param {boolean} isChecked - Whether the contact is currently selected.
- * @returns {string} HTML string for a contact dropdown item.
- */
+* Returns the HTML for a single contact item in the "Assigned to" dropdown menu.
+*
+* @param {string} name - Full name of the contact.
+* @param {string} color - Background color of the contact's circle.
+* @param {string} initials - Initials of the contact.
+* @param {number} i - Index of the contact in the list.
+* @param {boolean} isChecked - Whether the contact is currently selected.
+* @returns {string} HTML string for a contact dropdown item.
+*/
 function assignedToTemplate(name, color, initials, i, isChecked) {
   return `
   <div id="innerDropmenu-${i}" class="inner-dropmenu" onclick="toggleContactsSelection(event, ${i})">
@@ -171,17 +174,18 @@ function assignedToTemplate(name, color, initials, i, isChecked) {
       </div>
     </div>
     <div class="checkbox">
-      <input id="checkbox-${i}" ${isChecked ? 'checked' : ''} type="checkbox" name="checkbox" onclick=" toggleContactsSelection(event, ${i})" />
+      <input id="checkbox-${i}" ${isChecked ? 'checked' : ''} type="checkbox" name="checkbox"
+        onclick=" toggleContactsSelection(event, ${i})" />
     </div>
   </div>`;
 }
 
 /**
- * Returns the HTML template for the category selection dropdown.
- * Includes two static category options: "Technical Task" and "User Story".
- *
- * @returns {string} HTML string for the category dropdown menu.
- */
+* Returns the HTML template for the category selection dropdown.
+* Includes two static category options: "Technical Task" and "User Story".
+*
+* @returns {string} HTML string for the category dropdown menu.
+*/
 function categoryTemplate() {
   return `
   <div>
@@ -196,72 +200,73 @@ function categoryTemplate() {
 }
 
 /**
- * Returns the HTML string for a single subtask element with edit and delete icons.
- *
- * @param {number} i - Index of the subtask in the list.
- * @param {{ text: string }} subtask - Subtask object containing the text.
- * @returns {string} HTML string for a subtask item.
- */
+* Returns the HTML string for a single subtask element with edit and delete icons.
+*
+* @param {number} i - Index of the subtask in the list.
+* @param {{ text: string }} subtask - Subtask object containing the text.
+* @returns {string} HTML string for a subtask item.
+*/
 function subtaskTemplate(i, subtask) {
   return `
-    <div class="add-subtask" id="subtask-${i}">
-      <ul>
-        <li>${subtask.text}</li>
-      </ul>
-      <div class="input-other-icons">
-        <div class="subtask-icons" onclick="editSubtask(${i})">
-          <img src="../assets/icons/edit.svg" alt="edit-icon" />
-        </div>
-        <div class="hyphen-subtask"></div>
-        <div class="subtask-icons" onclick="deleteSubtask(${i})">
-          <img src="../assets/icons/delete.svg" alt="delete-icon" />
-        </div>
+  <div class="add-subtask" id="subtask-${i}">
+    <ul>
+      <li>${subtask.text}</li>
+    </ul>
+    <div class="input-other-icons">
+      <div class="subtask-icons" onclick="editSubtask(${i})">
+        <img src="../assets/icons/edit.svg" alt="edit-icon" />
       </div>
-    </div>`;
+      <div class="hyphen-subtask"></div>
+      <div class="subtask-icons" onclick="deleteSubtask(${i})">
+        <img src="../assets/icons/delete.svg" alt="delete-icon" />
+      </div>
+    </div>
+  </div>`;
 }
 
 /**
- * Returns the HTML string for an editable subtask input field.
- * Includes save and delete icons for user interaction.
- *
- * @param {number} i - Index of the subtask in the list.
- * @param {{ text: string }} subtask - Subtask object containing the text to edit.
- * @returns {string} HTML string for the editable subtask input.
- */
+* Returns the HTML string for an editable subtask input field.
+* Includes save and delete icons for user interaction.
+*
+* @param {number} i - Index of the subtask in the list.
+* @param {{ text: string }} subtask - Subtask object containing the text to edit.
+* @returns {string} HTML string for the editable subtask input.
+*/
 function editSubtaskTemplate(i, subtask) {
   return `
-    <div class="input-container-edit">
-      <input type="text" name="category" id="editSubtask-${i}" value="${subtask.text}" onkeydown="handleSubtaskEnter(event)"/>
-      <div class="input-other-icons">
-        <div class="container-icons" onclick="deleteSubtask()">
-          <img src="../assets/icons/delete.svg" alt="delete-icon" />
-        </div>
-        <div class="hyphen"></div>
-        <div class="container-icons" onclick="saveEditedSubtask(${i})">
-          <img src="../assets/icons/check-blue.svg" alt="check-icon" />
-        </div>
+  <div class="input-container-edit">
+    <input type="text" name="category" id="editSubtask-${i}" value="${subtask.text}"
+      onkeydown="handleSubtaskEnter(event)" />
+    <div class="input-other-icons">
+      <div class="container-icons" onclick="deleteSubtask()">
+        <img src="../assets/icons/delete.svg" alt="delete-icon" />
       </div>
-    </div>`;
+      <div class="hyphen"></div>
+      <div class="container-icons" onclick="saveEditedSubtask(${i})">
+        <img src="../assets/icons/check-blue.svg" alt="check-icon" />
+      </div>
+    </div>
+  </div>`;
 }
 
 /**
- * Returns the HTML for showing selected contact initials with a colored background.
- *
- * @param {string} initials - Initials of the contact.
- * @param {string} initialsColor - Background color for the initials circle.
- * @returns {string} HTML string for the initials circle.
- */
+* Returns the HTML for showing selected contact initials with a colored background.
+*
+* @param {string} initials - Initials of the contact.
+* @param {string} initialsColor - Background color for the initials circle.
+* @returns {string} HTML string for the initials circle.
+*/
 function initialsTemplate(initials, initialsColor) {
-  return `   
-    <div class="circle-color-checked-assigned" style="background-color: ${initialsColor}">
-      <span>${initials}</span>
-    </div>`;
+  return `
+  <div class="circle-color-checked-assigned" style="background-color: ${initialsColor}">
+    <span>${initials}</span>
+  </div>`;
 }
 
 function moreContactsTemplate(dropDownMenuId, remaining) {
   return `
-    <div class="more-contacts" onclick="event.stopPropagation(); showAllContacts('${dropDownMenuId}')">
-      +${remaining} more
-    </div>
+  <div class="more-contacts" onclick="event.stopPropagation(); showAllContacts('${dropDownMenuId}')">
+    +${remaining} more
+  </div>
   `;
 }

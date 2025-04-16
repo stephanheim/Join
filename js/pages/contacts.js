@@ -115,26 +115,6 @@ function getGroupedContacts() {
 }
 
 /**
- * Renders grouped contacts into the contact list container.
- * Each group gets a heading and its contacts rendered with initials.
- *
- * @param {Array<{group: string, contacts: Object[]}>} groupedContacts - Alphabetically grouped contact objects.
- */
-function renderContacts(groupedContacts) {
-  let contactList = document.getElementById('contacts-div');
-  contactList.innerHTML = '';
-  for (let i = 0; i < groupedContacts.length; i++) {
-    let group = groupedContacts[i];
-    contactList.innerHTML += generateGroupHTML(group.group);
-    for (let j = 0; j < group.contacts.length; j++) {
-      let contact = group.contacts[j];
-      let initials = getInitials(contact.name);
-      contactList.innerHTML += generateContactsHTML(contact, initials);
-    }
-  }
-}
-
-/**
  * Creates a new contact by sending data to Firebase and processing the response.
  *
  * @param {string} name - The contact's name.
@@ -164,18 +144,6 @@ async function processNewContact(contactId) {
     scrollToContact(contactId);
   }, 100);
   showSuccessMessage();
-}
-
-/**
- * Scrolls to a contact element in the list and centers it in the viewport.
- *
- * @param {string} contactId - The ID of the contact to scroll to.
- */
-function scrollToContact(contactId) {
-  let contactElement = document.getElementById(`contact-${contactId}`);
-  if (contactElement) {
-    contactElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
 }
 
 /**
@@ -231,42 +199,6 @@ function checkContactForm(mode) {
     toggleSubmitButton('add');
   }
   return allContactFieldsValid(mode);
-}
-
-/**
- * Displays the detailed view for the selected contact.
- *
- * If the contact is already active and the viewport is desktop-sized (≥1200px),
- * the function avoids redundant UI updates.
- *
- * Otherwise, it updates the active contact, highlights it, and shows the details.
- *
- * @param {string} contactId - The ID of the contact to display.
- */
-function showContactInfo(contactId) {
-  let contact = contactsArray.find((c) => c.id === contactId);
-  if (!contact) return;
-  let isMobile = window.innerWidth < 1200;
-  if (activeContactId === contactId && !isMobile) {
-    handleContactClick(contact, contactId);
-    return;
-  }
-  activeContactId = contactId;
-  handleContactClick(contact, contactId);
-}
-
-/**
- * Handles UI updates for a selected contact.
- * Highlights the contact, displays the glance view and adapts layout responsively.
- *
- * @param {Object} contact - The contact object to display.
- * @param {string} contactId - The ID of the contact to highlight and manage.
- */
-function handleContactClick(contact, contactId){
-  clearHighlightContact();
-  highlightContact(contactId);
-  showGlanceWindow(contact);
-  showResponsiveLayout(contactId);
 }
 
 /**

@@ -236,62 +236,6 @@ function resetSelectedPriority() {
 }
 
 /**
- * Renders all available contacts inside the dropdown menu with their current selection status.
- *
- * @param {HTMLElement} dropDownMenu - The dropdown menu element.
- * @param {Array<Object>} contacts - The array of contact objects to render.
- */
-
-function addedContacts(dropDownMenu, contacts, showAll = false) {
-  const maxVisible = 5;
-  const limit = showAll ? contacts.length : maxVisible;
-  const visibleContacts = contacts.slice(0, limit);
-  visibleContacts.forEach((contact, i) => {
-    const { name, color, initials } = contact;
-    const isChecked = selectedContacts.some((c) => c.id === contact.id);
-    dropDownMenu.innerHTML += assignedToTemplate(name, color, initials, i, isChecked);
-  });
-  if (!showAll && contacts.length > maxVisible) {
-    const remaining = contacts.length - maxVisible;
-    dropDownMenu.innerHTML += moreContactsTemplate(dropDownMenu.id, remaining);
-  }
-  return visibleContacts;
-}
-
-function showAllContacts(dropDownMenuId) {
-  const dropDownMenu = document.getElementById(dropDownMenuId);
-  dropDownMenu.innerHTML = '';
-  const renderedContacts = addedContacts(dropDownMenu, formattedContactsArray, true);
-  applySelectionStyles(renderedContacts);
-}
-
-/**
- * Applies selection styles to all contacts in the dropdown based on checkbox state.
- *
- * @param {Array<Object>} contacts - Array of contact objects.
- */
-function applySelectionStyles(contacts) {
-  contacts.forEach((_, i) => {
-    updateSelectedStyle(document.getElementById(`innerDropmenu-${i}`), document.getElementById(`checkbox-${i}`)?.checked);
-  });
-}
-
-/**
- * Filters and renders contacts matching the search term or all contacts if input is too short.
- *
- * @param {string} searchTerm - The string to filter contacts by name.
- */
-function searchContacts(searchTerm) {
-  const dropDownMenu = document.getElementById('dropDownMenuAssigned');
-  if (searchTerm.length < 2) {
-    renderDropdownUser(dropDownMenu, formattedContactsArray);
-    return;
-  }
-  let searchContacts = formattedContactsArray.filter((contact) => contact.name.toLowerCase().startsWith(searchTerm.toLowerCase()));
-  renderDropdownUser(dropDownMenu, searchContacts);
-}
-
-/**
  * Prepares, formats and renders the contact list in the dropdown.
  *
  * @param {HTMLElement} dropDownMenu - The dropdown menu element.
@@ -315,105 +259,6 @@ function resetSelectCategory() {
 }
 
 /**
- * Renders a single subtask in the subtask list container.
- *
- * @param {Object} subtask - The subtask object to render.
- */
-function renderSubtask(subtask) {
-  let subtaskRef = document.getElementById('addedSubtask');
-  let i = addSubtask.length - 1;
-  subtaskRef.innerHTML += subtaskTemplate(i, subtask);
-}
-
-/**
- * Adds a new subtask from the input field if the input is not empty.
- *
- * @param {Event} event - The input event from pressing enter or clicking the add button.
- */
-function addSubtaksFromInput(event) {
-  let subtaskInputRef = document.getElementById('addTaskSubtasks');
-  let subtaskNote = subtaskInputRef.value;
-  if (subtaskNote.trim() !== '') {
-    let newSubtask = { text: subtaskNote, completed: false };
-    addSubtask.push(newSubtask);
-    renderSubtask(newSubtask);
-    resetSubtaskInput(event);
-  }
-}
-
-/**
- * Handles the Enter key press within a subtask input field.
- *
- * This function detects whether the user is currently editing an existing subtask
- * or entering a new one. If an editable subtask input is found, it saves the edited
- * subtask using its index. Otherwise, it adds a new subtask from the input field.
- *
- * @param {KeyboardEvent} event - The keyboard event triggered by key press.
- */
-function handleSubtaskEnter(event) {
-  if (event.key === 'Enter') {
-    let editInput = document.querySelector('.input-container-edit input');
-    if (editInput) {
-      let id = editInput.id;
-      let index = parseInt(id.split('-')[1]);
-      saveEditedSubtask(index);
-    } else {
-      addSubtaksFromInput(event);
-    }
-  }
-}
-
-/**
- * Clears and resets the subtask input field and hides additional icons.
- *
- * @param {Event} event - The event that triggered the reset (e.g. click or keypress).
- */
-function resetSubtaskInput(event) {
-  event.stopPropagation();
-  const inputField = document.getElementById('addTaskSubtasks');
-  const plusIcon = document.getElementById('plusIcon');
-  const otherIcons = document.getElementById('otherIcons');
-  let container = document.getElementById('inputContainer');
-  inputField.value = '';
-  inputField.placeholder = 'Add new subtask';
-  plusIcon.classList.remove('d-none');
-  container.classList.remove('active');
-  if (otherIcons) {
-    otherIcons.classList.add('d-none');
-  }
-}
-
-/**
- * Renders all current subtasks in the container, refreshing the entire list.
- */
-function renderAllSubtasks() {
-  let subtaskRef = document.getElementById('addedSubtask');
-  subtaskRef.innerHTML = '';
-  addSubtask.forEach((subtask, i) => {
-    subtaskRef.innerHTML += subtaskTemplate(i, subtask);
-  });
-}
-
-/**
- * Deletes a subtask by index and re-renders the subtask list.
- *
- * @param {number} i - Index of the subtask to delete.
- */
-function deleteSubtask(i) {
-  addSubtask.splice(i, 1);
-  renderAllSubtasks();
-}
-
-/**
- * Clears all subtasks and resets the subtask list in the UI.
- */
-function resetSubtask() {
-  let subtaskRef = document.getElementById('addedSubtask');
-  subtaskRef.innerHTML = '';
-  addSubtask.length = [];
-}
-
-/**
  * Formats a numeric date input into the format DD/MM/YYYY as the user types.
  * Non-digit characters are removed automatically.
  *
@@ -434,65 +279,29 @@ function formatDate(input) {
 }
 
 /**
- * Toggles the selection of a contact and updates its visual state.
+ * Opens a hidden date picker input and transfers the selected date
+ * into a visible text input in "dd/mm/yyyy" format.
  *
- * @param {Event} event - The event triggered by the user interaction.
- * @param {number} index - The index of the contact in the formattedContactsArray.
- */
-function toggleContactsSelection(event, index) {
-  const checkbox = document.getElementById(`checkbox-${index}`);
-  const container = document.getElementById(`innerDropmenu-${index}`);
-  const isCheckbox = event.target === checkbox;
-  const checked = isCheckbox ? checkbox.checked : !checkbox.checked;
-  if (!checkbox || !container) return;
-  if (!isCheckbox) {
-    event.preventDefault();
-    checkbox.checked = checked;
-  }
-  updateSelectedContacts(index, checked);
-  updateSelectedStyle(container, checked);
-}
-
-/**
- * Clears all selected contacts and resets the initials display area.
- */
-function resetContactsSelection() {
-  let initialContainer = document.getElementById('selectedInitials');
-  initialContainer.innerHTML = '';
-  selectedContacts.length = 0;
-}
-
-function updateSelectedContacts(index, isChecked) {
-  let contact = formattedContactsArray[index];
-  let contactIndex = selectedContacts.findIndex((c) => c.id === contact.id);
-  if (isChecked && contactIndex === -1) {
-    selectedContacts.push(contact);
-  } else if (!isChecked && contactIndex !== -1) {
-    selectedContacts.splice(contactIndex, 1);
-  }
-  renderSelectedInitials();
-}
-
-/**
- * Updates the visual style of a contact item based on selection state.
+ * - Uses `showPicker()` in modern browsers to trigger the native date picker.
+ * - Falls back to `focus()` in older browsers if `showPicker()` is unavailable.
+ * - Formats the selected date after the user chooses it.
  *
- * @param {HTMLElement} element - The container element of the contact item.
- * @param {boolean} isChecked - Whether the contact is selected.
+ * Requirements:
+ * - An <input type="date" id="hiddenDatePicker"> in the DOM
+ * - A visible text input with id="addTaskDate"
  */
-function updateSelectedStyle(element, isChecked) {
-  element.classList.toggle('inner-dropmenu', !isChecked);
-  element.classList.toggle('inner-dropmenu-checked', isChecked);
-}
-
-/**
- * Renders the initials of all selected contacts in the initials display container.
- */
-function renderSelectedInitials() {
-  const initialsRef = document.getElementById('selectedInitials');
-  initialsRef.innerHTML = '';
-  for (let i = 0; i < selectedContacts.length; i++) {
-    const initials = selectedContacts[i].initials;
-    const initialsColor = selectedContacts[i].color;
-    initialsRef.innerHTML += initialsTemplate(initials, initialsColor);
+function openCalendar() {
+  let hiddenPicker = document.getElementById('hiddenDatePicker');
+  if (typeof hiddenPicker.showPicker === 'function') {
+    hiddenPicker.showPicker();
+  } else {
+    hiddenPicker.focus();
   }
+  hiddenPicker.onchange = function () {
+    let date = hiddenPicker.value;
+    if (date) {
+      let [year, month, day] = date.split('-');
+      document.getElementById('addTaskDate').value = `${day}/${month}/${year}`;
+    }
+  };
 }
