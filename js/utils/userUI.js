@@ -87,6 +87,7 @@ function openDropdownAssigned() {
   const dropDownMenu = document.getElementById('dropDownMenuAssigned');
   const inputField = document.getElementById('addTaskAssigned');
   const arrow = document.getElementById('arrowAssigned');
+  dropDownMenu.style.scrollbarWidth = 'none';
   updateUIElements(inputField, arrow, dropDownMenu);
   toggleDropdown(dropDownMenu);
   initialsShowOnAssinged(dropDownMenu);

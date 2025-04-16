@@ -203,12 +203,6 @@
   font-weight: bold;
 }
 
-@media screen and (max-width: 1200px) {
-  .floating-main {
-    display: none !important;
-  }
-}
-
 @media screen and (max-width: 856px) {
   .board-header {
     padding: 48px 64px 24px 64px;

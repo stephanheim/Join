@@ -28,6 +28,7 @@ function addedContacts(dropDownMenu, contacts, showAll = false) {
  */
 function showAllContacts(dropDownMenuId) {
   const dropDownMenu = document.getElementById(dropDownMenuId);
+  dropDownMenu.style.scrollbarWidth = 'auto';
   dropDownMenu.innerHTML = '';
   const renderedContacts = addedContacts(dropDownMenu, formattedContactsArray, true);
   applySelectionStyles(renderedContacts);

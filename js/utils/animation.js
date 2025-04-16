@@ -141,6 +141,7 @@ function openDropdownCategory() {
   toggleArrowRotation(arrow, isHidden);
   renderDropdownMenuCategory(dropDownMenu);
   if (isHidden) {
+    dropDownMenu.style.scrollbarWidth = 'none';
     showDropdown(dropDownMenu);
     closeOnClickOutsideCategory('dropDownMenuCategory', 'categoryDropDown');
   } else {
