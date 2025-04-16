@@ -32,7 +32,7 @@ function generateFloaterHTML() {
               <div id="borderNameContact" class="input-div">
                 <input onfocus="toggleRequiredInputContact(this, true)"
                   onblur="touchedMessageField = true;toggleRequiredInputContact(this, false);renderContactNameMessage('add')"
-                  oninput="toggleSubmitButton();renderContactNameMessage('add')" type="text" placeholder="Name"
+                  oninput="toggleSubmitButton()" type="text" placeholder="Name"
                   class="add-input" id="addContName" minlength="2" maxlength="50" aria-label="text" />
                 <img src="../assets/icons/person_input.svg" class="input-img" />
               </div>
@@ -42,7 +42,7 @@ function generateFloaterHTML() {
               <div id="borderEmailContact" class="input-div">
                 <input onfocus="toggleRequiredInputContact(this, true)"
                   onblur="touchedMessageField = true;toggleRequiredInputContact(this, false);renderContactEmailMessage('add')"
-                  oninput="toggleSubmitButton();renderContactEmailMessage('add')" type="text" placeholder="Email"
+                  oninput="toggleSubmitButton()" type="text" placeholder="Email"
                   class="add-input" id="addContMail" aria-label="Email" />
                 <img src="../assets/icons/mail.svg" class="input-img" />
               </div>
@@ -52,7 +52,7 @@ function generateFloaterHTML() {
               <div id="borderPhoneContact" class="input-div">
                 <input onfocus="toggleRequiredInputContact(this, true)"
                   onblur="touchedMessageField = true;toggleRequiredInputContact(this, false);renderContactPhoneMessage('add')"
-                  oninput="toggleSubmitButton();renderContactPhoneMessage('add')" type="text" placeholder="Phone"
+                  oninput="toggleSubmitButton()" type="text" placeholder="Phone"
                   class="add-input" aria-label="Phone" id="addContPhone" />
                 <img src="../assets/icons/call.svg" class="input-img" />
               </div>
@@ -191,7 +191,7 @@ function generateContactsEditFloaterHTML(contact) {
               <div id="borderEditNameContact" class="input-div">
                 <input onfocus="toggleRequiredInputContact(this, true)"
                   onblur="touchedMessageField = true;toggleRequiredInputContact(this, false);renderContactNameMessage('edit')"
-                  oninput="renderContactNameMessage('edit')" type="text" class="add-input"
+                  type="text" class="add-input"
                   id="editContName" value="${contact.name}" />
                 <img src="../assets/icons/person_input.svg" class="input-img-person" />
               </div>
@@ -201,7 +201,7 @@ function generateContactsEditFloaterHTML(contact) {
               <div id="borderEditEmailContact" class="input-div">
                 <input onfocus="toggleRequiredInputContact(this, true)"
                   onblur="touchedMessageField = true;toggleRequiredInputContact(this, false);renderContactEmailMessage('edit')"
-                  oninput="renderContactEmailMessage('edit')" type="text" class="add-input"
+                  type="text" class="add-input"
                   id="editContMail" value="${contact.email}" />
                 <img src="../assets/icons/mail.svg" class="input-img-mail" />
               </div>
@@ -211,7 +211,7 @@ function generateContactsEditFloaterHTML(contact) {
               <div id="borderEditPhoneContact" class="input-div">
                 <input onfocus="toggleRequiredInputContact(this, true)"
                   onblur="touchedMessageField = true;toggleRequiredInputContact(this, false);renderContactPhoneMessage('edit')"
-                  oninput="renderContactPhoneMessage('edit')" type="text" class="add-input"
+                  type="text" class="add-input"
                   id="editContPhone" value="${contact.phone}" />
                 <img src="../assets/icons/call.svg" class="input-img-call" />
               </div>

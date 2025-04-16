@@ -55,7 +55,7 @@
                 <div class="flex-space-between">
                   <input onfocus="toggleRequiredInput(this, true)"
                     onblur="touchedMessageField = true;toggleRequiredInput(this, false);renderEmailMessage()"
-                    oninput="toggleSubmitButton();renderEmailMessage()" class="inside-input" id="registNewEmail"
+                    oninput="toggleSubmitButton()" class="inside-input" id="registNewEmail"
                     type="text" placeholder="Email" aria-label="Email" autocomplete="email" />
                   <img src="../assets/icons/login_mail_letter.svg" alt="Brief" />
                 </div>
@@ -65,7 +65,7 @@
                 <div class="flex-space-between">
                   <input onfocus="toggleRequiredInput(this, true)"
                     onblur="touchedMessageField = true;toggleRequiredInput(this, false);renderPasswordMessage()"
-                    oninput="checkPasswordIcon();toggleSubmitButton();renderPasswordMessage()" class="inside-input"
+                    oninput="checkPasswordIcon();toggleSubmitButton()" class="inside-input"
                     id="registNewPassword" type="password" placeholder="Password" aria-label="password"
                     autocomplete="current-password" />
                   <img onclick="togglePasswordVisibility()" id="visibilityPwSignup" class="pointer"
