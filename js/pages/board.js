@@ -68,7 +68,7 @@ function renderTasks() {
  */
 function prepareTaskData(task) {
   let initialsHTML = getInitialsTaskCard(task);
-  let namesHTML = getNamesTaskCardTemp(task);
+  let namesHTML = getNamesTaskCardTemp(task, true);
   let subtaskHTML = getSubtaskCardTemp(task);
   let { totalSubtasks, completedSubtasks, progressPercent, progressColor, hideProgressBar } = progressSubtasks(task);
   taskDataMap[task.id] = {

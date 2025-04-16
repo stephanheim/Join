@@ -42,18 +42,24 @@ function saveEditedSubtask(i) {
 }
 
 /**
- * Saves all changes to the edited task, updates Firebase and UI, and shows confirmation.
+ * Saves the edited task by applying all changes and updating the database.
  *
- * @param {string} id - The ID of the task being edited.
+ * @param {string} id - The unique ID of the task to be updated.
+ * 
+ * - Applies user changes to the task object.
+ * - Updates the task in the database.
+ * - Prepares and refreshes task data for display.
+ * - Updates subtask progress on the task card.
+ * - Closes the edit overlay and reopens the updated task card after a short delay.
  */
-function saveEditedTask(id) {
+async function saveEditedTask(id) {
   let task = taskDataMap[id].task;
   setTaskChanges(task);
-  updateEditTaskDB(task);
+  await updateEditTaskDB(task);
   prepareTaskData(task);
   updateSubTaskTaskCard(task.id);
   closeEditGoToBoardCard();
-  messageTaskAdded();
+  setTimeout(() => openBoardCard(id), 120);
 }
 
 /**
@@ -104,33 +110,25 @@ async function updateEditTaskDB(task) {
 }
 
 /**
- * Closes the edit board card overlay and resets the priority selection.
+ * Closes the edit view and transitions back to the board card.
+ *
+ * @param {Event} [event] - Optional event to stop propagation if triggered by a user interaction.
+ * 
+ * - Animates the closing of the large board card.
+ * - Resets content and page scroll behavior.
+ * - Clears the selected priority value.
  */
-function closeEditGoToBoardCard() {
+function closeEditGoToBoardCard(event) {
   let boardCard = document.getElementById('boardCardLarge');
   boardCard.classList.remove('slideIn');
   boardCard.classList.add('slideOut');
   boardCard.style.backgroundColor = 'rgba(0, 0, 0, 0)';
   setTimeout(() => {
-    boardCard.classList.add('d-none');
     boardCard.innerHTML = '';
     document.body.style.overflow = 'auto';
   }, 100);
   selectedPriorityValue = '';
-}
-
-/**
- * Closes the board card overlay without saving and resets the priority selection.
- */
-function closeEditBoardCard() {
-  let boardCard = document.getElementById('boardCardLarge');
-  boardCard.classList.remove('slideIn');
-  boardCard.classList.add('slideOut');
-  boardCard.style.backgroundColor = 'rgba(0, 0, 0, 0)';
-  setTimeout(() => {
-    boardCard.classList.add('d-none');
-    boardCard.innerHTML = '';
-    document.body.style.overflow = 'auto';
-  }, 100);
-  selectedPriorityValue = '';
+  if (event) {
+    event.stopPropagation();
+  }
 }

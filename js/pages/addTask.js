@@ -192,7 +192,7 @@ async function deleteTask(firebaseId, taskId) {
   if (!success) {
     deleteTaskInLocalStorage(firebaseId);
     delete taskDataMap[taskId];
-    closeBoardCard();
+    closeTaskCard();
     renderTasks();
   }
 }

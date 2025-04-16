@@ -231,8 +231,14 @@ function initialsShowOnAssinged(dropDownMenu) {
 }
 
 /**
- * Opens a detailed board card for a task with animations and content.
- * @param {string} id - The task ID used to retrieve content.
+ * Opens the detailed board card view for the specified task.
+ *
+ * @param {string} id - The unique ID of the task to display.
+ * 
+ * - Loads task data, subtasks, and assigned names from `taskDataMap`.
+ * - Renders the task card template into the board card container.
+ * - Disables page scrolling and triggers the slide-in animation.
+ * - Applies a background overlay after a short delay.
  */
 function openBoardCard(id) {
   let { task, subtaskHTML, namesHTML } = taskDataMap[id];
@@ -240,7 +246,7 @@ function openBoardCard(id) {
   let boardCard = document.getElementById('boardCardLarge');
   boardCard.innerHTML = boardCardTemplate(task, subtaskHTML, namesHTML);
   document.body.style.overflow = 'hidden';
-  boardCard.classList.remove('slideOut', 'd-none');
+  boardCard.classList.remove('slideOut');
   boardCard.classList.add('slideIn');
   setTimeout(() => {
     boardCard.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
@@ -248,15 +254,18 @@ function openBoardCard(id) {
 }
 
 /**
- * Closes the board card and resets content.
+ * Closes the currently open task card view on the board.
+ *
+ * - Animates the closing of the large board card.
+ * - Clears its content and restores page scroll behavior.
+ * - Resets the selected priority value.
  */
-function closeBoardCard() {
+function closeTaskCard() {
   let boardCard = document.getElementById('boardCardLarge');
   boardCard.classList.remove('slideIn');
   boardCard.classList.add('slideOut');
   boardCard.style.backgroundColor = 'rgba(0, 0, 0, 0)';
   setTimeout(() => {
-    boardCard.classList.add('d-none');
     boardCard.innerHTML = '';
     document.body.style.overflow = 'auto';
   }, 100);

@@ -203,7 +203,7 @@
   font-weight: bold;
 }
 
-@media screen and (max-width: 1200px){
+@media screen and (max-width: 1200px) {
   .board-main {
     padding: 0px 16px 116px 16px;
   }
