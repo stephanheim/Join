@@ -110,7 +110,6 @@
 }
 
 .board-main {
-  position: relative;
   max-width: 1208px;
   display: flex;
   height: calc(100% - 201px);
@@ -118,6 +117,8 @@
   gap: 26px;
   padding: 0px 64px 0 64px;
   flex-wrap: wrap;
+  overflow: auto;
+  scrollbar-width: none;
 }
 
 .board-task {
