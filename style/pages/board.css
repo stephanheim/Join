@@ -110,20 +110,20 @@
 }
 
 .board-main {
+  position: relative;
   max-width: 1208px;
-  width: 100%;
-  height: auto;
   display: flex;
+  height: calc(100% - 201px);
   justify-content: space-between;
   gap: 26px;
-  padding: 0px 64px 80px 64px;
+  padding: 0px 64px 0 64px;
   flex-wrap: wrap;
 }
 
 .board-task {
   min-height: 354px;
   width: 250px;
-  height: auto;
+  height: 69vh;
   display: flex;
   justify-content: flex-start;
   align-items: center;
