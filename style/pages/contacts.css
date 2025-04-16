@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  margin-top: 4px;
+  margin-top: 16px;
   overflow: hidden;
   position: relative;
 }
@@ -170,9 +170,17 @@
 
 .cnt-mail {
   font-size: 16px;
-  font-weight: 400px;
+  font-weight: 400;
   line-height: 19.2px;
   color: #007cee;
+}
+
+.cnt-mail span {
+  display: inline-block;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .cnt-glance {
@@ -208,6 +216,7 @@
   font-size: 46px;
   font-weight: 500;
   line-height: 120%;
+  aspect-ratio: 1 / 1;
 }
 
 .cnt-glance-icon-div {
@@ -254,6 +263,7 @@
   line-height: 19.2px;
   color: #007cee;
   padding-bottom: 8px;
+  overflow-wrap: break-word;
 }
 
 .cnt-info-phone {
@@ -524,19 +534,22 @@
   }
 }
 
-  .cnt-title {
-    margin-bottom: 24px;
-  }
+.cnt-title {
+  margin-bottom: 24px;
+}
 
-  .cnt-glance-contact {
-    gap: 8px;
-  }
+.cnt-glance-contact {
+  gap: 8px;
+}
 
-  .resp-btn img {
+.resp-btn img {
   height: 20px;
   width: 20px;
-  }
+}
 
+.cnt-initials {
+  aspect-ratio: 1/1;
+}
 
 @media screen and (max-width: 350px) {
   .cnt-resp-name {
@@ -551,6 +564,17 @@
   .cnt-info-mail,
   .cnt-info-phone {
     font-size: 14px;
+  }
+
+  .cnt-mail span {
+    max-width: 120px;
+  }
+
+  .cnt-glance-initials {
+    aspect-ratio: 1 / 1;
+    width: auto;
+    height: auto;
+    flex-shrink: 0;
   }
 
 }

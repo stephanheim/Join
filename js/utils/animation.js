@@ -93,14 +93,6 @@ function messageTaskAdded() {
   }, 1300);
 }
 
-const joinLogoMobile = document.querySelector('.start-join-logo img');
-if (joinLogoMobile && window.innerWidth <= 600) {
-  joinLogoMobile.src = './assets/img/join.svg';
-  setTimeout(() => {
-    joinLogoMobile.src = './assets/img/join_login.svg';
-  }, 700);
-}
-
 /**
  * Displays field validation errors for task input fields.
  */
