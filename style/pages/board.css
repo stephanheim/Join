@@ -210,13 +210,12 @@
   .board-main {
     padding: 0px 16px 116px 16px;
   }
+  .board-header {
+    padding: 48px 16px 24px 16px;
+  }
 }
 
 @media screen and (max-width: 856px) {
-  .board-header {
-    padding: 48px 64px 24px 64px;
-  }
-
   .board-header-content {
     height: 144px;
     flex-direction: column;
@@ -257,10 +256,6 @@
 }
 
 @media screen and (max-width: 539px) {
-  .board-header {
-    padding: 48px 16px 24px 16px;
-  }
-
   .container-find-task {
     max-width: unset;
   }
