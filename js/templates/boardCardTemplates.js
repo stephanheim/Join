@@ -94,110 +94,114 @@ function editBoardCardTemplate(task, subtaskHTML, namesHTML) {
   const isUrgent = prio === 'Urgent' ? 'isSelected' : '';
   const isMedium = prio === 'Medium' ? 'isSelected' : '';
   const isLow = prio === 'Low' ? 'isSelected' : '';
-  return ` <div class="user-story-card">
+  return `
+  <div class="outside-user-story-card">
+  <div class="user-story-card">
     <div class="inner-card">
       <div class="headline-story-user-edit">
         <div class="img-close-div" onclick="closeTaskCard('${task.id}')">
           <img src="../assets/icons/close.svg" alt="" />
         </div>
       </div>
+      <form>
+        <div class="inner-card-lower">
+          <div class="add-task-single">
+            <div>
+              <h2>Title</h2>
+            </div>
+            <div>
+              <input id="editTitle" class="input_at" type="text" placeholder="Enter a title" value="${task.title}" />
+            </div>
+          </div>
+          <div class="add-task-single">
+            <div>
+              <h2>Description</h2>
+            </div>
+            <div>
+              <textarea id="editDescription" class="textarea-add-task" name="" id=""
+                placeholder="Enter a Description">${task.description}</textarea>
+            </div>
+          </div>
+          <div class="add-task-single">
+            <label class="title-and-star" for="addTaskDate">
+              <h2>Due date</h2>
+              <span class="span-star">*</span>
+            </label>
+            <div class="input-date-outside">
+              <input oninput="formatDate(this)" id="addTaskDate" class="input-date" name="date" type="text"
+                placeholder="dd/mm/yyyy" value="${task.date}" />
+              <img src="../assets/icons/date_event.svg" onclick="openCalendar()" />
+              <input type="date" id="hiddenDatePicker" class="hidden-date-picker" />
+            </div>
+          </div>
+          <div class="add-task-single">
+            <h2>Prio</h2>
+            <div class="prio-section">
+              <button id="btn1" color="rgba(255, 61, 0, 1);" onclick="selectedPriority('Urgent', this)"
+                class="button-prio ${isUrgent}" type="button">
+                Urgent <img src="../assets/icons/urgent-red.svg" alt="Urgent" />
+              </button>
+              <button id="btn2" color="rgba(255, 168, 0, 1)" onclick="selectedPriority('Medium', this)"
+                class="button-prio ${isMedium}" type="button">
+                Medium <img src="../assets/icons/medium-orange.svg" alt="Medium" />
+              </button>
+              <button id="btn3" color="rgba(122, 226, 41, 1)" onclick="selectedPriority('Low', this)"
+                class="button-prio ${isLow}" type="button">
+                Low <img src="../assets/icons/low-green.svg" alt="Low" />
+              </button>
+            </div>
+          </div>
+          <div class="add-task-single">
+            <label class="title-and-star" for="addTaskAssigned">
+              <h2>Assigned to</h2>
+            </label>
+            <div class="assigned-input-outside">
+              <div id="assignedInputBorderColor" class="input-container-assigned" onclick="openDropdownAssigned()">
+                <input id="addTaskAssigned" type="text" placeholder="Select contacts to assign"
+                  oninput="searchContacts(this.value)" />
+                <div class="container-arrow-img-dropdown">
+                  <img id="arrowAssigned" class="arrow-drop-down" src="../assets/icons/drop_up_arrwow.svg"
+                    alt="Dropdown" />
+                </div>
+              </div>
+              <div id="dropDownMenuAssigned" class="main-drop-down drop-down-hide d-none"></div>
+            </div>
+            <div id="selectedInitials" class="initial-container">${namesHTML}</div>
+          </div>
+          <div class="add-task-single">
+            <label for="addTaskSubtasks">
+              <h2>Subtasks</h2>
+            </label>
+            <div id="inputContainer" class="input-container-subtask" onclick="openSubtaskInput()">
+              <input type="text" name="category" id="addTaskSubtasks" placeholder="Add new subtask" />
+              <div class="container-arrow-img-dropdown" id="plusIcon">
+                <img src="../assets/icons/add_plus.svg" />
+              </div>
+              <div class="input-other-icons d-none" id="otherIcons">
+                <div class="container-icons" onclick="closeSubtaskInput(event)">
+                  <img src="../assets/icons/close.svg" alt="close" />
+                </div>
+                <div class="hyphen"></div>
+                <div class="container-icons" onclick="addSubtaksFromInput(event)">
+                  <img src="../assets/icons/check-blue.svg" alt="check" />
+                </div>
+              </div>
+            </div>
+            <div class="subtask-content" id="addedSubtask">
+              ${subtaskHTML}
+            </div>
+          </div>
+        </div>
+        <div class="btn-section">
+          <button class="bt-board-card-edit" onclick="saveEditedTask('${task.id}')">
+            Ok
+            <img src="../assets/icons/check.svg" alt="" />
+          </button>
+        </div>
+      </form>
     </div>
-    <form>
-      <div class="inner-card-lower">
-        <div class="add-task-single">
-          <div>
-            <h2>Title</h2>
-          </div>
-          <div>
-            <input id="editTitle" class="input_at" type="text" placeholder="Enter a title" value="${task.title}" />
-          </div>
-        </div>
-        <div class="add-task-single">
-          <div>
-            <h2>Description</h2>
-          </div>
-          <div>
-            <textarea id="editDescription" class="textarea-add-task" name="" id=""
-              placeholder="Enter a Description">${task.description}</textarea>
-          </div>
-        </div>
-        <div class="add-task-single">
-          <label class="title-and-star" for="addTaskDate">
-            <h2>Due date</h2>
-            <span class="span-star">*</span>
-          </label>
-          <div class="input-date-outside">
-            <input oninput="formatDate(this)" id="addTaskDate" class="input-date" name="date" type="text"
-              placeholder="dd/mm/yyyy" value="${task.date}" />
-            <img src="../assets/icons/date_event.svg" onclick="openCalendar()" />
-            <input type="date" id="hiddenDatePicker" class="hidden-date-picker" />
-          </div>
-        </div>
-        <div class="add-task-single">
-          <h2>Prio</h2>
-          <div class="prio-section">
-            <button id="btn1" color="rgba(255, 61, 0, 1);" onclick="selectedPriority('Urgent', this)"
-              class="button-prio ${isUrgent}" type="button">
-              Urgent <img src="../assets/icons/urgent-red.svg" alt="Urgent" />
-            </button>
-            <button id="btn2" color="rgba(255, 168, 0, 1)" onclick="selectedPriority('Medium', this)"
-              class="button-prio ${isMedium}" type="button">
-              Medium <img src="../assets/icons/medium-orange.svg" alt="Medium" />
-            </button>
-            <button id="btn3" color="rgba(122, 226, 41, 1)" onclick="selectedPriority('Low', this)"
-              class="button-prio ${isLow}" type="button">
-              Low <img src="../assets/icons/low-green.svg" alt="Low" />
-            </button>
-          </div>
-        </div>
-        <div class="add-task-single">
-          <label class="title-and-star" for="addTaskAssigned">
-            <h2>Assigned to</h2>
-          </label>
-          <div class="assigned-input-outside">
-            <div id="assignedInputBorderColor" class="input-container-assigned" onclick="openDropdownAssigned()">
-              <input id="addTaskAssigned" type="text" placeholder="Select contacts to assign"
-                oninput="searchContacts(this.value)" />
-              <div class="container-arrow-img-dropdown">
-                <img id="arrowAssigned" class="arrow-drop-down" src="../assets/icons/drop_up_arrwow.svg" alt="Dropdown" />
-              </div>
-            </div>
-            <div id="dropDownMenuAssigned" class="main-drop-down drop-down-hide d-none"></div>
-          </div>
-          <div id="selectedInitials" class="initial-container">${namesHTML}</div>
-        </div>
-        <div class="add-task-single">
-          <label for="addTaskSubtasks">
-            <h2>Subtasks</h2>
-          </label>
-          <div id="inputContainer" class="input-container-subtask" onclick="openSubtaskInput()">
-            <input type="text" name="category" id="addTaskSubtasks" placeholder="Add new subtask" />
-            <div class="container-arrow-img-dropdown" id="plusIcon">
-              <img src="../assets/icons/add_plus.svg" />
-            </div>
-            <div class="input-other-icons d-none" id="otherIcons">
-              <div class="container-icons" onclick="closeSubtaskInput(event)">
-                <img src="../assets/icons/close.svg" alt="close" />
-              </div>
-              <div class="hyphen"></div>
-              <div class="container-icons" onclick="addSubtaksFromInput(event)">
-                <img src="../assets/icons/check-blue.svg" alt="check" />
-              </div>
-            </div>
-          </div>
-          <div class="subtask-content" id="addedSubtask">
-            ${subtaskHTML}
-          </div>
-        </div>
-      </div>
-    </form>
-    <div class="btn-section">
-      <button class="bt-board-card-edit" onclick="saveEditedTask('${task.id}')">
-        Ok
-        <img src="../assets/icons/check.svg" alt="" />
-      </button>
-    </div>
-  </div>`;
+  </div>
+</div>`;
 }
 
 /**

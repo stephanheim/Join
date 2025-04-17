@@ -167,7 +167,8 @@
 }
 
 .button-prio {
-  width: 140px;
+  max-width: 140px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -468,7 +469,7 @@
   }
 
   .button-prio {
-    width: 121px;
+    max-width: 121px;
     height: 41px;
   }
 
@@ -522,7 +523,6 @@
 
   .button-prio {
     flex-direction: column;
-    width: 121px;
     height: 56px;
     font-size: 16px;
   }
@@ -549,6 +549,10 @@
 
   .required-field-desctop {
     display: none;
+  }
+
+  .add-subtask {
+    padding: 4px 0 4px 4px;
   }
 }
 
