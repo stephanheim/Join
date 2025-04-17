@@ -103,7 +103,7 @@ function editBoardCardTemplate(task, subtaskHTML, namesHTML) {
           <img src="../assets/icons/close.svg" alt="" />
         </div>
       </div>
-      <form>
+      <form onsubmit="saveEditedTask('${task.id}');return false;">
         <div class="inner-card-lower">
           <div class="add-task-single">
             <div>
@@ -193,7 +193,7 @@ function editBoardCardTemplate(task, subtaskHTML, namesHTML) {
           </div>
         </div>
         <div class="btn-section">
-          <button class="bt-board-card-edit" onclick="saveEditedTask('${task.id}')">
+          <button type="submit" class="bt-board-card-edit">
             Ok
             <img src="../assets/icons/check.svg" alt="" />
           </button>
