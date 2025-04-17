@@ -93,6 +93,16 @@ function messageTaskAdded() {
   }, 1300);
 }
 
+function switchJoinLogoOnMobile() {
+  const joinLogoMobile = document.querySelector('.start-join-logo img');
+  if (joinLogoMobile && window.innerWidth <= 600) {
+    joinLogoMobile.src = './assets/img/join.svg';
+    setTimeout(() => {
+      joinLogoMobile.src = './assets/img/join_login.svg';
+    }, 800);
+  }
+}
+
 /**
  * Displays field validation errors for task input fields.
  */
@@ -226,7 +236,7 @@ function initialsShowOnAssinged(dropDownMenu) {
  * Opens the detailed board card view for the specified task.
  *
  * @param {string} id - The unique ID of the task to display.
- * 
+ *
  * - Loads task data, subtasks, and assigned names from `taskDataMap`.
  * - Renders the task card template into the board card container.
  * - Disables page scrolling and triggers the slide-in animation.
