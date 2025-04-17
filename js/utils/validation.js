@@ -183,3 +183,4 @@ function isUserInContacts(email) {
   return contactsArray.some((contact) => contact.email === email);
 }
 
+
