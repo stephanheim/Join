@@ -123,12 +123,15 @@
 
 .board-task {
   min-height: 354px;
+  height: 100%;
   width: 250px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   gap: 16px;
+  overflow: auto;
+  scrollbar-width: none;
 }
 
 .nav-add-task {
@@ -240,6 +243,7 @@
   .board-task {
     min-height: unset;
     width: 100%;
+    height: unset;
     align-items: flex-start;
   }
 
