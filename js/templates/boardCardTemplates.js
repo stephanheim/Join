@@ -9,49 +9,52 @@
 * @returns {string} HTML string for the board card view of the task.
 */
 function boardCardTemplate(task, subtaskHTML, namesHTML) {
-  return `<div class="user-story-card">
-    <div class="inner-card">
-      <header class="headline-story-user">
-        <div class="user-headline">
-          <span class="span-headline">${task.category}</span>
-        </div>
-        <div class="img-close-div" onclick="closeTaskCard()">
-          <img src="../assets/icons/close.svg" />
-        </div>
-      </header>
-      <div class="task-title">
-        <h1>${task.title}</h1>
-      </div>
-      <div class="inner-text-build-start">
-        <div class="description-text-brake">
-          <span>${task.description}</span>
-        </div>
-        <div class="priority-content">
-          <div>
-            <p class="headline-boardcard">Due date:</p>
+  return `
+  <div class="outside-user-story-card">
+    <div class="user-story-card">
+      <div class="inner-card">
+        <header class="headline-story-user">
+          <div class="user-headline">
+            <span class="span-headline">${task.category}</span>
           </div>
-          <div>
-            <span>${task.date}</span>
+          <div class="img-close-div" onclick="closeTaskCard()">
+            <img src="../assets/icons/close.svg" />
           </div>
+        </header>
+        <div class="task-title">
+          <h1>${task.title}</h1>
         </div>
-        <div>
+        <div class="inner-text-build-start">
+          <div class="description-text-brake">
+            <span>${task.description}</span>
+          </div>
           <div class="priority-content">
-            <p class="headline-boardcard">Priority:</p>
-            <div class="img-content">
-              <span>${task.priority}</span>
-              <img src="../assets/icons/${getPriorityIcon(task.priority)}" />
+            <div>
+              <p class="headline-boardcard">Due date:</p>
+            </div>
+            <div>
+              <span>${task.date}</span>
             </div>
           </div>
-        </div>
-        <div>
-          <p class="headline-boardcard">Assigned To:</p>
-        </div>
-        <div class="contact-container">${namesHTML}</div>
-        <div>
-          <p class="headline-boardcard">Subtasks</p>
-        </div>
-        <div class="subtask-content">
-          ${subtaskHTML}
+          <div>
+            <div class="priority-content">
+              <p class="headline-boardcard">Priority:</p>
+              <div class="img-content">
+                <span>${task.priority}</span>
+                <img src="../assets/icons/${getPriorityIcon(task.priority)}" />
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="headline-boardcard">Assigned To:</p>
+          </div>
+          <div class="contact-container">${namesHTML}</div>
+          <div>
+            <p class="headline-boardcard">Subtasks</p>
+          </div>
+          <div class="subtask-content">
+            ${subtaskHTML}
+          </div>
         </div>
       </div>
       <div class="delete-edit-section">
