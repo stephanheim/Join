@@ -12,15 +12,15 @@ function boardCardTemplate(task, subtaskHTML, namesHTML) {
   return `
   <div class="outside-user-story-card">
     <div class="user-story-card">
+      <header class="headline-story-user">
+        <div class="user-headline">
+          <span class="span-headline">${task.category}</span>
+        </div>
+        <div class="img-close-div" onclick="closeTaskCard()">
+          <img src="../assets/icons/close.svg" />
+        </div>
+      </header>
       <div class="inner-card">
-        <header class="headline-story-user">
-          <div class="user-headline">
-            <span class="span-headline">${task.category}</span>
-          </div>
-          <div class="img-close-div" onclick="closeTaskCard()">
-            <img src="../assets/icons/close.svg" />
-          </div>
-        </header>
         <div class="task-title">
           <h1>${task.title}</h1>
         </div>

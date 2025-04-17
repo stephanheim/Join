@@ -529,8 +529,17 @@
     padding: 10%;
   }
 
+  .cnt-glance {
+    gap: 16px;
+  }
+
   .cnt-details {
     word-break: break-word;
+  }
+
+  .cnt-contact-info {
+    padding-top: 0;
+    height: 24px;
   }
 }
 
