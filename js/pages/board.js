@@ -212,46 +212,6 @@ function updateSubTaskTaskCard(taskId) {
 }
 
 /**
- * Handles click on "Add Task" depending on screen size.
- * On mobile, loads a new page. On desktop, opens floating overlay.
- *
- * @param {string} status - The status to set for the new task.
- */
-function handleClickFloatingTask(status) {
-  const addTaskNav = findNavLinkByText('Add Task');
-  if (window.innerWidth <= 1200) {
-    loadAddTaskPage(status, addTaskNav);
-  } else {
-    openAddTaskFloating(status);
-  }
-}
-
-/**
- * Finds a navigation element that contains specific text.
- *
- * @param {string} text - Text to search for in nav links.
- * @returns {HTMLElement|undefined} The matching nav link.
- */
-function findNavLinkByText(text) {
-  return Array.from(document.querySelectorAll('.nav')).find((link) => link.textContent.trim().includes(text));
-}
-
-/**
- * Loads the add task page dynamically and sets the current task status.
- *
- * @param {string} status - The task status to assign.
- * @param {HTMLElement} navElement - The nav element to highlight.
- */
-function loadAddTaskPage(status, navElement) {
-  loadPageContentPath('addTask').then(() => {
-    addTaskStatusTarget = status;
-    if (navElement) {
-      setActiveNav(navElement);
-    }
-  });
-}
-
-/**
  * Updates a task and its subtasks in Firebase, depending on whether it's default or new.
  *
  * @param {Object} task - The task to update.

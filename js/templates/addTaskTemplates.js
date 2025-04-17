@@ -6,134 +6,134 @@
  */
 function addTaskTemplate() {
   return `
-  <div class="floating-content">
-    <div class="headline-add-task-floating">
-      <h1 class="h1-add-task">Add Task</h1>
-      <div class="close-div" onclick="closeAddTaskFloating()">
-        <img src="../assets/icons/close.svg" class="add-close-btn" alt="Close" />
-      </div>
-    </div>
-    <form id="addTaskForm" class="add-task-form-floating" onsubmit="createNewTask();return false;">
-      <div class="input-section-floating">
-        <div class="section-left">
-          <div class="add-task-single">
-            <label class="title-and-star" for="addTaskTitle">
-              <h2>Title</h2>
-              <span class="span-star">*</span>
-            </label>
-            <div>
-              <input id="addTaskTitle" class="input_at" type="text" name="title" placeholder="Enter a title" />
-              <span id="titleMessage" class="error-message"></span>
-            </div>
-          </div>
-          <div class="add-task-single">
-            <label for="addTaskDescription">
-              <h2>Description</h2>
-            </label>
-            <textarea id="addTaskDescription" class="textarea-add-task" name="description"
-              placeholder="Enter a Description"></textarea>
-          </div>
-          <div class="add-task-single">
-            <label class="title-and-star" for="addTaskDate">
-              <h2>Due date</h2>
-              <span class="span-star">*</span>
-            </label>
-            <div>
-              <div id="inputDate" class="input-date-outside">
-                <input oninput="formatDate(this)" id="addTaskDate" class="input-date" name="date" type="text"
-                  placeholder="dd/mm/yyyy" />
-                <img src="../assets/icons/date_event.svg" onclick="openCalendar()" />
-                <input type="date" id="hiddenDatePicker" class="hidden-date-picker" />
-              </div>
-              <span id="dateMessage" class="error-message"></span>
-            </div>
-          </div>
+  <div class="outside-floating-addTask">
+    <div class="floating-content">
+      <div class="headline-add-task-floating">
+        <h1 class="h1-add-task">Add Task</h1>
+        <div class="close-div" onclick="closeAddTaskFloating()">
+          <img src="../assets/icons/close.svg" class="add-close-btn" alt="Close" />
         </div>
-        <div class="devider-ver"></div>
-        <div class="section-right">
-          <div class="add-task-single">
-            <label for="btn1">
-              <h2>Prio</h2>
-            </label>
-            <div class="button-section selected">
-              <button id="btn1" type="button" color="rgba(255, 61, 0, 1);" class="button-prio"
-                onclick="selectedPriority('Urgent', this)">
-                Urgent <img src="../assets/icons/urgent-red.svg" />
-              </button>
-              <button id="btn2" type="button" color="rgba(255, 168, 0, 1)" class="button-prio isSelected"
-                onclick="selectedPriority('Medium', this)">
-                Medium <img src="../assets/icons/medium-orange.svg" />
-              </button>
-              <button id="btn3" type="button" color="rgba(122, 226, 41, 1)" class="button-prio"
-                onclick="selectedPriority('Low', this)">
-                Low <img src="../assets/icons/low-green.svg" />
-              </button>
-            </div>
-          </div>
-          <div class="add-task-single">
-            <div class="title-and-star" for="">
-              <h2>Assigned to</h2>
-            </div>
-            <div class="assigned-input-outside">
-              <div class="input-container-assigned" id="assignedInputBorderColor" onclick="openDropdownAssigned()">
-                <input id="addTaskAssigned" type="text" name="contacts" placeholder="Select contacts to assign" />
-                <div class="container-arrow-img-dropdown">
-                  <img id="arrowAssigned" class="arrow-drop-down" src="../assets/icons/drop_up_arrwow.svg" />
-                </div>
+      </div>
+      <form id="addTaskForm" class="add-task-form-floating" onsubmit="createNewTask();return false;">
+        <div class="input-section-floating">
+          <div class="section-left">
+            <div class="add-task-single">
+              <label class="title-and-star" for="addTaskTitle">
+                <h2>Title</h2>
+                <span class="span-star">*</span>
+              </label>
+              <div>
+                <input id="addTaskTitle" class="input_at" type="text" name="title" placeholder="Enter a title" />
+                <span id="titleMessage" class="error-message"></span>
               </div>
-              <div id="dropDownMenuAssigned" class="main-drop-down drop-down-hide"></div>
             </div>
-            <div id="selectedInitials" class="initial-container d-none"></div>
+            <div class="add-task-single">
+              <label for="addTaskDescription">
+                <h2>Description</h2>
+              </label>
+              <textarea id="addTaskDescription" class="textarea-add-task" name="description"
+                placeholder="Enter a Description"></textarea>
+            </div>
+            <div class="add-task-single">
+              <label class="title-and-star" for="addTaskDate">
+                <h2>Due date</h2>
+                <span class="span-star">*</span>
+              </label>
+              <div>
+                <div id="inputDate" class="input-date-outside">
+                  <input oninput="formatDate(this)" id="addTaskDate" class="input-date" name="date" type="text"
+                    placeholder="dd/mm/yyyy" />
+                  <img src="../assets/icons/date_event.svg" onclick="openCalendar()" />
+                  <input type="date" id="hiddenDatePicker" class="hidden-date-picker" />
+                </div>
+                <span id="dateMessage" class="error-message"></span>
+              </div>
+            </div>
           </div>
-          <div class="add-task-single">
-            <div class="title-and-star">
-              <h2>Category</h2>
-              <span class="span-star">*</span>
+          <div class="devider-ver"></div>
+          <div class="section-right">
+            <div class="add-task-single">
+              <label for="btn1">
+                <h2>Prio</h2>
+              </label>
+              <div class="button-section selected">
+                <button id="btn1" type="button" color="rgba(255, 61, 0, 1);" class="button-prio"
+                  onclick="selectedPriority('Urgent', this)">
+                  Urgent <img src="../assets/icons/urgent-red.svg" />
+                </button>
+                <button id="btn2" type="button" color="rgba(255, 168, 0, 1)" class="button-prio isSelected"
+                  onclick="selectedPriority('Medium', this)">
+                  Medium <img src="../assets/icons/medium-orange.svg" />
+                </button>
+                <button id="btn3" type="button" color="rgba(122, 226, 41, 1)" class="button-prio"
+                  onclick="selectedPriority('Low', this)">
+                  Low <img src="../assets/icons/low-green.svg" />
+                </button>
+              </div>
             </div>
-            <div id="addTaskCategory" class="input-container-category">
-              <div class="category-container" onclick="openDropdownCategory()">
-                <div id="categoryDropDown" class="drop-down-placeholder">
-                  <div class="textfield">
-                    <h2 id="selectedCategory">Select task category</h2>
-                  </div>
+            <div class="add-task-single">
+              <div class="title-and-star" for="">
+                <h2>Assigned to</h2>
+              </div>
+              <div class="assigned-input-outside">
+                <div class="input-container-assigned" id="assignedInputBorderColor" onclick="openDropdownAssigned()">
+                  <input id="addTaskAssigned" type="text" name="contacts" placeholder="Select contacts to assign" />
                   <div class="container-arrow-img-dropdown">
-                    <img id="arrowCategory" class="arrow-drop-down" src="../assets/icons/drop_up_arrwow.svg" />
+                    <img id="arrowAssigned" class="arrow-drop-down" src="../assets/icons/drop_up_arrwow.svg" />
                   </div>
                 </div>
-                <div id="dropDownMenuCategory" class="drop-down-field-category drop-down-hide"></div>
+                <div id="dropDownMenuAssigned" class="main-drop-down drop-down-hide"></div>
               </div>
-              <span id="categoryMessage" class="error-message"></span>
+              <div id="selectedInitials" class="initial-container d-none"></div>
             </div>
-          </div>
-          <div class="add-task-single">
-            <label for="addTaskSubtasks">
-              <h2>Subtasks</h2>
-            </label>
-            <div id="inputContainer" class="input-container-subtask" onclick="openSubtaskInput()">
-              <input type="text" name="category" id="addTaskSubtasks" placeholder="Add new subtask"
-                onkeydown="handleSubtaskEnter(event)" />
-              <div class="container-arrow-img-dropdown" id="plusIcon">
-                <img src="../assets/icons/add_plus.svg" />
+            <div class="add-task-single">
+              <div class="title-and-star">
+                <h2>Category</h2>
+                <span class="span-star">*</span>
               </div>
-              <div class="input-other-icons d-none" id="otherIcons">
-                <div class="container-icons" onclick="closeSubtaskInput(event)">
-                  <img src="../assets/icons/close.svg" alt="close" />
+              <div id="addTaskCategory" class="input-container-category">
+                <div class="category-container" onclick="openDropdownCategory()">
+                  <div id="categoryDropDown" class="drop-down-placeholder">
+                    <div class="textfield">
+                      <h2 id="selectedCategory">Select task category</h2>
+                    </div>
+                    <div class="container-arrow-img-dropdown">
+                      <img id="arrowCategory" class="arrow-drop-down" src="../assets/icons/drop_up_arrwow.svg" />
+                    </div>
+                  </div>
+                  <div id="dropDownMenuCategory" class="drop-down-field-category drop-down-hide"></div>
                 </div>
-                <div class="hyphen"></div>
-                <div class="container-icons" onclick="addSubtaksFromInput(event)">
-                  <img src="../assets/icons/check-blue.svg" alt="check" />
-                </div>
+                <span id="categoryMessage" class="error-message"></span>
               </div>
             </div>
-            <div class="subtask-content" id="addedSubtask"></div>
-               <div id="requiredMobilFloating" class="required-field-mobil">
-              <span class="span-star">*</span>
-              <p>This field is required</p>
+            <div class="add-task-single">
+              <label for="addTaskSubtasks">
+                <h2>Subtasks</h2>
+              </label>
+              <div id="inputContainer" class="input-container-subtask" onclick="openSubtaskInput()">
+                <input type="text" name="category" id="addTaskSubtasks" placeholder="Add new subtask"
+                  onkeydown="handleSubtaskEnter(event)" />
+                <div class="container-arrow-img-dropdown" id="plusIcon">
+                  <img src="../assets/icons/add_plus.svg" />
+                </div>
+                <div class="input-other-icons d-none" id="otherIcons">
+                  <div class="container-icons" onclick="closeSubtaskInput(event)">
+                    <img src="../assets/icons/close.svg" alt="close" />
+                  </div>
+                  <div class="hyphen"></div>
+                  <div class="container-icons" onclick="addSubtaksFromInput(event)">
+                    <img src="../assets/icons/check-blue.svg" alt="check" />
+                  </div>
+                </div>
+              </div>
+              <div class="subtask-content" id="addedSubtask"></div>
+              <div id="requiredMobilFloating" class="required-field-mobil">
+                <span class="span-star">*</span>
+                <p>This field is required</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      
         <div class="required-section-floating">
           <div id="requiredDesktopFloating" class="required-field-desktop-floating">
             <span class="span-star">*</span>
@@ -142,16 +142,17 @@ function addTaskTemplate() {
           <div class="bt-section-floating">
             <button class="bt-clear" type="reset" onclick="clearAddTask()">
               Clear
-                <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12.2496 11.9998L17.4926 17.2428M7.00659 17.2428L12.2496 11.9998L7.00659 17.2428ZM17.4926 6.75684L12.2486 11.9998L17.4926
-                6.75684ZM12.2486 11.9998L7.00659 6.75684L12.2486 11.9998Z" stroke="#2A3647" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
+                    6.75684ZM12.2486 11.9998L7.00659 6.75684L12.2486 11.9998Z" stroke="#2A3647" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
             </button>
             <button class="bt-create-task" type="submit">Create Task<img src="../assets/icons/check.svg" /></button>
           </div>
-      </div>
-    </form>
+        </div>
+      </form>
+    </div>
   </div>
   `;
 }
