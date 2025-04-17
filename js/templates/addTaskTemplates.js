@@ -7,13 +7,13 @@
 function addTaskTemplate() {
   return `
   <div class="floating-content">
-    <div class="headline-add-task">
+    <div class="headline-add-task-floating">
       <h1 class="h1-add-task">Add Task</h1>
       <div class="close-div" onclick="closeAddTaskFloating()">
         <img src="../assets/icons/close.svg" class="add-close-btn" alt="Close" />
       </div>
     </div>
-    <form id="addTaskForm" class="add-task-form" onsubmit="createNewTask();return false;">
+    <form id="addTaskForm" class="add-task-form-floating" onsubmit="createNewTask();return false;">
       <div class="input-section-floating">
         <div class="section-left">
           <div class="add-task-single">
@@ -126,7 +126,7 @@ function addTaskTemplate() {
               </div>
             </div>
             <div class="subtask-content" id="addedSubtask"></div>
-               <div id="requiredMobil" class="required-field-mobil">
+               <div id="requiredMobilFloating" class="required-field-mobil">
               <span class="span-star">*</span>
               <p>This field is required</p>
             </div>
@@ -134,12 +134,12 @@ function addTaskTemplate() {
         </div>
       </div>
       
-        <div class="required-section-content">
-          <div id="requiredDesktop" class="required-field-desctop">
+        <div class="required-section-floating">
+          <div id="requiredDesktopFloating" class="required-field-desktop-floating">
             <span class="span-star">*</span>
             <p>This field is required</p>
           </div>
-          <div class="bt-section">
+          <div class="bt-section-floating">
             <button class="bt-clear" type="reset" onclick="clearAddTask()">
               Clear
                 <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">

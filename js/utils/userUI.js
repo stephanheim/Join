@@ -383,5 +383,19 @@ function toggleResponsiveRequired() {
   }
 }
 
+function toggleResponsiveFloatingRequired() {
+  const desktop = document.getElementById('requiredDesktopFloating');
+  const mobil = document.getElementById('requiredMobilFloating');
+  if (window.innerWidth >= 600) {
+    if (desktop) desktop.classList.remove('d-none');
+    if (mobil) mobil.classList.add('d-none');
+  } else {
+    if (mobil) mobil.classList.remove('d-none');
+    if (desktop) desktop.classList.add('d-none');
+  }
+}
+
 window.addEventListener('resize', toggleResponsiveRequired);
 window.addEventListener('load', toggleResponsiveRequired);
+window.addEventListener('resize', toggleResponsiveFloatingRequired);
+window.addEventListener('load', toggleResponsiveFloatingRequired);
