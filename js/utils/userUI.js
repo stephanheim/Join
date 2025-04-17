@@ -386,7 +386,7 @@ function toggleResponsiveRequired() {
 function toggleResponsiveFloatingRequired() {
   const desktop = document.getElementById('requiredDesktopFloating');
   const mobil = document.getElementById('requiredMobilFloating');
-  if (window.innerWidth >= 600) {
+  if (window.innerWidth >= 971) {
     if (desktop) desktop.classList.remove('d-none');
     if (mobil) mobil.classList.add('d-none');
   } else {
