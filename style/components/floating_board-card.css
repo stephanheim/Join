@@ -145,7 +145,7 @@
 .contact-section {
   display: flex;
   align-items: center;
-  gap: 16px;
+  justify-content: center;
 }
 
 .contact-section p {
@@ -156,7 +156,7 @@
   overflow: auto;
   max-height: 110px;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 16px;
   padding-left: 16px;
 }
@@ -226,7 +226,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding:0 20px 0 40px;
+  padding: 0 20px 0 40px;
 }
 
 .bt-board-card-edit {
@@ -268,6 +268,7 @@
   align-items: center;
   gap: 24px;
   overflow-y: scroll;
+  scrollbar-width: none;
 }
 
 .task-title {
@@ -277,7 +278,7 @@
   word-break: break-word;
 }
 
-@media screen and (max-width:428px) {
+@media screen and (max-width: 428px) {
   .user-story-card {
     max-width: 396px;
     max-height: 724px;
