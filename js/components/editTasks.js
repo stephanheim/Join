@@ -1,15 +1,22 @@
 /**
- * Updates the content of the board card edit view with task data, including subtasks and assigned contacts.
+ * Opens the edit view for a board task card and fills it with current task data.
  *
- * @param {string} id - The ID of the task to edit.
+ * - Loads the task by ID from `taskDataMap`
+ * - Sets `selectedContacts` to the task's current assigned contacts
+ * - Prepares the subtasks and assigned contact HTML
+ * - Renders the edit view in `#boardCardLarge`
+ *
+ * @param {string} id - The ID of the task to edit
  */
 function changeBoardCardTemplate(id) {
   const { task } = taskDataMap[id];
+  selectedContacts = Array.from(task.contacts || []);
   const subtasks = task.subtasks || [];
   const subtaskHTML = subtasks.map((subtasks, i) => subtaskTemplate(i, subtasks)).join('');
   const namesHTML = getNamesTaskCardTemp(task, true);
   const boardCard = document.getElementById('boardCardLarge');
   boardCard.innerHTML = editBoardCardTemplate(task, subtaskHTML, namesHTML);
+  console.log(task.assignedTo)
 }
 
 /**

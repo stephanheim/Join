@@ -69,3 +69,14 @@ async function syncTasksFromDBToLocalStorage() {
   let allTasks = defaultTasks.concat(userTasks);
   localStorage.setItem('tasks', JSON.stringify(allTasks));
 }
+
+/**
+ * Fills the global `taskDataMap` with task objects loaded from localStorage.
+ * Each task is stored using its `id` as the key.
+ */
+function fillTaskDataMap() {
+  const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+  for (let task of tasks) {
+    taskDataMap[task.id] = { task };
+  }
+}

@@ -222,20 +222,6 @@ function closeSubtaskInput(event) {
 }
 
 /**
- * Toggles visibility of initials indicator based on dropdown visibility.
- * @param {HTMLElement} dropDownMenu - The dropdown menu element.
- */
-function initialsShowOnAssinged(dropDownMenu) {
-  const initialCircle = document.getElementById('selectedInitials');
-  const isHidden = dropDownMenu.classList.contains('drop-down-hide');
-  if (isHidden) {
-    initialCircle.classList.remove('d-none');
-  } else {
-    initialCircle.classList.add('d-none');
-  }
-}
-
-/**
  * Opens the detailed board card view for the specified task.
  *
  * @param {string} id - The unique ID of the task to display.

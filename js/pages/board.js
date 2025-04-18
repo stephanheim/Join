@@ -30,9 +30,8 @@ let boardContainers = [
 ];
 
 /**
- * Initializes the task board.
- * Loads tasks from Firebase into localStorage and renders them on the board.
- * Optionally, default tasks can be uploaded to Firebase if needed.
+ * Initializes the task board by loading contacts and tasks,
+ * synchronizing with Firebase, preparing task data, and rendering the board.
  *
  * @returns {Promise<void>}
  */
@@ -40,6 +39,7 @@ async function initBoard() {
   loadContactsFromFirebase();
   await syncTasksFromDBToLocalStorage();
   // await uploadDefaultTasks(); - only for loading default tasks on db
+  fillTaskDataMap();
   renderTasks();
 }
 

@@ -47,37 +47,6 @@ function isCheckboxChecked(type) {
 };
 
 /**
- * Toggles the arrow rotation based on dropdown visibility.
- *
- * Adds or removes CSS classes to visually indicate whether the dropdown is open or closed.
- *
- * @param {HTMLElement} arrow - The arrow element to rotate.
- * @param {boolean} isHidden - Whether the dropdown is currently hidden.
- */
-function toggleArrowRotation(arrow, isHidden) {
-  if (arrow) {
-    arrow.classList.toggle('rotate-arrow', isHidden);
-    arrow.classList.toggle('rotate-arrow-0', !isHidden);
-  }
-};
-
-/**
- * Updates the placeholder and value of an input field based on visibility state.
- *
- * If the dropdown is visible (`isHidden` is false), the placeholder is cleared.
- * If the dropdown is hidden (`isHidden` is true), a default placeholder is shown and the value is cleared.
- *
- * @param {HTMLInputElement} inputField - The input field to update.
- * @param {boolean} isHidden - Whether the related dropdown is currently hidden.
- */
-function updatePlaceholder(inputField, isHidden) {
-  if (inputField) {
-    inputField.placeholder = !isHidden ? '' : 'Select contacts to assign';
-    inputField.value = isHidden ? '' : inputField.value;
-  }
-}
-
-/**
  * Prevents the form with ID `addTaskForm` from being submitted
  * when the Enter key is pressed inside any non-submit input field.
  *
@@ -174,30 +143,6 @@ function resetFormRegister() {
 function showSubMenu() {
   const submenu = document.getElementById('submenu');
   submenu.classList.toggle('d-none');
-}
-
-/**
- * Displays a dropdown menu by updating its CSS classes.
- *
- * Removes `d-none` and `drop-down-hide`, and adds `drop-down-show` to make the menu visible.
- *
- * @param {HTMLElement} dropDownMenu - The dropdown menu element to show.
- */
-function showDropdown(dropDownMenu) {
-  dropDownMenu.classList.remove('d-none', 'drop-down-hide');
-  dropDownMenu.classList.add('drop-down-show');
-}
-
-/**
- * Hides a dropdown menu by updating its CSS classes.
- *
- * Removes `drop-down-show` and adds `drop-down-hide` to hide the menu with animation.
- *
- * @param {HTMLElement} dropDownMenu - The dropdown menu element to hide.
- */
-function hideDropdown(dropDownMenu) {
-  dropDownMenu.classList.remove('drop-down-show');
-  dropDownMenu.classList.add('drop-down-hide');
 }
 
 /**
@@ -309,25 +254,6 @@ function showBoardAfterDelay() {
     loadPageContentPath('board');
     setActiveNavBoard();
   }, 1300);
-}
-
-/**
- * Updates the border color of the assigned contacts input field
- * based on the visibility of the dropdown menu.
- *
- * If the dropdown is hidden, a neutral gray border is applied.
- * If the dropdown is visible, a highlight blue border is applied.
- *
- * @param {HTMLElement} dropDownMenu - The dropdown menu element to check.
- */
-function assignedBorderColor(dropDownMenu) {
-  const borderColor = document.getElementById('assignedInputBorderColor');
-  const isHidden = dropDownMenu.classList.contains('drop-down-hide');
-  if (isHidden) {
-    borderColor.style.border = '1px solid rgba(209, 209, 209, 1)';
-  } else {
-    borderColor.style.border = '1px solid rgba(41, 171, 226, 1)';
-  }
 }
 
 /**

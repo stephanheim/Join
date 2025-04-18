@@ -365,6 +365,19 @@
   opacity: 1;
 }
 
+.add-subtask ul {
+  width: 100%;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.add-subtask li {
+  width: 100%;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
 .subtask-icons {
   display: flex;
   align-items: center;
