@@ -56,6 +56,9 @@ function renderTasks() {
     prepareTaskData(task);
     let container = document.getElementById(task.status);
     container.innerHTML += createTaskCard(task);
+    let card = document.getElementById(task.id);
+    // activates drag & drop for touch devices (mobile support)
+    enableMobileDrag(card);
   });
   noTaskVisibility();
 }

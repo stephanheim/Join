@@ -105,3 +105,106 @@ async function moveTo(newStatus) {
     renderTasks();
   }
 }
+
+/** 
+ * === Mobile Touch Drag & Drop ===
+ * Handles drag and drop on touch devices
+ */
+
+/**
+ * Enables touch-based drag-and-drop functionality for mobile devices.
+ * Attaches touch event handlers to the given task element.
+ *
+ * @param {HTMLElement} taskElement - The task card element to make draggable.
+ */
+function enableMobileDrag(taskElement) {
+  taskElement.addEventListener('touchstart', (e) => handleTouchStart(e, taskElement));
+  taskElement.addEventListener('touchmove', (e) => handleTouchMove(e, taskElement));
+  taskElement.addEventListener('touchend', (e) => handleTouchEnd(e, taskElement));
+}
+
+/**
+ * Handles the touch start event by storing initial touch coordinates
+ * and adding the visual dragging indicator.
+ *
+ * @param {TouchEvent} e - The touchstart event.
+ * @param {HTMLElement} element - The task element being dragged.
+ */
+function handleTouchStart(e, element) {
+  element.dataset.startX = e.touches[0].clientX;
+  element.dataset.startY = e.touches[0].clientY;
+  element.classList.add('dragging');
+}
+
+/**
+ * Updates the task element position based on the current touch position.
+ *
+ * @param {TouchEvent} e - The touchmove event.
+ * @param {HTMLElement} element - The task element being dragged.
+ */
+function handleTouchMove(e, element) {
+  e.preventDefault();
+  let touch = e.touches[0];
+  element.style.position = 'absolute';
+  element.style.left = `${touch.clientX - 50}px`;
+  element.style.top = `${touch.clientY - 50}px`;
+  element.style.zIndex = '1000';
+}
+
+/**
+ * Handles the touch end event by resetting styles and checking for drop target.
+ *
+ * @param {TouchEvent} e - The touchend event.
+ * @param {HTMLElement} element - The task element being dragged.
+ */
+function handleTouchEnd(e, element) {
+  resetDraggedElementStyle(element);
+  checkDropZones(e.changedTouches[0], element);
+}
+
+/**
+ * Resets the visual styles applied during the drag process.
+ *
+ * @param {HTMLElement} element - The task element to reset.
+ */
+function resetDraggedElementStyle(element) {
+  element.classList.remove('dragging');
+  element.style.position = '';
+  element.style.left = '';
+  element.style.top = '';
+  element.style.zIndex = '';
+}
+
+/**
+ * Checks if the dragged element was dropped inside a valid drop zone
+ * and moves the task if so.
+ *
+ * @param {Touch} touch - The touch point at the end of the drag.
+ * @param {HTMLElement} element - The dragged task element.
+ */
+function checkDropZones(touch, element) {
+  document.querySelectorAll('.task-render-container').forEach((zone) => {
+    let rect = zone.getBoundingClientRect();
+    if (isTouchInside(touch, rect)) {
+      zone.appendChild(element);
+      moveTo(zone.id);
+    }
+  });
+}
+
+/**
+ * Checks whether the touch point is inside the given bounding rectangle.
+ *
+ * @param {Touch} touch - The touch point.
+ * @param {DOMRect} rect - The bounding client rectangle of the drop zone.
+ * @returns {boolean} True if the touch is inside the rectangle, otherwise false.
+ */
+function isTouchInside(touch, rect) {
+  return (
+    touch.clientX >= rect.left &&
+    touch.clientX <= rect.right &&
+    touch.clientY >= rect.top &&
+    touch.clientY <= rect.bottom
+  );
+}
+
