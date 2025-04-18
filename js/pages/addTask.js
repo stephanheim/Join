@@ -372,6 +372,7 @@ function openCalendar() {
     if (date) {
       let [year, month, day] = date.split('-');
       document.getElementById('addTaskDate').value = `${day}/${month}/${year}`;
+      removeDateError();
     }
   };
 }
