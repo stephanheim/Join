@@ -24,7 +24,7 @@
       <div class="headline-add-task">
         <h1 class="h1-add-task">Add Task</h1>
       </div>
-      <form id="addTaskForm" class="add-task-form" onsubmit="createNewTask();return false;">
+      <form id="addTaskForm" class="add-task-form" onsubmit="if (validateRequiredFields()) { createNewTask(); } return false;">
         <div class="input-section">
           <div class="section-left">
             <div class="add-task-single">
@@ -33,7 +33,14 @@
                 <span class="span-star">*</span>
               </label>
               <div>
-                <input id="addTaskTitle" class="input_at" type="text" name="title" placeholder="Enter a title" />
+                <input
+                  id="addTaskTitle"
+                  class="input_at"
+                  type="text"
+                  name="title"
+                  placeholder="Enter a title"
+                  oninput="removeErrorOnInput(this, document.getElementById('titleMessage'))"
+                />
                 <span id="titleMessage" class="error-message"></span>
               </div>
             </div>
@@ -50,7 +57,7 @@
               </label>
               <div>
                 <div id="inputDate" class="input-date-outside">
-                  <input oninput="formatDate(this)" id="addTaskDate" class="input-date" name="date" type="text" placeholder="dd/mm/yyyy" />
+                  <input oninput="formatDate(this); removeDateError()" id="addTaskDate" class="input-date" name="date" type="text" placeholder="dd/mm/yyyy" />
                   <img src="../assets/icons/date_event.svg" onclick="openCalendar()" />
                   <input type="date" id="hiddenDatePicker" class="hidden-date-picker" />
                 </div>

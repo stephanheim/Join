@@ -185,6 +185,9 @@ function selectCategory(category, event) {
   toggleArrowRotation(arrow, isHidden);
   if (selectedCategory) {
     selectedCategory.innerText = category;
+    const message = document.getElementById('categoryMessage');
+    const categoryContainer = document.getElementById('categoryDropDown');
+    hideError(categoryContainer, message);
   }
   selectedCategoryValue = category;
 }

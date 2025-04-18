@@ -84,17 +84,6 @@ function areTaskFieldsFilled() {
 }
 
 /**
- * Validates that the required fields (title and category) are not empty.
- *
- * @param {string} title - The title of the task.
- * @param {string} category - The category of the task.
- * @returns {boolean} Returns `true` if both fields are filled, otherwise `false`.
- */
-function validateRequiredFields(title, category) {
-  return title && category; // Check if both title and category are not empty
-}
-
-/**
  * Validates the given date input.
  * Checks if the date is provided and if it's a valid date in the future or today.
  * Displays an error message if the validation fails.
