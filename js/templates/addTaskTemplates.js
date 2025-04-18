@@ -14,7 +14,7 @@ function addTaskTemplate() {
           <img src="../assets/icons/close.svg" class="add-close-btn" alt="Close" />
         </div>
       </div>
-      <form id="addTaskForm" class="add-task-form-floating" onsubmit="createNewTask();return false;">
+      <form id="addTaskForm" class="add-task-form-floating" onsubmit="if (validateRequiredFields()) { createNewTask(); } return false;">
         <div class="input-section-floating">
           <div class="section-left">
             <div class="add-task-single">
