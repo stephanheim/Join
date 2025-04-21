@@ -160,12 +160,14 @@
   border-color: #A8A8A8;
 }
 
-@media screen and (max-width: 856px) {
+@media screen and (max-width:1440px) {
   .task-render-container {
     flex-direction: row;
     padding: 8px;
   }
+}
 
+@media screen and (max-width: 856px) {
   .task-render-outside {
     display: flex;
     flex-direction: row;
