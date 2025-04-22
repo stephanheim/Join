@@ -297,7 +297,15 @@
   }
 
   .inner-card h1 {
-    font-size: 38px;
+    font-size: 26px;
     line-height: 1.2;
+  }
+
+  .inner-text-build-start span {
+    font-size: 16px;
+  }
+
+  .span-headline {
+    font-size: 18px;
   }
 }

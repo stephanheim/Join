@@ -94,12 +94,6 @@
   .headline-add-task-floating {
     width: 100%;
   }
-
-  /* .input-section-floating {
-    gap: 32px;
-    overflow: auto;
-    scrollbar-width: none;
-  } */
 }
 
 @media (max-width: 970px) {
@@ -119,12 +113,16 @@
 
   .headline-add-task-floating {
     max-width: 396px;
-    padding: 32px 0 32px;
+    padding: 0;
   }
 
   .add-task-form-floating {
-    height: calc(100vh - 258px);
+    height: calc(100vh - 184px);
     overflow: auto;
     scrollbar-width: none;
+  }
+
+  .bt-section-floating {
+    padding-top: 8px;
   }
 }
