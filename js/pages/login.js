@@ -34,7 +34,7 @@ async function submitLogin() {
     setLoggedInUserWithWelcome(email);
     setRememberMe();
     await uploadMissingDefaultTasks();
-    window.location.href = './pages/dashboard.html?start=summary';
+    window.location.href = './pages/index.html#/summary';
   } catch (error) {
     console.error('Login failed:', error);
   }
@@ -47,7 +47,7 @@ function guestLogin() {
   let guestUser = { name: 'Guest' };
   localStorage.setItem('loggedInUser', JSON.stringify(guestUser));
   sessionStorage.setItem('showWelcome', 'true');
-  window.location.href = './pages/dashboard.html?start=summary';
+  window.location.href = './pages/index.html#/summary';
 }
 
 /**
@@ -158,7 +158,7 @@ function rememberMe() {
   let user = localStorage.getItem('loggedInUser');
   let rememberMe = localStorage.getItem('rememberMe') === 'true';
   if (user && rememberMe) {
-    window.location.href = './pages/dashboard.html';
+    window.location.href = './pages/index.html#/summary';
   }
 }
 
@@ -173,7 +173,5 @@ function logout() {
   localStorage.removeItem('loggedInUser');
   localStorage.removeItem('loggedInGuest');
   localStorage.removeItem('userInContacts');
-  sessionStorage.removeItem("lastPage");
-  localStorage.removeItem("lastPagePerma");
-  window.location.href = '../index.html';
+  window.location.href = '../login.html';
 }

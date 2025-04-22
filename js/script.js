@@ -18,31 +18,15 @@ const pageTitles = {
 };
 
 /**
- * Loads the last visited page based on URL parameters, sessionStorage, or localStorage.
+ * Navigates to the specified page by updating the URL hash.
+ * Triggers a page load via the 'hashchange' event if the page is different from the current one.
  *
- * @function loadLastVisitedPage
- * @returns {void}
- *
+ * @param {string} page - The identifier of the page to navigate to (e.g., 'summary', 'contacts').
  */
-function loadLastVisitedPage() {
-  let urlParams = new URLSearchParams(window.location.search);
-  let startPage = urlParams.get('start');
-  let sessionPage = sessionStorage.getItem("lastPage");
-  let permaPage = localStorage.getItem("lastPagePerma");
-  let lastPage = startPage || sessionPage || permaPage || "summary";
-  loadPageContentPath(lastPage);
-  if (startPage) {
-    removeStartURL();
+function navigateTo(page) {
+  if (currentPage !== page) {
+    location.hash = `/${page}`;
   }
-}
-
-/**
- * Removes the 'start' parameter from the URL without reloading the page.
- */
-function removeStartURL() {
-  let url = new URL(window.location.href);
-  url.searchParams.delete('start');
-  window.history.replaceState({}, document.title, url.pathname);
 }
 
 /**
@@ -64,16 +48,17 @@ async function initPages(page) {
 }
 
 /**
- * Loads the HTML content of a given page and initializes all necessary components.
+ * Loads the HTML content for the given page and initializes all necessary components.
  *
  * @async
  * @function loadPageContentPath
- * @param {string} page - The name of the page to load (without the .html extension).
- * @returns {Promise<void>} - Resolves when the page is fully loaded and initialized.
- *
+ * @param {string} page - The identifier of the page to load (e.g., 'summary', 'addTask').
+ * @returns {Promise<void>} Resolves when the content is loaded and initialized.
  */
 async function loadPageContentPath(page) {
-  let contentPages = document.getElementById("content");
+  if (!document.getElementById('content')) return;
+  let contentPages = document.getElementById('content');
+  if (!contentPages) return;
   let content = await fetchContent(`${page}.html`);
   contentPages.innerHTML = content;
   initPages(page);
@@ -83,8 +68,6 @@ async function loadPageContentPath(page) {
   }
   setFormModeIfContactsPage(page);
   setActiveLoad(page);
-  sessionStorage.setItem("lastPage", page);
-  localStorage.setItem("lastPagePerma", page);
 }
 
 /**
@@ -215,3 +198,21 @@ function arrowBackToPreviousPage() {
     sessionStorage.removeItem("previousPage");
   }
 }
+
+/**
+ * Loads the initial page content based on the current hash when the DOM is fully loaded.
+ * Defaults to 'summary' if no hash is provided.
+ */
+window.addEventListener("DOMContentLoaded", () => {
+  let page = location.hash.replace("#/", "") || "summary";
+  loadPageContentPath(page);
+});
+
+/**
+ * Loads the corresponding page content whenever the URL hash changes.
+ * This enables navigation via browser back/forward buttons or manual hash editing.
+ */
+window.addEventListener("hashchange", () => {
+  let page = location.hash.replace("#/", "") || "summary";
+  loadPageContentPath(page);
+});

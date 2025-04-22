@@ -70,7 +70,7 @@ function registrationComplete() {
   message.style.display = "block";
   setTimeout(() => {
     message.style.display = "none";
-    window.location.href = '../index.html';
+    window.location.href = '../login.html';
   }, 1500);
 }
 

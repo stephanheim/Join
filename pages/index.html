@@ -26,7 +26,7 @@
   <link rel="stylesheet" href="../style/components/taskCard.css" />
 </head>
 
-<body onload="loadLastVisitedPage(); getUserInitials();">
+<body onload="getUserInitials();">
   <div class="landscape-warning">
     <span>Please turn your device into portrait format!</span>
   </div>
@@ -43,10 +43,10 @@
   <div onclick="showSubMenu()" id="submenu" class="submenu-container d-none">
     <div class="submenu">
       <div class="submenu-content">
-        <div class="submenu-link" onclick="loadPageContentPath('legal_notice')">
+        <div class="submenu-link" onclick="navigateTo('legal_notice')">
           <a class="a-sublink" href="#">Legal Notice</a>
         </div>
-        <div onclick="loadPageContentPath('privacy_policy')">
+        <div onclick="navigateTo('privacy_policy')">
           <a class="a-sublink" href="#">Privacy Policy</a>
         </div>
         <div class="submenu-link" onclick="logout()"><a class="a-sublink">Log out</a></div>
@@ -59,34 +59,33 @@
     </div>
     <div class="side-menu-below">
       <div class="navbar-section-top">
-        <div onclick="setActiveNav(this); loadPageContentPath('summary');" id="removeActive" class="nav"
-          data-page="summary">
+        <div onclick="setActiveNav(this); navigateTo('summary');" id="removeActive" class="nav" data-page="summary">
           <img class="img_menu" src="../assets/icons/summary.svg" alt="summary" />
-          <a href="#">Summary</a>
+          <a href="javascript:void(0)">Summary</a>
         </div>
         <div class="navbar-section-change">
-          <div onclick="setActiveNav(this); loadPageContentPath('addTask')" class="nav" data-page="addTask">
+          <div onclick="setActiveNav(this); navigateTo('addTask')" class="nav" data-page="addTask">
             <img class="img_menu" src="../assets/icons/add_task.svg" alt="add-task" />
-            <a href="#">Add Task</a>
+            <a href="javascript:void(0)">Add Task</a>
           </div>
-          <div onclick="setActiveNav(this); loadPageContentPath('board')" id="sumToBoard" class="nav" data-page="board">
+          <div onclick="setActiveNav(this); navigateTo('board')" id="sumToBoard" class="nav" data-page="board">
             <img class="img_menu" src="../assets/icons/board_icon.svg" alt="board" />
-            <a href="#">Board</a>
+            <a href="javascript:void(0)">Board</a>
           </div>
         </div>
-        <div onclick="setActiveNav(this); loadPageContentPath('contacts')" class="nav" data-page="contacts">
+        <div onclick="setActiveNav(this); navigateTo('contacts')" class="nav" data-page="contacts">
           <img class="img_menu" src="../assets/icons/contacts.svg" alt="contacts" />
-          <a href="#">Contacts</a>
+          <a href="javascript:void(0)">Contacts</a>
         </div>
       </div>
       <div id="navPrivacy" class="navbar-section-bottom">
         <div class="policy-content" data-page="privacy_policy">
-          <a onclick="loadPageContentPath('privacy_policy'); setActiveNav(this.parentElement)" class="a-policy"
-            href="#">Privacy Policy</a>
+          <a onclick="navigateTo('privacy_policy'); setActiveNav(this.parentElement)" class="a-policy"
+            href="javascript:void(0)">Privacy Policy</a>
         </div>
         <div class="policy-content" data-page="legal_notice">
-          <a onclick="loadPageContentPath('legal_notice'); setActiveNav(this.parentElement)" class="a-policy"
-            href="#">Legal notice</a>
+          <a onclick="navigateTo('legal_notice'); setActiveNav(this.parentElement)" class="a-policy"
+            href="javascript:void(0)">Legal notice</a>
         </div>
       </div>
     </div>
