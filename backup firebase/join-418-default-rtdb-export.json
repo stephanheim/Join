@@ -1,0 +1,381 @@
+{
+  "board": {
+    "default": {
+      "-OO42fdzBk4Qi1fvRcBK": {
+        "category": "User Story",
+        "contacts": [
+          {
+            "color": "#9327ff",
+            "id": "-OO42xodhQDzei6xtsgz",
+            "initials": "CA",
+            "name": "Carolin Anders"
+          }
+        ],
+        "date": "01/02/2025",
+        "description": "Erstes Meeting zur Besprechung der Projektziele und des Entwicklungsplans für die Chat-App.",
+        "firebaseId": "-OO42fdzBk4Qi1fvRcBK",
+        "id": "task-1743532919041-101",
+        "isDefault": true,
+        "priority": "Medium",
+        "status": "inProgress",
+        "subtasks": [
+          {
+            "completed": false,
+            "text": "Agenda erstellen"
+          },
+          {
+            "completed": false,
+            "text": "Einladungen versenden"
+          },
+          {
+            "completed": false,
+            "text": "Protokoll vorbereiten"
+          }
+        ],
+        "title": "Projekt Kick-off Meeting"
+      },
+      "-OO42feelzmilmED5qEV": {
+        "category": "Technical Task",
+        "contacts": [
+          {
+            "color": "#9327ff",
+            "id": "-OO42xodhQDzei6xtsgz",
+            "initials": "CA",
+            "name": "Carolin Anders"
+          }
+        ],
+        "date": "03/02/2025",
+        "description": "Erstellung eines ansprechenden und benutzerfreundlichen Interface Designs für die Chat-App.",
+        "firebaseId": "-OO42feelzmilmED5qEV",
+        "id": "task-1743532919041-102",
+        "isDefault": true,
+        "priority": "Medium",
+        "status": "awaitFeedback",
+        "subtasks": [
+          {
+            "completed": true,
+            "text": "Wireframes erstellen"
+          },
+          {
+            "completed": true,
+            "text": "Mockups entwerfen"
+          },
+          {
+            "completed": true,
+            "text": "Feedback einholen"
+          }
+        ],
+        "title": "UI/UX Design entwerfen"
+      },
+      "-OO42ffKQ3sjns0MJ_1q": {
+        "category": "Technical Task",
+        "contacts": [
+          {
+            "color": "#20d7c2",
+            "id": "-ONzI5hp1uWXmwbOYgsu",
+            "initials": "PK",
+            "name": "Pascal Kasbeitzer"
+          }
+        ],
+        "date": "05/02/2025",
+        "description": "Aufbau der Server-Infrastruktur für die Echtzeit-Kommunikation in der Chat-App.",
+        "firebaseId": "-OO42ffKQ3sjns0MJ_1q",
+        "id": "task-1743532919041-103",
+        "isDefault": true,
+        "priority": "Urgent",
+        "status": "done",
+        "subtasks": [
+          {
+            "completed": true,
+            "text": "Server konfigurieren"
+          },
+          {
+            "completed": true,
+            "text": "Datenbank einrichten"
+          },
+          {
+            "completed": true,
+            "text": "API Endpoints implementieren"
+          }
+        ],
+        "title": "Backend-Server einrichten"
+      },
+      "-OO42fg05zXYHvWqJ96i": {
+        "category": "User Story",
+        "contacts": [
+          {
+            "color": "#ff7a01",
+            "id": "-ONvEBfbPgAHemevV0Jm",
+            "initials": "AS",
+            "name": "Angelo Stocchetti"
+          },
+          {
+            "color": "#9327ff",
+            "id": "-OO42xodhQDzei6xtsgz",
+            "initials": "CA",
+            "name": "Carolin Anders"
+          },
+          {
+            "color": "#fc71ff",
+            "id": "-ONvDuxw4bj3rPYU0knh",
+            "initials": "DB",
+            "name": "Doro Böhlen"
+          },
+          {
+            "color": "#462f8a",
+            "id": "-ONzI5hp1uWXmwbOYgsu",
+            "initials": "PK",
+            "name": "Pascal Kasbeitzer"
+          },
+          {
+            "color": "#ff4646",
+            "id": "-ONW7D1dOe1EgIFkPnWS",
+            "initials": "PS",
+            "name": "Peter Schmitz"
+          },
+          {
+            "color": "#ff7a01",
+            "id": "-OJKU8ZeUuIMAYb3-UQJ",
+            "initials": "RE",
+            "name": "Rolf Ehrenfels"
+          },
+          {
+            "color": "#9327ff",
+            "id": "-OL4ecT7JCwzGuhlRi3u",
+            "initials": "SH",
+            "name": "Stephan Heim"
+          },
+          {
+            "color": "#6e52ff",
+            "id": "-OO-Y2z7eKmoNVq11hom",
+            "initials": "SH",
+            "name": "Stephan Heim"
+          },
+          {
+            "color": "#fc71ff",
+            "id": "-OLjJTwV3JJHcf69m8-3",
+            "initials": "WB",
+            "name": "Werner B"
+          },
+          {
+            "color": "#ffbb2c",
+            "id": "-OJKx0LL4KLlc6zhhfVK",
+            "initials": "ZV",
+            "name": "Zeno van Essel"
+          }
+        ],
+        "date": "10/02/2025",
+        "description": "Implementierung der Kernfunktion zum Senden und Empfangen von Nachrichten in der App.",
+        "firebaseId": "-OO42fg05zXYHvWqJ96i",
+        "id": "task-1743532919041-104",
+        "isDefault": true,
+        "priority": "Urgent",
+        "status": "toDo",
+        "subtasks": [
+          {
+            "completed": false,
+            "text": "Nachrichten Senden"
+          },
+          {
+            "completed": false,
+            "text": "Nachrichten Empfangen"
+          },
+          {
+            "completed": true,
+            "text": "Nachrichten Status anzeigen"
+          }
+        ],
+        "title": "Chat-Funktionalität entwickeln"
+      },
+      "-OO42fgfjMu5OC0enUab": {
+        "category": "User Story",
+        "contacts": [
+          {
+            "color": "#ff7a01",
+            "id": "-ONvEBfbPgAHemevV0Jm",
+            "initials": "AS",
+            "name": "Angelo Stocchetti"
+          },
+          {
+            "color": "#9327ff",
+            "id": "-OO42xodhQDzei6xtsgz",
+            "initials": "CA",
+            "name": "Carolin Anders"
+          }
+        ],
+        "date": "15/02/2025",
+        "description": "Durchführung von Tests und Behebung von Fehlern in der Chat-App vor der Markteinführung.",
+        "firebaseId": "-OO42fgfjMu5OC0enUab",
+        "id": "task-1743532919041-105",
+        "isDefault": true,
+        "priority": "Medium",
+        "status": "inProgress",
+        "subtasks": [
+          {
+            "completed": true,
+            "text": "Unit Tests erstellen"
+          },
+          {
+            "completed": false,
+            "text": "Integrationstests durchführen"
+          },
+          {
+            "completed": false,
+            "text": "Fehlerberichte analysieren"
+          },
+          {
+            "completed": false,
+            "text": "Bugfixes implementieren"
+          }
+        ],
+        "title": "App Test und Bugfixing"
+      }
+    }
+  },
+  "contacts": {
+    "-OJKU8ZeUuIMAYb3-UQJ": {
+      "email": "reto@me.com",
+      "name": "Rolf Ehrenfels",
+      "phone": "+4917134567833"
+    },
+    "-OJKx0LL4KLlc6zhhfVK": {
+      "email": "zve@gmx.de",
+      "name": "Zeno van Essel",
+      "phone": "+4179976123"
+    },
+    "-OL4ecT7JCwzGuhlRi3u": {
+      "email": "stephan.heim@bluewin.ch",
+      "name": "Stephan Heim",
+      "phone": "+41799551949"
+    },
+    "-OLjJTwV3JJHcf69m8-3": {
+      "email": "werner@test.de",
+      "name": "Werner B",
+      "phone": "023652222"
+    },
+    "-ONW7D1dOe1EgIFkPnWS": {
+      "email": "schmitz@email.de",
+      "name": "Peter Schmitz",
+      "phone": "123123123555"
+    },
+    "-ONvDuxw4bj3rPYU0knh": {
+      "email": "db@gmx.de",
+      "name": "Doro Böhlen",
+      "phone": "+122112122121"
+    },
+    "-ONvEBfbPgAHemevV0Jm": {
+      "email": "angi@sto.ch",
+      "name": "Angelo Stocchetti",
+      "phone": "+41212212123"
+    },
+    "-ONzI5hp1uWXmwbOYgsu": {
+      "email": "pascal.kasbeitzer@gmail.com",
+      "name": "Pascal Kasbeitzer",
+      "phone": ""
+    },
+    "-OO-Y2z7eKmoNVq11hom": {
+      "email": "superlangersupercaraklfsdlkjfsdjfdskjffdskfdsjk@dksjfdslkjfslkjdflksdjfkf.ch",
+      "name": "Stephan Heim",
+      "phone": "0799551949"
+    },
+    "-OO42xodhQDzei6xtsgz": {
+      "email": "caro@gmx.com",
+      "name": "Carolin Anders",
+      "phone": "023624782921"
+    }
+  },
+  "register": {
+    "users": {
+      "-OJPBxuvRXXsEI4g6CGS": {
+        "email": "pascal.kasbeitzer@gmail.com",
+        "name": "Pascal Kasbeitzer",
+        "password": "password1309"
+      },
+      "-OJnpOHIaUqWYwSjx2af": {
+        "email": "marco@test.de",
+        "name": "Marco Burdick",
+        "password": "12345678"
+      },
+      "-OKq-5MqGxrCOYitR_Ud": {
+        "email": "siggi@test.de",
+        "name": "siggi kasbeitzer",
+        "password": "1111111111"
+      },
+      "-OL4eYw1EI8pKch5AgrD": {
+        "email": "stephan.heim@bluewin.ch",
+        "name": "Stephan Heim",
+        "password": "Gardasee23"
+      },
+      "-OLf-EP4MrrpoDWDqKwC": {
+        "email": "pascal@test.de",
+        "name": "Ardolf P",
+        "password": "222222222"
+      },
+      "-OLk9FFVK39ydVE44HoV": {
+        "email": "test@test.de",
+        "name": "test test",
+        "password": "11111111"
+      },
+      "-OLojQz52epdslkZs2xj": {
+        "email": "simon@test.de",
+        "name": "Pascal Kasbeitzer",
+        "password": "1111111111"
+      },
+      "-OLxtfpzIaGbOxkhRo00": {
+        "email": "sontje@test.de",
+        "name": "Sontje Kasbeitzer",
+        "password": "2222222222"
+      },
+      "-OMO5WktinteWjp7zyAa": {
+        "email": "testdertest@test.de",
+        "name": "Pascal Kasbeitzer",
+        "password": "444444444"
+      },
+      "-OMO6avzRuIXrSblkJp_": {
+        "email": "roman@test.de",
+        "name": "Roman Test",
+        "password": "55555555"
+      },
+      "-OMxCqQ3-Kmgs0avNFgZ": {
+        "email": "nutzer@test.de",
+        "name": "Neuer Nutzer",
+        "password": "44444444"
+      },
+      "-ONFx_JW4dXOE2igUl71": {
+        "email": "neu@tesetnutzer.de",
+        "name": "Neuer Nutzer",
+        "password": "121212121"
+      },
+      "-ONRGNbkLc2WezNbvI4S": {
+        "email": "neu@test.de",
+        "name": "neuer  name",
+        "password": "11111111"
+      },
+      "-ONpzeLJABpqhZeS7xHT": {
+        "email": "wert@ada.de",
+        "name": "Ada Wert",
+        "password": "12121212"
+      },
+      "-ONuQNhJOP0RKwpsCpPc": {
+        "email": "das@dfsd.de",
+        "name": "sasd da",
+        "password": "asasasas"
+      },
+      "-ONusxrSDyxGe1YQkWs9": {
+        "email": "dwad@email.de",
+        "name": "dad awd",
+        "password": "121212121"
+      },
+      "-OO6cOafzzNjFecZ_HzJ": {
+        "email": "marco.burdick@web.de",
+        "name": "Marco Burdick",
+        "password": "hallo1234"
+      },
+      "-OO7zF1964HR-9UOqOlY": {
+        "email": "asd@asdasd.de",
+        "name": "asd asd",
+        "password": "asdasdasd"
+      }
+    }
+  }
+}

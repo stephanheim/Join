@@ -4,7 +4,7 @@
  *
  * @constant {string}
  */
-const BASE_URL = 'https://join-418-default-rtdb.europe-west1.firebasedatabase.app/';
+const BASE_URL = "https://join-sh-2809-default-rtdb.europe-west1.firebasedatabase.app/";
 
 /**
  * Fetches data from the specified URL
